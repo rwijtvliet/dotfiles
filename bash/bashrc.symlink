@@ -43,7 +43,7 @@ esac
 # uncomment for a colored prompt, if the terminal has the capability; turned
 # off by default to not distract the user: the focus in a terminal window
 # should be on the output of commands, not on the prompt
-#force_color_prompt=yes
+force_color_prompt=yes
 
 if [ -n "$force_color_prompt" ]; then
     if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
@@ -82,7 +82,7 @@ fi
 
 # some more ls aliases
 alias ll='ls -alF'
-alias la='ls -A'
+alias la='ls -lA'
 alias l='ls -CF'
 
 # Add an "alert" alias for long running commands.  Use like so:
@@ -126,18 +126,9 @@ unset __conda_setup
 
 
 # exports
-export PIP_EXTRA_INDEX_URL=https://update_lb:3eefjblqmixou4ymcmyfq7txhjwbkon42dw3mynctyezwbu5ffqa@pkgs.dev.azure.com/lichtblick/FRM/_packaging/FRM_packages/pypi/simple
-export BELVIS_USR='ruud.wijtvliet'
-export BELVIS_PWD='Ammm1mmm2mmm3mmm'
-# custom aliases
-alias myip='curl ipinfo.io/ip' 
-alias nvconf='cd ~/.config/nvim/lua/ && nvim ~/.config/nvim/lua/ '
-alias bashconf='nvim ~/.bashrc'
-alias pf='cd ~/python_local/dev/portfolyo/ && conda activate pf310' 
-alias lb='cd ~/python_local/dev/lichtblyck/ && conda activate lb310' 
-alias bv='cd ~/python_local/dev/belvys/ && conda activate bv310' 
-alias pr='cd ~/windows_home/LichtBlick\ SE/Austausch\ FRM\ Eneco\ LB\ -\ Commodity\ Risk/Projects/ && nvim . '
-alias tr='cd ~/windows_home/LichtBlick\ SE/Austausch\ FRM\ Eneco\ LB\ -\ Commodity\ Risk/Projects/FORM-Report/2022_06_03_heatmap_temprisk/ '
+if [ -f ~/.bash_exports ]; then
+    . ~/.bash_exports
+fi
 # show git branch
 parse_git_branch() {
     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'

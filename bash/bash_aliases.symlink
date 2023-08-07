@@ -1,0 +1,9 @@
+
+alias myip='curl ipinfo.io/ip' 
+alias nvconf='cd ~/.config/nvim/lua/ && nvim ~/.config/nvim/lua/ '
+alias bashconf='nvim ~/.bashrc'
+alias pf='cd ~/python_local/dev/portfolyo/ && conda activate pf310' 
+alias lb='cd ~/python_local/dev/lichtblyck/ && conda activate lb310' 
+alias bv='cd ~/python_local/dev/belvys/ && conda activate bv310' 
+alias pr='cd ~/windows_home/LichtBlick\ SE/Austausch\ FRM\ Eneco\ LB\ -\ Commodity\ Risk/Projects/ && nvim . '
+alias tr='cd ~/windows_home/LichtBlick\ SE/Austausch\ FRM\ Eneco\ LB\ -\ Commodity\ Risk/Projects/FORM-Report/2022_06_03_heatmap_temprisk/ '
