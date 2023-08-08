@@ -2,7 +2,7 @@
 
 # Install dotfiles by symlinking to default location.
 
-cd "$(dirname "$0")/.."
+cd "$(dirname "$0")"
 DOTFILES_ROOT=$(pwd -P)
 
 set -e
@@ -153,4 +153,4 @@ then
 fi
 
 echo ''
-echo '  All installed!'cho $DOTFILES_ROOT
+echo '  All installed!'
