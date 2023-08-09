@@ -1,5 +1,4 @@
 
-alias myip='curl ipinfo.io/ip' 
 alias nvconf='cd ~/.config/nvim/lua/ && nvim ~/.config/nvim/lua/ '
 alias bashconf='nvim ~/.bashrc'
 alias pf='cd ~/python_local/dev/portfolyo/ && conda activate pf310' 
