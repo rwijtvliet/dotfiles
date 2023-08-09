@@ -29,7 +29,11 @@ case "$OS" in
     ;;
 
   "windows" )
-    fail "to-do"
+    # install
+    scoop install espanso
+
+    # create symlink to configuration
+    link_file ./espanso.private $APPDATA/espanso
     ;;
 
   * )

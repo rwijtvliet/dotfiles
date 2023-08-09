@@ -8,7 +8,7 @@ DOTFILES_ROOT="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
 successful=()
 failure=()
 
-for foldername in $(cat $DOTFILES_ROOT/order)
+for foldername in $(cat "$DOTFILES_ROOT/order")
 do
   echo ''
 
@@ -30,15 +30,15 @@ done
 
 echo ''
 echo ''
-echo "Summary: correctly installed"
+echo "Summary: successfully finished"
 for foldername in "${successfully[@]}"
 do
   success "$foldername"
 done
-echo "Summary: installation failed"
+echo "Summary: ran into error"
 for foldername in "${failure[@]}"
 do
   fail "$foldername"
 done
 echo "Check for files/folders to create"
-warn "In output above, check for lines starting with [\033[0;36m\033[1m !! \033[0m]. They indicate (private) files or folders must still be created."
+filewarn "In output above, check for lines starting with [\033[0;36m\033[1mFILE\033[0m]. They indicate (private) files or folders must still be created."
