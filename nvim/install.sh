@@ -2,8 +2,6 @@
 
 source ../shared.sh
 
-overwrite_all=false backup_all=false skip_all=false
-
 case "$OS" in
   "linux" )
     sudo apt install neovim

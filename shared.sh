@@ -7,37 +7,52 @@
 
 
 info () {
-  printf "\r  [ \033[00;34m..\033[0m ] $1\n"
+  printf "\r  [\033[00;34m .. \033[0m] $1\n"
 }
 
 user () {
-  printf "\r  [ \033[0;33m??\033[0m ] $1\n"
+  printf "\r  [\033[0;33m ?? \033[0m] $1\n"
 }
 
 success () {
-  printf "\r\033[2K  [ \033[00;32mOK\033[0m ] $1\n"
+  printf "\r\033[2K  [\033[00;32m OK \033[0m] $1\n"
 }
 
 fail () {
   printf "\r\033[2K  [\033[0;31mFAIL\033[0m] $1\n"
 }
 
+warn () {
+  printf "\r\033[2K  [\033[0;36m\033[1m !! \033[0m] $1\n"
+}
+
+
+overwrite_all=false backup_all=false skip_all=false
+
 
 link_file () {
-  local src="$(realpath $1)" dst=$(realpath -se $2) # create absolute paths
+  local src="$(realpath -s $1)" # create absolute paths
+  local dst="$(realpath -s $2)" # create absolute paths
 
   local overwrite= backup= skip=
   local action=
   
   if [ ! -f $src ] && [ ! -d $src ]
   then
-    fail "source $src does not exist"
-    exit 1
+    
+    if [[ "$src" != *".private" ]]
+    then
+      fail "source $src does not exist"
+      exit 1
+    else
+      warn "source file or folder [$src] does not exist and must be created, or copied or linked from elsewhere."
+      needtobecreated+=("$src")
+    fi
   fi
   
-  if [ -f "$dst" -o -d "$dst" -o -L "$dst" ]
+  if [ -f "$dst" ] || [ -d "$dst" ] || [ -L "$dst" ]
   then
-
+  
     if [ "$overwrite_all" == "false" ] && [ "$backup_all" == "false" ] && [ "$skip_all" == "false" ]
     then
 
@@ -96,16 +111,16 @@ link_file () {
     then
       if mv "$dst" "${dst}.backup"
       then
-        success "moved $dst to ${dst}.backup"
+        success "moved [$dst] to [${dst}.backup]"
       else
-        fail "could not move $dst to ${dst}.backup"
+        fail "could not move [$dst] to [${dst}.backup]"
         exit 1
       fi
     fi
 
     if [ "$skip" == "true" ]
     then
-      success "skipped linking $src to $dst $skipwhy"
+      success "skipped linking [$src] -> [$dst] $skipwhy"
     fi
   fi
 
@@ -113,9 +128,9 @@ link_file () {
   then
     if ln -s "$src" "$dst"
     then
-      success "linked $src to $dst"
+      success "linked [$src] -> [$dst]"
     else
-      fail "could not link $src to $dst"
+      fail "could not link [$src] -> [$dst]"
       exit 1
     fi
   fi
