@@ -23,8 +23,8 @@ fail () {
   printf "\r\033[2K  [\033[0;31mFAIL\033[0m] $1\n"
 }
 
-filewarn () {
-  printf "\r\033[2K  [\033[0;36m\033[1mFILE\033[0m] $1\n"
+todo () {
+  printf "\r\033[2K  [\033[0;36m\033[1mTODO\033[0m] $1\n"
 }
 
 skip () {
@@ -54,7 +54,7 @@ link_file () {
       fail "source $src does not exist"
       exit 1
     else
-      filewarn "source file or folder [$src] does not exist and must be created, or copied or linked from elsewhere."
+      todo "Source file or folder [$src] does not exist and must be created, or copied or linked from elsewhere."
       needtobecreated+=("$src")
     fi
   fi

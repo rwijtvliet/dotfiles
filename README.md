@@ -38,9 +38,9 @@ Also add the foldername to `order`, so that it is installed when running the `in
 
 In the root, there is an `install.sh` script, which is the only file you need to run.
 
-* In Linux, run it from the terminal.
+* In Linux, run it from a bash terminal.
 
-* In Windows, run it from git bash with admin priviliges.
+* In Windows, run it from git bash.
 
 The script simply searches for the `install.sh` files in the subfolders, and executes them.
 

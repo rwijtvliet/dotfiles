@@ -9,7 +9,7 @@ case "$OS" in
     sudo apt install alacritty
     # config
     mkdir -p "$HOME/.config/alacritty/"
-    link_file "./alacritty.yml.symlink" "$HOME/.config/alacritty/alacritty"
+    link_file "./alacritty_linux.yml.symlink" "$HOME/.config/alacritty/alacritty"
     ;;
 
   "windows" )
@@ -17,7 +17,7 @@ case "$OS" in
     scoop install alacritty
     # config
     mkdir -p "$APPDATA/alacritty/"
-    link_file "./alacritty.yml.symlink" "$APPDATA/alacritty/alacritty.yml"
+    link_file "./alacritty_windows.yml.symlink" "$APPDATA/alacritty/alacritty.yml"
     ;;
 
   * )

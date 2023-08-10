@@ -54,7 +54,7 @@ declare -a fonts=(
 version="v3.0.2"
 
 
-install_fonts () {
+copy_fonts () {
   fontdir="$1"
   mkdir -p "$fontdir"
   for font in "${fonts[@]}"; do
@@ -64,7 +64,7 @@ install_fonts () {
       if ! wget -q "$download_url"; then
         fail "file not found"
       else
-        unzip -uqqq "$zipfile" *.[to]tf -d "$fontdir"
+        unzip -uqq "$zipfile" *.[to]tf -d "$fontdir"
         rm "$zipfile"
       fi
   done
@@ -72,13 +72,19 @@ install_fonts () {
 
 case "$OS" in
   "linux" )
-    install_fonts "$HOME/.local/share/fonts"
+  	mkdir "$HOME/downloads"
+  	cd "$HOME/downloads"
+    copy_fonts "$HOME/.local/share/fonts"
     find "$HOME/.local/share/fonts" -name '*Windows Compatible*' -delete
     fc-cache -fv
     ;;
 
   "windows" )
-    install_fonts "/c/Windows/Fonts"
+  	mkdir "$HOME/Downloads"
+  	cd "$HOME/Downloads"
+  	mkdir -p "$HOME/fonts/"
+    copy_fonts "$HOME/fonts"
+    todo "Fonts must still be installed manually. The can be found in $HOME/fonts"
     ;;
 
   * )

@@ -41,4 +41,4 @@ do
   fail "$foldername"
 done
 echo "Check for files/folders to create"
-filewarn "In output above, check for lines starting with [\033[0;36m\033[1mFILE\033[0m]. They indicate (private) files or folders must still be created."
+todo "In output above, check for lines starting with [\033[0;36m\033[1mTODO\033[0m]. They indicate to-do items, like (private) files or folders that must still be created."
