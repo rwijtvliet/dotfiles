@@ -60,11 +60,11 @@ copy_fonts () {
   for font in "${fonts[@]}"; do
       zipfile="${font}.zip"
       download_url="https://github.com/ryanoasis/nerd-fonts/releases/download/$version/$zipfile"
-      info "Installing fonts in $download_url"
+      info "extracting fonts in $download_url to $fontdir"
       if ! wget -q "$download_url"; then
         fail "file not found"
       else
-        unzip -uqq "$zipfile" *.[to]tf -d "$fontdir"
+        unzip -qqu "$zipfile" *.[to]tf -d "$fontdir"
         rm "$zipfile"
       fi
   done
@@ -72,18 +72,24 @@ copy_fonts () {
 
 case "$OS" in
   "linux" )
-  	mkdir "$HOME/downloads"
-  	cd "$HOME/downloads"
+    mkdir -p "./tmp"
+  	cd "./tmp"
+    
     copy_fonts "$HOME/.local/share/fonts"
     find "$HOME/.local/share/fonts" -name '*Windows Compatible*' -delete
+    rm -rf "./tmp"
+    
     fc-cache -fv
     ;;
 
   "windows" )
-  	mkdir "$HOME/Downloads"
-  	cd "$HOME/Downloads"
+		mkdir -p "./tmp"
+  	cd "./tmp"
   	mkdir -p "$HOME/fonts/"
+    
     copy_fonts "$HOME/fonts"
+    rm -rf "./tmp"
+    
     todo "Fonts must still be installed manually. The can be found in $HOME/fonts"
     ;;
 
