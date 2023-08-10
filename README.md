@@ -30,29 +30,35 @@ In the root, there is a `shared.sh` file, which contains some functionality used
 
 ## Development
 
-When adding an application, create a folder for it, and add an `install.sh` script. Be sure to include a switch that checks, which operating system we are on.
+When adding an application, create a folder for it, and add an `install.sh` script. In the `template` folder, an example file can be found.
+
+Also add the foldername to `order`, so that it is installed when running the `install.sh` script in the root.
 
 ## Usage
 
 In the root, there is an `install.sh` script, which is the only file you need to run.
 
-It simply searches for the `install.sh` files in the subfolders, and executes them.
+* In Linux, run it from the terminal.
+
+* In Windows, run it from git bash with admin priviliges.
+
+The script simply searches for the `install.sh` files in the subfolders, and executes them.
 
 Whenever the `install.sh` script has completed correctly, we need to handle the `.private` files that handle private information such as passwords.
 
-If the repository is a private one, the `.private` files and folders will not be empty, and nothing needs to be done.
+* If the repository is a private one, the `.private` files and folders will not be empty, and nothing needs to be done.
 
-If the repository was cloned from github or another public source, there will be no `.private` folders, only `.private` files, which are all empty and must be replaced. The replacement can be:
+* If the repository was cloned from github or another public source, there will be no `.private` folders, only `.private` files, which are all empty and must be replaced. The replacement can be:
 
-* an identically named file or folder, copied over from a (non-public) source.
+  - an identically named file or folder, copied over from a (non-public) source.
 
-* another symlink, to an accessible (non-public) file or folder. In this case, we get a symlink chain, e.g. 
+  - another symlink, to an accessible (non-public) file or folder. In this case, we get a symlink chain, e.g. 
 
-  ```
-  ~/.config/espanso  # location on filesystem
-  -->  .../dotfile_repository/espanso/espanso.private  # symlink created by install.sh 
-       -->  .../some_private_location/espanso.private/  # symlink created manually, later
-  ```
+    ```
+    ~/.config/espanso  # location on filesystem
+    -->  .../dotfile_repository/espanso/espanso.private  # symlink created by install.sh 
+         -->  .../some_private_location/espanso.private/  # symlink created manually, later
+    ```
 
 
 ## Details / conventions

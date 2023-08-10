@@ -12,16 +12,16 @@ for foldername in $(cat "$DOTFILES_ROOT/order")
 do
   echo ''
 
-  success "┌── $foldername installation started ────┐"
+  success   "┌── $foldername ─── start ────┐"
   
   cd "$DOTFILES_ROOT/$foldername"
   ./install.sh
   if [ $? -eq 0 ]
   then
-    success "└── $foldername installed successfully ──┘"
+    success "└── $foldername ─── \033[0;32msuccess\033[0m ──┘"
     successfully+=("$foldername")
   else
-    fail "└── $foldername finished with error ─────┘"
+    fail    "└── $foldername ─── \033[0;31merror\033[0m ────┘"
     failure+=("$foldername")
   fi
 done

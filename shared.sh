@@ -6,6 +6,7 @@
 # set -e
 
 
+
 info () {
   printf "\r  [\033[00;34m .. \033[0m] $1\n"
 }
@@ -26,6 +27,10 @@ filewarn () {
   printf "\r\033[2K  [\033[0;36m\033[1mFILE\033[0m] $1\n"
 }
 
+skip () {
+  printf "\r\033[2K  [\033[0;37m\033[1mSKIP\033[0m] Not installed on $OS\n"
+}
+
 
 overwrite_all=false backup_all=false skip_all=false
 
@@ -36,7 +41,13 @@ link_file () {
 
   local overwrite= backup= skip=
   local action=
-  
+
+  # Ensure symlinks can be made.
+  if [ "$OS" == "windows" ]; then
+    export MSYS=winsymlinks:nativestrict 
+  fi
+
+  # Ensure source exists (or warn).
   if [ ! -f "$src" ] && [ ! -d "$src" ]; then
     
     if [[ "$src" != *".private" ]]; then
@@ -47,7 +58,8 @@ link_file () {
       needtobecreated+=("$src")
     fi
   fi
-  
+ 
+  # Ensure destination not accidentally overwritten.
   if [ -f "$dst" ] || [ -d "$dst" ] || [ -L "$dst" ]; then
   
     if [ "$overwrite_all" == "false" ] && [ "$backup_all" == "false" ] && [ "$skip_all" == "false" ]; then

@@ -9,7 +9,11 @@ case "$OS" in
     ;;
 
   "windows" )
+    # raise error to alert user that this script is missing
     fail "to-do"
+    exit 1
+    # or, if app not relevant on this system:
+    skip
     ;;
 
   * )

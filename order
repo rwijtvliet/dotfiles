@@ -1,6 +1,9 @@
 scoop
+utils
 bash
-espanso
-nvim
+nerdfonts
+alacritty
+neovim
 inputrc
+espanso
 git

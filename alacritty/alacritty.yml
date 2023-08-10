@@ -1,0 +1,13 @@
+font:
+  normal:
+    family: SauceCodePro Nerd Font
+
+window:
+  title: "Ruud's alacritty"
+
+shell:
+  program: "C:\\Program\ Files\\Git\\bin\\bash.exe"
+
+key_bindings:
+  - { key: V, mods: Control|Shift, action: Paste }
+  - { key: C, mods: Control|Shift, action: Copy }
