@@ -56,7 +56,14 @@ version="v3.0.2"
 
 copy_fonts () {
   fontdir="$1"
+  
+  # create and prepare folders 
+	rm -rf ./tmp # remove possible previous downloads
+	mkdir ./tmp
+  cd ./tmp
   mkdir -p "$fontdir"
+
+	# download and extract the fonts
   for font in "${fonts[@]}"; do
       zipfile="${font}.zip"
       download_url="https://github.com/ryanoasis/nerd-fonts/releases/download/$version/$zipfile"
@@ -68,27 +75,23 @@ copy_fonts () {
         rm "$zipfile"
       fi
   done
+
+  # remove temp folder
+  cd ..
+  rm -rf ./tmp
 }
 
 case "$OS" in
   "linux" )
-    mkdir -p "./tmp"
-  	cd "./tmp"
-    
     copy_fonts "$HOME/.local/share/fonts"
     find "$HOME/.local/share/fonts" -name '*Windows Compatible*' -delete
-    rm -rf "./tmp"
     
     fc-cache -fv
     ;;
 
   "windows" )
-		mkdir -p "./tmp"
-  	cd "./tmp"
   	mkdir -p "$HOME/fonts/"
-    
     copy_fonts "$HOME/fonts"
-    rm -rf "./tmp"
     
     todo "Fonts must still be installed manually. The can be found in $HOME/fonts"
     ;;
