@@ -6,7 +6,8 @@
 ```
 dotfiles/
 ├── shared.sh   # functionality used across install files
-├── install.sh   # installs all - simply runs install.sh file in each app folder
+├── install.sh   # installs apps; run './install.sh -h' for more information
+├── part1  # text file with app folder names (to install at once)
 │
 ├── app_folder1/   # One folder per application
 │    └── install.sh   # installs the app and its configuration, creates symlinks, etc.
@@ -30,9 +31,9 @@ In the root, there is a `shared.sh` file, which contains some functionality used
 
 ## Development
 
-When adding an application, create a folder for it, and add an `install.sh` script. In the `template` folder, an example file can be found.
+When adding an application, create a folder for it, and add an `install.sh` script. In the `.template` folder, an example file can be found.
 
-Also add the foldername to `order`, so that it is installed when running the `install.sh` script in the root.
+Also add the foldername to `part1` or `part2` or (...), so that it is installed when running `./install.sh -r part1`.
 
 ## Usage
 
@@ -42,13 +43,13 @@ In the root, there is an `install.sh` script, which is the only file you need to
 
 * In Windows, run it from git bash.
 
-The script simply searches for the `install.sh` files in the subfolders, and executes them.
+The script takes one or more app folder names as arguments, and also allows for the usage of text files; see `./install.sh -h` for help.
 
 Whenever the `install.sh` script has completed correctly, we need to handle the `.private` files that handle private information such as passwords.
 
 * If the repository is a private one, the `.private` files and folders will not be empty, and nothing needs to be done.
 
-* If the repository was cloned from github or another public source, there will be no `.private` folders, only `.private` files, which are all empty and must be replaced. The replacement can be:
+* If the repository was cloned from github or another public source, there will only be empty `.private` files. These must be replaced. The replacement can be:
 
   - an identically named file or folder, copied over from a (non-public) source.
 
@@ -60,10 +61,13 @@ Whenever the `install.sh` script has completed correctly, we need to handle the 
          -->  .../some_private_location/espanso.private/  # symlink created manually, later
     ```
 
+NB: the individual app's `install.sh` files are not meant to be called directly. To install the `app_folder1`, we don't run `./app_folder1/install.sh`, but rather `./install.sh app_folder1`.
 
 ## Details / conventions
 
 Even the target of a hidden file (e.g., `.bashrc`) will not start with a dot (and will be e.g. `bashrc.symlink`). This is to make them visible and distinct from other files.
+
+
 
 
 
