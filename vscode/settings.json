@@ -1,0 +1,150 @@
+{
+    "git.ignoreWindowsGit27Warning": true,
+    "python.linting.enabled": true,
+    "python.linting.flake8Enabled": true,
+    "python.linting.flake8Args": [
+        "--ignore=E203",
+        "--ignore=E266",
+        "--ignore=E501",
+        "--ignore=W503",
+        "--max-line-length=120",
+        "--select=B,C,E,F,W,T4,B9",
+        "--max-complexity=18"
+    ],
+    "cornflakes.linter.run": "onType",
+    "cornflakes.linter.executablePath": "/c/ProgramData/Anaconda3/envs/py38b/Scripts/flake8",
+    "explorer.confirmDragAndDrop": false,
+    "editor.formatOnSave": true,
+    "kite.showWelcomeNotificationOnStartup": false,
+    "editor.suggestSelection": "first",
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "errorLens.gutterIconsEnabled": true,
+    "jupyter.askForKernelRestart": false,
+    "explorer.confirmDelete": false,
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.python",
+        "editor.formatOnType": true
+    },
+    "terminal.integrated.shell.windows": "C:\\Program Files\\Git\\bin\\bash.exe",
+    "workbench.iconTheme": "material-icon-theme",
+    "material-icon-theme.folders.color": "#90a4ae",
+    "errorLens.enabledDiagnosticLevels": [
+        "error",
+        "warning"
+    ],
+    "workbench.editorAssociations": {
+        "*.ipynb": "jupyter-notebook"
+    },
+    "workbench.list.openMode": "doubleClick",
+    "autoDocstring.docstringFormat": "numpy",
+    "keyboard.dispatch": "keyCode",
+    "editor.rulers": [
+        88
+    ],
+    "settingsSync.ignoredExtensions": [
+        "ms-toolsai.jupyter"
+    ],
+    "remote.SSH.remotePlatform": {
+        "192.168.1.109": "linux"
+    },
+    "settingsSync.ignoredSettings": [
+        "cornflakes.linter.executablePath"
+    ],
+    "markdownlint.config": {},
+    "markdownlint.ignore": [
+        "<br>"
+    ],
+    "notebook.cellToolbarLocation": {
+        "default": "right",
+        "jupyter-notebook": "left"
+    },
+    "notebook.output.textLineLimit": 100,
+    "security.workspace.trust.untrustedFiles": "open",
+    "bracket-pair-colorizer-2.depreciation-notice": false,
+    "git.confirmSync": false,
+    "git.autofetch": true,
+    "git.enableSmartCommit": true,
+    "python.formatting.provider": "black",
+    "jupyter.alwaysScrollOnNewCell": true,
+    "output.smartScroll.enabled": false,
+    "files.associations": {
+        "*.py": "python"
+    },
+    "workbench.startupEditor": "none",
+    "jupyter.widgetScriptSources": [
+        "jsdelivr.com",
+        "unpkg.com"
+    ],
+    "python.defaultInterpreterPath": "C:\\Users\\ruud.wijtvliet\\Anaconda3\\envs\\lb39\\python.exe",
+    "evenBetterToml.formatter.allowedBlankLines": 2,
+    "evenBetterToml.formatter.columnWidth": 90,
+    "[toml]": {
+        "editor.defaultFormatter": "tamasfe.even-better-toml"
+    },
+    "editor.minimap.renderCharacters": false,
+    "files.autoSave": "afterDelay",
+    "peacock.favoriteColors": [
+        {
+            "name": "Angular Red",
+            "value": "#dd0531"
+        },
+        {
+            "name": "Azure Blue",
+            "value": "#007fff"
+        },
+        {
+            "name": "JavaScript Yellow",
+            "value": "#f9e64f"
+        },
+        {
+            "name": "Mandalorian Blue",
+            "value": "#1857a4"
+        },
+        {
+            "name": "Node Green",
+            "value": "#215732"
+        },
+        {
+            "name": "React Blue",
+            "value": "#61dafb"
+        },
+        {
+            "name": "Something Different",
+            "value": "#832561"
+        },
+        {
+            "name": "Svelte Orange",
+            "value": "#ff3d00"
+        },
+        {
+            "name": "Vue Green",
+            "value": "#42b883"
+        }
+    ],
+    "peacock.surpriseMeOnStartup": true,
+    "peacock.affectActivityBar": false,
+    "openInExternalApp.openMapper": [
+        {
+            "extensionName": "xlsx",
+            // apps can be Object array or just is openCommand
+            // the code is command you can access from shell
+            "apps": "excel.exe"
+        },
+        {
+            "extensionName": "psd",
+            "apps": "/path/to/photoshop.exe"
+        }
+    ],
+    "workbench.colorTheme": "Cobalt Next Dark",
+    "editor.codeActionsOnSave": [
+        "source.organizeImports",
+    ],
+    "diffEditor.ignoreTrimWhitespace": false,
+    "vim.normalModeKeyBindings": [],
+    "jupyter.interactiveWindow.creationMode": "single",
+    "jupyter.interactiveWindow.textEditor.executeSelection": true,
+    "python.unitTest.autoTestDiscoverOnSaveEnabled": false,
+    "terminal.external.windowsExec": "C:\\Program Files\\Git\\git-bash.exe",
+    "git.openRepositoryInParentFolders": "never",
+    "terminal.integrated.defaultProfile.windows": "Git Bash"
+}

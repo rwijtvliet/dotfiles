@@ -146,3 +146,9 @@ echo "successfully loaded Ruud Wijtvliet user profile"
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# put cargo on path
+export PATH="~/.cargo/bin:$PATH"
+
+# use starship as prompt
+eval "$(starship init bash)"
