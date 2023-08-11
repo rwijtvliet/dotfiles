@@ -3,20 +3,17 @@
 source ../shared.sh
 
 # fonts to install
+version="v3.0.2"
 declare -a fonts=(
 	Agave
-	AnonymousPro
 	AurulentSansMono
-	BigBlueTerminal
 	BitstreamVeraSansMono
 	CodeNewRoman
 	Cousine
-	DaddyTimeMono
 	DejaVuSansMono
 	DroidSansMono
 	FantasqueSansMono
 	FiraCode
-	Go-Mono
 	Gohu
 	Hack
 	Hasklig
@@ -37,7 +34,6 @@ declare -a fonts=(
 	Mononoki
 	Monoid
 	NerdFontsSymbolsOnly
-	Noto
 	OpenDyslexic
 	Overpass
 	ProFont
@@ -51,7 +47,6 @@ declare -a fonts=(
 	VictorMono
 )
 
-version="v3.0.2"
 
 
 copy_fonts () {
@@ -69,12 +64,14 @@ copy_fonts () {
       download_url="https://github.com/ryanoasis/nerd-fonts/releases/download/$version/$zipfile"
       info "extracting fonts in $download_url to $fontdir"
       if ! wget -q "$download_url"; then
-        fail "file not found"
+        fail "404: file not found"
       else
         unzip -qqu "$zipfile" *.[to]tf -d "$fontdir"
         rm "$zipfile"
       fi
   done
+
+  find "$fontdir" ! -name '*Mono*' -delete
 
   # remove temp folder
   cd ..

@@ -1,9 +1,4 @@
-scoop
-utils
-bash
-nerdfonts
 alacritty
 neovim
 inputrc
 espanso
-git

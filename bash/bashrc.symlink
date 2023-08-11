@@ -142,3 +142,7 @@ eval "$(ssh-agent -s)"
 ssh-add ~/.ssh/worklaptopwsl
 # message so I know it worked
 echo "successfully loaded Ruud Wijtvliet user profile"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
