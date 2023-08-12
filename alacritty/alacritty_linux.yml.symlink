@@ -1,6 +1,6 @@
 font:
   normal:
-    family: SauceCodePro Nerd Font
+    family: Hack Nerd Font Mono
 
 window:
   title: "Ruud's alacritty (linux)"
@@ -10,30 +10,51 @@ key_bindings:
   - { key: V, mods: Control|Shift, action: Paste }
   - { key: C, mods: Control|Shift, action: Copy }
 colors:
-  name: Derp
-  author: ""
+  # Default colors
   primary:
-    background: "#000000"
-    foreground: "#ffffff"
+    background: '#2c2c2c'
+    foreground: '#d6d6d6'
+
+    dim_foreground: '#dbdbdb'
+    bright_foreground: '#d9d9d9'
+    dim_background: '#202020' # not sure
+    bright_background: '#3a3a3a' # not sure
+
+  # Cursor colors
   cursor:
-    text: "#000000"
-    cursor: "#ffffff"
+    text: '#2c2c2c'
+    cursor: '#d9d9d9'
+
+  # Normal colors
   normal:
-    black: "#111111"
-    red: "#d36265"
-    green: "#aece91"
-    yellow: "#e7e18c"
-    blue: "#5297cf"
-    magenta: "#963c59"
-    cyan: "#5e7175"
-    white: "#bebebe"
+    black: '#1c1c1c'
+    red: '#bc5653'
+    green: '#909d63'
+    yellow: '#ebc17a'
+    blue: '#7eaac7'
+    magenta: '#aa6292'
+    cyan: '#86d3ce'
+    white: '#cacaca'
+
+  # Bright colors
   bright:
-    black: "#666666"
-    red: "#ef8171"
-    green: "#cfefb3"
-    yellow: "#fff796"
-    blue: "#74b8ef"
-    magenta: "#b85e7b"
-    cyan: "#a3babf"
-    white: "#ffffff"
-theme: Derp
+    black: '#636363'
+    red: '#bc5653'
+    green: '#909d63'
+    yellow: '#ebc17a'
+    blue: '#7eaac7'
+    magenta: '#aa6292'
+    cyan: '#86d3ce'
+    white: '#f7f7f7'
+
+  # Dim colors
+  dim:
+    black: '#232323'
+    red: '#74423f'
+    green: '#5e6547'
+    yellow: '#8b7653'
+    blue: '#556b79'
+    magenta: '#6e4962'
+    cyan: '#5c8482'
+    white: '#828282'
+theme: Afterglow

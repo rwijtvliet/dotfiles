@@ -1,17 +1,27 @@
-#!/bin/bash
+nn#!/bin/bash
 
 source ../shared.sh
 
 case "$OS" in
   "linux" )
     # install nvim
-    sudo apt install neovim
+    info "installing neovim"
+    $( #run in subshell to not permanently change to that folder
+    cd "$HOME/.local/bin"
+    curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
+    chmod u+x nvim.appimage
+    )
+    link_file :"$HOME/.local/bin/nvim" "nvim.appimage"
+    # (alternative: install from apt, but often outdated)
+    # sudo apt install neovim
 
     # get astronvim
+    info "getting astronvim"
     rm -rf "$HOME/.config/nvim" # TODO: ask for confirmation
     git clone "https://github.com/AstroNvim/AstroNvim" "$HOME/.config/nvim"
 
     # add user config
+    info "adding user config"
     link_file "./user.symlink" "$HOME/.config/nvim/lua/user"
     ;;
 

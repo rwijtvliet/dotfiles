@@ -49,9 +49,9 @@ declare -a fonts=(
 
 
 
-copy_fonts () {
-  fontdir="$1"
-  
+download_fonts () {
+  fontdir="$HOME/fonts/"
+
   # create and prepare folders 
 	rm -rf ./tmp # remove possible previous downloads
 	mkdir ./tmp
@@ -62,16 +62,17 @@ copy_fonts () {
   for font in "${fonts[@]}"; do
       zipfile="${font}.zip"
       download_url="https://github.com/ryanoasis/nerd-fonts/releases/download/$version/$zipfile"
-      info "extracting fonts in $download_url to $fontdir"
       if ! wget -q "$download_url"; then
-        fail "404: file not found"
+        fail "Could not download font archive $download_url (file not found?)"
       else
+      	filesize=$(numfmt --to=iec-i --suffix=B --format="%.0f" $(stat --printf="%s" "$zipfile"))
         unzip -qqu "$zipfile" *.[to]tf -d "$fontdir"
         rm "$zipfile"
+      	success "Extracted fonts in $filesize archive $download_url to $fontdir"
       fi
   done
 
-  find "$fontdir" ! -name '*Mono*' -delete
+  find "$fontdir" -type f ! -iname '*mono*' -delete
 
   # remove temp folder
   cd ..
@@ -80,15 +81,19 @@ copy_fonts () {
 
 case "$OS" in
   "linux" )
-    copy_fonts "$HOME/.local/share/fonts"
-    find "$HOME/.local/share/fonts" -name '*Windows Compatible*' -delete
-    
+    download_fonts
+    # find "$HOME/fonts" -name '*Windows Compatible*' -delete
+
+		#'install'
+    cp "$HOME/fonts/"* "$HOME/.local/share/fonts/"
+
+ 
+    rm -rf "$HOME/fonts/"
     fc-cache -fv
     ;;
 
   "windows" )
-  	mkdir -p "$HOME/fonts/"
-    copy_fonts "$HOME/fonts"
+    download_fonts 
     
     todo "Fonts must still be installed manually. The can be found in $HOME/fonts"
     ;;
