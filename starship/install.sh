@@ -6,15 +6,16 @@ case "$OS" in
   "linux" )
     sudo apt install cargo cmake
     cargo install starship --locked
-    starship preset nerd-font-symbols -o ~/.config/starship.toml  
+    link_file "./starship.toml.symlink" "$HOME/.config/starship.toml"
     ;;
 
   "windows" )
-    # raise error to alert user that this script is missing
-    fail "to-do"
-    exit 1
+    scoop install starship
+    link_file "./starship.toml.symlink" "$HOME/.config/starship.toml"
     ;;
 
   * )
     ;;
 esac
+
+todo "Restart bash to use starship."
