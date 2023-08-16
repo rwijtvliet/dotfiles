@@ -4,11 +4,11 @@ source ../shared.sh
 
 install_themes () {
   # update nodejs
-  sudo npm cache clean -f
-  sudo npm install -g n
-  sudo n stable
+  npm cache clean -f
+  npm install -g n
+  n stable
   # install
-  if sudo npm i -g alacritty-themes; then
+  if npm i -g alacritty-themes; then
     success "installed the program"
     alacritty-themes Gruvbox-Dark
     success "set Gruvbox-Dark theme"
@@ -30,13 +30,17 @@ case "$OS" in
     link_file "./alacritty_linux.yml.symlink" "$HOME/.config/alacritty/alacritty.yml"
     # themes
     info "Installing theme selector"
+    npm cache clean -f
+    npm install -g n
+    n stable
     install_themes
     ;;
 
   "windows" )
     # install
     info "Installing app"
-    scoop install alacritty
+    scoop bucket add extras
+    scoop install extras/alacritty
     # config
     info "Linking config file"
     mkdir -p "$APPDATA/alacritty/"

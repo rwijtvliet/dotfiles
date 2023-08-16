@@ -87,8 +87,15 @@ install_folders () {
   folderpaths=()
   for foldername in "$@"; do
     folderpath="$DOTFILES_ROOT/$foldername"
-    if [ ! -f "$folderpath/install.sh" ]; then
-      fail "$folderpath/install.sh does not exist"
+    echo "folder: $folderpath"
+    bla="install.sh"
+    echo $bla
+    installer="$folderpath/$bla"
+    echo "installer: $installer"
+    if [ ! -f "$installer" ]; then
+      fail "$installer does not exist"
+      echo ""
+      echo "bla"
       exit 1
     else
       folderpaths+=("$folderpath")
