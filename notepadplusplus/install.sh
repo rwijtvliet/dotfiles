@@ -12,6 +12,10 @@ case "$OS" in
     try "scoop install notepadplusplus"
     ;;
 
+  "macos" )
+    skip
+    ;;
+    
   * )
     ;;
 esac
