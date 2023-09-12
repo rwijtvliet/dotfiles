@@ -156,7 +156,7 @@ if [[ "${OS_long,,}" == *"gnu/linux"* ]]; then
   OS="linux"
 elif [[ "${OS_long,,}" == *"mingw"* ]]; then
   OS="windows"
-elif [[ "${OS_long,,}" == *"Darwin"* ]]; then
+elif [[ "${OS_long,,}" == *"darwin"* ]]; then
   OS="macos"
 else
   fail "unknown operating system. Value of 'uname --all' is $OS_long"
