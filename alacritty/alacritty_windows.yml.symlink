@@ -22,7 +22,7 @@ window:
     lines: 40
 
 shell:
-  # program:  ~/AppData/Local/Programs/Git/bin/bash.exe
+  # program:  ~/AppData/Local/Programs/Git/usr/bin/env bash.exe
   program: C:\Users\ruud.wijtvliet\AppData\Local\Programs\Git\bin\bash.exe
 
 key_bindings:
