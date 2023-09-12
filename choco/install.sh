@@ -19,6 +19,10 @@ case "$OS" in
     choco update chocolatey
     ;;
 
+  "macos" )
+    skip
+    ;;
+    
   * )
     ;;
 esac

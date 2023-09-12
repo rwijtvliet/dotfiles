@@ -49,6 +49,22 @@ case "$OS" in
     info "Installing theme selector"
     install_themes
     ;;
+  
+  "macos" )
+    # install
+    info "Installing app"
+    brew install --cask alacritty
+    # config
+    info "Linking config file"
+    mkdir -p "$HOME/.config/alacritty/"
+    link_file "./alacritty_linux.yml.symlink" "$HOME/.config/alacritty/alacritty.yml"
+    # themes
+    info "Installing theme selector"
+    npm cache clean -f
+    npm install -g n
+    n stable
+    install_themes
+    ;;
 
   * )
     ;;

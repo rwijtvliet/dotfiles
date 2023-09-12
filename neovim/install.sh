@@ -27,15 +27,33 @@ case "$OS" in
 
   "windows" )
     # install nvim
+    info "installing neovim"
     scoop bucket add main
+    scoop install gcc
     scoop install neovim
 
     # get astronvim
+    info "getting astronvim"
     rm -rf "$USERPROFILE/AppData/Local/nvim" # TODO: ask for confirmation
     git clone "https://github.com/AstroNvim/AstroNvim" "$USERPROFILE/AppData/Local/nvim"
     
     # add user config
     link_file "./user.symlink" "$USERPROFILE/AppData/Local/nvim/lua/user"
+    ;;
+
+  "macos" )
+    # install nvim
+    info "installing neovim"
+    brew install neovim
+
+    # get astronvim
+    info "getting astronvim"
+    rm -rf "$HOME/.config/nvim" # TODO: ask for confirmation
+    git clone "https://github.com/AstroNvim/AstroNvim" "$HOME/.config/nvim"
+
+    # add user config
+    info "adding user config"
+    link_file "./user.symlink" "$HOME/.config/nvim/lua/user" 
     ;;
 
   * )

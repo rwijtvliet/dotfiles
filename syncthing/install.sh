@@ -15,6 +15,9 @@ case "$OS" in
     choco install synctrayzor
     ;;
 
+  "macos" )
+    brew install syncthing
+
   * )
     ;;
 esac

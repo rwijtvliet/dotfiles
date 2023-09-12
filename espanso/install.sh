@@ -14,6 +14,7 @@ case "$OS" in
     # fi
       
     # install
+    info "Installing app"
     ( # subshell because we change folder
     cd ~/downloads/
     wget https://github.com/federico-terzi/espanso/releases/download/v2.1.8/espanso-debian-x11-amd64.deb
@@ -24,6 +25,7 @@ case "$OS" in
     espanso service register
 
     # create symlink to configuration
+    info "Linking config"
     link_file "./espanso.private" "$HOME/.config/espanso"
      
     # start
@@ -32,12 +34,25 @@ case "$OS" in
 
   "windows" )
     # install
+    info "Installing app"
     scoop install espanso
 
     # create symlink to configuration
-    link_file ./espanso.private $APPDATA/espanso
+    info "Linking config"
+    link_file ./espanso.private "$APPDATA/espanso"
     ;;
 
+  "macos" )
+    # install
+    info "Installing app"
+    brew tap espanso/espanso
+    brew install espanso
+
+    # create symlink to configuration
+    info "Linking config"
+    link_file ./espanso.private "$HOME/.config/espanso"
+    ;;
+    
   * )
     ;;
 esac

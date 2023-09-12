@@ -16,6 +16,10 @@ case "$OS" in
     scoop update
     ;;
 
+  "macos" )
+    skip
+    ;;
+    
   * )
     ;;
 esac

@@ -16,6 +16,9 @@ case "$OS" in
     # no windows-specific aliases
     ;;
 
+  "macos" )
+    # no mac-specific aliases
+    
   * )
     ;;
 esac

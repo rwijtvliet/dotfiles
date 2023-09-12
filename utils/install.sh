@@ -18,6 +18,13 @@ case "$OS" in
     scoop update *
     ;;
 
+  "macos" )
+    sudo apt install npm
+
+    sudo apt update
+    sudo apt upgrade
+    ;;
+    
   * )
     ;;
 esac

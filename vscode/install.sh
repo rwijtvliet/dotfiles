@@ -10,6 +10,7 @@ install_extensions () {
 
 case "$OS" in
   "linux" )
+    info "Installing app"
     sudo apt install gnupg2 software-properties-common apt-transport-https wget
     wget -q https://packages.microsoft.com/keys/microsoft.asc -O- | sudo apt-key add -
     sudo add-apt-repository "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main"
@@ -19,10 +20,17 @@ case "$OS" in
     ;;
 
   "windows" )
+    info "Installing app"
     scoop install vscode
     install_extensions
     ;;
 
+  "macos" )
+    info "Installing app"
+    brew install --cask visual-studio-code
+    install_extensions
+    ;;
+    
   * )
     ;;
 esac

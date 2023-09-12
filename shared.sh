@@ -31,6 +31,13 @@ skip () {
   printf "\r\033[2K  [\033[0;37m\033[1mSKIP\033[0m] Not installed on $OS\n"
 }
 
+try () {
+  if $1 ; then
+    success "OK"
+  else
+    fail "FAIL"
+  fi
+}
 
 overwrite_all=false backup_all=false skip_all=false
 
@@ -144,11 +151,13 @@ link_file () {
 }
 
 
-OS_long="$(uname --all)"
+OS_long="$(uname -a)"
 if [[ "${OS_long,,}" == *"gnu/linux"* ]]; then
   OS="linux"
 elif [[ "${OS_long,,}" == *"mingw"* ]]; then
   OS="windows"
+elif [[ "${OS_long,,}" == *"Darwin"* ]]; then
+  OS="macos"
 else
   fail "unknown operating system. Value of 'uname --all' is $OS_long"
   exit 1

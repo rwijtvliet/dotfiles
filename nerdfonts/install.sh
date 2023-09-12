@@ -86,8 +86,6 @@ case "$OS" in
 
 		#'install'
     cp "$HOME/fonts/"* "$HOME/.local/share/fonts/"
-
- 
     rm -rf "$HOME/fonts/"
     fc-cache -fv
     ;;
@@ -98,6 +96,14 @@ case "$OS" in
     todo "Fonts must still be installed manually. The can be found in $HOME/fonts"
     ;;
 
+	"macos" )
+  	download_fonts
+
+  	#'install'
+  	cp "$HOME/fonts/"* "$HOME/Library/Fonts/"
+    rm -rf "$HOME/fonts/"
+		;;
+		
   * )
     ;;
 esac
