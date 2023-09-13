@@ -15,6 +15,7 @@ case "$OS" in
     info "Installing app"
     brew install koekeishiya/formulae/yabai
     brew install skhd
+    brew install jq 
     brew upgrade yabai
     info "Linking config"
     mkdir -p "$HOME/.config/yabai"

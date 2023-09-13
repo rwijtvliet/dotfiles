@@ -2,9 +2,13 @@
 
 # window
 alt + ctrl + cmd - h : yabai -m window --focus west
+alt + ctrl + cmd - left : yabai -m window --focus west
 alt + ctrl + cmd - t : yabai -m window --focus north
+alt + ctrl + cmd - up : yabai -m window --focus north
 alt + ctrl + cmd - n : yabai -m window --focus south
+alt + ctrl + cmd - down : yabai -m window --focus south
 alt + ctrl + cmd - s : yabai -m window --focus east
+alt + ctrl + cmd - right : yabai -m window --focus east
 alt + ctrl + cmd - d : yabai -m window --focus largest
 
 # monitor
@@ -27,9 +31,13 @@ alt + ctrl + cmd - 9 : yabai -m space --focus 9
 
 # window (inside space)
 alt + ctrl + cmd + shift - h : yabai -m window --swap west
+alt + ctrl + cmd + shift - left : yabai -m window --swap west
 alt + ctrl + cmd + shift - t : yabai -m window --swap north
+alt + ctrl + cmd + shift - up : yabai -m window --swap north
 alt + ctrl + cmd + shift - n : yabai -m window --swap south
+alt + ctrl + cmd + shift - down : yabai -m window --swap south
 alt + ctrl + cmd + shift - s : yabai -m window --swap east
+alt + ctrl + cmd + shift - right : yabai -m window --swap east
 alt + ctrl + cmd + shift - d : yabai -m window --swap largest
 
 # (space) to monitor

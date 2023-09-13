@@ -5,7 +5,8 @@ source ../shared.sh
 case "$OS" in
   "linux" )
     # Skip if irrelevant for this OS
-    skip
+    fail "to-do"
+    exit 1
     ;;
 
   "windows" )
@@ -16,9 +17,7 @@ case "$OS" in
 
   "macos" )
     info "Installing app"
-    sudo apt install neovim
-    info "Linking config"
-    link_file "./file_with_data.symlink" "$HOME/.dotfile_for_app"
+    brew install --cask spotify
     ;;
     
   * )

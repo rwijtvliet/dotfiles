@@ -6,24 +6,42 @@ sudo yabai --load-sa
 yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
 
 # mission-control desktop labels
-yabai -m space 1 --label files
-yabai -m space 2 --label www
-yabai -m space 3 --label office
-yabai -m space 4 --label terminal
-yabai -m space 5 --label vscode
-yabai -m space 6 --label reserved
-yabai -m space 7 --label teams
-yabai -m space 8 --label outlook
-yabai -m space 9 --label media
+# Delete spaces until 9 (or less) remain.
+for _ in $(yabai -m query --spaces | jq '.[].index | select(. > 9)'); do
+  yabai -m space --destroy 10
+done
+create_space() {
+    local idx="$1"
+    local name="$2"
+    local space=
+
+    space=$(yabai -m query --spaces --space "$idx")
+    if [ -z "$space" ]; then
+      yabai -m space --create
+    fi
+    yabai -m space "$idx" --label "$name"
+}
+create_space 1 "1 files"
+create_space 2 "2 www"
+create_space 3 "3 office"
+create_space 4 "4 terminal"
+create_space 5 "5 vscode"
+create_space 6 "-"
+create_space 7 "7 teams"
+create_space 8 "8 email"
+create_space 9 "9 media"
 
 # window rules
 # . windows to ignore 
-yabai -m rule --add app="^(Calculator|System Preferences|Archive Utility)$" manage=off
+yabai -m rule --add app="^(Calculator|System Preferences|Archive Utility|System Settings)$" manage=off
 yabai -m rule --add app="^mpv$" manage=off border=off sticky=on layer=above opacity=1.0 grid=8:8:6:0:2:2
 # . where to go
-yabai -m rule --add app="^Outlook$" space=^outlook
-yabai -m rule --add app="^FireFox$" space=^www
-yabai -m rule --add app="^Spotify$" space=media
+yabai -m rule --add app="^Finder$" space=^1
+yabai -m rule --add app="^Firefox$" space=^2
+yabai -m rule --add app="^Alacritty$" space=^4
+yabai -m rule --add app="^Teams$" space=^7
+yabai -m rule --add app="^Outlook$" space=8
+yabai -m rule --add app="^Spotify$" space=9
 
 # signals
 yabai -m signal --add event=window_destroyed active=yes action="yabai -m query --windows --window &> /dev/null || yabai -m window --focus mouse &> /dev/null || yabai -m window --focus \$(yabai -m query --windows --space | jq .[0].id) &> /dev/null"
@@ -35,19 +53,19 @@ yabai -m signal --add event=window_minimized active=yes action="if \$(yabai -m q
 
 # global settings
 yabai -m config                              \
-    external_bar                off:41:0     \
-    mouse_follows_focus         on           \
-    focus_follows_mouse         autoraise    \
+    external_bar                all:25:0     \
+    mouse_follows_focus         off          \
+    focus_follows_mouse         off          \
     window_placement            second_child \
     window_topmost              off          \
     window_shadow               off          \
-    window_animation_duration   0.1          \
-    window_opacity_duration     0.1          \
+    window_animation_duration   0.01         \
+    window_opacity_duration     0.01         \
     active_window_opacity       0.90         \
     normal_window_opacity       0.50         \
     window_opacity              on           \
     insert_feedback_color       0xaad75f5f   \
-    active_window_border_color  0xBF775759   \
+    active_window_border_color  0xB77757C9   \
     normal_window_border_color  0x7f353535   \
     window_border_width         4            \
     window_border_radius        12           \
