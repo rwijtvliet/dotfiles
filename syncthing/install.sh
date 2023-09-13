@@ -17,6 +17,8 @@ case "$OS" in
 
   "macos" )
     brew install syncthing
+    brew services start syncthing
+    ;;
 
   * )
     ;;

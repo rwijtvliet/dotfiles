@@ -19,10 +19,11 @@ case "$OS" in
     ;;
 
   "macos" )
-    sudo apt install npm
-
-    sudo apt update
-    sudo apt upgrade
+    brew install coreutils
+    PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
+    brew install npm
+    brew install wget
+    brew install nodejs
     ;;
     
   * )
