@@ -20,7 +20,7 @@ case "$OS" in
 
   "macos" )
     brew install coreutils
-    PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
+    PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH" # also in .bashrc
     brew install npm
     brew install wget
     brew install nodejs

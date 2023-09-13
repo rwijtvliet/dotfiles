@@ -57,7 +57,7 @@ Check () {
 
 # FUNCTIONS USED IN MAIN PROGRAM.
 
-install_files () {
+install_from_files () {
   # check if all files exist
   filepaths=()
   for filename in "$@"; do
@@ -71,31 +71,32 @@ install_files () {
   done
   # execute all
   for filepath in "${filepaths[@]}"; do
-    install_file "$filepath"
+    install_from_file "$filepath"
   done
 }
 
-install_file () {
+install_from_file () {
   echo ''
   echo "Processing file $1"
   echo ''
-  install_folders $(cat "$1")
+  
+  apps=""
+  while read line
+  do
+    [[ $line =~ ^#.* ]] && continue
+    apps+=" $line"
+  done <<< $(cat "$1")
+  install_apps $apps
 }
 
-install_folders () {
-  # check if all folders exist
+install_apps () {
+  # check if all app folders exist
   folderpaths=()
   for foldername in "$@"; do
     folderpath="$DOTFILES_ROOT/$foldername"
-    echo "folder: $folderpath"
-    bla="install.sh"
-    echo $bla
-    installer="$folderpath/$bla"
-    echo "installer: $installer"
+    installer="$folderpath/install.sh"
     if [ ! -f "$installer" ]; then
       fail "$installer does not exist"
-      echo ""
-      echo "bla"
       exit 1
     else
       folderpaths+=("$folderpath")
@@ -103,11 +104,11 @@ install_folders () {
   done
   # execute all
   for folderpath in "${folderpaths[@]}"; do
-    install_folder "$folderpath"
+    install_app "$folderpath"
   done
 }
 
-install_folder () {
+install_app () {
   # Run the install script in a folder, i.e., in ./$1/install.sh
 
   local folderpath="$1"
@@ -168,9 +169,9 @@ failure=()
 # DO ACTUAL WORK.
 
 if [ "$read_files" = false ]; then
-  install_folders "$@"
+  install_apps "$@"
 else
-  install_files "$@"
+  install_from_files "$@"
 fi
 
 # SUMMARY.

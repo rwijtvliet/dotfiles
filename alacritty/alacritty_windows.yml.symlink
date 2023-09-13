@@ -12,7 +12,7 @@ font:
       Hack Nerd Font Mono
     # JetBrainsMono NF
     style: Regular
-  size: 11
+size: 11
 
 window:
   title: "Ruud's alacritty"

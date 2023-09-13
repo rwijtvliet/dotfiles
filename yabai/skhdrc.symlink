@@ -1,63 +1,63 @@
 # Focus
 
 # window
-meh - h : yabai -m window --focus west
-meh - t : yabai -m window --focus north
-meh - n : yabai -m window --focus south
-meh - s : yabai -m window --focus east
-meh - d : yabai -m window --focus largest
+alt + ctrl + cmd - h : yabai -m window --focus west
+alt + ctrl + cmd - t : yabai -m window --focus north
+alt + ctrl + cmd - n : yabai -m window --focus south
+alt + ctrl + cmd - s : yabai -m window --focus east
+alt + ctrl + cmd - d : yabai -m window --focus largest
 
 # monitor
-meh - g : yabai -m display --focus west
-meh - l : yabai -m display --focus east
+alt + ctrl + cmd - g : yabai -m display --focus west
+alt + ctrl + cmd - l : yabai -m display --focus east
 
 # space
-meh - 1 : yabai -m space --focus 1
-meh - 2 : yabai -m space --focus 2
-meh - 3 : yabai -m space --focus 3
-meh - 4 : yabai -m space --focus 4
-meh - 5 : yabai -m space --focus 5
-meh - 6 : yabai -m space --focus 6
-meh - 7 : yabai -m space --focus 7
-meh - 8 : yabai -m space --focus 8
-meh - 9 : yabai -m space --focus 9
+alt + ctrl + cmd - 1 : yabai -m space --focus 1
+alt + ctrl + cmd - 2 : yabai -m space --focus 2
+alt + ctrl + cmd - 3 : yabai -m space --focus 3
+alt + ctrl + cmd - 4 : yabai -m space --focus 4
+alt + ctrl + cmd - 5 : yabai -m space --focus 5
+alt + ctrl + cmd - 6 : yabai -m space --focus 6
+alt + ctrl + cmd - 7 : yabai -m space --focus 7
+alt + ctrl + cmd - 8 : yabai -m space --focus 8
+alt + ctrl + cmd - 9 : yabai -m space --focus 9
 
 
 # Move
 
 # window (inside space)
-meh + shift - h : yabai -m window --swap west
-meh + shift - t : yabai -m window --swap north
-meh + shift - n : yabai -m window --swap south
-meh + shift - s : yabai -m window --swap east
-meh + shift - d : yabai -m window --swap largest
+alt + ctrl + cmd + shift - h : yabai -m window --swap west
+alt + ctrl + cmd + shift - t : yabai -m window --swap north
+alt + ctrl + cmd + shift - n : yabai -m window --swap south
+alt + ctrl + cmd + shift - s : yabai -m window --swap east
+alt + ctrl + cmd + shift - d : yabai -m window --swap largest
 
 # (space) to monitor
-meh + shift - g : yabai -m space --display west; yabai -m display --focus west;
-meh + shift - l : yabai -m space --display east; yabai -m display --focus east;
+alt + ctrl + cmd + shift - g : yabai -m space --display west; yabai -m display --focus west;
+alt + ctrl + cmd + shift - l : yabai -m space --display east; yabai -m display --focus east;
 
 # (window) to space
-meh + shift - 1 : yabai -m window --space 1; yabai -m space --focus 1;
-meh + shift - 2 : yabai -m window --space 2; yabai -m space --focus 2;
-meh + shift - 3 : yabai -m window --space 3; yabai -m space --focus 3;
-meh + shift - 4 : yabai -m window --space 4; yabai -m space --focus 4;
-meh + shift - 5 : yabai -m window --space 5; yabai -m space --focus 5;
-meh + shift - 6 : yabai -m window --space 6; yabai -m space --focus 6;
-meh + shift - 7 : yabai -m window --space 7; yabai -m space --focus 7;
-meh + shift - 8 : yabai -m window --space 8; yabai -m space --focus 8;
-meh + shift - 9 : yabai -m window --space 9; yabai -m space --focus 9;
+alt + ctrl + cmd + shift - 1 : yabai -m window --space 1; yabai -m space --focus 1;
+alt + ctrl + cmd + shift - 2 : yabai -m window --space 2; yabai -m space --focus 2;
+alt + ctrl + cmd + shift - 3 : yabai -m window --space 3; yabai -m space --focus 3;
+alt + ctrl + cmd + shift - 4 : yabai -m window --space 4; yabai -m space --focus 4;
+alt + ctrl + cmd + shift - 5 : yabai -m window --space 5; yabai -m space --focus 5;
+alt + ctrl + cmd + shift - 6 : yabai -m window --space 6; yabai -m space --focus 6;
+alt + ctrl + cmd + shift - 7 : yabai -m window --space 7; yabai -m space --focus 7;
+alt + ctrl + cmd + shift - 8 : yabai -m window --space 8; yabai -m space --focus 8;
+alt + ctrl + cmd + shift - 9 : yabai -m window --space 9; yabai -m space --focus 9;
 
 
 # Change window size
 
 # toggle float / tiling
-meh - b : yabai -m window --toggle float --grid 4:4:1:1:2:2 # half-width half-height middle-of-screen
+alt + ctrl + cmd - b : yabai -m window --toggle float --grid 4:4:1:1:2:2 # half-width half-height middle-of-screen
 
 # toggle maximize
-meh - m : yabai -m window --toggle zoom-fullscreen
+alt + ctrl + cmd - m : yabai -m window --toggle zoom-fullscreen
 
 # close
-meh - w : yabai -m window --close
+alt + ctrl + cmd - w : yabai -m window --close
 
 
 # Change layout
@@ -68,6 +68,6 @@ meh - w : yabai -m window --close
 
 # Yabai management
 # start (0x29 = ;)
-meh - 0x29 : brew services start yabai
+alt + ctrl + cmd - 0x29 : brew services start yabai
 # stop
-meh + shift - 0x29 : brew services stop yabai
+alt + ctrl + cmd + shift - 0x29 : brew services stop yabai

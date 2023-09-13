@@ -1,7 +1,4 @@
-scoop
-choco
-homebrew
-utils
+# Additional basic apps that ensure we also have the private information available
 bash
 nerdfonts
 git

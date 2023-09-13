@@ -6,3 +6,4 @@ alias lb='cd ~/python/dev/lichtblyck/ && poetry shell'
 alias bv='cd ~/python/dev/belvys/ && poetry shell' 
 
 PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
+PATH="/opt/homebrew/bin:$PATH"

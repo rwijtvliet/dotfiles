@@ -6,7 +6,7 @@ install_themes () {
   # update nodejs
   npm cache clean -f
   npm install -g n
-  n stable
+  sudo n stable
   # install
   if npm i -g alacritty-themes; then
     success "installed the program"
@@ -30,9 +30,6 @@ case "$OS" in
     link_file "./alacritty_linux.yml.symlink" "$HOME/.config/alacritty/alacritty.yml"
     # themes
     info "Installing theme selector"
-    npm cache clean -f
-    npm install -g n
-    n stable
     install_themes
     ;;
 
@@ -60,9 +57,6 @@ case "$OS" in
     link_file "./alacritty_linux.yml.symlink" "$HOME/.config/alacritty/alacritty.yml"
     # themes
     info "Installing theme selector"
-    npm cache clean -f
-    npm install -g n
-    n stable
     install_themes
     ;;
 
