@@ -17,27 +17,27 @@ for (( i=$spacecount; i>$WANTEDSPACES; i--)); do
     yabai -m space --destroy $((WANTEDSPACES + 1))
 done
 # Name spaces
-yabai -m space 1 --label "1 files"
-yabai -m space 2 --label "2 www"
-yabai -m space 3 --label "3 office"
-yabai -m space 4 --label "4 terminal"
-yabai -m space 5 --label "5 vscode"
+yabai -m space 1 --label "1_files"
+yabai -m space 2 --label "2_www"
+yabai -m space 3 --label "3_office"
+yabai -m space 4 --label "4_terminal"
+yabai -m space 5 --label "5_vscode"
 yabai -m space 6 --label "-"
-yabai -m space 7 --label "7 teams"
-yabai -m space 8 --label "8 email"
-yabai -m space 9 --label "9 media"
+yabai -m space 7 --label "7_teams"
+yabai -m space 8 --label "8_email"
+yabai -m space 9 --label "9_media"
 
 # window rules
 # . windows to ignore 
 yabai -m rule --add app="^(Calculator|System Preferences|Archive Utility|System Settings)$" manage=off
 yabai -m rule --add app="^mpv$" manage=off border=off sticky=on layer=above opacity=1.0 grid=8:8:6:0:2:2
 # . where to go
-yabai -m rule --add app="^Finder$" space=^1
-yabai -m rule --add app="^Firefox$" space=^2
-yabai -m rule --add app="^Alacritty$" space=^4
-yabai -m rule --add app="^Teams$" space=^7
-yabai -m rule --add app="^Outlook$" space=8
-yabai -m rule --add app="^Spotify$" space=9
+yabai -m rule --add app="^Finder$" space=^1_files # use label incase order is changed (i.e., by moving space to other monitor)
+yabai -m rule --add app="^Firefox$" space=^2_www
+yabai -m rule --add app="^Alacritty$" space=^4_terminal
+yabai -m rule --add app="^Teams$" space=^7_teams
+yabai -m rule --add app="^Outlook$" space=8_email
+yabai -m rule --add app="^Spotify$" space=9_media
 
 # signals
 yabai -m signal --add event=window_destroyed active=yes action="yabai -m query --windows --window &> /dev/null || yabai -m window --focus mouse &> /dev/null || yabai -m window --focus \$(yabai -m query --windows --space | jq .[0].id) &> /dev/null"
@@ -68,7 +68,7 @@ yabai -m config                              \
     window_border_blur          on           \
     window_border_hidpi         on           \
     window_border               on           \
-    split_ratio                 0.50         \
+    split_ratio                 0.60         \
     split_type                  auto         \
     auto_balance                off          \
     top_padding                 10           \
