@@ -46,15 +46,9 @@ In the root, there is an `install` script, which is the only file you need to ru
 
 The script takes one or more app (=folder) names as arguments, and also allows for the usage of text files; see `./install -h` for help.
 
-Whenever the `install.sh` script has completed correctly, we need to handle the `.private` files that handle private information such as passwords.
+Whenever the `install.sh` script has completed correctly, we need to handle the `.private` files and folders that handle private information such as passwords.
 
-- If the repository is a private one, the `.private` files and folders will not be empty, and nothing needs to be done.
-
-- If the repository was cloned from github or another public source, there will only be empty `.private` files. These must be replaced. The replacement can be:
-
-  - an identically named file or folder, copied over from a (non-public) source.
-
-  - another symlink, to an accessible (non-public) file or folder. In this case, we get a symlink chain, e.g.
+For this, check the repository for files that end in `.private`. These are endpoints of symlinks created at various places on the filesystem. They are empty and need to be replaced. Best-practice: replace them with another symlink, to an accessible (non-public) file or folder. We then get a symlink chain, e.g.
 
     ```
     ~/.config/espanso  # location on filesystem

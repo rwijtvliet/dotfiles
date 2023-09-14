@@ -1,5 +1,6 @@
 # all other apps
 alacritty
+nerdfonts
 starship
 neovim
 inputrc
@@ -9,5 +10,4 @@ yabai
 notepadplusplus
 ubersicht
 spotify
-github
 tweaks
