@@ -6,30 +6,26 @@ sudo yabai --load-sa
 yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
 
 # mission-control desktop labels
-# Delete spaces until 9 (or less) remain.
-for _ in $(yabai -m query --spaces | jq '.[].index | select(. > 9)'); do
-  yabai -m space --destroy 10
+WANTEDSPACES=9
+spacecount=$(yabai -m query --spaces | jq '.[].index' | wc -l)
+# Adding spaces so that there are no fewer than wanted.
+for (( i=$spacecount; i<$WANTEDSPACES; i++)); do
+  yabai -m space --create
 done
-create_space() {
-    local idx="$1"
-    local name="$2"
-    local space=
-
-    space=$(yabai -m query --spaces --space "$idx")
-    if [ -z "$space" ]; then
-      yabai -m space --create
-    fi
-    yabai -m space "$idx" --label "$name"
-}
-create_space 1 "1 files"
-create_space 2 "2 www"
-create_space 3 "3 office"
-create_space 4 "4 terminal"
-create_space 5 "5 vscode"
-create_space 6 "-"
-create_space 7 "7 teams"
-create_space 8 "8 email"
-create_space 9 "9 media"
+# Delete spaces so that there are no more than wanted.
+for (( i=$spacecount; i>$WANTEDSPACES; i--)); do
+    yabai -m space --destroy $((WANTEDSPACES + 1))
+done
+# Name spaces
+yabai -m space 1 --label "1 files"
+yabai -m space 2 --label "2 www"
+yabai -m space 3 --label "3 office"
+yabai -m space 4 --label "4 terminal"
+yabai -m space 5 --label "5 vscode"
+yabai -m space 6 --label "-"
+yabai -m space 7 --label "7 teams"
+yabai -m space 8 --label "8 email"
+yabai -m space 9 --label "9 media"
 
 # window rules
 # . windows to ignore 
