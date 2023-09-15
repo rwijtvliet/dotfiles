@@ -26,7 +26,7 @@ case "$OS" in
 
     # create symlink to configuration
     info "Linking config"
-    link_file "../secrets/espanso.symlink" "$HOME/.config/espanso"
+    link_secret_resource "espanso.symlink" "$HOME/.config/espanso"
      
     # start
     espanso start
@@ -39,7 +39,7 @@ case "$OS" in
 
     # create symlink to configuration
     info "Linking config"
-    link_file "../secrets/espanso.symlink" "$APPDATA/espanso"
+    link_secret_resource "espanso.symlink" "$APPDATA/espanso"
     ;;
 
   "macos" )
@@ -50,7 +50,7 @@ case "$OS" in
 
     # create symlink to configuration
     info "Linking config"
-    link_file "../secrets/espanso.symlink" "$HOME/.config/espanso"
+    link_secret_resource "espanso.symlink" "$HOME/.config/espanso"
     ;;
     
   * )

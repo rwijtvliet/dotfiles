@@ -8,21 +8,21 @@ case "$OS" in
     sudo apt install cargo cmake
     cargo install starship --locked
     info "Linking config"
-    link_file "./starship.toml.symlink" "$HOME/.config/starship.toml"
+    link_public_resource "./starship.toml.symlink" "$HOME/.config/starship.toml"
     ;;
 
   "windows" )
     info "Installing app"
     scoop install starship
     info "Linking config"
-    link_file "./starship.toml.symlink" "$HOME/.config/starship.toml"
+    link_public_resource "./starship.toml.symlink" "$HOME/.config/starship.toml"
     ;;
 
   "macos" )
     info "Installing app"
     brew install starship
     info "Linking config"
-    link_file "./starship.toml.symlink" "$HOME/.config/starship.toml"
+    link_public_resource "./starship.toml.symlink" "$HOME/.config/starship.toml"
     ;;
 
   * )

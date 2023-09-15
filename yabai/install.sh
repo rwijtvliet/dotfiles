@@ -20,8 +20,8 @@ case "$OS" in
     info "Linking config"
     mkdir -p "$HOME/.config/yabai"
     mkdir -p "$HOME/.config/skhd"
-    link_file "./yabairc.symlink" "$HOME/.config/yabai/yabairc"
-    link_file "./skhdrc.symlink" "$HOME/.config/skhd/skhdrc"
+    link_public_resource "./yabairc.symlink" "$HOME/.config/yabai/yabairc"
+    link_public_resource "./skhdrc.symlink" "$HOME/.config/skhd/skhdrc"
     skhd --start-service
     yabai --start-service
     success "Yabai should already work, but only partially."

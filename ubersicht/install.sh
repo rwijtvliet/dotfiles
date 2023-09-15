@@ -17,7 +17,7 @@ case "$OS" in
     info "Installing simple-bar"
     mkdir -p $HOME/Library/Application\ Support/Übersicht/widgets/
     git clone https://github.com/Jean-Tinland/simple-bar $HOME/Library/Application\ Support/Übersicht/widgets/simple-bar
-    link_file /opt/homebrew/bin/yabai /usr/local/bin/yabai # needed for the simple-bar to work
+    link_public_resource /opt/homebrew/bin/yabai /usr/local/bin/yabai # needed for the simple-bar to work
     ;;
 
   * )

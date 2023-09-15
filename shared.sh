@@ -41,10 +41,63 @@ try () {
 
 overwrite_all=false backup_all=false skip_all=false
 
+ROOT="$(dirname "$(realpath "${BASH_SOURCE[0]}")")"
+SECRETDIR="$(realpath "$HOME")/.secrets"
+SECRETDIR_TMPL="$ROOT/secrets"
 
-link_file () {
-  local src="$(realpath -s $1)"  # create absolute paths
-  local dst="$(realpath -s $2)"  # create absolute paths
+link_secret_resource() {
+  # Create link to secret file or dir. 
+  #
+  # Usage: link_secret_resource "git_password" "$HOME/.git_password"
+  #
+  # Does two things:
+  # - Creates link from specified source name (=first arg) in the SECRETDIR to 
+  #   the specified destination path (=second arg). The source may or may not exist yet.
+  # - Creates an empty file with the source name (=first arg) in the SECRETDIR_TEMPLATE,
+  #   so that the user is aware which file/folder he must create in the SECRETDIR. (Only
+  #   if nothing exists at that path.)
+  local src_name="$1"
+  local dst_path="$(realpath -s $2)"
+
+  # Create link.
+  local src_path="$SECRETDIR/$src_name" 
+  link_resource "$src_path" "$dst_path"
+
+  # Notify user if source must still be created.
+  if [ ! -f "$src_path" ] && [ ! -d "$src_path" ] && [ ! -L "$src_path" ]; then
+    todo "Source file or folder [$src_path] does not exist and must be created, or copied or linked from elsewhere."
+  fi
+
+  # Create empty file in template if not yet existing.
+  local src_path_tmpl="$SECRETDIR_TMPL/$src_name"
+  if [ ! -f "$src_path_tmpl" ] && [ ! -d "$src_path_tmpl" ] && [ ! -L "$src_path_tmpl" ]; then
+    touch "$src_path_tmpl"
+  fi
+}
+
+link_public_resource() {
+  # Create link to public file or dir.
+  #
+  # Usage: link_public_resource "./git_config" "$HOME/.git_config"
+  #
+  # Creates link from specified source path (=first arg) to the specified destination
+  # path (=second arg). The source must exist.
+  local src_path="$(realpath -s $1)"  # create absolute paths
+  local dst_path="$(realpath -s $2)"  # create absolute paths  
+  
+  # Ensure source exists (or warn).
+  if [ ! -f "$src_path" ] && [ ! -d "$src_path" ] && [ ! -L "$src_path" ]; then
+    fail "source $src_path does not exist"
+    exit 1
+  fi
+
+  link_resource "$src_path" "$dst_path"
+}
+
+link_resource () {
+  # Creates link from source path (=first arg) to destination path (=second arg).
+  local src="$1"
+  local dst="$2"
 
   local overwrite= backup= skip=
   local action=
@@ -54,18 +107,6 @@ link_file () {
     export MSYS=winsymlinks:nativestrict 
   fi
 
-  # Ensure source exists (or warn).
-  if [ ! -f "$src" ] && [ ! -d "$src" ]; then
-    
-    if [[ "$src" != *"secret"* ]]; then
-      fail "source $src does not exist"
-      exit 1
-    else
-      todo "Source file or folder [$src] does not exist and must be created, or copied or linked from elsewhere."
-      needtobecreated+=("$src")
-    fi
-  fi
- 
   # Ensure destination not accidentally overwritten.
   if [ -f "$dst" ] || [ -d "$dst" ] || [ -L "$dst" ]; then
   

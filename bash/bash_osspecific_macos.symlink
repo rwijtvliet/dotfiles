@@ -1,9 +1,8 @@
 
 alias nvconf='cd ~/.config/nvim/lua/ && nvim ~/.config/nvim/lua/ '
-alias bashconf='nvim ~/.bashrc'
-alias pf='cd ~/python/dev/portfolyo/ && poetry shell'
-alias lb='cd ~/python/dev/lichtblyck/ && poetry shell'
-alias bv='cd ~/python/dev/belvys/ && poetry shell' 
+alias pf='cd ~/python/portfolyo/ && poetry shell'
+alias lb='cd ~/python/lichtblyck/ && poetry shell'
+alias bv='cd ~/python/belvys/ && poetry shell' 
 
 PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
 PATH="/opt/homebrew/bin:$PATH"

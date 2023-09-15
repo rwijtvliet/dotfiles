@@ -18,7 +18,7 @@ case "$OS" in
     info "Installing app"
     sudo apt install neovim
     info "Linking config"
-    link_file "./file_with_data.symlink" "$HOME/.dotfile_for_app"
+    link_public_resource "./file_with_data.symlink" "$HOME/.dotfile_for_app"
     ;;
     
   * )

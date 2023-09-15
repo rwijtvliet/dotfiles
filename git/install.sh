@@ -2,5 +2,5 @@
 
 source ../shared.sh
 
-link_file "./gitconfig.symlink" "$HOME/.gitconfig"
-link_file "../secrets/gitconfig_secrets.symlink" "$HOME/.gitconfig_secrets"
+link_public_resource "./gitconfig.symlink" "$HOME/.gitconfig"
+link_secret_resource "gitconfig_secrets.symlink" "$HOME/.gitconfig_secrets"

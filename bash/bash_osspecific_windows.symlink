@@ -1,0 +1,8 @@
+
+alias nvconf='cd ~/.config/nvim/lua/ && nvim ~/.config/nvim/lua/ '
+alias pf='cd ~/Ruud/python/portfolyo/ && poetry shell'
+alias lb='cd ~/Ruud/python/lichtblyck/ && poetry shell'
+alias bv='cd ~/Ruud/python/belvys/ && poetry shell' 
+
+# ensure symlinks can be created.
+export MSYS=winsymlinks:nativestrict 
