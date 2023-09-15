@@ -57,7 +57,7 @@ link_file () {
   # Ensure source exists (or warn).
   if [ ! -f "$src" ] && [ ! -d "$src" ]; then
     
-    if [[ "$src" != *".private" ]]; then
+    if [[ "$src" != *"secret"* ]]; then
       fail "source $src does not exist"
       exit 1
     else
