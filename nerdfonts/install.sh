@@ -85,6 +85,7 @@ case "$OS" in
     # find "$HOME/fonts" -name '*Windows Compatible*' -delete
 
 		#'install'
+    mkdir -p "$HOME/.local/share/fonts/"
     cp "$HOME/fonts/"* "$HOME/.local/share/fonts/"
     rm -rf "$HOME/fonts/"
     fc-cache -fv
@@ -100,6 +101,7 @@ case "$OS" in
   	download_fonts
 
   	#'install'
+    mkdir -p "$HOME/Library/Fonts/"
   	cp "$HOME/fonts/"* "$HOME/Library/Fonts/"
     rm -rf "$HOME/fonts/"
 		;;

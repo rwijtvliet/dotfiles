@@ -4,8 +4,8 @@ source ../shared.sh
 
 install_themes () {
   # update nodejs
-  npm cache clean -f
-  npm install -g n
+  sudo npm cache clean -f
+  sudo npm install -g n
   sudo n stable
   # install
   if npm i -g alacritty-themes; then
