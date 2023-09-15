@@ -54,7 +54,7 @@ NB: the individual app's `install.sh` files are not meant to be called directly.
 
 ### Secrets
 
-After the installer script has completed correctly, we need to handle the secret files and folders that handle private information such as passwords.
+After the installer script has completed correctly, we need to handle the secret files and folders that contain private information such as passwords.
 
 For this, we can check the `secrets` folder inside the dotfiles repository. Let's say the following symlink is created:
 
