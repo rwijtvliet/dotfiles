@@ -4,7 +4,7 @@ font:
 
 window:
   title: "Ruud's alacritty"
-  opacity: 0.9
+  opacity: 1
   dimensions:
     columns: 133
     lines: 40
