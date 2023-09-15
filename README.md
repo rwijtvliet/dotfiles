@@ -5,7 +5,7 @@
 ```
 dotfiles/
 ├── shared.sh   # functionality used across install files
-├── install     # installs apps; run './install.sh -h' for more information
+├── install     # installs apps; run './install -h' for more information
 ├── part1       # text file with app folder names (to install at once)
 │
 ├── app_folder1/      # One folder per application
@@ -16,8 +16,11 @@ dotfiles/
 │    ├── bashrc.symlink           # File name ends in `.symlink` if a symlink to it will be created by the install script.
 │    ├── aliases.symlink/         # The same goes for folders.
 │    └── (no secrets here)        # Password files etc are not stored in this public repository. Instead, the install script
-│                                 # creates a symlink to a file in the secrets/ folder. This folder does not exist...
-├── secrets/                      # ...but is itself a symlink to a folder somewhere else on the filesystem.
+│                                 # creates a symlink to a file or folder in the ~/.secrets/ folder (so, in the user's home
+│                                 # folder). In order to inform the user, which files and folders are used as the source of
+│                                 # a symlink, a message is displayed during the installation process...
+├── secrets/                      # ...and also, an empty text file with the same name is created in this folder. The user
+│                                 # can compare its contents with that of `~/.secrets/`, to see if anything is missing.
 │
 .
 .
@@ -47,29 +50,28 @@ In the root, there is an `install` script, which is the only file you need to ru
 
 The script takes one or more app (=folder) names as arguments, and also allows for the usage of text files; see `./install -h` for help.
 
+NB: the individual app's `install.sh` files are not meant to be called directly. To install the `app_folder1`, we don't run `./app_folder1/install.sh`, but rather `./install app_folder1`.
+
+### Secrets
+
 After the installer script has completed correctly, we need to handle the secret files and folders that handle private information such as passwords.
 
-For this, we only need to check the `secrets` path inside the dotfiles repository; this is where the `install.sh` scripts look for the private files:
+For this, we can check the `secrets` folder inside the dotfiles repository. Let's say the following symlink is created:
 
     ```
     ~/.config/espanso                                            # Location on filesystem where app looks for its data
-    -->  .../local_dotfile_repository/secrets/espanso.symlink    # Symlink created by install.sh
+    -->  ~/.secrets/espanso.symlink                              # Symlink created by install.sh
     ```
 
-**This `secrets` folder does not exist.** Best-practice is to add another symlink, to an accessible (non-public) folder containing the wanted secrets. Like so:
+Then, the script also created an empty textfile with the same name in the `dotfiles/secrets/` folder:
 
     ```
-    .../local_dotfile_repository/secrets                         # The secrets folder does not exist...
-    --> .../some_private_location/dotfiles_secrets               # ...and it is created by symlink.
+    .../this_dotfiles_repository/secrets/espanso.symlink         # empty textfile
     ```
 
-This symlink chain is needed to reach 2 goals:
+This file serves as a reminder, which resources are expected. He can go to the `~/.secrets/` folder (create it if not yet existing), and create the resource called (`espanso.symlink`) inside it.
 
-1. Have a pre-determined folder, within the dotfiles folder, where the scripts can expect to find private information.
-
-2. Keep this data actually private by not storing the folder itself in the repository.
-
-NB: the individual app's `install.sh` files are not meant to be called directly. To install the `app_folder1`, we don't run `./app_folder1/install.sh`, but rather `./install app_folder1`.
+Of course, the user can also create a (secondary) symlink from elsewhere. Or, instead of creating the `~/.secrets/` folder, he can symlink to the entire folder from elsewhere as well.
 
 ## Details / conventions
 
