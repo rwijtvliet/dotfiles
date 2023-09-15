@@ -63,15 +63,15 @@ For this, we can check the `secrets` folder inside the dotfiles repository. Let'
     -->  ~/.secrets/espanso.symlink                              # Symlink created by install.sh
     ```
 
-Then, the script also created an empty textfile with the same name in the `dotfiles/secrets/` folder:
+As this link is pointing to a location outside of the repository, namely, inside `~/.secrets/`, the script also created an empty textfile with the same name in the `dotfiles/secrets/` folder:
 
     ```
     .../this_dotfiles_repository/secrets/espanso.symlink         # empty textfile
     ```
 
-This file serves as a reminder, which resources are expected. He can go to the `~/.secrets/` folder (create it if not yet existing), and create the resource called (`espanso.symlink`) inside it.
+This file serves as a reminder, which resources are expected in `~/.secrets/`. The user can go to the `~/.secrets/` folder (create it if not yet existing), and create the resource called (`espanso.symlink`) inside it.
 
-Of course, the user can also create a (secondary) symlink from elsewhere. Or, instead of creating the `~/.secrets/` folder, he can symlink to the entire folder from elsewhere as well.
+Of course, instead of copying the resource into this folder, the user can also create a (secondary) symlink from elsewhere. Or, instead of creating the `~/.secrets/` folder, the user can also choose symlink to the entire folder instead of the individual items it contains.
 
 ## Details / conventions
 
