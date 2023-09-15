@@ -5,7 +5,7 @@ alias ....='cd../../..'
 
 # some more ls aliases
 alias ll='ls -alF'
-alias la='ls -lA'
+alias la='ls -alF'
 alias l='ls -CF'
 
 # starting apps
