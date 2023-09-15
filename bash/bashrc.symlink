@@ -111,25 +111,9 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/ruud/software/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/home/ruud/software/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/ruud/software/miniconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/home/ruud/software/miniconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-
-
 # exports
-if [ -f ~/.bash_exports ]; then
-    . ~/.bash_exports
+if [ -f ~/.bash_secrets ]; then
+    . ~/.bash_secrets
 fi
 # show git branch
 parse_git_branch() {
@@ -152,5 +136,3 @@ eval "$(starship init bash)"
 # message so I know it worked
 echo "successfully loaded Ruud Wijtvliet user profile"
 
-
-export PATH=$PATH:/home/ruud/.spicetify

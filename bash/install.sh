@@ -5,7 +5,7 @@ source ../shared.sh
 link_osunspecific_files() {
   link_file "./bashrc.symlink" "$HOME/.bashrc"
   link_file "./bash_aliases.symlink" "$HOME/.bash_aliases"
-  link_file "../secrets/bash_exports.symlink" "$HOME/.bash_exports"
+  link_file "../secrets/bash_secrets.symlink" "$HOME/.bash_secrets"
 }
 
 case "$OS" in
