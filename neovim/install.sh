@@ -1,4 +1,4 @@
-nn#!/usr/bin/env bash
+#!/usr/bin/env bash
 
 source ../shared.sh
 
@@ -7,11 +7,11 @@ case "$OS" in
     # install nvim
     info "installing neovim"
     $( #run in subshell to not permanently change to that folder
-    cd "$HOME/.local/bin"
-    curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
-    chmod u+x nvim.appimage
+    mkdir -p "$HOME/.local/bin"
+    curl -Lo "$HOME/.local/bin/nvim" https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
+    chmod u+x "$HOME/.local/bin/nvim"
     )
-    link_file :"$HOME/.local/bin/nvim" "nvim.appimage"
+    #link_file "$HOME/.local/bin/nvim" "nvim.appimage"
     # (alternative: install from apt, but often outdated)
     # sudo apt install neovim
 

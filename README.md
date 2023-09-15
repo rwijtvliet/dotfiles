@@ -13,11 +13,12 @@ dotfiles/
 │
 ├── app_folder2/
 │    ├── install.sh
-│    ├── bashrc.symlink           # File name ends in `.symlink` if a symlink to it will be created.
+│    ├── bashrc.symlink           # File name ends in `.symlink` if a symlink to it will be created by the install script.
 │    ├── aliases.symlink/         # The same goes for folders.
-│    └── bashrc_password.private  #  If file name ends in `.private`, a symlink to it will
-│                                 #  also be created. However, in the public repository, this
-│                                 #  file is empty and must be replaced.
+│    └── (no secrets here)        # Password files etc are not stored in this public repository. Instead, the install script
+│                                 # creates a symlink to a file in the secrets/ folder. This folder does not exist...
+├── secrets/                      # ...but is itself a symlink to a folder somewhere else on the filesystem.
+│
 .
 .
 ```
@@ -46,15 +47,27 @@ In the root, there is an `install` script, which is the only file you need to ru
 
 The script takes one or more app (=folder) names as arguments, and also allows for the usage of text files; see `./install -h` for help.
 
-Whenever the `install.sh` script has completed correctly, we need to handle the `.private` files and folders that handle private information such as passwords.
+After the installer script has completed correctly, we need to handle the secret files and folders that handle private information such as passwords.
 
-For this, check the repository for files that end in `.private`. These are endpoints of symlinks created at various places on the filesystem. They are empty and need to be replaced. Best-practice: replace them with another symlink, to an accessible (non-public) file or folder. We then get a symlink chain, e.g.
+For this, we only need to check the `secrets` path inside the dotfiles repository; this is where the `install.sh` scripts look for the private files:
 
     ```
-    ~/.config/espanso  # location on filesystem
-    -->  .../local_dotfile_repository/espanso/espanso.private    # symlink created by install.sh
-         -->  .../some_private_location/espanso.private/         # symlink created manually, later
+    ~/.config/espanso                                            # Location on filesystem where app looks for its data
+    -->  .../local_dotfile_repository/secrets/espanso.symlink    # Symlink created by install.sh
     ```
+
+**This `secrets` folder does not exist.** Best-practice is to add another symlink, to an accessible (non-public) folder containing the wanted secrets. Like so:
+
+    ```
+    .../local_dotfile_repository/secrets                         # The secrets folder does not exist...
+    --> .../some_private_location/dotfiles_secrets               # ...and it is created by symlink.
+    ```
+
+This symlink chain is needed to reach 2 goals:
+
+1. Have a pre-determined folder, within the dotfiles folder, where the scripts can expect to find private information.
+
+2. Keep this data actually private by not storing the folder itself in the repository.
 
 NB: the individual app's `install.sh` files are not meant to be called directly. To install the `app_folder1`, we don't run `./app_folder1/install.sh`, but rather `./install app_folder1`.
 

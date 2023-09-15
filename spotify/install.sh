@@ -4,15 +4,15 @@ source ../shared.sh
 
 case "$OS" in
   "linux" )
-    # Skip if irrelevant for this OS
-    fail "to-do"
-    exit 1
+    info "Installing app"
+    snap install spotify
+    info "Add to launcher"
+    cp /var/lib/snapd/desktop/applications/*.desktop /usr/share/applications/ 
     ;;
 
   "windows" )
-    # raise error to alert user that this script is missing
-    fail "to-do"
-    exit 1
+    info "Installing app"
+    scoop install spotify
     ;;
 
   "macos" )

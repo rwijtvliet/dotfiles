@@ -4,8 +4,7 @@ source ../shared.sh
 
 case "$OS" in
   "linux" )
-    sudo apt install npm
-
+    sudo apt install npm snapd
     sudo apt update
     sudo apt upgrade
     ;;
