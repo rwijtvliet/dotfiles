@@ -6,8 +6,8 @@ case "$OS" in
   "linux" )
     info "Installing app"
     snap install spotify
-    info "Add to launcher"
-    cp /var/lib/snapd/desktop/applications/*.desktop /usr/share/applications/ 
+    info "Adding to launcher"
+    sudo cp /var/lib/snapd/desktop/applications/*.desktop /usr/share/applications/ 
     ;;
 
   "windows" )
