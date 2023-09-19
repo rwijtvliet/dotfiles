@@ -1,0 +1,158 @@
+comment_char %
+escape_char /
+
+% English language international locale for Ruud in Germany
+% Source: Ruud
+% Date: 2020-08-20 (v1.0)
+% Users: general
+
+LC_IDENTIFICATION
+title      "English locale for Ruud"
+source     ""
+address    ""
+contact    ""
+email      ""
+tel        ""
+fax        ""
+language   "English"
+territory  "Ruud"
+revision   "1.1"
+date       "2023-09"
+
+category "i18n:2012";LC_IDENTIFICATION
+category "i18n:2012";LC_CTYPE
+category "i18n:2012";LC_COLLATE
+category "i18n:2012";LC_TIME
+category "i18n:2012";LC_NUMERIC
+category "i18n:2012";LC_MONETARY
+category "i18n:2012";LC_MESSAGES
+category "i18n:2012";LC_PAPER
+category "i18n:2012";LC_NAME
+category "i18n:2012";LC_ADDRESS
+category "i18n:2012";LC_TELEPHONE
+category "i18n:2012";LC_MEASUREMENT
+END LC_IDENTIFICATION
+
+LC_CTYPE
+copy "i18n"
+translit_start
+include "translit_combining";""
+<U00C4> "A<U0308>";"AE"
+<U00D6> "O<U0308>";"OE"
+<U00DC> "U<U0308>";"UE"
+<U00E4> "a<U0308>";"ae"
+<U00F6> "o<U0308>";"oe"
+<U00FC> "u<U0308>";"ue"
+<U00C5> "A<U030A>";"AA"
+<U00E5> "a<U030A>";"aa"
+<U201C> <U00AB>;<U0022>
+<U201D> <U00BB>;<U0022>
+<U201E> <U00BB>;"<U002C><U002C>"
+<U201F> <U00AB>;<U0022>
+translit_end
+END LC_CTYPE
+
+LC_COLLATE
+copy "iso14651_t1"
+END LC_COLLATE
+
+LC_MONETARY
+int_curr_symbol         "EUR "
+currency_symbol         "€"
+mon_decimal_point       "."
+mon_thousands_sep       " "
+mon_grouping            3;3
+positive_sign           ""
+negative_sign           "-"
+int_frac_digits         2
+frac_digits             2
+p_cs_precedes           1
+p_sep_by_space          0
+n_cs_precedes           1
+n_sep_by_space          0
+p_sign_posn             1
+n_sign_posn             1
+END LC_MONETARY
+
+LC_NUMERIC
+decimal_point           "."
+thousands_sep           " "
+grouping                3;3
+END LC_NUMERIC
+
+LC_TIME
+abday       "Sun";"Mon";"Tue";"Wed";"Thu";"Fri";"Sat"
+day         "Sunday";/
+            "Monday";/
+            "Tuesday";/
+            "Wednesday";/
+            "Thursday";/
+            "Friday";/
+            "Saturday"
+abmon       "Jan";"Feb";/
+            "Mar";"Apr";/
+            "May";"Jun";/
+            "Jul";"Aug";/
+            "Sep";"Oct";/
+            "Nov";"Dec"
+mon         "January";/
+            "February";/
+            "March";/
+            "April";/
+            "May";/
+            "June";/
+            "July";/
+            "August";/
+            "September";/
+            "October";/
+            "November";/
+            "December"
+d_t_fmt     "%a %d %b %Y %T"
+date_fmt    "%a %d %b %Y %T %Z"
+d_fmt       "%Y-%m-%d"
+t_fmt       "%T"
+am_pm       "AM";"PM"
+t_fmt_ampm  "%I:%M:%S %p"
+week 7;19971201;1
+END LC_TIME
+
+LC_MESSAGES
+copy "en_US"
+END LC_MESSAGES
+
+LC_PAPER
+copy "i18n"
+END LC_PAPER
+
+LC_TELEPHONE
+tel_int_fmt    "+%c %a %l"
+int_prefix     "49"
+int_select     "00"
+END LC_TELEPHONE
+
+LC_MEASUREMENT
+copy "i18n"
+END LC_MEASUREMENT
+
+LC_NAME
+name_fmt    "%d%t%g%t%m%t%f"
+name_miss   "Miss."
+name_mr     "Mr."
+name_mrs    "Mrs."
+name_ms     "Ms."
+END LC_NAME
+
+LC_ADDRESS
+postal_fmt    "%f%N%a%N%d%N%b%N%s %h %e %r%N%z %T%N%c%N"
+country_name "Germany"
+country_post  "D"
+country_ab2   "DE"
+country_ab3   "DEU"
+country_num   276
+country_car   "D"
+country_isbn  3
+lang_name     "English"
+lang_ab       "en"
+lang_term     "eng"
+lang_lib      "eng"
+END LC_ADDRESS
