@@ -1,15 +1,6 @@
-# all other apps
+# apps to use in terminal
 alacritty
+neovim
 nerdfonts
 starship
-neovim
 inputrc
-espanso
-vscode
-yabai
-notepadplusplus
-ubersicht
-spotify
-tweaks
-python
-locale
