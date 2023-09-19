@@ -72,8 +72,6 @@ download_fonts () {
       fi
   done
 
-  find "$fontdir" -type f ! -iname '*mono*' -delete
-
   # remove temp folder
   cd ..
   rm -rf ./tmp

@@ -5,6 +5,7 @@ source ../shared.sh
 case "$OS" in
   "linux" )
     sudo apt install npm snapd
+
     sudo apt update
     sudo apt upgrade
     ;;
@@ -20,6 +21,7 @@ case "$OS" in
   "macos" )
     brew install coreutils
     PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH" # also in .bashrc
+    brew install java
     brew install npm
     brew install wget
     brew install nodejs

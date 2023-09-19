@@ -1,5 +1,5 @@
 vim.api.nvim_set_option("equalalways", true) -- make windows same width when closing one
-vim.lsp.buf.format { timeout_ms = 2000 }
+-- vim.lsp.buf.format { timeout_ms = 2000 }
 local ok, _ = pcall(vim.api.nvim_exec, "language en_US", true)
 if not ok then print "Could not set language. No biggie." end
 

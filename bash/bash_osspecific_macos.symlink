@@ -1,8 +1,12 @@
 
-alias nvconf='cd ~/.config/nvim/lua/ && nvim ~/.config/nvim/lua/ '
+alias nvco='cd ~/.config/nvim/lua/ && nvim ~/.config/nvim/lua/ '
+alias yaco='nvim ~/.dotfiles/yabai/yabairc.symlink ~/.dotfiles/yabai/skhdrc.symlink'
 alias pf='cd ~/python/portfolyo/ && poetry shell'
 alias lb='cd ~/python/lichtblyck/ && poetry shell'
 alias bv='cd ~/python/belvys/ && poetry shell' 
 
 PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
 PATH="/opt/homebrew/bin:$PATH"
+
+alias python=python3
+alias pip=pip3
