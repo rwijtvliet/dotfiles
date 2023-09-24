@@ -91,10 +91,14 @@ alt + ctrl + cmd - w : yabai -m window --close
 # Yabai management
 
 # start (0x29 = ;)
-alt + ctrl + cmd - 0x29 : yabai --start-service; \
-                          osascript -e 'tell application id "tracesOf.Uebersicht" to refresh';
+alt + ctrl + cmd - 0x29 : /usr/bin/env osascript <<< \
+                               "display notification \"Restarting Yabai\" with title \"Yabai\""; \
+                          yabai --start-service; \
+                          /usr/bin/env osascript -e 'tell application id "tracesOf.Uebersicht" to refresh';
 # stop
-alt + ctrl + cmd + shift - 0x29 : yabai --stop-service
+alt + ctrl + cmd + shift - 0x29 : yabai --stop-service; \
+                                  /usr/bin/env osascript <<< \
+                                       "display notification \"Stopping Yabai\" with title \"Yabai\""; \
 
 
 

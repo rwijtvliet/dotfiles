@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 # necessary to load scripting-addition during startup on macOS Big Sur
 # *yabai --load-sa* is configured to run through sudo without a password
 sudo yabai --load-sa
@@ -49,7 +49,7 @@ yabai -m signal --add event=window_minimized active=yes action="if \$(yabai -m q
 
 # global settings
 yabai -m config                              \
-    external_bar                all:0:25     \
+    external_bar                all:20:25     \
     mouse_follows_focus         off          \
     focus_follows_mouse         off          \
     window_placement            second_child \

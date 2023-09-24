@@ -24,9 +24,9 @@ case "$OS" in
   "macos" )
     info "Installing app"
     brew install bash
-    PATH="/opt/homebrew/bin:$PATH" #also include in bashrc
+    PATH="/opt/homebrew/bin:$PATH" #line also included in bashrc
+    echo /opt/homebrew/bin/bash | sudo tee -a /etc/shells  # allow usage as shell
     chsh -s /opt/homebrew/bin/bash  #make default
-    sudo echo "/opt/homebrew/bin/bash">>/etc/shells
     
     info "Linking config"
     link_osunspecific_files

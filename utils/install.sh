@@ -19,14 +19,13 @@ case "$OS" in
     ;;
 
   "macos" )
-    info "Installing core utils"
-    brew install coreutils
+    info "Installing gnu versions"
+    brew install coreutils findutils gnu-tar gnu-sed gawk gnutls gnu-indent gnu-getopt grep
     PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH" # also in .bashrc
     info "Installing java"
     brew install java
     brew install openjdk
-    todo "installed java - probably won't work anyway. Try 'java -version'. If error: install manually from oracle."
-    info "Installing other packages"
+    todo "installed java - probably won't work anyway. "
     brew install npm
     brew install wget
     brew install nodejs

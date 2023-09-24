@@ -70,6 +70,7 @@ link_secret_resource() {
 
   # Create empty file in template if not yet existing.
   local src_path_tmpl="$SECRETDIR_TMPL/$src_name"
+  mkdir -p "$(dirname "$src_path_tmpl")"
   if [ ! -f "$src_path_tmpl" ] && [ ! -d "$src_path_tmpl" ] && [ ! -L "$src_path_tmpl" ]; then
     touch "$src_path_tmpl"
   fi
@@ -182,7 +183,8 @@ link_resource () {
   fi
 
   if [ "$skip" != "true" ]; then  # "false" or empty
-    if ln -s "$src" "$dst"; then
+    sudo mkdir -p "$(dirname "$dst")"
+    if sudo ln -s "$src" "$dst"; then
       success "linked [$src] -> [$dst]"
     else
       fail "could not link [$src] -> [$dst]"
