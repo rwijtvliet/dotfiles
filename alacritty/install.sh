@@ -27,7 +27,7 @@ case "$OS" in
     # config
     info "Linking config file"
     mkdir -p "$HOME/.config/alacritty/"
-    link_public_resource "./alacritty_linux.yml.symlink" "$HOME/.config/alacritty/alacritty.yml"
+    link_public_resource "./alacritty_linux.yml" "$HOME/.config/alacritty/alacritty.yml"
     # themes
     info "Installing theme selector"
     install_themes
@@ -41,7 +41,7 @@ case "$OS" in
     # config
     info "Linking config file"
     mkdir -p "$APPDATA/alacritty/"
-    link_public_resource "./alacritty_windows.yml.symlink" "$APPDATA/alacritty/alacritty.yml"
+    link_public_resource "./alacritty_windows.yml" "$APPDATA/alacritty/alacritty.yml"
     # themes
     info "Installing theme selector"
     install_themes
@@ -54,7 +54,7 @@ case "$OS" in
     # config
     info "Linking config file"
     mkdir -p "$HOME/.config/alacritty/"
-    link_public_resource "./alacritty_macos.yml.symlink" "$HOME/.config/alacritty/alacritty.yml"
+    link_public_resource "./alacritty_macos.yml" "$HOME/.config/alacritty/alacritty.yml"
     # themes
     info "Installing theme selector"
     install_themes

@@ -11,7 +11,7 @@ case "$OS" in
     info "Generating locales - en_ZZ should be in this list"
     sudo locale-gen
     info "Linking config"
-    link_public_resource "./locale.symlink" "$HOME/.locale"
+    link_public_resource "./locale" "$HOME/.locale"
     ;;
 
   "windows" )

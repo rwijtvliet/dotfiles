@@ -3,22 +3,22 @@
 source ../shared.sh
 
 link_osunspecific_files() {
-  link_public_resource "./bashrc.symlink" "$HOME/.bashrc"
-  link_public_resource "./bash_aliases.symlink" "$HOME/.bash_aliases"
-  link_secret_resource "bash_secrets.symlink" "$HOME/.bash_secrets"
+  link_public_resource "./bashrc" "$HOME/.bashrc"
+  link_public_resource "./bash_aliases" "$HOME/.bash_aliases"
+  link_secret_resource "bash_secrets" "$HOME/.bash_secrets"
 }
 
 case "$OS" in
   "linux" )
     info "Linking config"
     link_osunspecific_files
-    link_public_resource "./bash_osspecific_linux.symlink" "$HOME/.bash_osspecific"
+    link_public_resource "./bash_osspecific_linux" "$HOME/.bash_osspecific"
     ;;
 
   "windows" )
     info "Linking config"
     link_osunspecific_files
-    link_public_resource "./bash_osspecific_windows.symlink" "$HOME/.bash_osspecific"
+    link_public_resource "./bash_osspecific_windows" "$HOME/.bash_osspecific"
     ;;
 
   "macos" )
@@ -30,7 +30,7 @@ case "$OS" in
     
     info "Linking config"
     link_osunspecific_files
-    link_public_resource "./bash_osspecific_macos.symlink" "$HOME/.bash_osspecific"
+    link_public_resource "./bash_osspecific_macos" "$HOME/.bash_osspecific"
     ;;
 
   * )

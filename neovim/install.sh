@@ -22,7 +22,7 @@ case "$OS" in
 
     # add user config
     info "adding user config"
-    link_public_resource "./user.symlink" "$HOME/.config/nvim/lua/user"
+    link_public_resource "./user" "$HOME/.config/nvim/lua/user"
     ;;
 
   "windows" )
@@ -38,7 +38,7 @@ case "$OS" in
     git clone "https://github.com/AstroNvim/AstroNvim" "$USERPROFILE/AppData/Local/nvim"
     
     # add user config
-    link_public_resource "./user.symlink" "$USERPROFILE/AppData/Local/nvim/lua/user"
+    link_public_resource "./user" "$USERPROFILE/AppData/Local/nvim/lua/user"
     ;;
 
   "macos" )
@@ -53,7 +53,7 @@ case "$OS" in
 
     # add user config
     info "adding user config"
-    link_public_resource "./user.symlink" "$HOME/.config/nvim/lua/user" 
+    link_public_resource "./user" "$HOME/.config/nvim/lua/user" 
     ;;
 
   * )

@@ -19,8 +19,8 @@ case "$OS" in
     info "Installing app"
     brew install wireguard-tools
     info "Linking configuration"
-    link_secret_resource "wireguard/ruudmacos.conf.symlink" "$HOME/.config/wireguard/wg0.conf"
-    link_secret_resource "wireguard/ruudmacos.conf.symlink" "/etc/wireguard/wg0.conf"
+    link_secret_resource "wireguard/ruudmac23.conf" "$HOME/.config/wireguard/ruudmac23.conf"
+    link_secret_resource "wireguard/ruudmac23.conf" "/etc/wireguard/ruudmac23.conf"
     ;;
     
   * )

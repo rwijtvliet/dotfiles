@@ -43,42 +43,45 @@ alt + ctrl + cmd + shift - d :     yabai -m window --swap largest
 
 # (space) to monitor
 alt + ctrl + cmd + shift - g : yabai -m space --display west; \
-                               yabai -m display --focus west;
+                               yabai -m display --focus west
 alt + ctrl + cmd + shift - l : yabai -m space --display east; \
-                               yabai -m display --focus east;
+                               yabai -m display --focus east
 
 # (window) to space
 alt + ctrl + cmd + shift - 1 : yabai -m window --space 1_files; \
-                               yabai -m space --focus 1_files;
+                               yabai -m space --focus 1_files
 alt + ctrl + cmd + shift - 2 : yabai -m window --space 2_www; \
-                               yabai -m space --focus 2_www;
+                               yabai -m space --focus 2_www
 alt + ctrl + cmd + shift - 3 : yabai -m window --space 3_office; \
-                               yabai -m space --focus 3_office;
+                               yabai -m space --focus 3_office
 alt + ctrl + cmd + shift - 4 : yabai -m window --space 4_terminal; \
-                               yabai -m space --focus 4_terminal;
+                               yabai -m space --focus 4_terminal
 alt + ctrl + cmd + shift - 5 : yabai -m window --space 5_vscode; \
-                               yabai -m space --focus 5_vscode;
+                               yabai -m space --focus 5_vscode
 alt + ctrl + cmd + shift - 6 : yabai -m window --space 6_; \
-                               yabai -m space --focus 6_;
+                               yabai -m space --focus 6_
 alt + ctrl + cmd + shift - 7 : yabai -m window --space 7_teams; \
-                               yabai -m space --focus 7_teams;
+                               yabai -m space --focus 7_teams
 alt + ctrl + cmd + shift - 8 : yabai -m window --space 8_email; \
-                               yabai -m space --focus 8_email;
+                               yabai -m space --focus 8_email
 alt + ctrl + cmd + shift - 9 : yabai -m window --space 9_media; \
-                               yabai -m space --focus 9_media;
+                               yabai -m space --focus 9_media
 
 
 
 # Change window size
 
 # toggle float / tiling
-alt + ctrl + cmd - b : yabai -m window --toggle float --grid 4:4:1:1:2:2 # half-width half-height middle-of-screen
+alt + ctrl + cmd - b : \
+    yabai -m window --toggle float --grid 4:4:1:1:2:2 # half-width half-height middle-of-screen
 
 # toggle maximize
-alt + ctrl + cmd - m : yabai -m window --toggle zoom-fullscreen
+alt + ctrl + cmd - m : \
+    yabai -m window --toggle zoom-fullscreen
 
 # close
-alt + ctrl + cmd - w : yabai -m window --close
+alt + ctrl + cmd - w : \
+    yabai -m window --close
 
 
 # Change layout
@@ -91,18 +94,34 @@ alt + ctrl + cmd - w : yabai -m window --close
 # Yabai management
 
 # start (0x29 = ;)
-alt + ctrl + cmd - 0x29 : /usr/bin/env osascript <<< \
-                               "display notification \"Restarting Yabai\" with title \"Yabai\""; \
-                          yabai --start-service; \
-                          /usr/bin/env osascript -e 'tell application id "tracesOf.Uebersicht" to refresh';
+alt + ctrl + cmd - 0x06 : \
+    /usr/bin/env osascript <<< "display notification \"Restarting Yabai\" with title \"Yabai\""; \
+    yabai --start-service; \
+    /usr/bin/env osascript -e 'tell application id "tracesOf.Uebersicht" to refresh'
+
 # stop
-alt + ctrl + cmd + shift - 0x29 : yabai --stop-service; \
-                                  /usr/bin/env osascript <<< \
-                                       "display notification \"Stopping Yabai\" with title \"Yabai\""; \
+alt + ctrl + cmd + shift - 0x06 : \
+    /usr/bin/env osascript <<< \ "display notification \"Stopping Yabai\" with title \"Yabai\""; \
+    yabai --stop-service; 
+
 
 
 
 # Non-window-management shortcuts
 
 # Terminal
-alt + ctrl + cmd - return : alacritty
+alt + ctrl + cmd - return : \
+    alacritty
+
+# Screenshot;
+alt + ctrl + cmd - j : \
+    screencapture -coW
+
+# test
+alt + ctrl + cmd - a  : \
+    /usr/bin/env osascript <<< "display notification \"test\" with title \"testtets\""
+
+
+
+
+

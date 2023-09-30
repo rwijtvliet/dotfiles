@@ -2,5 +2,5 @@
 
 source ../shared.sh
 
-link_public_resource "./inputrc.symlink" "$HOME/.inputrc"
+link_public_resource "./inputrc" "$HOME/.inputrc"
 
