@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 # necessary to load scripting-addition during startup on macOS Big Sur
 # *yabai --load-sa* is configured to run through sudo without a password
-sudo yabai --load-sa
 yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
+sudo yabai --load-sa
 
 # # mission-control desktop labels
 # WANTEDSPACES=9
@@ -29,12 +29,12 @@ yabai -m space 9 --label "9_media"
 # window rules
 # . windows to ignore 
 yabai -m rule --add app="^(Calculator|System Preferences|Archive Utility|System Settings)$" manage=off
-yabai -m rule --add app="^mpv$" manage=off border=off sticky=on layer=above opacity=1.0 grid=8:8:6:0:2:2
+yabai -m rule --add app="^mpv$" manage=:off border=off sticky=on layer=above opacity=1.0 grid=8:8:6:0:2:2
 yabai -m rule --add title="Reminder" manage=off border=off sticky=on layer=above opacity=0.9
 # . where to go
 yabai -m rule --add app="^Finder$" space=^1_files # use label incase order is changed (i.e., by moving space to other monitor)
 yabai -m rule --add app="^Firefox$" space=^2_www
-yabai -m rule --add app="^Alacritty$" space=^4_terminal
+# yabai -m rule --add app="^Alacritty$" space=^4_terminal # alacritty can be opened everywhere
 yabai -m rule --add app="^Teams$" space=^7_teams
 yabai -m rule --add app="^Outlook$" space=8_email
 yabai -m rule --add app="^Spotify$" space=9_media
@@ -61,9 +61,9 @@ yabai -m config                              \
     active_window_opacity       0.95         \
     normal_window_opacity       0.80         \
     insert_feedback_color       0xaad75f5f   \
-    active_window_border_color  0xffffffff   \
-    normal_window_border_color  0x00777777   \
-    window_border_width         4            \
+    active_window_border_color  0xbbff8800   \
+    normal_window_border_color  0x55777777   \
+    window_border_width         3            \
     window_border_radius        12           \
     window_border_blur          off          \
     window_border_hidpi         on           \

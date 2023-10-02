@@ -42,30 +42,30 @@ alt + ctrl + cmd + shift - right : yabai -m window --swap east
 alt + ctrl + cmd + shift - d :     yabai -m window --swap largest
 
 # (space) to monitor
-alt + ctrl + cmd + shift - g : yabai -m space --display west; \
+alt + ctrl + cmd + shift - g : yabai -m space   --display west; \
                                yabai -m display --focus west
-alt + ctrl + cmd + shift - l : yabai -m space --display east; \
+alt + ctrl + cmd + shift - l : yabai -m space   --display east; \
                                yabai -m display --focus east
 
 # (window) to space
 alt + ctrl + cmd + shift - 1 : yabai -m window --space 1_files; \
-                               yabai -m space --focus 1_files
+                               yabai -m space  --focus 1_files
 alt + ctrl + cmd + shift - 2 : yabai -m window --space 2_www; \
-                               yabai -m space --focus 2_www
+                               yabai -m space  --focus 2_www
 alt + ctrl + cmd + shift - 3 : yabai -m window --space 3_office; \
-                               yabai -m space --focus 3_office
+                               yabai -m space  --focus 3_office
 alt + ctrl + cmd + shift - 4 : yabai -m window --space 4_terminal; \
-                               yabai -m space --focus 4_terminal
+                               yabai -m space  --focus 4_terminal
 alt + ctrl + cmd + shift - 5 : yabai -m window --space 5_vscode; \
-                               yabai -m space --focus 5_vscode
+                               yabai -m space  --focus 5_vscode
 alt + ctrl + cmd + shift - 6 : yabai -m window --space 6_; \
-                               yabai -m space --focus 6_
+                               yabai -m space  --focus 6_
 alt + ctrl + cmd + shift - 7 : yabai -m window --space 7_teams; \
-                               yabai -m space --focus 7_teams
+                               yabai -m space  --focus 7_teams
 alt + ctrl + cmd + shift - 8 : yabai -m window --space 8_email; \
-                               yabai -m space --focus 8_email
+                               yabai -m space  --focus 8_email
 alt + ctrl + cmd + shift - 9 : yabai -m window --space 9_media; \
-                               yabai -m space --focus 9_media
+                               yabai -m space  --focus 9_media
 
 
 
@@ -85,6 +85,10 @@ alt + ctrl + cmd - w : \
 
 
 # Change layout
+
+# Toggle gap between windows
+alt + ctrl + cmd - j : \
+    yabai -m space --toggle gap --toggle padding 
 
 # Create 3 colums with center one the biggest
 # TODO
@@ -111,10 +115,10 @@ alt + ctrl + cmd + shift - 0x06 : \
 
 # Terminal
 alt + ctrl + cmd - return : \
-    alacritty
+    open /Applications/Alacritty.app
 
-# Screenshot;
-alt + ctrl + cmd - j : \
+# Screenshot
+alt + ctrl + cmd - y : \
     screencapture -coW
 
 # test
