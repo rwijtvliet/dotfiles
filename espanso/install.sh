@@ -16,9 +16,9 @@ case "$OS" in
     # install
     info "Installing app"
     ( # subshell because we change folder
-    cd ~/downloads/
+    cd ~/Downloads/
     wget https://github.com/federico-terzi/espanso/releases/download/v2.1.8/espanso-debian-x11-amd64.deb
-    sudo apt install ./espanso-debian-x11-amd64.deb
+    sudo apt install ./Downloads/espanso.deb
     )
 
     # register service
