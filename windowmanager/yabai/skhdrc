@@ -1,70 +1,70 @@
 # Focus
 
 # window
-alt + ctrl + cmd - h :     yabai -m window --focus west
-alt + ctrl + cmd - left :  yabai -m window --focus west
-alt + ctrl + cmd - t :     yabai -m window --focus north
-alt + ctrl + cmd - up :    yabai -m window --focus north
-alt + ctrl + cmd - n :     yabai -m window --focus south
-alt + ctrl + cmd - down :  yabai -m window --focus south
-alt + ctrl + cmd - s :     yabai -m window --focus east
-alt + ctrl + cmd - right : yabai -m window --focus east
-alt + ctrl + cmd - d :     yabai -m window --focus largest
+alt + cmd - h :     yabai -m window --focus west
+alt + cmd - left :  yabai -m window --focus west
+alt + cmd - t :     yabai -m window --focus north
+alt + cmd - up :    yabai -m window --focus north
+alt + cmd - n :     yabai -m window --focus south
+alt + cmd - down :  yabai -m window --focus south
+alt + cmd - s :     yabai -m window --focus east
+alt + cmd - right : yabai -m window --focus east
+alt + cmd - d :     yabai -m window --focus largest
 
 # monitor
-alt + ctrl + cmd - g : yabai -m display --focus west
-alt + ctrl + cmd - l : yabai -m display --focus east
+alt + cmd - g : yabai -m display --focus west
+alt + cmd - l : yabai -m display --focus east
 
 # space
-alt + ctrl + cmd - 1 : yabai -m space --focus 1_files
-alt + ctrl + cmd - 2 : yabai -m space --focus 2_www
-alt + ctrl + cmd - 3 : yabai -m space --focus 3_office
-alt + ctrl + cmd - 4 : yabai -m space --focus 4_terminal
-alt + ctrl + cmd - 5 : yabai -m space --focus 5_vscode
-alt + ctrl + cmd - 6 : yabai -m space --focus 6_
-alt + ctrl + cmd - 7 : yabai -m space --focus 7_teams
-alt + ctrl + cmd - 8 : yabai -m space --focus 8_email
-alt + ctrl + cmd - 9 : yabai -m space --focus 9_media
+alt + cmd - 1 : yabai -m space --focus 1_files
+alt + cmd - 2 : yabai -m space --focus 2_www
+alt + cmd - 3 : yabai -m space --focus 3_office
+alt + cmd - 4 : yabai -m space --focus 4_terminal
+alt + cmd - 5 : yabai -m space --focus 5_vscode
+alt + cmd - 6 : yabai -m space --focus 6_
+alt + cmd - 7 : yabai -m space --focus 7_teams
+alt + cmd - 8 : yabai -m space --focus 8_email
+alt + cmd - 9 : yabai -m space --focus 9_media
 
 
 
 # Move
 
 # window (inside space)
-alt + ctrl + cmd + shift - h :     yabai -m window --swap west
-alt + ctrl + cmd + shift - left :  yabai -m window --swap west
-alt + ctrl + cmd + shift - t :     yabai -m window --swap north
-alt + ctrl + cmd + shift - up :    yabai -m window --swap north
-alt + ctrl + cmd + shift - n :     yabai -m window --swap south
-alt + ctrl + cmd + shift - down :  yabai -m window --swap south
-alt + ctrl + cmd + shift - s :     yabai -m window --swap east
-alt + ctrl + cmd + shift - right : yabai -m window --swap east
-alt + ctrl + cmd + shift - d :     yabai -m window --swap largest
+alt + cmd + shift - h :     yabai -m window --swap west
+alt + cmd + shift - left :  yabai -m window --swap west
+alt + cmd + shift - t :     yabai -m window --swap north
+alt + cmd + shift - up :    yabai -m window --swap north
+alt + cmd + shift - n :     yabai -m window --swap south
+alt + cmd + shift - down :  yabai -m window --swap south
+alt + cmd + shift - s :     yabai -m window --swap east
+alt + cmd + shift - right : yabai -m window --swap east
+alt + cmd + shift - d :     yabai -m window --swap largest
 
 # (space) to monitor
-alt + ctrl + cmd + shift - g : yabai -m space   --display west; \
+alt + cmd + shift - g : yabai -m space   --display west; \
                                yabai -m display --focus west
-alt + ctrl + cmd + shift - l : yabai -m space   --display east; \
+alt + cmd + shift - l : yabai -m space   --display east; \
                                yabai -m display --focus east
 
 # (window) to space
-alt + ctrl + cmd + shift - 1 : yabai -m window --space 1_files; \
+alt + cmd + shift - 1 : yabai -m window --space 1_files; \
                                yabai -m space  --focus 1_files
-alt + ctrl + cmd + shift - 2 : yabai -m window --space 2_www; \
+alt + cmd + shift - 2 : yabai -m window --space 2_www; \
                                yabai -m space  --focus 2_www
-alt + ctrl + cmd + shift - 3 : yabai -m window --space 3_office; \
+alt + cmd + shift - 3 : yabai -m window --space 3_office; \
                                yabai -m space  --focus 3_office
-alt + ctrl + cmd + shift - 4 : yabai -m window --space 4_terminal; \
+alt + cmd + shift - 4 : yabai -m window --space 4_terminal; \
                                yabai -m space  --focus 4_terminal
-alt + ctrl + cmd + shift - 5 : yabai -m window --space 5_vscode; \
+alt + cmd + shift - 5 : yabai -m window --space 5_vscode; \
                                yabai -m space  --focus 5_vscode
-alt + ctrl + cmd + shift - 6 : yabai -m window --space 6_; \
+alt + cmd + shift - 6 : yabai -m window --space 6_; \
                                yabai -m space  --focus 6_
-alt + ctrl + cmd + shift - 7 : yabai -m window --space 7_teams; \
+alt + cmd + shift - 7 : yabai -m window --space 7_teams; \
                                yabai -m space  --focus 7_teams
-alt + ctrl + cmd + shift - 8 : yabai -m window --space 8_email; \
+alt + cmd + shift - 8 : yabai -m window --space 8_email; \
                                yabai -m space  --focus 8_email
-alt + ctrl + cmd + shift - 9 : yabai -m window --space 9_media; \
+alt + cmd + shift - 9 : yabai -m window --space 9_media; \
                                yabai -m space  --focus 9_media
 
 
@@ -72,22 +72,22 @@ alt + ctrl + cmd + shift - 9 : yabai -m window --space 9_media; \
 # Change window size
 
 # toggle float / tiling
-alt + ctrl + cmd - b : \
+alt + cmd - b : \
     yabai -m window --toggle float --grid 4:4:1:1:2:2 # half-width half-height middle-of-screen
 
 # toggle maximize
-alt + ctrl + cmd - m : \
+alt + cmd - m : \
     yabai -m window --toggle zoom-fullscreen
 
 # close
-alt + ctrl + cmd - w : \
+alt + cmd - w : \
     yabai -m window --close
 
 
 # Change layout
 
 # Toggle gap between windows
-alt + ctrl + cmd - j : \
+alt + cmd - j : \
     yabai -m space --toggle gap --toggle padding 
 
 # Create 3 colums with center one the biggest
@@ -98,13 +98,13 @@ alt + ctrl + cmd - j : \
 # Yabai management
 
 # start (0x29 = ;)
-alt + ctrl + cmd - 0x06 : \
+alt + cmd - 0x29 : \
     /usr/bin/env osascript <<< "display notification \"Restarting Yabai\" with title \"Yabai\""; \
     yabai --start-service; \
     /usr/bin/env osascript -e 'tell application id "tracesOf.Uebersicht" to refresh'
 
 # stop
-alt + ctrl + cmd + shift - 0x06 : \
+alt + cmd + shift - 0x29 : \
     /usr/bin/env osascript <<< \ "display notification \"Stopping Yabai\" with title \"Yabai\""; \
     yabai --stop-service; 
 
@@ -114,15 +114,15 @@ alt + ctrl + cmd + shift - 0x06 : \
 # Non-window-management shortcuts
 
 # Terminal
-alt + ctrl + cmd - return : \
+alt + cmd - return : \
     open /Applications/Alacritty.app
 
 # Screenshot
-alt + ctrl + cmd - y : \
+alt + cmd - y : \
     screencapture -coW
 
 # test
-alt + ctrl + cmd - a  : \
+alt + cmd - a  : \
     /usr/bin/env osascript <<< "display notification \"test\" with title \"testtets\""
 
 
