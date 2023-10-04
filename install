@@ -12,19 +12,22 @@ Help () {
   echo "Set-up machine by running one or more install scripts."
   echo ""
   echo "options:"
-  echo " (none)  Each NAME is the name of a folder in the dotfiles repo root."
-  echo "         Runs the install script in each folder (in specified order)."
+  echo " (none)  Each NAME is the name of an app folder in the dotfiles repo"
+  echo "         root."
+  echo "         Runs the install script in each app folder (in specified order)."
   echo "         Example: '$0 utils nerdfonts'"
   echo "         Runs install scripts in 'utils' and 'nerdfonts' folders."
   echo ""
   echo "   -r    Each NAME is the name of a text file in the dotfile repo root"
-  echo "         containing folder names. (One folder name per line.) Runs the"
-  echo "         install script in each folder (in specified order)."
+  echo "         containing app names. (One app name per line.) Runs the"
+  echo "         install script in each app folder (in specified order)."
   echo "         Example: '$0 -r part1'"
-  echo "         Runs install scripts of the folders in the text file 'part1'."
+  echo "         Runs install scripts of the apps in the text file 'part1'."
   echo ""
-  echo "   -c    Check; displays the foldernames available to install and which"
-  echo "         do not yet have an install script."
+  echo "   -c    Check; displays the app folder names available to install, and"
+  echo "         checks which do not yet have an install script."
+  echo "         Also checks which app folders are included in a 'partx' (with x"
+  echo "         a number) text file, and which not."
   echo ""
   echo "   -h    Display this Help."
 }
@@ -35,26 +38,61 @@ Error () {
   exit 1
 }
 
+
 Check () {
 
-  avail=()
-  unavail=()
+  echo "The following app folders have been found. The yes/no column indicates if the app has an install script; if yes, it can be used as an arguments to this installation script (see '$0 -h'). The next column shows the text files in which this app is included. Finally, any errors (no install script, and/or not present in exactly one file) are shown." 
+
   for path in "$DOTFILES_ROOT"/*/; do
-    foldername="$(basename "$path")"
+    
+    app="$(basename "$path")"
+    if [[ $app = "secrets" ]]; then
+      continue
+    fi
+    errortext=()
+    
+    # Check if has installer
     if [ -f "$path/install.sh" ]; then
-      avail+=("$foldername")
+      hasinstaller="${G}yes${N}"
+      ok1=true
     else
-      unavail+=("$foldername")
+      hasinstaller="${R} no${N}"
+      ok1=false
+      errortext+=("${R} no installer${N}")
+    fi
+    
+    # Check if included in a file
+    files=()
+    IFS=$'\n'
+    for line in $(grep -x "$app" "$DOTFILES_ROOT"/part* -s); do
+      file="$(basename "$(echo "$line" | cut -d ":" -f 1)")"
+      value=$(echo "$line" | cut -d ":" -f 2)
+      if [[ $(echo "$value" | wc -w) -eq 1 ]]; then
+        files+=("$file")
+      fi
+    done
+    unset IFS
+    if [[ "$(echo "${#files[@]}")" -eq 0 ]]; then
+      errortext+=("${R} not included in any file${N}")
+      ok2=false
+    elif [[ "$(echo "${#files[@]}")" -ge 2 ]]; then 
+      ok2=false
+      errortext+=("${R} included in multiple files${N}")
+    else
+      ok2=true
+    fi
+    
+    # Print
+    errortext=$(IFS=";\ " ; echo "${errortext[*]}")
+    finaltext="$(printf '%-20s %-10s %-20s %-20s\n' "$app" "$hasinstaller" "${files[*]}" "$errortext";)"
+    if [[ "$ok1" = true && "$ok2" = true ]]; then
+      success "$finaltext"
+    else
+      fail "$finaltext"
     fi
   done
-  echo "The following folders have an install script and are therefore available as arguments to this script:"
-  printf "  "; printf "%s " "${avail[@]}"; echo ""
-  if [ ${#unavail[@]} -gt 0 ]; then
-    echo "And these folders do not have an install script (yet):"
-    printf "  "; printf "%s " "${unavail[@]}"; echo ""
-  fi
 }
-
+ 
 # FUNCTIONS USED IN MAIN PROGRAM.
 
 install_from_files () {
