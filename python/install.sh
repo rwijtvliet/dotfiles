@@ -5,8 +5,9 @@ source ../shared.sh
 case "$OS" in
   "linux" )
     # raise error to alert user that this script is missing
-    fail "to-do"
-    exit 1
+    info "Installing app"
+    sudo apt install python3
+    pip3 install poetry
     ;;
 
   "windows" )

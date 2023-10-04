@@ -14,3 +14,4 @@ alias l='ls -CF --color'
 alias at='alacritty-themes'
 alias myip='curl ipinfo.io/ip' 
 alias bashconf='nvim ~/.bashrc'
+alias python=python3

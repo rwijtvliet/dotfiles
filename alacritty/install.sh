@@ -8,7 +8,7 @@ install_themes () {
   sudo npm install -g n
   sudo n stable
   # install
-  if npm i -g alacritty-themes; then
+  if sudo npm i -g alacritty-themes; then
     success "installed the program"
     alacritty-themes Gruvbox-Dark
     success "set Gruvbox-Dark theme"
