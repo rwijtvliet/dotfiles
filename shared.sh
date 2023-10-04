@@ -8,15 +8,19 @@
 #colors
 R='\033[0;31m'  # red
 G='\033[0;32m'  # green 
+X='\033[0;37m\033[1m' #gray bold
+A='\033[0;36m\033[1m' #cyan bold
+Y='\033[0;33m' #yellow
+B='\033[00;34m' #blue
 N='\033[0m'
   
 
 info () {
-  printf "\r  [\033[00;34m .. ${N}] $1\n"
+  printf "\r  [${B} .. ${N}] $1\n"
 }
 
 user () {
-  printf "\r  [\033[0;33m ?? ${N}] $1\n"
+  printf "\r  [${Y} ?? ${N}] $1\n"
 }
 
 success () {
@@ -28,11 +32,11 @@ fail () {
 }
 
 todo () {
-  printf "\r\033[2K  [\033[0;36m\033[1mTODO${N}] $1\n"
+  printf "\r\033[2K  [${A}TODO${N}] $1\n"
 }
 
 skip () {
-  printf "\r\033[2K  [\033[0;37m\033[1mSKIP${N}] Not installed on $OS\n"
+  printf "\r\033[2K  [${X}SKIP${N}] Not installed on $OS\n"
 }
 
 try () {
