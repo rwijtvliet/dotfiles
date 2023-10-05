@@ -5,7 +5,9 @@
 // good tutorial:
 // https://precondition.github.io/home-row-mods
 
-#include "users/rwijtvliet/keymap_partial.c"
-#include "atreus.c"
+
+#undef TAPPING_TERM
+#include "../../../../keymap_partial.c"
+#include "ergodox.c"
 #include "g/keymap_combo.h"
 

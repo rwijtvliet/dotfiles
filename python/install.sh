@@ -6,7 +6,7 @@ case "$OS" in
   "linux" )
     # raise error to alert user that this script is missing
     info "Installing app"
-    sudo apt install python3
+    sudo apt install python3 python3-pip
     pip3 install poetry
     ;;
 

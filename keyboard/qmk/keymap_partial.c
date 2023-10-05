@@ -31,7 +31,6 @@ enum layer_names {
 #define lKC_Y    LT(L_FUN, KC_Y)
 #define lKC_G    LT(L_FUN, KC_G)
 #define lKC_C    LT(L_SYM, KC_C)
-#define lKC_I    LT(L_FUN2, KC_I)
 #define lKC_K    LT(L_MOUSE, KC_K)
 #define lKC_M    LT(L_MOUSE, KC_M)
 #define lNAV     MO(L_NAV)
@@ -40,12 +39,14 @@ enum layer_names {
 #define lGAME    TO(L_GAME)
 // mods
 // . on base layer
-#define mKC_SPC  MT(MOD_LALT | MOD_LCTL | MOD_LGUI, KC_SPC)
+#define mKC_SPC  MT(MOD_LALT | MOD_LGUI, KC_SPC) // mod key for window manager
 // . on base layer
 #define mKC_A    MT(MOD_LGUI, KC_A)
 #define mKC_O    MT(MOD_LSFT, KC_O)
 #define mKC_E    MT(MOD_LCTL, KC_E)
 #define mKC_U    MT(MOD_LALT, KC_U)
+#define mKC_I    MT(MOD_LGUI, KC_I)
+#define mKC_D    MT(MOD_LGUI, KC_D)
 #define mKC_H    MT(MOD_LALT, KC_H)
 #define mKC_T    MT(MOD_LCTL, KC_T)
 #define mKC_N    MT(MOD_LSFT, KC_N)
@@ -60,7 +61,7 @@ enum layer_names {
 
 #define LAYER_BASE \
     KC_QUOT   ,KC_COMM   ,lKC_DOT   ,lKC_P     ,lKC_Y     ,                      KC_F      ,lKC_G     ,lKC_C     ,KC_R      ,KC_L      ,\
-    mKC_A     ,mKC_O     ,mKC_E     ,mKC_U     ,lKC_I     ,                      KC_D      ,mKC_H     ,mKC_T     ,mKC_N     ,mKC_S     ,\
+    mKC_A     ,mKC_O     ,mKC_E     ,mKC_U     ,mKC_I     ,                      mKC_D     ,mKC_H     ,mKC_T     ,mKC_N     ,mKC_S     ,\
     KC_SCLN   ,KC_Q      ,KC_J      ,lKC_K     ,KC_X      ,KC_VOLD   ,KC_VOLU   ,KC_B      ,lKC_M     ,KC_W      ,KC_V      ,KC_Z      ,\
     KC_ESC    ,_______   ,lNAV2     ,lNAV      ,mKC_SPC   ,KC_LCTL   ,KC_LSFT   ,KC_BSPC   ,lKC_TAB   ,_______   ,_______   ,KC_ENT
 
@@ -105,7 +106,7 @@ enum layer_names {
     A(KC_F9)  ,A(KC_F10) ,A(KC_F11) ,A(KC_F12) ,_______   ,_______   ,_______   ,_______   ,_______   ,_______   ,_______   ,_______   ,\
     ___f___   ,_______   ,_______   ,TO(L_BASE),___f___   ,_______   ,_______   ,_______   ,_______   ,_______   ,_______   ,_______
 #define LAYER_MOUSE \
-    KC_WH_U   ,KC_BTN1   ,KC_MS_U   ,KC_BTN2   ,RESET     ,                      lGAME     ,KC_BTN1   ,KC_MS_U   ,KC_BTN2   ,KC_WH_U   ,\
+    KC_WH_U   ,KC_BTN1   ,KC_MS_U   ,KC_BTN2   ,QK_BOOT   ,                      lGAME     ,KC_BTN1   ,KC_MS_U   ,KC_BTN2   ,KC_WH_U   ,\
     KC_WH_D   ,KC_MS_L   ,KC_MS_D   ,KC_MS_R   ,XXXXXXX   ,                      XXXXXXX   ,KC_MS_L   ,KC_MS_D   ,KC_MS_R   ,KC_WH_D   ,\
     KC_ACL0   ,KC_ACL1   ,KC_ACL2   ,XXXXXXX   ,XXXXXXX   ,_______   ,_______   ,XXXXXXX   ,XXXXXXX   ,KC_ACL2   ,KC_ACL1   ,KC_ACL0   ,\
     ___f___   ,_______   ,_______   ,TO(L_BASE),___f___   ,_______   ,_______   ,_______   ,_______   ,_______   ,_______   ,_______
@@ -122,9 +123,13 @@ enum layer_names {
 
 // ensure that tap-then-hold on space bar sends repeated spaces
 bool get_tapping_force_hold(uint16_t keycode, keyrecord_t *record) {
-    // TODO: add tap-then-hold for h, t, n, s
     switch (keycode) {
         case mKC_SPC:
+        case mKC_D:
+        case mKC_H:
+        case mKC_T:
+        case mKC_N:
+        case mKC_S:
             return false;
         default:
             return true;
