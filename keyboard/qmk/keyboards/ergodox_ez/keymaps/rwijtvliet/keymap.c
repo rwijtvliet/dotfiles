@@ -7,7 +7,7 @@
 
 
 #undef TAPPING_TERM
-#include "../../../../keymap_partial.c"
+#include "keymap_partial.c"
 #include "ergodox.c"
 #include "g/keymap_combo.h"
 

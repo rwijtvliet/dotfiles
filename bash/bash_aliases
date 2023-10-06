@@ -1,7 +1,8 @@
 # navigation
 alias ..='cd ..'
 alias ...='cd ../..'
-alias ....='cd../../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
 
 # some more ls aliases
 export CLICOLOR=1

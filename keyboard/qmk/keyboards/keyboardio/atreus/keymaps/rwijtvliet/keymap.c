@@ -5,7 +5,7 @@
 // good tutorial:
 // https://precondition.github.io/home-row-mods
 
-#include "../../../../../keymap_partial.c"
+#include "keymap_partial.c"
 #include "atreus.c"
 #include "g/keymap_combo.h"
  
