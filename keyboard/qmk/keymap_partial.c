@@ -63,7 +63,7 @@ enum layer_names {
     KC_QUOT   ,KC_COMM   ,lKC_DOT   ,lKC_P     ,lKC_Y     ,                      KC_F      ,lKC_G     ,lKC_C     ,KC_R      ,KC_L      ,\
     mKC_A     ,mKC_O     ,mKC_E     ,mKC_U     ,mKC_I     ,                      mKC_D     ,mKC_H     ,mKC_T     ,mKC_N     ,mKC_S     ,\
     KC_SCLN   ,KC_Q      ,KC_J      ,lKC_K     ,KC_X      ,KC_VOLD   ,KC_VOLU   ,KC_B      ,lKC_M     ,KC_W      ,KC_V      ,KC_Z      ,\
-    KC_ESC    ,_______   ,lNAV2     ,lNAV      ,mKC_SPC   ,KC_LCTL   ,KC_LSFT   ,KC_BSPC   ,lKC_TAB   ,_______   ,_______   ,KC_ENT
+    KC_ESC    ,XXXXXXX   ,XXXXXXX   ,lNAV      ,mKC_SPC   ,XXXXXXX   ,XXXXXXX   ,KC_BSPC   ,lKC_TAB   ,_______   ,_______   ,KC_ENT
 
 //Dvorak without modifiers. Never switched to, just as base for the combos
 #define LAYER_BASE2 \

@@ -5,8 +5,8 @@ COMB(move_to_num_1,   TO(L_NUM),                    KC_G      ,KC_C      ,KC_R)
 COMB(move_to_num_2,   TO(L_NUM),                    KC_P      ,KC_DOT    ,KC_COMM)
 COMB(move_to_mouse_1, TO(L_MOUSE),                  KC_M      ,KC_W      ,KC_V)
 COMB(move_to_mouse_2, TO(L_MOUSE),                  KC_K      ,KC_J      ,KC_Q)
-COMB(alternative_ent, KC_ENT,                       KC_H      ,KC_T)
-COMB(alternative_esc, KC_ESC,                       KC_U      ,KC_E)
+COMB(alternative_ent, KC_ENT,                       KC_H      ,KC_D)
+COMB(alternative_esc, KC_ESC,                       KC_U      ,KC_I)
 
 SUBS(test,              "",           KC_QUOT   ,KC_S)
 
