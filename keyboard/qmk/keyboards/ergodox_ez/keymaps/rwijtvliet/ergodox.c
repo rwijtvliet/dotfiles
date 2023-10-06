@@ -36,10 +36,11 @@
 // #include "keymap_turkish_q.h"
 // #include "keymap_slovak.h"
 
-#undef lGAME
-#define lGAME    XXXXXXX //disable game layer; too much memory
+// #undef lGAME
+// #define lGAME    XXXXXXX //disable game layer; too much memory
 
 
+// Take the partial keymap, and assign standard functions to the keys on the keyboard that are extra (i.e., not used by the partial keymap).
 #define PREP_FOR_ERGODOX_IN(\
                _0L4      ,_0L3      ,_0L2      ,_0L1      ,_0L0      ,                      _0R0      ,_0R1      ,_0R2      ,_0R3      ,_0R4      ,\
                _1L4      ,_1L3      ,_1L2      ,_1L1      ,_1L0      ,                      _1R0      ,_1R1      ,_1R2      ,_1R3      ,_1R4      ,\
@@ -67,9 +68,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [L_NAV] = EXPAND_LAYOUT(PREP_FOR_ERGODOX(LAYER_NAV)),
 [L_NAV2] = EXPAND_LAYOUT(PREP_FOR_ERGODOX(LAYER_NAV2)),
 [L_FUN] = EXPAND_LAYOUT(PREP_FOR_ERGODOX(LAYER_FUN)),
-[L_FUN2] = EXPAND_LAYOUT(PREP_FOR_ERGODOX(LAYER_FUN2)),
+// [L_FUN2] = EXPAND_LAYOUT(PREP_FOR_ERGODOX(LAYER_FUN2)),
 [L_MOUSE] = EXPAND_LAYOUT(PREP_FOR_ERGODOX(LAYER_MOUSE)),
-// [L_GAME] = EXPAND_LAYOUT(PREP_FOR_ERGODOX(LAYER_GAME)),
+[L_GAME] = EXPAND_LAYOUT(PREP_FOR_ERGODOX(LAYER_GAME)),
 };
 
 
@@ -116,7 +117,7 @@ const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
     [L_BASE] = {                                    //right side
                                                     _____, _____, _____, _____, _____, \
                                                     _____, l_fun, l_sym, _____, _____, \
-                                                    _____, modif, modif, modif, modif, \
+                                                    modif, modif, modif, modif, modif, \
                                                     _____, l_mou, _____, _____, _____, \
                                                            tabul, _____, _____, tabul, \
                 // left side, but mirrored
@@ -192,16 +193,16 @@ const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
                 _____, fun_1, fun_1, fun_1, fun_1, \
                        _____, _____, _____, tabul },
 
-    [L_FUN2] = {                                    _____, _____, _____, _____, _____, \
-                                                    _____, _____, _____, _____, _____, \
-                                                    _____, _____, modif, modif, _____, \
-                                                    _____, _____, _____, _____, _____, \
-                                                           tabul, _____, _____, tabul, \
-                _____, _____, _____, _____, _____, \
-                _____, fun_2, fun_2, fun_2, fun_2, \
-                _____, fun_2, fun_2, fun_2, fun_2, \
-                _____, fun_2, fun_2, fun_2, fun_2, \
-                       _____, _____, _____, tabul },
+    // [L_FUN2] = {                                    _____, _____, _____, _____, _____, \
+    //                                                 _____, _____, _____, _____, _____, \
+    //                                                 _____, _____, modif, modif, _____, \
+    //                                                 _____, _____, _____, _____, _____, \
+    //                                                        tabul, _____, _____, tabul, \
+    //             _____, _____, _____, _____, _____, \
+    //             _____, fun_2, fun_2, fun_2, fun_2, \
+    //             _____, fun_2, fun_2, fun_2, fun_2, \
+    //             _____, fun_2, fun_2, fun_2, fun_2, \
+    //                    _____, _____, _____, tabul },
 
     [L_MOUSE] = {                                   _____, _____, _____, _____, _____, \
                                                     _____, mou_2, mou_1, mou_2, _____, \
@@ -214,7 +215,16 @@ const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
                 _____, _____, mou_2, mou_2, mou_2, \
                        _____, _____, _____, tabul },
 
-    // [L_GAME] = { _____, _____, _____, _____, _____, _____, _____, _____, _____, _____, _____, _____, _____, _____, _____, _____, _____, modif, _____, _____, modif, modif, modif, _____, _____, _____, _____, _____, _____, _____, _____, _____, modif, _____, _____, _____, modif, modif, modif, _____, _____, _____, _____, _____, _____, _____, _____, _____ },
+    [L_GAME] = {                                    _____, _____, _____, _____, _____, \
+                                                    _____, _____, _____, _____, _____, \
+                                                    _____, _____, _____, _____, _____, \
+                                                    _____, _____, modif, _____, _____, \
+                                                           modif, modif, modif, _____, \
+                _____, _____, _____, _____, _____, \
+                _____, _____, _____, modif, _____, \
+                _____, _____, modif, modif, modif, \
+                _____, _____, _____, _____, _____, \
+                       _____, _____, _____, _____ },
 
 };
 

@@ -5,7 +5,7 @@
 #define TAPPING_TERM 175
 
 // Prevent normal rollover on alphas from accidentally triggering mods. Important setting.
-#define IGNORE_MOD_TAP_INTERRUPT
+//#define IGNORE_MOD_TAP_INTERRUPT // is now (2023) standard so this line can (must) be excluded
 
 // Enable rapid switch from tap to hold, disables double tap hold auto-repeat.
 #define TAPPING_FORCE_HOLD_PER_KEY

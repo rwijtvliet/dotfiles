@@ -1,14 +1,14 @@
 //   name             result                        chord keys
-COMB(move_to_nav_1,   TO(L_NAV),                    KC_S      ,KC_T      ,KC_N)
-COMB(move_to_nav_2,   TO(L_NAV),                    KC_A      ,KC_E      ,KC_O)
-COMB(move_to_num_1,   TO(L_NUM),                    KC_L      ,KC_C      ,KC_R)
-COMB(move_to_num_2,   TO(L_NUM),                    KC_QUOTE  ,KC_DOT    ,KC_COMM)
-COMB(move_to_mouse_1, TO(L_MOUSE),                  KC_Z      ,KC_W      ,KC_V)
-COMB(move_to_mouse_2, TO(L_MOUSE),                  KC_COLON  ,KC_J      ,KC_Q)
+COMB(move_to_nav_1,   TO(L_NAV),                    KC_H      ,KC_T      ,KC_N)
+COMB(move_to_nav_2,   TO(L_NAV),                    KC_I      ,KC_E      ,KC_O)
+COMB(move_to_num_1,   TO(L_NUM),                    KC_G      ,KC_C      ,KC_R)
+COMB(move_to_num_2,   TO(L_NUM),                    KC_P      ,KC_DOT    ,KC_COMM)
+COMB(move_to_mouse_1, TO(L_MOUSE),                  KC_M      ,KC_W      ,KC_V)
+COMB(move_to_mouse_2, TO(L_MOUSE),                  KC_K      ,KC_J      ,KC_Q)
 COMB(alternative_ent, KC_ENT,                       KC_H      ,KC_T)
 COMB(alternative_esc, KC_ESC,                       KC_U      ,KC_E)
 
-SUBS(pw,              "",           KC_QUOT   ,KC_S)
+SUBS(test,              "",           KC_QUOT   ,KC_S)
 
 /*
 SUBS(greet_de,        "Sehr geehrte(r) Herr/Frau,\n\n",                   KC_COMM   ,KC_G)

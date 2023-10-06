@@ -16,7 +16,7 @@ enum layer_names {
     L_NAV,
     L_NAV2,
     L_FUN,
-    L_FUN2,
+    // L_FUN2,
     L_MOUSE,
     L_GAME,
 };
@@ -74,15 +74,15 @@ enum layer_names {
 
 //  `          %          #          $          ^                                &          [          ]          \          /
 //                                                                               -          (          )          =          _
-//  @          ~          ?          !                                           +          {          }          |
+//  @          ~          ?          !                                           +          {          }          |          *
 #define LAYER_SYM \
     KC_GRV    ,KC_TILD   ,KC_HASH   ,KC_DLR    ,KC_CIRC   ,                      KC_AMPR   ,KC_LBRC   ,KC_RBRC   ,KC_BSLS   ,KC_SLSH   ,\
-    KC_LGUI   ,KC_LSFT   ,KC_LCTL   ,KC_LALT   ,XXXXXXX   ,                      KC_MINS   ,KC_LPRN   ,KC_RPRN   ,KC_EQL    ,KC_UNDS   ,\
+    KC_LGUI   ,KC_LSFT   ,KC_LCTL   ,KC_LALT   ,KC_LGUI   ,                      KC_MINS   ,KC_LPRN   ,KC_RPRN   ,KC_EQL    ,KC_UNDS   ,\
     KC_AT     ,KC_PERC   ,KC_QUES   ,KC_EXLM   ,XXXXXXX   ,___f___   ,___f___   ,KC_PLUS   ,KC_LCBR   ,KC_RCBR   ,KC_PIPE   ,KC_ASTR   ,\
     ___f___   ,_______   ,_______   ,TO(L_BASE),___f___   ,_______   ,_______   ,___f___   ,___f___   ,_______   ,_______   ,___f___
 #define LAYER_NUM \
     KC_QUOT   ,KC_COMM   ,KC_DOT    ,___f___   ,KC_CIRC   ,                      KC_0      ,KC_1      ,KC_2      ,KC_3      ,KC_SLSH   ,\
-    KC_LGUI   ,KC_LSFT   ,KC_LCTL   ,KC_LALT   ,XXXXXXX   ,                      KC_MINUS  ,KC_4      ,KC_5      ,KC_6      ,KC_UNDS   ,\
+    KC_LGUI   ,KC_LSFT   ,KC_LCTL   ,KC_LALT   ,KC_LGUI   ,                      KC_MINUS  ,KC_4      ,KC_5      ,KC_6      ,KC_UNDS   ,\
     KC_COLN   ,KC_PERC   ,XXXXXXX   ,XXXXXXX   ,XXXXXXX   ,_______   ,_______   ,KC_PLUS   ,KC_7      ,KC_8      ,KC_9      ,KC_ASTR   ,\
     ___f___   ,_______   ,_______   ,TO(L_BASE),___f___   ,_______   ,_______   ,_______   ,___f___   ,_______   ,_______   ,___f___
 #define LAYER_NAV \
@@ -125,11 +125,6 @@ enum layer_names {
 bool get_tapping_force_hold(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case mKC_SPC:
-        case mKC_D:
-        case mKC_H:
-        case mKC_T:
-        case mKC_N:
-        case mKC_S:
             return false;
         default:
             return true;
