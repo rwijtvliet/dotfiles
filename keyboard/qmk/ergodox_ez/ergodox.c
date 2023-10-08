@@ -5,36 +5,36 @@
 // good tutorial:
 // https://precondition.github.io/home-row-mods
 
-// #include "version.h"
-// #include "keymap_german.h"
-// #include "keymap_nordic.h"
-// #include "keymap_french.h"
-// #include "keymap_spanish.h"
-// #include "keymap_hungarian.h"
-// #include "keymap_swedish.h"
-// #include "keymap_br_abnt2.h"
-// #include "keymap_canadian_multilingual.h"
-// #include "keymap_german_ch.h"
-// #include "keymap_jp.h"
-// #include "keymap_korean.h"
-// #include "keymap_bepo.h"
-// #include "keymap_italian.h"
-// #include "keymap_slovenian.h"
-// #include "keymap_lithuanian_azerty.h"
-// #include "keymap_danish.h"
-// // #include "keymap_norwegian.h"
-// #include "keymap_portuguese.h"
-// // #include "keymap_contributions.h"
-// #include "keymap_czech.h"
-// #include "keymap_romanian.h"
-// #include "keymap_russian.h"
-// #include "keymap_uk.h"
-// #include "keymap_estonian.h"
-// #include "keymap_belgian.h"
-// #include "keymap_us_international.h"
-// #include "keymap_croatian.h"
-// #include "keymap_turkish_q.h"
-// #include "keymap_slovak.h"
+#include "version.h"
+#include "keymap_german.h"
+#include "keymap_nordic.h"
+#include "keymap_french.h"
+#include "keymap_spanish.h"
+#include "keymap_hungarian.h"
+#include "keymap_swedish.h"
+#include "keymap_br_abnt2.h"
+#include "keymap_canadian_multilingual.h"
+#include "keymap_german_ch.h"
+#include "keymap_jp.h"
+#include "keymap_korean.h"
+#include "keymap_bepo.h"
+#include "keymap_italian.h"
+#include "keymap_slovenian.h"
+#include "keymap_lithuanian_azerty.h"
+#include "keymap_danish.h"
+#include "keymap_norwegian.h"
+#include "keymap_portuguese.h"
+#include "keymap_contributions.h"
+#include "keymap_czech.h"
+#include "keymap_romanian.h"
+#include "keymap_russian.h"
+#include "keymap_uk.h"
+#include "keymap_estonian.h"
+#include "keymap_belgian.h"
+#include "keymap_us_international.h"
+#include "keymap_croatian.h"
+#include "keymap_turkish_q.h"
+#include "keymap_slovak.h"
 
 // #undef lGAME
 // #define lGAME    XXXXXXX //disable game layer; too much memory
@@ -77,11 +77,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // --------------------------------- additional things for the lights ---------------------------------------------
 
 enum custom_keycodes {
-  RGB_SLD = SAFE_RANGE,
+  RGB_SLD = EZ_SAFE_RANGE,
 };
 
 // extern bool g_suspend_state;
-extern rgblight_config_t rgb_matrix_config;
+extern rgb_config_t rgb_matrix_config;
 
 void keyboard_post_init_user(void) {
   rgb_matrix_enable();

@@ -6,7 +6,7 @@
 // https://precondition.github.io/home-row-mods
 
 #include QMK_KEYBOARD_H
-
+#include "version.h"
 // enums
 enum layer_names {
     L_BASE,
