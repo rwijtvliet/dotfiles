@@ -10,16 +10,10 @@
 // Enable rapid switch from tap to hold, disables double tap hold auto-repeat.
 #define TAPPING_FORCE_HOLD_PER_KEY
 
-
+// COMBOS
 #define COMBO_TERM 30
-#define COMBO_ONLY_FROM_LAYER 1
+#define COMBO_ONLY_FROM_LAYER 1 //from base2
 #define COMBO_VARIABLE_LEN
-// Copyright 2022 Ruud Wijtvliet (@rwijtvliet)
-//
-// SPDX-License-Identifier: GPL-2.0-or-later
-//
-// good tutorial:
-// https://precondition.github.io/home-row-mods
 
 // mouse movements
 #define MK_COMBINED

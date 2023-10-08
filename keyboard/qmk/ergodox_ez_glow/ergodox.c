@@ -5,37 +5,37 @@
 // good tutorial:
 // https://precondition.github.io/home-row-mods
 
-#include "version.h"
-#include "keymap_german.h"
-#include "keymap_nordic.h"
-#include "keymap_french.h"
-#include "keymap_spanish.h"
-#include "keymap_hungarian.h"
-#include "keymap_swedish.h"
-#include "keymap_br_abnt2.h"
-#include "keymap_canadian_multilingual.h"
-#include "keymap_german_ch.h"
-#include "keymap_jp.h"
-#include "keymap_korean.h"
-#include "keymap_bepo.h"
-#include "keymap_italian.h"
-#include "keymap_slovenian.h"
-#include "keymap_lithuanian_azerty.h"
-#include "keymap_danish.h"
-#include "keymap_norwegian.h"
-#include "keymap_portuguese.h"
-#include "keymap_contributions.h"
-#include "keymap_czech.h"
-#include "keymap_romanian.h"
-#include "keymap_russian.h"
-#include "keymap_uk.h"
-#include "keymap_estonian.h"
-#include "keymap_belgian.h"
-#include "keymap_us_international.h"
-#include "keymap_croatian.h"
-#include "keymap_turkish_q.h"
-#include "keymap_slovak.h"
-
+// #include "version.h"
+// #include "keymap_german.h"
+// #include "keymap_nordic.h"
+// #include "keymap_french.h"
+// #include "keymap_spanish.h"
+// #include "keymap_hungarian.h"
+// #include "keymap_swedish.h"
+// #include "keymap_br_abnt2.h"
+// #include "keymap_canadian_multilingual.h"
+// #include "keymap_german_ch.h"
+// #include "keymap_jp.h"
+// #include "keymap_korean.h"
+// #include "keymap_bepo.h"
+// #include "keymap_italian.h"
+// #include "keymap_slovenian.h"
+// #include "keymap_lithuanian_azerty.h"
+// #include "keymap_danish.h"
+// #include "keymap_norwegian.h"
+// #include "keymap_portuguese.h"
+// #include "keymap_contributions.h"
+// #include "keymap_czech.h"
+// #include "keymap_romanian.h"
+// #include "keymap_russian.h"
+// #include "keymap_uk.h"
+// #include "keymap_estonian.h"
+// #include "keymap_belgian.h"
+// #include "keymap_us_international.h"
+// #include "keymap_croatian.h"
+// #include "keymap_turkish_q.h"
+// #include "keymap_slovak.h"
+//
 // #undef lGAME
 // #define lGAME    XXXXXXX //disable game layer; too much memory
 
@@ -77,7 +77,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // --------------------------------- additional things for the lights ---------------------------------------------
 
 enum custom_keycodes {
-  RGB_SLD = EZ_SAFE_RANGE,
+  RGB_SLD = SAFE_RANGE,
 };
 
 // extern bool g_suspend_state;
@@ -113,7 +113,7 @@ void keyboard_post_init_user(void) {
 #define mou_2 {188,255,255}
 
 
-const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
+const uint8_t PROGMEM ledmap[][RGB_MATRIX_LED_COUNT][3] = {
     [L_BASE] = {                                    //right side
                                                     _____, _____, _____, _____, _____, \
                                                     _____, l_fun, l_sym, _____, _____, \
@@ -192,7 +192,7 @@ const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
                 _____, fun_1, fun_1, fun_1, fun_1, \
                 _____, fun_1, fun_1, fun_1, fun_1, \
                        _____, _____, _____, tabul },
-
+/*
     // [L_FUN2] = {                                    _____, _____, _____, _____, _____, \
     //                                                 _____, _____, _____, _____, _____, \
     //                                                 _____, _____, modif, modif, _____, \
@@ -203,7 +203,7 @@ const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
     //             _____, fun_2, fun_2, fun_2, fun_2, \
     //             _____, fun_2, fun_2, fun_2, fun_2, \
     //                    _____, _____, _____, tabul },
-
+*/
     [L_MOUSE] = {                                   _____, _____, _____, _____, _____, \
                                                     _____, mou_2, mou_1, mou_2, _____, \
                                                     _____, mou_1, mou_1, mou_1, _____, \
@@ -231,7 +231,7 @@ const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
 
 void set_layer_color(int layer) {
 
-  for (int i = 0; i < DRIVER_LED_TOTAL; i++) {
+  for (int i = 0; i < RGB_MATRIX_LED_COUNT; i++) {
     HSV hsv = {
       .h = pgm_read_byte(&ledmap[layer][i][0]),
       .s = pgm_read_byte(&ledmap[layer][i][1]),
@@ -284,7 +284,7 @@ void set_layer_color(int layer) {
 //     break;
 //   }
 // }
-void rgb_matrix_indicators_user(void) {
+bool rgb_matrix_indicators_user(void) {
   //if (g_suspend_state || keyboard_config.disable_layer_led) { return; }
   uint8_t bitval = biton32(layer_state);
   if (bitval <= 8) {
@@ -292,6 +292,7 @@ void rgb_matrix_indicators_user(void) {
   } else if (rgb_matrix_get_flags() == LED_FLAG_NONE) {
       rgb_matrix_set_color_all(0, 0, 0);
   }
+  return true;
 }
 
 // uint32_t layer_state_set_user(uint32_t state) {
