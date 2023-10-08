@@ -74,14 +74,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 
 
-// --------------------------------- additional thingks for the lights ---------------------------------------------
+// --------------------------------- additional things for the lights ---------------------------------------------
 
 enum custom_keycodes {
-  RGB_SLD = EZ_SAFE_RANGE,
+  RGB_SLD = SAFE_RANGE,
 };
 
 // extern bool g_suspend_state;
-extern rgb_config_t rgb_matrix_config;
+extern rgblight_config_t rgb_matrix_config;
 
 void keyboard_post_init_user(void) {
   rgb_matrix_enable();
@@ -117,13 +117,13 @@ const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
     [L_BASE] = {                                    //right side
                                                     _____, _____, _____, _____, _____, \
                                                     _____, l_fun, l_sym, _____, _____, \
-                                                    modif, modif, modif, modif, modif, \
+                                                    _____, modif, modif, modif, modif, \
                                                     _____, l_mou, _____, _____, _____, \
                                                            tabul, _____, _____, tabul, \
                 // left side, but mirrored
                 _____, _____, _____, _____, _____, \
                 l_fun, l_num, l_sym, _____, _____, \
-                l_fun, modif, modif, modif, modif, \
+                _____, modif, modif, modif, modif, \
                 _____, l_mou, _____, _____, _____, \
                        l_nav, l_nav, _____, tabul },
 
