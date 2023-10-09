@@ -170,3 +170,21 @@ void keyboard_post_init_user(void) {
     //Unset swap 
     // QK_MAGIC_UNSWAP_LCTL_LGUI;
 }
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+  // Process the MAGIC keycodes manually. Reason: avoid persistently storing the value. 
+  // Upon reboot, the modifiers are always UNSWAPPED.
+  switch (keycode) {
+    case QK_MAGIC_SWAP_LCTL_LGUI:
+      if (!record->event.pressed) {// do something when RELEASED
+        keymap_config.swap_lctl_lgui = true;
+      }
+      return false; // Skip all further processing of this key
+    case QK_MAGIC_UNSWAP_LCTL_LGUI:
+      if (!record->event.pressed) { // do something when RELEASED
+        keymap_config.swap_lctl_lgui = false;
+      }
+      return false; // Skip all further processing of this key
+    default:
+      return true; // Process all other keycodes normally
+  }
+}
