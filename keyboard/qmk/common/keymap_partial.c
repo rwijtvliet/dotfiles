@@ -25,7 +25,11 @@
  * * Make navigation-per-word work the same on win/linux and macos.
  *   - ctrl+arrow (linux/win) vs alt+arrow (macos)
  *   - ctrl+delete (linux/win) vs alt+delet (macos)
+ *   - ctrl+pgup/pgdown
+ *   - ctrl+home/end
  *   - ...?
+ *
+ * * Use leader key for GUI+ALT (window management shortcuts)
  */
 
 #include QMK_KEYBOARD_H
@@ -41,8 +45,11 @@ enum layer_names {
   L_NAV2,
   L_FUN,
   L_MOUSE,
-  L_GAME,
+  L_GAME
 };
+// Some functionality depends on the operating system.
+enum custom_keycodes { oLINUX = SAFE_RANGE, oWINDO, oMACOS };
+enum supported_os { LINUX = 1, WINDOWS = 2, MACOS = 3 };
 
 // clang-format off
 
@@ -107,9 +114,6 @@ enum layer_names {
 #define fCUT     MAJOR(KC_X)
 #define fCOPY    MAJOR(KC_C)
 #define fPASTE   MAJOR(KC_V)
-// . to put MAJOR  under middle finger when using Mac. 
-#define fSWAP    QK_MAGIC_SWAP_LCTL_LGUI
-#define fUNSWAP  QK_MAGIC_UNSWAP_LCTL_LGUI
 #define fEE_CLR  QK_CLEAR_EEPROM // if something gets mixed up, this will clear the persistent values. 
 
 
@@ -120,7 +124,7 @@ enum layer_names {
     KC_QUOT   ,KC_COMM   ,lKC_DOT   ,lKC_P     ,lKC_Y     ,                      KC_F      ,lKC_G     ,lKC_C     ,KC_R      ,KC_L      ,\
     mKC_A     ,mKC_O     ,mKC_E     ,mKC_U     ,KC_I      ,                      KC_D      ,mKC_H     ,mKC_T     ,mKC_N     ,mKC_S     ,\
     mKC_SCLN  ,KC_Q      ,KC_J      ,lKC_K     ,KC_X      ,KC_VOLD   ,KC_VOLU   ,KC_B      ,lKC_M     ,KC_W      ,KC_V      ,mKC_Z     ,\
-    KC_ESC    ,XXXXXXX   ,XXXXXXX   ,lNAV      ,mKC_SPC   ,fUNSWAP   ,fSWAP     ,KC_BSPC   ,lKC_TAB   ,XXXXXXX   ,XXXXXXX   ,KC_ENT
+    KC_ESC    ,XXXXXXX   ,XXXXXXX   ,lNAV      ,mKC_SPC   ,oLINUX    ,oMACOS    ,KC_BSPC   ,lKC_TAB   ,XXXXXXX   ,XXXXXXX   ,KC_ENT
 
 //Dvorak without modifiers. Never switched to, just as base for the combos
 #define LAYER_BASE2 \
@@ -193,20 +197,38 @@ bool get_tapping_force_hold(uint16_t keycode, keyrecord_t *record) {
   }
 }
 
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-  // Process the MAGIC keycodes manually. Reason: avoid persistently storing the
-  // value. Upon reboot, the modifiers are always UNSWAPPED.
+enum supported_os current_os = 0;
+
+void led_indicators(enum supported_os os);
+
+void set_current_os_from_keycode(uint16_t keycode) {
   switch (keycode) {
-  case QK_MAGIC_SWAP_LCTL_LGUI:
-    if (!record->event.pressed) { // do something when RELEASED
-      keymap_config.swap_lctl_lgui = true;
+  case oLINUX:
+    current_os = LINUX;
+    keymap_config.swap_lctl_lgui = false;
+    break;
+  case oWINDO:
+    current_os = WINDOWS;
+    keymap_config.swap_lctl_lgui = false;
+    break;
+  case oMACOS:
+    current_os = MACOS;
+    keymap_config.swap_lctl_lgui = true;
+    break;
+  }
+  led_indicators(current_os);
+}
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+  // Process the MAGIC keycodes manually. Reason: avoid persistently storing
+  // the value. Upon reboot, the modifiers are always UNSWAPPED.
+  switch (keycode) {
+  case oLINUX:
+  case oWINDO:
+  case oMACOS:
+    if (!record->event.pressed) {
+      set_current_os_from_keycode(keycode);
     }
-    return false; // Skip all further processing of this key
-  case QK_MAGIC_UNSWAP_LCTL_LGUI:
-    if (!record->event.pressed) { // do something when RELEASED
-      keymap_config.swap_lctl_lgui = false;
-    }
-    return false; // Skip all further processing of this key
+    return false; // don't continue processing this key
   default:
     return true; // Process all other keycodes normally
   }
