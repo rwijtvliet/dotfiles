@@ -135,6 +135,7 @@ copy "i18n"
 END LC_MEASUREMENT
 
 LC_NAME
+name_gen    "Sir/Madam"
 name_fmt    "%d%t%g%t%m%t%f"
 name_miss   "Miss."
 name_mr     "Mr."

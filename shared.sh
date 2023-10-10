@@ -5,30 +5,38 @@
 
 # set -e
 
-
+#colors
+R='\033[0;31m'  # red
+G='\033[0;32m'  # green 
+X='\033[0;37m\033[1m' #gray bold
+A='\033[0;36m\033[1m' #cyan bold
+Y='\033[0;33m' #yellow
+B='\033[00;34m' #blue
+N='\033[0m'
+  
 
 info () {
-  printf "\r  [\033[00;34m .. \033[0m] $1\n"
+  printf "\r  [${B} .. ${N}] $1\n"
 }
 
 user () {
-  printf "\r  [\033[0;33m ?? \033[0m] $1\n"
+  printf "\r  [${Y} ?? ${N}] $1\n"
 }
 
 success () {
-  printf "\r\033[2K  [\033[00;32m OK \033[0m] $1\n"
+  printf "\r\033[2K  [${G} OK ${N}] $1\n"
 }
 
 fail () {
-  printf "\r\033[2K  [\033[0;31mFAIL\033[0m] $1\n"
+  printf "\r\033[2K  [${R}FAIL${N}] $1\n"
 }
 
 todo () {
-  printf "\r\033[2K  [\033[0;36m\033[1mTODO\033[0m] $1\n"
+  printf "\r\033[2K  [${A}TODO${N}] $1\n"
 }
 
 skip () {
-  printf "\r\033[2K  [\033[0;37m\033[1mSKIP\033[0m] Not installed on $OS\n"
+  printf "\r\033[2K  [${X}SKIP${N}] Not installed on $OS\n"
 }
 
 try () {

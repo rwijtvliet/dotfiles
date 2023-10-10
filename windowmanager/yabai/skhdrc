@@ -45,23 +45,23 @@ alt + cmd + shift - d :     yabai -m window --swap largest
 
 # (window) to space
 alt + cmd + shift - 1 : yabai -m window --space 1_files; \
-                               yabai -m space  --focus 1_files
+                        yabai -m space  --focus 1_files
 alt + cmd + shift - 2 : yabai -m window --space 2_www; \
-                               yabai -m space  --focus 2_www
+                        yabai -m space  --focus 2_www
 alt + cmd + shift - 3 : yabai -m window --space 3_office; \
-                               yabai -m space  --focus 3_office
+                        yabai -m space  --focus 3_office
 alt + cmd + shift - 4 : yabai -m window --space 4_terminal; \
-                               yabai -m space  --focus 4_terminal
+                        yabai -m space  --focus 4_terminal
 alt + cmd + shift - 5 : yabai -m window --space 5_vscode; \
-                               yabai -m space  --focus 5_vscode
+                        yabai -m space  --focus 5_vscode
 alt + cmd + shift - 6 : yabai -m window --space 6_; \
-                               yabai -m space  --focus 6_
+                        yabai -m space  --focus 6_
 alt + cmd + shift - 7 : yabai -m window --space 7_teams; \
-                               yabai -m space  --focus 7_teams
+                        yabai -m space  --focus 7_teams
 alt + cmd + shift - 8 : yabai -m window --space 8_email; \
-                               yabai -m space  --focus 8_email
+                        yabai -m space  --focus 8_email
 alt + cmd + shift - 9 : yabai -m window --space 9_media; \
-                               yabai -m space  --focus 9_media
+                        yabai -m space  --focus 9_media
 
 # (space) to monitor
 alt + cmd + shift - g : yabai -m space   --display west; \
@@ -72,7 +72,6 @@ alt + cmd + shift - l : yabai -m space   --display east; \
 
 # Close
 alt + cmd - w : yabai -m window --close
-
 
 # Size
 
@@ -105,13 +104,13 @@ alt + cmd - j : \
 # Yabai management
 
 # start (0x29 = ;)
-alt + cmd - 0x06 : \
+alt + cmd - 0x29 : \
     /usr/bin/env osascript <<< "display notification \"Restarting Yabai\" with title \"Yabai\""; \
     yabai --start-service; \
     /usr/bin/env osascript -e 'tell application id "tracesOf.Uebersicht" to refresh'
 
 # stop
-alt + cmd + shift - 0x06 : \
+alt + cmd + shift - 0x29 : \
     /usr/bin/env osascript <<< \ "display notification \"Stopping Yabai\" with title \"Yabai\""; \
     yabai --stop-service; 
 
