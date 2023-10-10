@@ -16,4 +16,6 @@ ALt + Super is used as modifier.
 
 ## Shortcuts
 
-See excel file.
+When using the internal keyboard, the modifier is pressed with the left hand. Therefore, most common shortcuts use the right hand.
+
+See excel file for actual shortcuts.

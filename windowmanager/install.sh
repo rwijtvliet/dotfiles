@@ -5,10 +5,20 @@ source ../shared.sh
 case "$OS" in
   "linux" )
     info "Installing app"
-    sudo apt install i3
+    $( # to get latest stable version of i3
+      cd ~/Downloads/
+      /usr/lib/apt/apt-helper download-file https://debian.sur5r.net/i3/pool/main/s/sur5r-keyring/sur5r-keyring_2023.02.18_all.deb keyring.deb SHA256:a511ac5f10cd811f8a4ca44d665f2fa1add7a9f09bef238cdfad8461f5239cc4
+      sudo apt install ./keyring.deb
+      echo "deb http://debian.sur5r.net/i3/ $(grep '^DISTRIB_CODENAME=' /etc/lsb-release | cut -f2 -d=) universe" | sudo tee /etc/apt/sources.list.d/sur5r-i3.list
+      sudo apt update
+    )
+    sudo apt install i3 playerctl
+    sudo snap install pulseaudio
+    pip install --user bumblebee-status
     info "Linking config"
     mkdir -p "$HOME/.config/i3"
-    link_public_resource "./i3/config" "$HOME/.config/i3/config"
+    link_public_resource "./i3/config" "$HOME/.config/i3/config" 
+    link_public_resource "./i3/i3status.conf" "$HOME/.config/i3/i3status.conf"
     ;;
 
   "windows" )
