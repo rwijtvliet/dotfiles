@@ -9,7 +9,7 @@ WANTEDSPACES=9
 spacecount=$(yabai -m query --spaces | jq '.[].index' | wc -l)
 # Adding spaces so that there are no fewer than wanted.
 for (( i=$spacecount; i<$WANTEDSPACES; i++)); do
-  yabai -m space --create
+    yabai -m space --create
 done
 # Delete spaces so that there are no more than wanted.
 for (( i=$spacecount; i>$WANTEDSPACES; i--)); do
@@ -29,7 +29,8 @@ yabai -m space 9 --label "9_media"
 # window rules
 # . windows to ignore 
 yabai -m rule --add app="^(Calculator|System Preferences|Archive Utility|System Settings)$" manage=off
-yabai -m rule --add app="^mpv$" manage=:off border=off sticky=on layer=above opacity=1.0 grid=8:8:6:0:2:2
+yabai -m rule --add app="^mpv$" manage=off border=off sticky=on layer=above opacity=1.0 grid=8:8:6:0:2:2
+yabai -m rule --add title="Reminder|Notification" manage=off border=off sticky=on layer=above opacity=0.9
 yabai -m rule --add title="Reminder" manage=off border=off sticky=on layer=above opacity=0.9
 # . where to go
 yabai -m rule --add app="^Finder$" space=^1_files # use label incase order is changed (i.e., by moving space to other monitor)

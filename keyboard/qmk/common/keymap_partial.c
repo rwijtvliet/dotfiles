@@ -67,7 +67,7 @@ Removal:
   - ALT+BACKSPACE/DELETE on macos. GUI+BACKSPACE/DELETE also works.
   --> MAJOR+BACKSPACE/DELETE on all OS
 * Remove to beginning/end of line:
-  --> Not implemented.
+  --> Not implemented as custom key.
 
 
 ## Web browsing
@@ -86,7 +86,7 @@ CTL+PGUP/PGDN on macos
   --> Must be implemented individually
 * Move current tab to left or right
   --> Same, but with SFT
-  --> Not implemented.
+  --> Not implemented as custom key.
 
 *
 *
@@ -118,7 +118,18 @@ enum layer_names {
   L_GAME
 };
 // Some functionality depends on the operating system.
-enum custom_keycodes { kcLINUX = SAFE_RANGE, kcWINDO, kcMACOS };
+enum custom_keycodes {
+  kcLINUX = SAFE_RANGE,
+  kcWINDO,
+  kcMACOS,
+  kcWEB,
+  kcPrevWord,
+  kcNextWord,
+  kcWebBack,
+  kcWebFwd,
+  kcStepApp,
+  kcStepWin
+};
 enum supported_os { LINUX = 1, WINDOWS = 2, MACOS = 3 };
 
 void led_indicators(enum supported_os os); // to be implemented in keymap.c
@@ -132,24 +143,34 @@ void led_indicators(enum supported_os os); // to be implemented in keymap.c
 
 // Modifiers (no prefix if function, "kc" if keycode (=modifier while held), "mod_..." if used in macro)
 // . modifier, always ALT
-#define ALT        RALT //function
-#define kcALT      KC_RALT //key 
+#undef A
+#define A(kc)      RALT(kc) //function
+#define ALT(kc)    RALT(kc) //function
+#define kcALT      KC_RALT  //key 
 #define mod_ALT    MOD_RALT //modifier in home-row mods
 // . modifier, always SFT
-#define kcSFT      KC_RSFT     
-#define mod_SFT    MOD_RSFT     
+#define SFT(kc)    RSFT(kc)
+#define kcSFT      KC_RSFT
+#define mod_SFT    MOD_RSFT
 // . modifier, always CTL
+#undef C
+#define C(kc)      RCTL(kc)
+#define CTL(kc)    RCTL(kc)
 #define kcCTL      KC_RCTL
 #define mod_CTL    MOD_RCTL
 // . modifier, always GUI
+#undef G
+#define G(kc)      RGUI(kc)
+#define GUI(kc)    RGUI(kc)
 #define kcGUI      KC_RGUI
 #define mod_GUI    MOD_RGUI
 // . major modifier, is CTL on linux and GUI (=command) on mac
-#define MAJOR      LCTL
+#define J(kc)      LCTL(kc)
+#define MAJOR(kc)  LCTL(kc)
 #define kcMAJOR    KC_LCTL     
 #define mod_MAJOR  MOD_LCTL     
 // . minor modifier, is GUI (=win/meta) on linux and CTL on mac
-#define MINOR      LGUI
+#define MINOR(kc)  LGUI(kc)
 #define kcMINOR    KC_LGUI     
 #define mod_MINOR  MOD_LGUI     
 
@@ -223,6 +244,12 @@ void led_indicators(enum supported_os os); // to be implemented in keymap.c
     KC_COLN   ,KC_PERC   ,XXXXXXX   ,XXXXXXX   ,XXXXXXX   ,_______   ,_______   ,KC_PLUS   ,KC_7      ,KC_8      ,KC_9      ,KC_ASTR   ,\
     ___f___   ,_______   ,_______   ,pBASE     ,___f___   ,_______   ,_______   ,_______   ,___f___   ,_______   ,_______   ,___f___
 
+#define LAYER_NAV2 \
+    KC_HOME   ,KC_PGUP   ,KC_PGDN   ,KC_END    ,fCOPY     ,                      fCOPY     ,KC_HOME   ,KC_PGUP   ,KC_PGDN   ,KC_END    ,\
+    kcMINOR   ,kcSFT     ,kcMAJOR   ,kcALT     ,fPASTE    ,                      fPASTE    ,KC_LEFT   ,KC_UP     ,KC_DOWN   ,KC_RGHT   ,\
+    KC_BTN1   ,KC_BTN2   ,XXXXXXX   ,KC_DEL    ,fCUT      ,KC_MPRV   ,KC_MNXT   ,fCUT      ,KC_DEL    ,KC_INS    ,KC_CAPS   ,KC_SCRL   ,\
+    ___f___   ,_______   ,_______   ,pBASE     ,___f___   ,KC_MPLY   ,KC_MUTE   ,___f___   ,_______   ,_______   ,_______   ,___f___
+
 // still to put: show all windows of current app (macos), show all apps (macos), spotlight (macos), 
 //
 //                        RotateWin  RotateApp  Copy                             DocStart   LineStart  PageUp     PageDown   LineEnd
@@ -232,23 +259,18 @@ void led_indicators(enum supported_os os); // to be implemented in keymap.c
 //             WebTabPrev WebTabNext            Cut                              DelWord    Del        PrevWord   NextWord    
 //                                                                               BspWord
 #define LAYER_NAV \
-    KC_HOME   ,KC_PGUP   ,KC_PGDN   ,KC_END    ,fCOPY     ,                      fCOPY     ,KC_HOME   ,KC_PGUP   ,KC_PGDN   ,KC_END    ,\
-    kcMINOR   ,kcSFT     ,kcMAJOR   ,kcALT     ,fPASTE    ,                      fPASTE    ,KC_LEFT   ,KC_UP     ,KC_DOWN   ,KC_RGHT   ,\
-    KC_BTN1   ,KC_BTN2   ,XXXXXXX   ,KC_DEL    ,fCUT      ,KC_MPRV   ,KC_MNXT   ,fCUT      ,KC_DEL    ,KC_INS    ,KC_CAPS   ,KC_SCRL   ,\
-    ___f___   ,_______   ,_______   ,pBASE     ,___f___   ,KC_MPLY   ,KC_MUTE   ,___f___   ,_______   ,_______   ,_______   ,___f___
+    KC_HOME   ,KC_PGUP   ,kcStepWin ,kcStepApp ,J(KC_C)   ,                      J(KC_HOME),KC_HOME   ,KC_PGUP   ,KC_PGDN   ,KC_END    ,\
+    kcMINOR   ,kcSFT     ,kcMAJOR   ,lNAV2     ,J(KC_V)   ,                      J(KC_END) ,KC_LEFT   ,KC_UP     ,KC_DOWN   ,KC_RGHT   ,\
+    KC_BTN1   ,KC_BTN2   ,XXXXXXX   ,KC_DEL    ,J(KC_X)   ,KC_MPRV   ,KC_MNXT   ,J(KC_DEL) ,KC_DEL    ,kcPrevWord,kcNextWord,KC_INS    ,\
+    ___f___   ,_______   ,_______   ,pBASE     ,___f___   ,KC_MPLY   ,KC_MUTE   ,J(KC_BSPC),_______   ,_______   ,_______   ,___f___
 
+#undef LAYER_NAV2
 #define LAYER_NAV2 \
-    C(KC_HOME),C(KC_PGUP),C(KC_PGDN),C(KC_END) ,fCOPY     ,                      fCOPY     ,C(KC_HOME),C(KC_PGUP),C(KC_PGDN),C(KC_END) ,\
-    kcMINOR   ,kcSFT     ,kcMAJOR   ,kcALT     ,fPASTE    ,                      fPASTE    ,C(KC_LEFT),C(KC_UP)  ,C(KC_DOWN),C(KC_RGHT),\
-    KC_BTN1   ,KC_BTN2   ,XXXXXXX   ,C(KC_DEL) ,fCUT      ,_______   ,_______   ,fCUT      ,C(KC_DEL) ,KC_INS    ,KC_CAPS   ,KC_SCRL   ,\
-    ___f___   ,_______   ,_______   ,pBASE     ,C(KC_SPC) ,_______   ,_______   ,C(KC_BSPC),_______   ,_______   ,_______   ,C(KC_ENT)
+    _______   ,_______   ,_______   ,_______   ,_______   ,                      _______   ,_______   ,C(KC_PGUP),C(KC_PGDN),_______   ,\
+    _______   ,_______   ,_______   ,_______   ,_______   ,                      _______   ,kcWebBack ,C(KC_PGUP),C(KC_PGDN),kcWebFwd  ,\
+    _______   ,_______   ,_______   ,_______   ,_______   ,_______   ,_______   ,_______   ,_______   ,_______   ,_______   ,_______   ,\
+    _______   ,_______   ,_______   ,_______   ,_______   ,_______   ,_______   ,_______   ,_______   ,_______   ,_______   ,_______
 
-/* #define LAYER_NAV_MACOS \
-//     C(KC_HOME),C(KC_PGUP),C(KC_PGDN),C(KC_END) ,fCOPY     ,                      fCOPY     ,C(KC_HOME),C(KC_PGUP),C(KC_PGDN),C(KC_END) ,\
-//     kcMINOR   ,kcSFT     ,kcMAJOR   ,kcALT     ,fPASTE    ,                      fPASTE    ,C(KC_LEFT),C(KC_UP)  ,C(KC_DOWN),C(KC_RGHT),\
-//     KC_BTN1   ,KC_BTN2   ,XXXXXXX   ,C(KC_DEL) ,fCUT      ,_______   ,_______   ,fCUT      ,C(KC_DEL) ,KC_INS    ,KC_CAPS   ,KC_SCRL   ,\
-//     ___f___   ,_______   ,_______   ,pBASE     ,C(KC_SPC) ,_______   ,_______   ,C(KC_BSPC),_______   ,_______   ,_______   ,C(KC_ENT)
-*/
 #define LAYER_FUN \
     KC_F1     ,KC_F2     ,KC_F3     ,KC_F4     ,___f___   ,                      XXXXXXX   ,___f___   ,kcALT     ,XXXXXXX   ,XXXXXXX   ,\
     KC_F5     ,KC_F6     ,KC_F7     ,KC_F8     ,kcALT     ,                      XXXXXXX   ,kcALT     ,kcMAJOR   ,kcSFT     ,kcMINOR   ,\
@@ -305,6 +327,29 @@ void set_current_os_from_keycode(uint16_t keycode) {
   }
   led_indicators(current_os);
 }
+void linwinmac(uint16_t linuxcode, uint16_t windowscode, uint16_t macoscode,
+               bool tap, keyrecord_t *record) {
+  // Send correct keycode, depending on the current OS.
+  uint16_t code;
+  // get code
+  if (current_os == LINUX) {
+    code = linuxcode;
+  } else if (current_os == WINDOWS) {
+    code = windowscode;
+  } else { // current_os == MACOS
+    code = macoscode;
+  }
+  // execute
+  if (!tap) {
+    if (record->event.pressed) {
+      register_code16(code);
+    } else {
+      unregister_code16(code);
+    }
+  } else if (record->event.pressed) {
+    tap_code16(code);
+  }
+}
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   // Process the MAGIC keycodes manually. Reason: avoid persistently storing
   // the value. Upon reboot, the modifiers are always UNSWAPPED.
@@ -316,11 +361,28 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       set_current_os_from_keycode(keycode);
     }
     return false; // don't continue processing this key
+
+  case kcPrevWord:
+    linwinmac(C(KC_LEFT), CTL(KC_LEFT), ALT(KC_LEFT), false, record);
+    return false;
+
+  case kcNextWord:
+    linwinmac(CTL(KC_RIGHT), CTL(KC_RIGHT), ALT(KC_RIGHT), false, record);
+    return false;
+
+  case kcWebBack:
+    linwinmac(ALT(KC_LEFT), ALT(KC_LEFT), GUI(KC_LEFT), true, record);
+    return false;
+
+  case kcWebFwd:
+    linwinmac(ALT(KC_RIGHT), ALT(KC_RIGHT), GUI(KC_RIGHT), true, record);
+    return false;
+
     // case KC_LEFT:
     // case KC_UP:
     // case KC_DOWN:
-    // case KC_RGHT:; // semicolon needed to allow variable declaration on next
-    // line
+    // case KC_RGHT:; // semicolon needed to allow variable declaration on
+    // next line
     //   uint8_t mods = get_mods();
     //
     //   // No modifiers: process as normal.
@@ -341,7 +403,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     //       unregister_code16(kc);
     //     }
     //     return false;
-    //   } else {
+    //   } Melelse {
     //   }
     //   return true;
 
