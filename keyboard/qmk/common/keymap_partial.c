@@ -2,32 +2,99 @@
 // https://precondition.github.io/home-row-mods
 
 /*
- * Design philosophy:
- *
- * * Keyboard for mac, windows and linux
- *
- * * Have keys that are always ALT, SFT, and CTL, independent on OS.
- *   These CTL keys can be used for apps that use the CTL key on each OS, such
- *   as the terminal.
- *
- * * Have keys that are CTL on windows and linux, and GUI on mac.
- *   This is the major modifier and used for most shortcuts on each OS, such as
- *   copy/paste/newtab/addressbar/etc.
- * * Have keys that are GUI on windows and linux, and CTL on mac.
- *   This in the minor modifier.
- * * Use QK_MAGIC_SWAP_LCTL_LGUI to make the change.
- *
- */
+
+# Design philosophy/decisions
+
+Mainly, this is a keyboard for linux, windows, and macos. This causes many of
+the design decisions. When possible, we want a key to have the same
+functionality across all OS.
+
+
+## Dedicated modifier keys
+
+Have keys that are always ALT, SFT, and CTL, independent on OS. These CTL keys
+can be used for apps that use the CTL key on each OS, such as the terminal.
+
+
+## Modifier changes on OS
+
+Have keys that are CTL on linux/windows, and GUI on macos. This is the major
+modifier and used for most shortcuts on each OS, such as
+copy/paste/newtab/addressbar/etc.
+
+Vice versa, have keys that are GUI on linux/windows, and CTL on macos. This in
+the minor modifier.
+
+(We use QK_MAGIC_SWAP_LCTL_LGUI to make the change.)
+
+
+## Navigation
+
+The navigational keys work slightly different on the OS as well. Backspace
+(called delete on macos) is included here.
+
+Movement:
+* Move by one character or line:
+  --> UP/DOWN/LEFT/RIGHT on all OS
+* Move by one word:
+  - CTL+LEFT/RIGHT on linux/windows
+  - ALT+LEFT/RIGHT on macos
+  --> Must be implemented individually
+* Move to beginning/end of line:
+  - HOME/END on linux/windows
+  - GUI+LEFT/RIGHT on macos. HOME/END also work if keyboard has these keys
+  --> HOME/END on all OS
+* Move to beginning/end of document:
+  - CTL+HOME/END on linux/windows
+  - GUI+UP/DOWN on macos (doesn't work on my machine). GUI+HOME/END also works
+if keyboard has these keys
+  --> MAJOR+HOME/END on all OS
+* Move to beginning/end of paragraph:
+  - ??? on linux/windows
+  - GUI+UP/DOWN or ALT+UP/DOWN on macos
+  --> TODO: decide implement or not.
+
+Selection:
+* Select one character or line, or one word, or until beginning/end of line, or
+until beginning/end of document: SFT+movement.
+  --> Not implemented on dedicated keys. User must press SFT.
+
+Removal:
+* Remove one character:
+  --> BACKSPACE/DELETE on all OS
+* Remove one word:
+  - CTL+BACKSPACE/DELETE on linux/windows
+  - ALT+BACKSPACE/DELETE on macos. GUI+BACKSPACE/DELETE also works.
+  --> MAJOR+BACKSPACE/DELETE on all OS
+* Remove to beginning/end of line:
+  --> Not implemented.
+
+
+## Web browsing
+
+For many shortcuts (new tab, close tab, reopen tab, focus addressbar, ...),
+Firefox uses the MAJOR modifier + the same key on all OS. However, some
+often-used shortcuts do not, and must be handled seperately:
+* Back/Forward in history.
+  - ALT+LEFT/RIGHT on linux/windows
+  - GUI+LEFT/RIGHT on macos
+  --> Must be implemented individually
+* Left or right tab.
+  - CTL+PGUP/PGDN on linux/windows
+  - GUI+ALT+LEFT/RIGHT (overridden for window management on my machine) or
+CTL+PGUP/PGDN on macos
+  --> Must be implemented individually
+* Move current tab to left or right
+  --> Same, but with SFT
+  --> Not implemented.
+
+*
+*
+*/
 
 /*
  * TODOS:
  * * Make HOME/END function the same on win/linux and macos.
- * * Make navigation-per-word work the same on win/linux and macos.
- *   - ctrl+arrow (linux/win) vs alt+arrow (macos)
- *   - ctrl+delete (linux/win) vs alt+delet (macos)
- *   - ctrl+pgup/pgdown
- *   - ctrl+home/end
- *   - ...?
  *
  * * Use leader key for GUI+ALT (window management shortcuts)
  *
@@ -55,6 +122,7 @@ enum custom_keycodes { kcLINUX = SAFE_RANGE, kcWINDO, kcMACOS };
 enum supported_os { LINUX = 1, WINDOWS = 2, MACOS = 3 };
 
 void led_indicators(enum supported_os os); // to be implemented in keymap.c
+
 // clang-format off
 
 // Aliases.
@@ -113,7 +181,8 @@ void led_indicators(enum supported_os os); // to be implemented in keymap.c
 #define mKC_S    MT(mod_MINOR, KC_S) 
 #define mKC_Z    MT(mod_CTL, KC_Z) 
 // . other mods
-#define mWM      ALT(kcGUI) 
+#define mWM      ALT(kcGUI)
+#define mKC_TAB  MT(mod_SFT, KC_TAB)
 
 // Special functions ("f...")
 // . copy/paste/cut
@@ -130,7 +199,7 @@ void led_indicators(enum supported_os os); // to be implemented in keymap.c
     KC_QUOT   ,KC_COMM   ,lKC_DOT   ,lKC_P     ,lKC_Y     ,                      KC_F      ,lKC_G     ,lKC_C     ,KC_R      ,KC_L      ,\
     mKC_A     ,mKC_O     ,mKC_E     ,mKC_U     ,KC_I      ,                      KC_D      ,mKC_H     ,mKC_T     ,mKC_N     ,mKC_S     ,\
     mKC_SCLN  ,KC_Q      ,KC_J      ,lKC_K     ,KC_X      ,KC_VOLD   ,KC_VOLU   ,KC_B      ,lKC_M     ,KC_W      ,KC_V      ,mKC_Z     ,\
-    KC_ESC    ,XXXXXXX   ,XXXXXXX   ,mWM       ,lKC_SPC   ,kcLINUX  /*  */ ,kcMACOS    ,KC_BSPC   ,lKC_TAB   ,XXXXXXX   ,XXXXXXX   ,KC_ENT
+    KC_ESC    ,XXXXXXX   ,XXXXXXX   ,mWM       ,lKC_SPC   ,kcLINUX   ,kcMACOS   ,KC_BSPC   ,mKC_TAB   ,XXXXXXX   ,XXXXXXX   ,KC_ENT
 
 //Dvorak without modifiers. Never switched to, just as base for the combos
 #define LAYER_BASE2 \
@@ -154,6 +223,14 @@ void led_indicators(enum supported_os os); // to be implemented in keymap.c
     KC_COLN   ,KC_PERC   ,XXXXXXX   ,XXXXXXX   ,XXXXXXX   ,_______   ,_______   ,KC_PLUS   ,KC_7      ,KC_8      ,KC_9      ,KC_ASTR   ,\
     ___f___   ,_______   ,_______   ,pBASE     ,___f___   ,_______   ,_______   ,_______   ,___f___   ,_______   ,_______   ,___f___
 
+// still to put: show all windows of current app (macos), show all apps (macos), spotlight (macos), 
+//
+//                        RotateWin  RotateApp  Copy                             DocStart   LineStart  PageUp     PageDown   LineEnd
+//                                                                                                     └PrvWebTab └NxtWebTab
+//             kcSFT      kcMAJOR    WebButton  Paste                            DocEnd     Left       Up         Down       Right
+//                                                                                          └WebHstBck                       └WebHstFwd
+//             WebTabPrev WebTabNext            Cut                              DelWord    Del        PrevWord   NextWord    
+//                                                                               BspWord
 #define LAYER_NAV \
     KC_HOME   ,KC_PGUP   ,KC_PGDN   ,KC_END    ,fCOPY     ,                      fCOPY     ,KC_HOME   ,KC_PGUP   ,KC_PGDN   ,KC_END    ,\
     kcMINOR   ,kcSFT     ,kcMAJOR   ,kcALT     ,fPASTE    ,                      fPASTE    ,KC_LEFT   ,KC_UP     ,KC_DOWN   ,KC_RGHT   ,\
@@ -166,6 +243,12 @@ void led_indicators(enum supported_os os); // to be implemented in keymap.c
     KC_BTN1   ,KC_BTN2   ,XXXXXXX   ,C(KC_DEL) ,fCUT      ,_______   ,_______   ,fCUT      ,C(KC_DEL) ,KC_INS    ,KC_CAPS   ,KC_SCRL   ,\
     ___f___   ,_______   ,_______   ,pBASE     ,C(KC_SPC) ,_______   ,_______   ,C(KC_BSPC),_______   ,_______   ,_______   ,C(KC_ENT)
 
+/* #define LAYER_NAV_MACOS \
+//     C(KC_HOME),C(KC_PGUP),C(KC_PGDN),C(KC_END) ,fCOPY     ,                      fCOPY     ,C(KC_HOME),C(KC_PGUP),C(KC_PGDN),C(KC_END) ,\
+//     kcMINOR   ,kcSFT     ,kcMAJOR   ,kcALT     ,fPASTE    ,                      fPASTE    ,C(KC_LEFT),C(KC_UP)  ,C(KC_DOWN),C(KC_RGHT),\
+//     KC_BTN1   ,KC_BTN2   ,XXXXXXX   ,C(KC_DEL) ,fCUT      ,_______   ,_______   ,fCUT      ,C(KC_DEL) ,KC_INS    ,KC_CAPS   ,KC_SCRL   ,\
+//     ___f___   ,_______   ,_______   ,pBASE     ,C(KC_SPC) ,_______   ,_______   ,C(KC_BSPC),_______   ,_______   ,_______   ,C(KC_ENT)
+*/
 #define LAYER_FUN \
     KC_F1     ,KC_F2     ,KC_F3     ,KC_F4     ,___f___   ,                      XXXXXXX   ,___f___   ,kcALT     ,XXXXXXX   ,XXXXXXX   ,\
     KC_F5     ,KC_F6     ,KC_F7     ,KC_F8     ,kcALT     ,                      XXXXXXX   ,kcALT     ,kcMAJOR   ,kcSFT     ,kcMINOR   ,\
@@ -233,29 +316,34 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       set_current_os_from_keycode(keycode);
     }
     return false; // don't continue processing this key
-  case KC_LEFT:
-  case KC_UP:
-  case KC_DOWN:
-  case KC_RGHT:; // semicolon needed to allow variable declaration on next line
-    uint8_t mods = get_mods();
-
-    // No modifiers: process as normal.
-    if (mods == 0)
-      return true;
-
-    // If we reach here, a modifier was pressed.
-    // static uint8_t kc; // to save state
-    if (record->event.pressed) {
-      // Make ALT+DIR skip one word.
-      if (mods == MOD_BIT(kcALT)) {
-        if (current_os != MACOS) {
-          set_mods(MOD_MASK_CTRL);
-        }
-      }
-    } else {
-      clear_mods();
-    }
-    return true;
+    // case KC_LEFT:
+    // case KC_UP:
+    // case KC_DOWN:
+    // case KC_RGHT:; // semicolon needed to allow variable declaration on next
+    // line
+    //   uint8_t mods = get_mods();
+    //
+    //   // No modifiers: process as normal.
+    //   if (mods == 0)
+    //     return true;
+    //
+    //   // If we reach here, a modifier was pressed.
+    //   uint16_t kc;
+    //   if (mods == MOD_BIT(kcALT)) { // Make ALT+DIR skip one word.
+    //     if (current_os != MACOS) {
+    //       kc = C(keycode);
+    //     } else {
+    //       kc = A(keycode);
+    //     }
+    //     if (record->event.pressed) {
+    //       register_code16(kc);
+    //     } else {
+    //       unregister_code16(kc);
+    //     }
+    //     return false;
+    //   } else {
+    //   }
+    //   return true;
 
   default:
     return true; // Process all other keycodes normally
