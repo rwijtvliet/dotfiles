@@ -12,9 +12,10 @@ case "$OS" in
       echo "deb http://debian.sur5r.net/i3/ $(grep '^DISTRIB_CODENAME=' /etc/lsb-release | cut -f2 -d=) universe" | sudo tee /etc/apt/sources.list.d/sur5r-i3.list
       sudo apt update
     )
-    sudo apt install i3 playerctl
+    sudo apt install i3 playerctl brightnessctl
     sudo snap install pulseaudio
     sudo apt install polybar 
+    sudo usermod -aG video $USER
     todo "To enable natural scrolling and the possibility to 'tap' (instead of press), add the following lines to the correct section in /usr/share/X11/xorg.conf.d/40-libinput.conf (you need admin priviliges):"
     todo "    'Option "NaturalScrolling" "True"'"
     todo "    'Option "ClickMethod" "clickfinder"'"

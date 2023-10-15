@@ -224,7 +224,7 @@ void led_indicators(enum supported_os os); // to be implemented in keymap.c
     KC_QUOT   ,KC_COMM   ,l_DOT     ,l_P       ,l_Y       ,                      KC_F      ,l_G       ,l_C       ,KC_R      ,KC_L      ,\
     ctl_A     ,sft_O     ,maj_E     ,alt_U     ,KC_I      ,                      KC_D      ,alt_H     ,maj_T     ,sft_N     ,ctl_S     ,\
     mnr_SCLN  ,KC_Q      ,KC_J      ,l_K       ,KC_X      ,KC_VOLD   ,KC_VOLU   ,KC_B      ,l_M       ,KC_W      ,KC_V      ,mnr_Z     ,\
-    KC_ESC    ,XXXXXXX   ,XXXXXXX   ,mWM       ,l_SPC     ,kcLINUX   ,kcMACOS   ,sft_BSPC  ,sft_TAB   ,XXXXXXX   ,XXXXXXX   ,KC_ENT
+    KC_ESC    ,XXXXXXX   ,XXXXXXX   ,mWM       ,l_SPC     ,kcLINUX   ,kcMACOS   ,sft_BSPC  ,l_TAB     ,XXXXXXX   ,XXXXXXX   ,KC_ENT
 
 //Dvorak without modifiers. Never switched to, just as base for the combos
 #define LAYER_BASE2 \
@@ -238,7 +238,7 @@ void led_indicators(enum supported_os os); // to be implemented in keymap.c
 //  @          ~          ?          !                                           +          {          }          |          *
 #define LAYER_SYM \
     KC_GRV    ,KC_TILD   ,KC_HASH   ,KC_DLR    ,KC_CIRC   ,                      KC_AMPR   ,KC_LBRC   ,KC_RBRC   ,KC_BSLS   ,KC_SLSH   ,\
-    kc_MINOR  ,kc_SFT    ,kc_MAJOR  ,kc_ALT    ,XXXXXXX   ,                      KC_MINS   ,KC_LPRN   ,KC_RPRN   ,KC_EQL    ,KC_UNDS   ,\
+    kc_CTL    ,kc_SFT    ,kc_MAJOR  ,kc_ALT    ,XXXXXXX   ,                      KC_MINS   ,KC_LPRN   ,KC_RPRN   ,KC_EQL    ,KC_UNDS   ,\
     KC_AT     ,KC_PERC   ,KC_QUES   ,KC_EXLM   ,XXXXXXX   ,_______   ,_______   ,KC_PLUS   ,KC_LCBR   ,KC_RCBR   ,KC_PIPE   ,KC_ASTR   ,\
     ___f___   ,_______   ,_______   ,pBASE     ,___f___   ,_______   ,_______   ,___f___   ,___f___   ,_______   ,_______   ,___f___
 
@@ -260,7 +260,7 @@ void led_indicators(enum supported_os os); // to be implemented in keymap.c
 #define LAYER_NAV \
     kcCycleWin,kcShowWin ,kcShowApp ,kcCycleApp,J(KC_C)   ,                      J(KC_HOME),KC_HOME   ,KC_PGUP   ,KC_PGDN   ,KC_END    ,\
     kc_CTL    ,kc_SFT    ,kc_MAJOR  ,lNAV2     ,J(KC_V)   ,                      J(KC_END) ,KC_LEFT   ,KC_UP     ,KC_DOWN   ,KC_RGHT   ,\
-    _______   ,_______   ,_______   ,kcOpenApp ,J(KC_X)   ,KC_MPRV   ,KC_MNXT   ,J(KC_DEL) ,KC_DEL    ,kcPrevWord,kcNextWord,KC_INS    ,\
+    kc_MINOR  ,_______   ,_______   ,kcOpenApp ,J(KC_X)   ,KC_MPRV   ,KC_MNXT   ,J(KC_DEL) ,KC_DEL    ,kcPrevWord,kcNextWord,KC_INS    ,\
     ___f___   ,_______   ,_______   ,pBASE     ,___f___   ,KC_MPLY   ,KC_MUTE   ,J(KC_BSPC),_______   ,_______   ,_______   ,___f___
 
 #define LAYER_NAV2 \
@@ -271,8 +271,8 @@ void led_indicators(enum supported_os os); // to be implemented in keymap.c
 
 #define LAYER_FUN \
     KC_F1     ,KC_F2     ,KC_F3     ,KC_F4     ,___f___   ,                      XXXXXXX   ,___f___   ,kc_ALT    ,XXXXXXX   ,XXXXXXX   ,\
-    KC_F5     ,KC_F6     ,KC_F7     ,KC_F8     ,kc_ALT    ,                      XXXXXXX   ,kc_ALT    ,kc_MAJOR  ,kc_SFT    ,kc_MINOR  ,\
-    KC_F9     ,KC_F10    ,KC_F11    ,KC_F12    ,XXXXXXX   ,_______   ,_______   ,XXXXXXX   ,XXXXXXX   ,XXXXXXX   ,XXXXXXX   ,kc_CTL    ,\
+    KC_F5     ,KC_F6     ,KC_F7     ,KC_F8     ,kc_ALT    ,                      XXXXXXX   ,kc_ALT    ,kc_MAJOR  ,kc_SFT    ,kc_CTL    ,\
+    KC_F9     ,KC_F10    ,KC_F11    ,KC_F12    ,XXXXXXX   ,_______   ,_______   ,XXXXXXX   ,XXXXXXX   ,XXXXXXX   ,XXXXXXX   ,kc_MINOR  ,\
     ___f___   ,_______   ,_______   ,pBASE     ,___f___   ,_______   ,_______   ,___f___   ,___f___   ,_______   ,_______   ,_______
 
 #define LAYER_MOUSE \
@@ -286,6 +286,12 @@ void led_indicators(enum supported_os os); // to be implemented in keymap.c
     KC_A      ,KC_S      ,KC_D      ,KC_F      ,KC_G      ,                      KC_H      ,KC_J      ,KC_K      ,KC_L      ,KC_SCLN   ,\
     KC_Z      ,KC_X      ,KC_C      ,KC_V      ,KC_B      ,_______   ,_______   ,KC_N      ,KC_M      ,KC_UP     ,KC_DOT    ,KC_SLSH   ,\
     _______   ,kc_SFT    ,_______   ,pBASE     ,_______   ,_______   ,_______   ,_______   ,KC_LEFT   ,KC_DOWN   ,KC_RGHT   ,_______
+
+#define LAYER_SYSTEM \
+    _______   ,_______   ,_______   ,_______   ,_______   ,                      KC_MPLY   ,KC_MPRV   ,KC_MNXT   ,_______   ,KC_BRIU   ,\
+    _______   ,_______   ,_______   ,_______   ,_______   ,                      KC_MUTE   ,KC_VOLD   ,KC_VOLU   ,_______   ,KC_BRID   ,\
+    _______   ,_______   ,_______   ,_______   ,_______   ,_______   ,_______   ,_______   ,_______   ,_______   ,KC_LCAP   ,KC_INS    ,\
+    _______   ,_______   ,_______   ,_______   ,___f___   ,_______   ,_______   ,___f___   ,_______   ,_______   ,_______   ,_______
 
 #define LAYER_TEMPLATE \
     _______   ,_______   ,_______   ,_______   ,_______   ,                      _______   ,_______   ,_______   ,_______   ,_______   ,\
