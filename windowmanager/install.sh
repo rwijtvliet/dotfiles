@@ -14,11 +14,18 @@ case "$OS" in
     )
     sudo apt install i3 playerctl
     sudo snap install pulseaudio
-    pip install --user bumblebee-status
+    sudo apt install polybar 
+    todo "To enable natural scrolling and the possibility to 'tap' (instead of press), add the following lines to the correct section in /usr/share/X11/xorg.conf.d/40-libinput.conf (you need admin priviliges):"
+    todo "    'Option "NaturalScrolling" "True"'"
+    todo "    'Option "ClickMethod" "clickfinder"'"
+    todo "    'Option "Tapping" "on"'"
     info "Linking config"
     mkdir -p "$HOME/.config/i3"
     link_public_resource "./i3/config" "$HOME/.config/i3/config" 
     link_public_resource "./i3/i3status.conf" "$HOME/.config/i3/i3status.conf"
+    mkdir -p "$HOME/.config/polybar"
+    link_public_resource "./i3/polybar/launch.sh" "$HOME/.config/polybar/launch.sh"
+    link_public_resource "./i3/polybar/config.ini" "$HOME/.config/polybar/config.ini"
     ;;
 
   "windows" )

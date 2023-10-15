@@ -40,17 +40,16 @@ focus_follows_mouse no
 
 
 
-
-
-
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
 
 # Sreen brightness controls
-bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
-bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
+# bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
+# bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
+bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl -q set 3%+
+bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl --min-val=2 -q set 3%-
 
 # Media player controls
 bindsym XF86AudioPlay exec playerctl play
@@ -229,6 +228,10 @@ mode "launch" {
 # lock the machine
 bindsym $mod+apostrophe exec i3lock
 
+# change keyboard layout (must be keys that are same on all layouts)
+bindsym $mod+Escape exec setxkbmap us
+bindsym $mod+Shift+Escape exec setxkbmap dvorak
+
 
 # Force windows to spaces (use `xprop` to find class)
 
@@ -236,16 +239,22 @@ bindsym $mod+apostrophe exec i3lock
 exec spotify
 assign [class="Spotify"] $ws9
 
+
+
 # Other stuff
+
+
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
-bar {
-    status_command ~/.local/bin/bumblebee-status \
-        -m nic cpu disk memory layout battery bluetooth2 datetime \
-        -p memory.warning=40 \
-        -t iceberg
-  # status_command i3status --config ~/.config/i3/i3status.conf
-    position top
-    font pango: Hack Nerd Font
-}
+# bar {
+#     # status_command ~/.local/bin/bumblebee-status \
+#         -m nic cpu disk memory layout battery bluetooth2 datetime \
+#         -p memory.warning=40 \
+#         -t iceberg
+#     # status_command i3status --config ~/.config/i3/i3status.conf
+#     position top
+#     font pango: Hack Nerd Font
+# }
+
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh

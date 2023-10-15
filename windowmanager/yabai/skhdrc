@@ -131,6 +131,8 @@ alt + cmd - y : screencapture -coW
 # lock the machine
 # TODO
 
+# change keyboard layout (must be keys that are same on all layouts)
+# TODO
 
 # # test
 # alt + cmd - a  : \
