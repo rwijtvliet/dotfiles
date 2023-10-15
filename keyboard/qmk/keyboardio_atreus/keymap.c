@@ -5,7 +5,11 @@
 // good tutorial:
 // https://precondition.github.io/home-row-mods
 
+// clang-format off
+
+#include "os_detection.h"
 #include "keymap_partial.c"
 #include "atreus.c"
 #include "g/keymap_combo.h"
-#include "os_detection.h"
+
+// clang-format on

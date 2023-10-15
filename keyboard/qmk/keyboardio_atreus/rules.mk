@@ -4,3 +4,6 @@ VPATH += keyboards/gboards/
 
 MOUSE_ENABLE = yes
 OS_DETECTION_ENABLE = yes
+
+# Debugging.
+CONSOLE_ENALE = yes
