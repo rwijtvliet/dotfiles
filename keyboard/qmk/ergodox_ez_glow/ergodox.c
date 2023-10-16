@@ -5,7 +5,7 @@
 // good tutorial:
 // https://precondition.github.io/home-row-mods
 
-// #include "version.h"
+#include "version.h"
 // #include "keymap_german.h"
 // #include "keymap_nordic.h"
 // #include "keymap_french.h"
@@ -36,6 +36,8 @@
 // #include "keymap_turkish_q.h"
 // #include "keymap_slovak.h"
 //
+// #undef pGAME
+// #define pGAME    XXXXXXX //disable game layer; too much memory
 
 // clang-format off
 
@@ -47,63 +49,44 @@
                _3L4      ,_3L3      ,_3L2      ,_3L1      ,_3L0      ,_3LI      ,_3RI      ,_3R0      ,_3R1      ,_3R2      ,_3R3      ,_3R4      ) \
                \
     KC_ESC    ,KC_1      ,KC_2      ,KC_3      ,KC_4      ,KC_5      ,KC_CAPS   ,KC_INS    ,KC_6      ,KC_7      ,KC_8      ,KC_9      ,KC_0      ,pGAME     ,\
-    fCOPY     ,_0L4      ,_0L3      ,_0L2      ,_0L1      ,_0L0      ,KC_TAB    ,KC_MPLY   ,_0R0      ,_0R1      ,_0R2      ,_0R3      ,_0R4      ,fCOPY     ,\
-    fPASTE    ,_1L4      ,_1L3      ,_1L2      ,_1L1      ,_1L0      ,                      _1R0      ,_1R1      ,_1R2      ,_1R3      ,_1R4      ,fPASTE    ,\
-    fCUT      ,_2L4      ,_2L3      ,_2L2      ,_2L1      ,_2L0      ,KC_MPRV   ,KC_MNXT   ,_2R0      ,_2R1      ,_2R2      ,_2R3      ,_2R4      ,fCUT      ,\
+    J(KC_C)   ,_0L4      ,_0L3      ,_0L2      ,_0L1      ,_0L0      ,KC_TAB    ,KC_MPLY   ,_0R0      ,_0R1      ,_0R2      ,_0R3      ,_0R4      ,J(KC_C)   ,\
+    J(KC_V)   ,_1L4      ,_1L3      ,_1L2      ,_1L1      ,_1L0      ,                      _1R0      ,_1R1      ,_1R2      ,_1R3      ,_1R4      ,J(KC_V)   ,\
+    J(KC_X)   ,_2L4      ,_2L3      ,_2L2      ,_2L1      ,_2L0      ,KC_MPRV   ,KC_MNXT   ,_2R0      ,_2R1      ,_2R2      ,_2R3      ,_2R4      ,J(KC_X)   ,\
     KC_ESC    ,_3L4      ,_3L3      ,_3L2      ,_3L1      ,                                            _3R1      ,_3R2      ,_3R3      ,_3R4      ,KC_ENT    ,\
                                                            _2LI      ,_2RI      ,_2LI      ,_2RI      ,                                                       \
                                                                       KC_APP    ,KC_APP    ,                                                                  \
-                                                _3L0      ,_3LI      ,_3RI      ,_3LI      ,_3RI      ,_3R0
+                                                _3L0      ,_3LI      ,XXXXXXX   ,XXXXXXX   ,_3RI      ,_3R0
 
 
 #define PREP_FOR_ERGODOX(...)  PREP_FOR_ERGODOX_IN(__VA_ARGS__)
-#define EXPAND_LAYOUT(x)       LAYOUT_ergodox_pretty(x)
-
-// clang-format on
+#define EXPAND_LAYOUT(x) LAYOUT_ergodox_pretty(x)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-    [L_BASE] = EXPAND_LAYOUT(PREP_FOR_ERGODOX(LAYER_BASE)),
-    [L_BASE2] = EXPAND_LAYOUT(PREP_FOR_ERGODOX(LAYER_BASE2)),
-    [L_SYM] = EXPAND_LAYOUT(PREP_FOR_ERGODOX(LAYER_SYM)),
-    [L_NUM] = EXPAND_LAYOUT(PREP_FOR_ERGODOX(LAYER_NUM)),
-    [L_NAV] = EXPAND_LAYOUT(PREP_FOR_ERGODOX(LAYER_NAV)),
-    [L_NAV2] = EXPAND_LAYOUT(PREP_FOR_ERGODOX(LAYER_NAV2)),
-    [L_FUN] = EXPAND_LAYOUT(PREP_FOR_ERGODOX(LAYER_FUN)),
-    [L_MOUSE] = EXPAND_LAYOUT(PREP_FOR_ERGODOX(LAYER_MOUSE)),
-    [L_GAME] = EXPAND_LAYOUT(PREP_FOR_ERGODOX(LAYER_GAME)),
+[L_BASE] = EXPAND_LAYOUT(PREP_FOR_ERGODOX(LAYER_BASE)),
+[L_BASE2] = EXPAND_LAYOUT(PREP_FOR_ERGODOX(LAYER_BASE2)),
+[L_SYM] = EXPAND_LAYOUT(PREP_FOR_ERGODOX(LAYER_SYM)),
+[L_NUM] = EXPAND_LAYOUT(PREP_FOR_ERGODOX(LAYER_NUM)),
+[L_NAV] = EXPAND_LAYOUT(PREP_FOR_ERGODOX(LAYER_NAV)),
+[L_NAV2] = EXPAND_LAYOUT(PREP_FOR_ERGODOX(LAYER_NAV2)),
+[L_FUN] = EXPAND_LAYOUT(PREP_FOR_ERGODOX(LAYER_FUN)),
+// [L_FUN2] = EXPAND_LAYOUT(PREP_FOR_ERGODOX(LAYER_FUN2)),
+[L_MOUSE] = EXPAND_LAYOUT(PREP_FOR_ERGODOX(LAYER_MOUSE)),
+[L_GAME] = EXPAND_LAYOUT(PREP_FOR_ERGODOX(LAYER_GAME)),
 };
 
-void led_indicators(enum supported_os os) { // called by keymap_partial.c
-  ergodox_board_led_off();
-  ergodox_right_led_1_off();
-  ergodox_right_led_2_off();
-  ergodox_right_led_3_off();
-  switch (os) {
-  case LINUX:
-    ergodox_right_led_1_on();
-    break;
-  case WINDOWS:
-    ergodox_right_led_2_on();
-    break;
-  case MACOS:
-    ergodox_right_led_3_on();
-    break;
-  }
-}
 
-// --------------------------------- additional things for the lights
-// ---------------------------------------------
+// --------------------------------- additional things for the lights ---------------------------------------------
 
 // enum custom_keycodes {
 //   RGB_SLD = SAFE_RANGE,
 // };
-
+//
 // extern bool g_suspend_state;
 extern rgb_config_t rgb_matrix_config;
 
-void keyboard_post_init_user(void) { rgb_matrix_enable(); }
-
-// clang-format off
+void keyboard_post_init_user(void) {
+  rgb_matrix_enable();
+}
 
 // colors: 5 characters
 #define _____ {0,0,0}
@@ -122,6 +105,7 @@ void keyboard_post_init_user(void) { rgb_matrix_enable(); }
 #define arith {41,255,255}
 #define symbl {219,255,255}
 #define coppa {70,220,255} //copy-paste
+#define nav_3 {90,225,255}
 #define nav_2 {121,225,255}
 #define nav_1 {152,255,255}
 #define delet {0,255,255}
@@ -131,18 +115,18 @@ void keyboard_post_init_user(void) { rgb_matrix_enable(); }
 #define mou_2 {188,255,255}
 
 
-const uint8_t PROGMEM ledmap[][RGB_MATRIX_LED_COUNT][3] = {
+const uint8_t PROGMEM ledmap[][RGB_MAT][3] = {
     [L_BASE] = {                                    //right side
                                                     _____, _____, _____, _____, _____, \
                                                     _____, l_fun, l_sym, _____, _____, \
                                                     _____, modif, modif, modif, modif, \
-                                                    _____, l_mou, _____, _____, modif, \
+                                                    _____, l_mou, _____, _____, _____, \
                                                            tabul, _____, _____, tabul, \
                 // left side, but mirrored
                 _____, _____, _____, _____, _____, \
                 l_fun, l_num, l_sym, _____, _____, \
                 _____, modif, modif, modif, modif, \
-                _____, l_mou, _____, _____, modif, \
+                _____, l_mou, _____, _____, _____, \
                        l_nav, l_nav, _____, tabul },
 
     [L_BASE2] = {                                   _____, _____, _____, _____, _____, \
@@ -179,25 +163,25 @@ const uint8_t PROGMEM ledmap[][RGB_MATRIX_LED_COUNT][3] = {
                        l_bas, _____, _____, tabul },
 
     [L_NAV] = {                                     _____, _____, _____, _____, _____, \
-                                                    coppa, nav_2, nav_2, nav_2, nav_2, \
-                                                    coppa, nav_1, nav_1, nav_1, nav_1, \
-                                                    coppa, delet, modif, modif, modif, \
+                                                    nav_3, nav_2, nav_2, nav_2, nav_2, \
+                                                    nav_3, nav_1, nav_1, nav_1, nav_1, \
+                                                    delet, delet, nav_3, nav_3, modif, \
                                                            tabul, _____, _____, tabul, \
                 _____, _____, _____, _____, _____, \
-                coppa, nav_2, nav_2, nav_2, nav_2, \
+                coppa, nav_1, nav_1, nav_2, nav_2, \
                 coppa, modif, modif, modif, modif, \
-                coppa, delet, _____, mou_2, mou_2, \
+                coppa, delet, _____, _____, modif, \
                        l_bas, _____, _____, tabul },
 
     [L_NAV2] = {                                    _____, _____, _____, _____, _____, \
-                                                    coppa, nav_2, nav_2, nav_2, nav_2, \
-                                                    coppa, nav_1, nav_1, nav_1, nav_1, \
-                                                    coppa, delet, modif, modif, modif, \
+                                                    _____, _____, nav_3, nav_3, _____, \
+                                                    _____, nav_1, nav_3, nav_3, nav_1, \
+                                                    _____, _____, _____, _____, _____, \
                                                            tabul, _____, _____, tabul, \
                 _____, _____, _____, _____, _____, \
-                coppa, nav_2, nav_2, nav_2, nav_2, \
-                coppa, modif, modif, modif, modif, \
-                coppa, delet, modif, symbl, symbl, \
+                _____, _____, _____, _____, _____, \
+                _____, _____, _____, _____, _____, \
+                _____, _____, _____, _____, _____, \
                        l_bas, _____, _____, tabul },
 
     [L_FUN] = {                                     _____, _____, _____, _____, _____, \
@@ -210,7 +194,7 @@ const uint8_t PROGMEM ledmap[][RGB_MATRIX_LED_COUNT][3] = {
                 _____, fun_1, fun_1, fun_1, fun_1, \
                 _____, fun_1, fun_1, fun_1, fun_1, \
                        _____, _____, _____, tabul },
-  
+
     [L_MOUSE] = {                                   _____, _____, _____, _____, _____, \
                                                     _____, mou_2, mou_1, mou_2, _____, \
                                                     _____, mou_1, mou_1, mou_1, _____, \
@@ -235,26 +219,25 @@ const uint8_t PROGMEM ledmap[][RGB_MATRIX_LED_COUNT][3] = {
 
 };
 
-// clang-format off
+// clang-format on
 
 void set_layer_color(int layer) {
 
-  for (int i = 0; i < RGB_MATRIX_LED_COUNT; i++) {
+  for (int i = 0; i < DRIVER_LED_TOTAL; i++) {
     HSV hsv = {
-      .h = pgm_read_byte(&ledmap[layer][i][0]),
-      .s = pgm_read_byte(&ledmap[layer][i][1]),
-      .v = pgm_read_byte(&ledmap[layer][i][2]),
+        .h = pgm_read_byte(&ledmap[layer][i][0]),
+        .s = pgm_read_byte(&ledmap[layer][i][1]),
+        .v = pgm_read_byte(&ledmap[layer][i][2]),
     };
     if (!hsv.h && !hsv.s && !hsv.v) {
-        rgb_matrix_set_color( i, 0, 0, 0 );
+      rgb_matrix_set_color(i, 0, 0, 0);
     } else {
-        RGB rgb = hsv_to_rgb( hsv );
-        float f = (float)rgb_matrix_config.hsv.v / UINT8_MAX;
-        rgb_matrix_set_color( i, f * rgb.r, f * rgb.g, f * rgb.b );
+      RGB rgb = hsv_to_rgb(hsv);
+      float f = (float)rgb_matrix_config.hsv.v / UINT8_MAX;
+      rgb_matrix_set_color(i, f * rgb.r, f * rgb.g, f * rgb.b);
     }
   }
 }
-
 
 // void rgb_matrix_indicators_user(void) {
 // //   if (g_suspend_state || keyboard_config.disable_layer_led) { return; }
@@ -292,22 +275,20 @@ void set_layer_color(int layer) {
 //     break;
 //   }
 // }
-bool rgb_matrix_indicators_user(void) {
-  //if (g_suspend_state || keyboard_config.disable_layer_led) { return; }
+void rgb_matrix_indicators_user(void) {
+  // if (g_suspend_state || keyboard_config.disable_layer_led) { return; }
   uint8_t bitval = biton32(layer_state);
   if (bitval <= 8) {
-      set_layer_color(bitval);
+    set_layer_color(bitval);
   } else if (rgb_matrix_get_flags() == LED_FLAG_NONE) {
-      rgb_matrix_set_color_all(0, 0, 0);
+    rgb_matrix_set_color_all(0, 0, 0);
   }
-  return true;
 }
 
 // uint32_t layer_state_set_user(uint32_t state) {
-//   uint8_t layer = biton16(state); ergodox_board_led_off();
+//   ergodox_board_led_off();
 //   ergodox_right_led_1_off();
 //   ergodox_right_led_2_off();
 //   ergodox_right_led_3_off();
-//   
 //   return state;
 // };
