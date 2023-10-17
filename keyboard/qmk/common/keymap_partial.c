@@ -114,6 +114,7 @@ enum layer_names {
   L_NAV2,
   L_FUN,
   L_MOUSE,
+  L_SYSTEM,
   L_GAME
 };
 // Some functionality depends on the operating system.
