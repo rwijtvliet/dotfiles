@@ -229,32 +229,29 @@ mode "launch" {
 bindsym $mod+apostrophe exec i3lock
 
 # change keyboard layout (must be keys that are same on all layouts)
-bindsym $mod+Escape exec setxkbmap us
-bindsym $mod+Shift+Escape exec setxkbmap dvorak
+# -> capslock = us, shift-capslock = dvorak
+# -> see 'man xkeyboard-config | grep grp' for all switch options
+bindsym $mod+F1 exec setxkbmap dvorak
+bindsym $mod+F2 exec setxkbmap us
 
 
 # Force windows to spaces (use `xprop` to find class)
 
-# spotify
-exec spotify
 assign [class="Spotify"] $ws9
+assign [class="Firefox"] $ws2
+assign [class="Dolphin"] $ws1
 
+
+# Start apps automatically
+
+# Apps; only run on machine start-up
+exec spotify firefox dolphin
+
+# Polybar; run every time i3 config is reloaded
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 
 # Other stuff
 
-
-
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
-# bar {
-#     # status_command ~/.local/bin/bumblebee-status \
-#         -m nic cpu disk memory layout battery bluetooth2 datetime \
-#         -p memory.warning=40 \
-#         -t iceberg
-#     # status_command i3status --config ~/.config/i3/i3status.conf
-#     position top
-#     font pango: Hack Nerd Font
-# }
-
-exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+bindsym Mod1+Tab exec rofi -show window
+bindsym Control+Escape exec rofi -show run
