@@ -5,7 +5,7 @@
 // good tutorial:
 // https://precondition.github.io/home-row-mods
 
-#include "version.h"
+// #include "version.h"
 // #include "keymap_german.h"
 // #include "keymap_nordic.h"
 // #include "keymap_french.h"
@@ -54,46 +54,41 @@
     J(KC_X)   ,_2L4      ,_2L3      ,_2L2      ,_2L1      ,_2L0      ,KC_MPRV   ,KC_MNXT   ,_2R0      ,_2R1      ,_2R2      ,_2R3      ,_2R4      ,J(KC_X)   ,\
     KC_ESC    ,_3L4      ,_3L3      ,_3L2      ,_3L1      ,                                            _3R1      ,_3R2      ,_3R3      ,_3R4      ,KC_ENT    ,\
                                                            _2LI      ,_2RI      ,_2LI      ,_2RI      ,                                                       \
-                                                                      KC_APP    ,KC_APP    ,                                                                  \
-                                                _3L0      ,_3LI      ,XXXXXXX   ,XXXXXXX   ,_3RI      ,_3R0
+                                                                      _3RI      ,_3LI      ,                                                                  \
+                                                _3L0      ,_3LI      ,_3RI      ,_3LI      ,_3RI      ,_3R0
 
+// clang-format on
 
-#define PREP_FOR_ERGODOX(...)  PREP_FOR_ERGODOX_IN(__VA_ARGS__)
+#define PREP_FOR_ERGODOX(...) PREP_FOR_ERGODOX_IN(__VA_ARGS__)
 #define EXPAND_LAYOUT(x) LAYOUT_ergodox_pretty(x)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-[L_BASE] = EXPAND_LAYOUT(PREP_FOR_ERGODOX(LAYER_BASE)),
-[L_BASE2] = EXPAND_LAYOUT(PREP_FOR_ERGODOX(LAYER_BASE2)),
-[L_SYM] = EXPAND_LAYOUT(PREP_FOR_ERGODOX(LAYER_SYM)),
-[L_NUM] = EXPAND_LAYOUT(PREP_FOR_ERGODOX(LAYER_NUM)),
-[L_NAV] = EXPAND_LAYOUT(PREP_FOR_ERGODOX(LAYER_NAV)),
-[L_NAV2] = EXPAND_LAYOUT(PREP_FOR_ERGODOX(LAYER_NAV2)),
-[L_FUN] = EXPAND_LAYOUT(PREP_FOR_ERGODOX(LAYER_FUN)),
-// [L_FUN2] = EXPAND_LAYOUT(PREP_FOR_ERGODOX(LAYER_FUN2)),
-[L_MOUSE] = EXPAND_LAYOUT(PREP_FOR_ERGODOX(LAYER_MOUSE)),
-[L_GAME] = EXPAND_LAYOUT(PREP_FOR_ERGODOX(LAYER_GAME)),
+    [L_BASE] = EXPAND_LAYOUT(PREP_FOR_ERGODOX(LAYER_BASE)),
+    [L_BASE2] = EXPAND_LAYOUT(PREP_FOR_ERGODOX(LAYER_BASE2)),
+    [L_SYM] = EXPAND_LAYOUT(PREP_FOR_ERGODOX(LAYER_SYM)),
+    [L_NUM] = EXPAND_LAYOUT(PREP_FOR_ERGODOX(LAYER_NUM)),
+    [L_NAV] = EXPAND_LAYOUT(PREP_FOR_ERGODOX(LAYER_NAV)),
+    [L_NAV2] = EXPAND_LAYOUT(PREP_FOR_ERGODOX(LAYER_NAV2)),
+    [L_FUN] = EXPAND_LAYOUT(PREP_FOR_ERGODOX(LAYER_FUN)),
+    // [L_FUN2] = EXPAND_LAYOUT(PREP_FOR_ERGODOX(LAYER_FUN2)),
+    [L_MOUSE] = EXPAND_LAYOUT(PREP_FOR_ERGODOX(LAYER_MOUSE)),
+    [L_GAME] = EXPAND_LAYOUT(PREP_FOR_ERGODOX(LAYER_GAME)),
 };
 
+// clang-format off
 
 // --------------------------------- additional things for the lights ---------------------------------------------
 
-// enum custom_keycodes {
-//   RGB_SLD = SAFE_RANGE,
-// };
-//
+
 // extern bool g_suspend_state;
 extern rgb_config_t rgb_matrix_config;
-
-void keyboard_post_init_user(void) {
-  rgb_matrix_enable();
-}
 
 // colors: 5 characters
 #define _____ {0,0,0}
 #define l_bas {0,0,128}
 #define l_fun {14,255,255}
 #define l_sym {33,255,255}
-#define l_mou {0,205,155}
+#define l_mou {160,205,155}
 #define l_nav {154,255,255}
 #define l_num {141,255,233}
 
@@ -111,23 +106,23 @@ void keyboard_post_init_user(void) {
 #define delet {0,255,255}
 #define fun_1 {14,128,255}
 #define fun_2 {10,225,255}
-#define mou_1 {220,220,255}
+#define mou_1 {229,220,255}
 #define mou_2 {188,255,255}
 
 
-const uint8_t PROGMEM ledmap[][RGB_MAT][3] = {
+const uint8_t PROGMEM ledmap[][RGB_MATRIX_LED_COUNT][3] = {
     [L_BASE] = {                                    //right side
                                                     _____, _____, _____, _____, _____, \
                                                     _____, l_fun, l_sym, _____, _____, \
                                                     _____, modif, modif, modif, modif, \
-                                                    _____, l_mou, _____, _____, _____, \
+                                                    _____, mou_2, _____, _____, _____, \
                                                            tabul, _____, _____, tabul, \
                 // left side, but mirrored
                 _____, _____, _____, _____, _____, \
                 l_fun, l_num, l_sym, _____, _____, \
                 _____, modif, modif, modif, modif, \
-                _____, l_mou, _____, _____, _____, \
-                       l_nav, l_nav, _____, tabul },
+                _____, mou_2, _____, _____, _____, \
+                       l_nav, _____, _____, tabul },
 
     [L_BASE2] = {                                   _____, _____, _____, _____, _____, \
                                                     _____, _____, _____, _____, _____, \
@@ -170,7 +165,7 @@ const uint8_t PROGMEM ledmap[][RGB_MAT][3] = {
                 _____, _____, _____, _____, _____, \
                 coppa, nav_1, nav_1, nav_2, nav_2, \
                 coppa, modif, modif, modif, modif, \
-                coppa, delet, _____, _____, modif, \
+                coppa, nav_3, _____, _____, modif, \
                        l_bas, _____, _____, tabul },
 
     [L_NAV2] = {                                    _____, _____, _____, _____, _____, \
@@ -223,7 +218,7 @@ const uint8_t PROGMEM ledmap[][RGB_MAT][3] = {
 
 void set_layer_color(int layer) {
 
-  for (int i = 0; i < DRIVER_LED_TOTAL; i++) {
+  for (int i = 0; i < RGB_MATRIX_LED_COUNT; i++) {
     HSV hsv = {
         .h = pgm_read_byte(&ledmap[layer][i][0]),
         .s = pgm_read_byte(&ledmap[layer][i][1]),
@@ -275,7 +270,7 @@ void set_layer_color(int layer) {
 //     break;
 //   }
 // }
-void rgb_matrix_indicators_user(void) {
+bool rgb_matrix_indicators_user(void) {
   // if (g_suspend_state || keyboard_config.disable_layer_led) { return; }
   uint8_t bitval = biton32(layer_state);
   if (bitval <= 8) {
@@ -283,6 +278,7 @@ void rgb_matrix_indicators_user(void) {
   } else if (rgb_matrix_get_flags() == LED_FLAG_NONE) {
     rgb_matrix_set_color_all(0, 0, 0);
   }
+  return true;
 }
 
 // uint32_t layer_state_set_user(uint32_t state) {
@@ -292,3 +288,19 @@ void rgb_matrix_indicators_user(void) {
 //   ergodox_right_led_3_off();
 //   return state;
 // };
+
+// Required by keymap_partail.c
+void custom_led_indicators(enum supported_os os) {
+  ergodox_board_led_off();
+  ergodox_right_led_1_off();
+  ergodox_right_led_2_off();
+  ergodox_right_led_3_off();
+  if (os == LINUX) {
+    ergodox_right_led_1_on();
+  } else if (os == WINDOWS) {
+    ergodox_right_led_2_on();
+  } else { // MACOS
+    ergodox_right_led_3_on();
+  }
+}
+void custom_post_init(void) { rgb_matrix_enable(); }
