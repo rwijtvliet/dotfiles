@@ -62,10 +62,8 @@ bindsym XF86AudioPrev exec playerctl previous
 
 
 
-# kill focused window
-
 # start dmenu (a program launcher)
-bindsym $mod+e exec --no-startup-id dmenu_run
+# bindsym $mod+e exec --no-startup-id dmenu_run
 # A more modern dmenu replacement is rofi:
 # bindcode $mod+40 exec "rofi -modi drun,run -show drun"
 # There also is i3-dmenu-desktop which only displays applications shipping a
@@ -244,14 +242,17 @@ assign [class="Dolphin"] $ws1
 
 # Start apps automatically
 
-# Apps; only run on machine start-up
-exec spotify firefox dolphin
+# apps; only run on machine start-up
+exec spotify & 
+exec firefox & 
+exec dolphin & 
 
-# Polybar; run every time i3 config is reloaded
+# polybar; run every time i3 config is reloaded
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 
 # Other stuff
 
-bindsym Mod1+Tab exec rofi -show window
+# window manager
+bindsym Mod1+Tab exec rofi -show combi
 bindsym Control+Escape exec rofi -show run
