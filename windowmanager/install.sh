@@ -12,6 +12,14 @@ case "$OS" in
       echo "deb http://debian.sur5r.net/i3/ $(grep '^DISTRIB_CODENAME=' /etc/lsb-release | cut -f2 -d=) universe" | sudo tee /etc/apt/sources.list.d/sur5r-i3.list
       sudo apt update
     )
+    $( # install client to communicate with spotify app 
+      cd ~/Downloads/
+      git clone https://github.com/mihirlad55/polybar-spotify-module
+      cd polybar-spotify-module/src/
+      sudo make install 
+      # run at system start
+      systemctl --user enable spotify-listener
+    )
     sudo apt install i3 playerctl brightnessctl
     sudo snap install pulseaudio
     sudo apt install polybar rofi
