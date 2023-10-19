@@ -56,11 +56,11 @@ yabai -m config                              \
     focus_follows_mouse         off          \
     window_placement            second_child \
     window_shadow               off          \
-    window_animation_duration   0.50         \
-    window_opacity_duration     0.50         \
+    window_animation_duration   0.0          \
+    window_opacity_duration     0.0          \
     window_opacity              on           \
     active_window_opacity       0.95         \
-    normal_window_opacity       0.50         \
+    normal_window_opacity       0.60         \
     insert_feedback_color       0xaad75f5f   \
     split_ratio                 0.55         \
     split_type                  auto         \

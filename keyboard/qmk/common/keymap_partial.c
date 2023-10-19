@@ -103,6 +103,7 @@ CTL+PGUP/PGDN on macos
 
 #include QMK_KEYBOARD_H
 #include "version.h"
+
 // enums
 
 enum layer_names {
@@ -117,7 +118,6 @@ enum layer_names {
   L_SYSTEM,
   L_GAME
 };
-// Some functionality depends on the operating system.
 enum custom_keycodes {
   kcLINUX = SAFE_RANGE,
   kcWINDO,
@@ -125,17 +125,26 @@ enum custom_keycodes {
   kcWEB,
   kcPrevWord,
   kcNextWord,
+  kcBspWord,
+  kcDelWord,
   kcWebBack,
   kcWebFwd,
   kcCycleApp,
   kcCycleWin,
   kcShowApp,
   kcShowWin,
-  kcOpenApp
+  kcOpenApp,
+  RGB_SLD
 };
-enum supported_os { LINUX = 1, WINDOWS = 2, MACOS = 3 };
+enum supported_os {
+  LINUX = 1,
+  WINDOWS = 2,
+  MACOS = 3
+}; // some functionality depends on the operating system.
 
-void led_indicators(enum supported_os os); // to be implemented in keymap.c
+// These must be implemented in the keymap.c file of each specific keyboard.
+void custom_led_indicators(enum supported_os os);
+void custom_post_init(void);
 
 // clang-format off
 
@@ -250,19 +259,19 @@ void led_indicators(enum supported_os os); // to be implemented in keymap.c
     ___f___   ,_______   ,_______   ,pBASE     ,___f___   ,_______   ,_______   ,_______   ,___f___   ,_______   ,_______   ,___f___
 
 
-// still to put: show all windows of current app (macos), show all apps (macos), spotlight (macos),
-//
-//                        RotateWin  RotateApp  Copy                             DocStart   LineStart  PageUp     PageDown   LineEnd
-//                                                                                                     └PrvWebTab └NxtWebTab
-//             kcSFT      kcMAJOR    WebButton  Paste                            DocEnd     Left       Up         Down       Right
-//                                                                                          └WebHstBck                       └WebHstFwd
-//             WebTabPrev WebTabNext            Cut                              DelWord    Del        PrevWord   NextWord
+//  Win of app Win of app Apps       Apps       Copy                             DocStart   LineStart  PageUp     PageDown   LineEnd
+//  (cycle)    (show all) (show all) (cycle)                                                           
+//    
+//  CTL        SFT        MAJOR      WebButton  Paste                            DocEnd     Left       Up         Down       Right
+//                                                                                          
+//  MINOR      zoom out   zoom in    applaunchr Cut                              DelWord    Del        PrevWord   NextWord   Insert
+//             
 //                                                                               BspWord
 #define LAYER_NAV \
     kcCycleWin,kcShowWin ,kcShowApp ,kcCycleApp,J(KC_C)   ,                      J(KC_HOME),KC_HOME   ,KC_PGUP   ,KC_PGDN   ,KC_END    ,\
     kc_CTL    ,kc_SFT    ,kc_MAJOR  ,lNAV2     ,J(KC_V)   ,                      J(KC_END) ,KC_LEFT   ,KC_UP     ,KC_DOWN   ,KC_RGHT   ,\
-    kc_MINOR  ,_______   ,_______   ,kcOpenApp ,J(KC_X)   ,KC_MPRV   ,KC_MNXT   ,J(KC_DEL) ,KC_DEL    ,kcPrevWord,kcNextWord,KC_INS    ,\
-    ___f___   ,_______   ,_______   ,pBASE     ,___f___   ,KC_MPLY   ,KC_MUTE   ,J(KC_BSPC),_______   ,_______   ,_______   ,___f___
+    kc_MINOR  ,J(KC_MINS),J(KC_EQL) ,kcOpenApp ,J(KC_X)   ,KC_MPRV   ,KC_MNXT   ,kcDelWord ,KC_DEL    ,kcPrevWord,kcNextWord,KC_INS    ,\
+    ___f___   ,_______   ,_______   ,pBASE     ,___f___   ,KC_MPLY   ,KC_MUTE   ,kcBspWord,_______   ,_______   ,_______   ,___f___
 
 #define LAYER_NAV2 \
     _______   ,_______   ,_______   ,_______   ,_______   ,                      _______   ,_______   ,C(KC_PGUP),C(KC_PGDN),_______   ,\
@@ -332,7 +341,9 @@ void set_current_os_from_keycode(uint16_t keycode) {
     keymap_config.swap_rctl_rgui = true;
     break;
   }
-  led_indicators(current_os);
+  // send alt-gui-f2 to set to us layout.
+  tap_code16(ALT(GUI(KC_F2)));
+  custom_led_indicators(current_os);
 }
 void linwinmac(uint16_t linuxcode, uint16_t windowscode, uint16_t macoscode,
                bool tap, keyrecord_t *record) {
@@ -382,6 +393,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     }
     return false; // don't continue processing this key
 
+  case kcBspWord:
+    linwinmac(C(KC_BSPC), C(KC_BSPC), ALT(KC_BSPC), true, record);
+    return false;
+
+  case kcDelWord:
+    linwinmac(C(KC_DEL), C(KC_DEL), ALT(KC_DEL), true, record);
+    return false;
+
   case kcPrevWord:
     linwinmac(C(KC_LEFT), CTL(KC_LEFT), ALT(KC_LEFT), false, record);
     return false;
@@ -418,7 +437,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     if (record->event.pressed) {
       if (current_os == LINUX || current_os == WINDOWS) {
         unregister_code(kc_ALT); // in case we were alt-tabbing
-        tap_code16(GUI(KC_D));
+        tap_code16(C(KC_ESC));
       } else { // MACOS
         unregister_code(kc_GUI);
         tap_code16(CTL(KC_UP));
@@ -441,6 +460,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   case kcCycleWin:
     if (record->event.pressed) {
       if (current_os == LINUX || current_os == WINDOWS) {
+        unregister_code(kc_ALT); // in case we were alt-tabbing
         set_mods(mod_CTL);
         tap_code(KC_TAB);
       } else { // MACOS
@@ -456,6 +476,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 }
 
 void keyboard_post_init_user(void) {
-  // Customise these values to desired behaviour
   set_current_os_from_keycode(kcLINUX);
+  custom_post_init();
 }

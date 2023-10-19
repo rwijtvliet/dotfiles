@@ -40,10 +40,12 @@ skip () {
 }
 
 try () {
-  if $1 ; then
-    success "OK"
+  result=$($1)
+  if $result ; then
+    success "$1" 
   else
-    fail "FAIL"
+    fail "$1 - output:"
+    echo $result
   fi
 }
 

@@ -1,0 +1,1 @@
+ruud.wijtvliet ALL=(root) NOPASSWD: sha256:aec290cafa731ef1dfe59409ff8fae9bce1283fc5c2c93f7925d8cc8140c997d  /opt/homebrew/bin/yabai --load-sa

@@ -16,3 +16,8 @@ alias at='alacritty-themes'
 alias myip='curl ipinfo.io/ip' 
 alias bashconf='nvim ~/.bashrc'
 alias python=python3
+
+alias qmce='qmk compile -kb ergodox_ez/glow -km rwijtvliet'
+alias qmfe='qmk flash -kb ergodox_ez/glow -km rwijtvliet'
+alias qmca='qmk compile -kb keyboardio/atreus -km rwijtvliet'
+alias qmfa='qmk flash -kb keyboardio/atreus -km rwijtvliet'

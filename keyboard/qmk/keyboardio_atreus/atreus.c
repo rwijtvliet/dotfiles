@@ -19,5 +19,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [L_GAME] = EXPAND_LAYOUT(LAYER_GAME),
 };
 
-void led_indicators(enum supported_os os) { // called by keymap_partial.c
-}
+// Required by keymap_partail.c
+void custom_led_indicators(enum supported_os os) {}
+void custom_post_init(void) {}

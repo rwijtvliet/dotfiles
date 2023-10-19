@@ -46,20 +46,34 @@ case "$OS" in
     ;;
 
   "macos" )
+    info "Removing app if already installed"
+    brew remove yabai skhd
+    rm -rf "$HOME/.config/yabai"
+    rm -rf "$HOME/.config/skhd"
+    sudo rm /private/etc/sudoers.d/yabai
+    brew update
+    
     info "Installing app(s)"
     brew install koekeishiya/formulae/yabai
     brew install skhd
     brew install jq 
     brew upgrade yabai
+    
     info "Linking config"
     mkdir -p "$HOME/.config/yabai"
     mkdir -p "$HOME/.config/skhd"
     link_public_resource "./macos/yabairc" "$HOME/.config/yabai/yabairc"
     link_public_resource "./macos/skhdrc" "$HOME/.config/skhd/skhdrc"
+
+    info "Setting sudo priviliges to yabai scripting addition"
+    echo "$(whoami) ALL=(root) NOPASSWD: sha256:$(shasum -a 256 $(which yabai)) --load-sa" > /tmp/yabai
+    sudo cp /tmp/yabai /private/etc/sudoers.d/yabai
+    
+    info "starting yabai and skhd"
     skhd --start-service
     yabai --start-service
-    success "Yabai might only work partially. To enable completely, disable the System Integrity Protection; google 'yabai disable SIP'."
-    todo "Check output below to see where SIP is disabled:"
+    success "Done, but Yabai might only work partially. To enable completely, the System Integrity Protection must be disabled."
+    todo "Check output below to confirm if SIP is disabled. If not, google 'yabai disable SIP'."
     csrutil status
     ;;
     

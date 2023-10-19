@@ -165,7 +165,7 @@ const uint8_t PROGMEM ledmap[][RGB_MATRIX_LED_COUNT][3] = {
                 _____, _____, _____, _____, _____, \
                 coppa, nav_1, nav_1, nav_2, nav_2, \
                 coppa, modif, modif, modif, modif, \
-                coppa, nav_3, _____, _____, modif, \
+                coppa, nav_3, nav_1, nav_1, modif, \
                        l_bas, _____, _____, tabul },
 
     [L_NAV2] = {                                    _____, _____, _____, _____, _____, \
