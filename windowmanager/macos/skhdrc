@@ -45,23 +45,32 @@ alt + cmd + shift - d :     yabai -m window --swap largest
 
 # (window) to space
 alt + cmd + shift - 1 : yabai -m window --space 1_files; \
-                        yabai -m space  --focus 1_files
+                        yabai -m space  --focus 1_files; \
+                        sketchybar --trigger windows_on_spaces 
 alt + cmd + shift - 2 : yabai -m window --space 2_www; \
-                        yabai -m space  --focus 2_www
+                        yabai -m space  --focus 2_www; \
+                        sketchybar --trigger windows_on_spaces 
 alt + cmd + shift - 3 : yabai -m window --space 3_office; \
-                        yabai -m space  --focus 3_office
+                        yabai -m space  --focus 3_office; \
+                        sketchybar --trigger windows_on_spaces 
 alt + cmd + shift - 4 : yabai -m window --space 4_terminal; \
-                        yabai -m space  --focus 4_terminal
+                        yabai -m space  --focus 4_terminal; \
+                        sketchybar --trigger windows_on_spaces 
 alt + cmd + shift - 5 : yabai -m window --space 5_vscode; \
-                        yabai -m space  --focus 5_vscode
+                        yabai -m space  --focus 5_vscode; \
+                        sketchybar --trigger windows_on_spaces 
 alt + cmd + shift - 6 : yabai -m window --space 6_; \
-                        yabai -m space  --focus 6_
+                        yabai -m space  --focus 6_; \
+                        sketchybar --trigger windows_on_spaces 
 alt + cmd + shift - 7 : yabai -m window --space 7_teams; \
-                        yabai -m space  --focus 7_teams
+                        yabai -m space  --focus 7_teams; \
+                        sketchybar --trigger windows_on_spaces 
 alt + cmd + shift - 8 : yabai -m window --space 8_email; \
-                        yabai -m space  --focus 8_email
+                        yabai -m space  --focus 8_email; \
+                        sketchybar --trigger windows_on_spaces 
 alt + cmd + shift - 9 : yabai -m window --space 9_media; \
-                        yabai -m space  --focus 9_media
+                        yabai -m space  --focus 9_media; \
+                        sketchybar --trigger windows_on_spaces 
 
 # (space) to monitor
 alt + cmd + shift - g : yabai -m space   --display west; \
@@ -85,10 +94,15 @@ alt + cmd - w : yabai -m window --close
 # Layout
 
 # toggle float/tiling
-alt + cmd - b : yabai -m window --toggle float --grid 4:4:1:1:2:2 # half-width half-height middle-of-screen
-
+# (half-width half-height middle-of-screen)
+alt + cmd - b : \
+    yabai -m window --toggle float --grid 4:4:1:1:2:2; \
+    sketchybar --trigger window_focus
+    
 # toggle maximize
-alt + cmd - m : yabai -m window --toggle zoom-fullscreen
+alt + cmd - m : \
+    yabai -m window --toggle zoom-fullscreen; \
+    sketchybar --trigger window_focus
 
 # Create 3 colums with center one the biggest
 # TODO
@@ -103,14 +117,14 @@ alt + cmd - j : \
 
 # Yabai management
 
-# start (0x29 = ;)
-alt + cmd - 0x29 : \
+# start
+alt + cmd - f3 : \
     /usr/bin/env osascript <<< "display notification \"Restarting Yabai\" with title \"Yabai\""; \
     yabai --start-service; \
     /usr/bin/env osascript -e 'tell application id "tracesOf.Uebersicht" to refresh'
 
 # stop
-alt + cmd + shift - 0x29 : \
+alt + cmd - f4 : \
     /usr/bin/env osascript <<< \ "display notification \"Stopping Yabai\" with title \"Yabai\""; \
     yabai --stop-service; 
 
@@ -120,24 +134,27 @@ alt + cmd + shift - 0x29 : \
 # Non-window-management shortcuts
 
 # terminal
-alt + cmd - return : open /Applications/Alacritty.app
+alt + cmd - return : \
+    open /Applications/Alacritty.app
 
 # screenshot
 # . to clipboard
-alt + cmd - y : screencapture -coW
+alt + cmd - y : \
+    screencapture -coW
 # . to editor
 # TODO
 
 # lock the machine
-# TODO
+alt + cmd - f5 : \
+    pmset displaysleepnow
 
 # change keyboard layout (must be keys that are same on all layouts)
-# TODO
+# F1=dvorak, F2=us
+# --> Not implemented here; used kawa to set keyboard shortcuts 
 
 # # test
-# alt + cmd - a  : \
+# alt + cmd - semi-colon  : \
 #     /usr/bin/env osascript <<< "display notification \"test\" with title \"testtets\""
-#
 
 
 
