@@ -1,18 +1,12 @@
-# all other apps
-espanso
-vscode
-windowmanager
-notepadplusplus
-ubersicht
-spotify
-tweaks
+# Window management 
 encryption
-filebrowser
-inkscape
-onenote
+windowmanager
+ubersicht
+tweaks
+ubuntuextras
 virtualbox
+filebrowser
 remove
-chromium
 python
 locale
 wireguard
