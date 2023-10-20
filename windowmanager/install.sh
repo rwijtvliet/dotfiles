@@ -47,7 +47,7 @@ case "$OS" in
 
   "macos" )
     info "Removing app if already installed"
-    brew remove yabai skhd
+    krew remove yabai skhd
     rm -rf "$HOME/.config/yabai"
     rm -rf "$HOME/.config/skhd"
     sudo rm /private/etc/sudoers.d/yabai
@@ -58,13 +58,20 @@ case "$OS" in
     brew install skhd
     brew install jq 
     brew upgrade yabai
+    # for sketchybar   
+    brew tap FelixKratz/formulae
+    brew install sketchybar
+    brew install switchaudio-osx
+    curl -L https://github.com/kvndrsslr/sketchybar-app-font/releases/download/latest/sketchybar-app-font.ttf -o $HOME/Library/Fonts/sketchybar-app-font.ttf
     
     info "Linking config"
     mkdir -p "$HOME/.config/yabai"
     mkdir -p "$HOME/.config/skhd"
     link_public_resource "./macos/yabairc" "$HOME/.config/yabai/yabairc"
     link_public_resource "./macos/skhdrc" "$HOME/.config/skhd/skhdrc"
-
+    # for sketchybar
+    link_public_resource "./macos/sketchybar" "$HOME/.config/sketchybar"
+    
     info "Setting sudo priviliges to yabai scripting addition"
     echo "$(whoami) ALL=(root) NOPASSWD: sha256:$(shasum -a 256 $(which yabai)) --load-sa" > /tmp/yabai
     sudo cp /tmp/yabai /private/etc/sudoers.d/yabai

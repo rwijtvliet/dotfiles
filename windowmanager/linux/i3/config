@@ -75,7 +75,7 @@ bindsym XF86AudioPrev exec playerctl previous
 set $ws1 "1 "
 set $ws2 "2 "
 set $ws3 "3 "
-set $ws4 "4 "
+set $ws4 "4 
 set $ws5 "5 󰨞"
 set $ws6 "6 "
 set $ws7 "7 󰭹"
@@ -142,8 +142,8 @@ bindsym $mod+Shift+8 move container to workspace number $ws8; workspace number $
 bindsym $mod+Shift+9 move container to workspace number $ws9; workspace number $ws9
 
 # (workspace) to monitor
-bindsym $mod+Shift+g move workspace to output left; output left
-bindsym $mod+Shift+l move workspace to output right; output right 
+bindsym $mod+Shift+g move workspace to output left 
+bindsym $mod+Shift+l move workspace to output right
 
 
 # close
@@ -198,10 +198,10 @@ bindsym $mod+j gaps inner current toggle 10
 # i3 management
 
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+semicolon restart
+bindsym $mod+F3 restart
 
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+semicolon exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+F4 exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
 
 # Non-window-management shortcuts
@@ -224,11 +224,10 @@ mode "launch" {
 }
 
 # lock the machine
-bindsym $mod+apostrophe exec i3lock
+bindsym $mod+F5 exec i3lock
 
 # change keyboard layout (must be keys that are same on all layouts)
-# -> capslock = us, shift-capslock = dvorak
-# -> see 'man xkeyboard-config | grep grp' for all switch options
+# F1=dvorak, F2=us
 bindsym $mod+F1 exec setxkbmap dvorak
 bindsym $mod+F2 exec setxkbmap us
 

@@ -42,8 +42,10 @@ Movement:
   --> Must be implemented individually
 * Move to beginning/end of line:
   - HOME/END on linux/windows
-  - GUI+LEFT/RIGHT on macos. HOME/END also work if keyboard has these keys
+  - GUI+LEFT/RIGHT on macos. HOME/END also work if keyboard has these keys.
   --> HOME/END on all OS
+  --> update: HOME/END does not work in firefox on macos. So, handle
+individually instead.
 * Move to beginning/end of document:
   - CTL+HOME/END on linux/windows
   - GUI+UP/DOWN on macos (doesn't work on my machine). GUI+HOME/END also works
@@ -392,6 +394,19 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       set_current_os_from_keycode(keycode);
     }
     return false; // don't continue processing this key
+
+  case KC_HOME:
+  case KC_END:
+    // HOME and END work fine on linux and windows
+    if (current_os != MACOS) {
+      return true;
+    }
+    // on mac, tap GUI+LEFT/RIGHT instead
+    if (record->event.pressed) {
+      uint16_t kc = (keycode == KC_HOME) ? KC_LEFT : KC_RIGHT;
+      tap_code16(GUI(kc));
+    }
+    return false;
 
   case kcBspWord:
     linwinmac(C(KC_BSPC), C(KC_BSPC), ALT(KC_BSPC), true, record);

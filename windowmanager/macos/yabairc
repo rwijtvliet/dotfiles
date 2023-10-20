@@ -4,18 +4,21 @@
 yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
 sudo yabai --load-sa
 
-# mission-control desktop labels
+
+# Mission-control spaces
+
+# correct number
 WANTEDSPACES=9
 spacecount=$(yabai -m query --spaces | jq '.[].index' | wc -l)
-# Adding spaces so that there are no fewer than wanted.
+# . adding spaces so that there are no fewer than wanted
 for (( i=$spacecount; i<$WANTEDSPACES; i++)); do
     yabai -m space --create
 done
-# Delete spaces so that there are no more than wanted.
+# . delete spaces so that there are no more than wanted
 for (( i=$spacecount; i>$WANTEDSPACES; i--)); do
     yabai -m space --destroy $((WANTEDSPACES + 1))
 done
-# Name spaces
+# add names 
 yabai -m space 1 --label "1_files"
 yabai -m space 2 --label "2_www"
 yabai -m space 3 --label "3_office"
@@ -26,13 +29,16 @@ yabai -m space 7 --label "7_teams"
 yabai -m space 8 --label "8_email"
 yabai -m space 9 --label "9_media"
 
-# window rules
-# . windows to ignore 
+
+# Window rules
+
+# windows to ignore 
 yabai -m rule --add app="^(Calculator|System Preferences|Archive Utility|System Settings)$" manage=off
 yabai -m rule --add app="^mpv$" manage=off sticky=on layer=above opacity=1.0 grid=8:8:6:0:2:2
 yabai -m rule --add title="Reminder|Notification" manage=off sticky=on layer=above opacity=0.9
 yabai -m rule --add title="Reminder" manage=off sticky=on layer=above opacity=0.9
-# . where to go
+
+# assign to space
 yabai -m rule --add app="^Finder$" space=^1_files # use label incase order is changed (i.e., by moving space to other monitor)
 yabai -m rule --add app="^Firefox$" space=^2_www
 # yabai -m rule --add app="^Alacritty$" space=^4_terminal # alacritty can be opened everywhere
@@ -40,9 +46,19 @@ yabai -m rule --add app="^Teams$" space=^7_teams
 yabai -m rule --add app="Outlook" space=^8_email
 yabai -m rule --add app="^Spotify$" space=9_media
 
-# signals
+
+# Signals
+
+# defaults by yabai
 yabai -m signal --add event=window_destroyed active=yes action="yabai -m query --windows --window &> /dev/null || yabai -m window --focus mouse &> /dev/null || yabai -m window --focus \$(yabai -m query --windows --space | jq .[0].id) &> /dev/null"
 yabai -m signal --add event=window_minimized active=yes action="if \$(yabai -m query --windows --window \$YABAI_WINDOW_ID | jq -r '.\"is-floating\"'); then yabai -m query --windows --window &> /dev/null || yabai -m window --focus mouse &> /dev/null || yabai -m window --focus \$(yabai -m query --windows --space | jq .[0].id) &> /dev/null; fi"
+
+# sketchybar
+yabai -m signal --add event=window_focused action="sketchybar --trigger window_focus"
+yabai -m signal --add event=window_created action="sketchybar --trigger windows_on_spaces"
+yabai -m signal --add event=window_destroyed action="sketchybar --trigger windows_on_spaces"
+
+
 
 # specific space settings
 # yabai -m config --space mail  layout stack
@@ -60,7 +76,7 @@ yabai -m config                              \
     window_opacity_duration     0.0          \
     window_opacity              on           \
     active_window_opacity       0.95         \
-    normal_window_opacity       0.60         \
+    normal_window_opacity       0.80         \
     insert_feedback_color       0xaad75f5f   \
     split_ratio                 0.55         \
     split_type                  auto         \
