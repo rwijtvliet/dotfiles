@@ -75,24 +75,28 @@ bindsym XF86AudioPrev exec playerctl previous
 set $ws1 "1 "
 set $ws2 "2 "
 set $ws3 "3 "
-set $ws4 "4 
+set $ws4 "4 "
 set $ws5 "5 󰨞"
 set $ws6 "6 "
 set $ws7 "7 󰭹"
 set $ws8 "8 󰇰"
 set $ws9 "9 󰎈"
 
+
+# --- Unified shortcuts
+
+
 # Focus
 
 # window
 bindsym $mod+h      focus left
-bindsym $mod+Left   focus left
 bindsym $mod+t      focus up
-bindsym $mod+Up     focus up
 bindsym $mod+n      focus down
-bindsym $mod+Down   focus down
 bindsym $mod+s      focus right
-bindsym $mod+Right  focus right
+# bindsym $mod+Left   focus left
+# bindsym $mod+Up     focus up
+# bindsym $mod+Down   focus down
+# bindsym $mod+Right  focus right
 
 # workspace
 bindsym $mod+1 workspace number $ws1
@@ -122,13 +126,13 @@ bindsym $mod+Shift+b focus mode_toggle
 
 # window/container (inside workspace) 
 bindsym $mod+Shift+h     move left
-bindsym $mod+Shift+Left  move left
 bindsym $mod+Shift+t     move up
-bindsym $mod+Shift+Up    move up
 bindsym $mod+Shift+n     move down
-bindsym $mod+Shift+Down  move down
 bindsym $mod+Shift+s     move right
-bindsym $mod+Shift+Right move right
+# bindsym $mod+Shift+Left  move left
+# bindsym $mod+Shift+Up    move up
+# bindsym $mod+Shift+Down  move down
+# bindsym $mod+Shift+Right move right
 
 # (window/container) to workspace
 bindsym $mod+Shift+1 move container to workspace number $ws1; workspace number $ws1
@@ -146,7 +150,8 @@ bindsym $mod+Shift+g move workspace to output left
 bindsym $mod+Shift+l move workspace to output right
 
 
-# close
+# Close
+
 bindsym $mod+w kill
 
 
@@ -155,12 +160,17 @@ bindsym $mod+w kill
 # width
 bindsym $mod+bracketleft resize shrink width 10 px or 10 ppt
 bindsym $mod+bracketright resize grow width 10 px or 10 ppt
-
+bindsym $mod+Left resize shrink width 10 px or 10 ppt
+bindsym $mod+Right resize grow width 10 px or 10 ppt
 # height
 bindsym $mod+Shift+bracketleft resize shrink height 10 px or 10 ppt
 bindsym $mod+Shift+bracketright resize grow height 10 px or 10 ppt
 bindsym $mod+braceleft resize shrink height 10 px or 10 ppt
 bindsym $mod+braceright resize grow height 10 px or 10 ppt
+bindsym $mod+Up resize shrink width 10 px or 10 ppt
+bindsym $mod+Down resize grow width 10 px or 10 ppt
+# balance
+# TODO: (impossible on i3 without scripting)
 
 
 # Layout 
@@ -182,7 +192,7 @@ bindsym $mod+Shift+v split v
 # bindsym $mod+comma layout tabbed
 
 
-# # Appearance
+# Appearance
 
 # gaps
 # . inner gaps for all windows: space between two adjacent windows (or split containers).
@@ -230,6 +240,9 @@ bindsym $mod+F5 exec i3lock
 # F1=dvorak, F2=us
 bindsym $mod+F1 exec setxkbmap dvorak
 bindsym $mod+F2 exec setxkbmap us
+
+
+# --- Apps
 
 
 # Force windows to spaces (use `xprop` to find class)
