@@ -17,7 +17,15 @@ alias myip='curl ipinfo.io/ip'
 alias bashconf='nvim ~/.bashrc'
 alias python=python3
 
+# keyboard compilation and flashing
+alias qm='cd ~/.dotfiles/keyboard/ && nvim qmk/common/keymap_partial.c qmk/ergodox_ez_glow/ergodox.c qmk/keyboardio_atreus/atreus.c'
 alias qmce='qmk compile -kb ergodox_ez/glow -km rwijtvliet'
 alias qmfe='qmk flash -kb ergodox_ez/glow -km rwijtvliet'
+alias qme='qmce && qmfe'
 alias qmca='qmk compile -kb keyboardio/atreus -km rwijtvliet'
 alias qmfa='qmk flash -kb keyboardio/atreus -km rwijtvliet'
+alias qma='qmca && qmfa'
+
+# nvim stuff
+alias cdswap='cd ~/.local/state/nvim/swap'
+alias rmswap='rm ~/.local/state/nvim/swap/*'
