@@ -99,6 +99,7 @@ extern rgb_config_t rgb_matrix_config;
 #define numbr {141,255,233}
 #define arith {41,255,255}
 #define symbl {219,255,255}
+#define winma {154,255,255} //window management
 #define coppa {70,220,255} //copy-paste
 #define nav_3 {90,225,255}
 #define nav_2 {121,225,255}
@@ -115,14 +116,14 @@ const uint8_t PROGMEM ledmap[][RGB_MATRIX_LED_COUNT][3] = {
                                                     _____, _____, _____, _____, _____, \
                                                     _____, l_fun, l_sym, _____, _____, \
                                                     _____, modif, modif, modif, modif, \
-                                                    _____, mou_2, _____, _____, _____, \
+                                                    mou_2, _____, _____, _____, modif, \
                                                            tabul, _____, _____, tabul, \
                 // left side, but mirrored
                 _____, _____, _____, _____, _____, \
                 l_fun, l_num, l_sym, _____, _____, \
                 _____, modif, modif, modif, modif, \
-                _____, mou_2, _____, _____, _____, \
-                       l_nav, _____, _____, tabul },
+                mou_2, winma, _____, _____, modif, \
+                       winma, _____, _____, tabul },
 
     [L_BASE2] = {                                   _____, _____, _____, _____, _____, \
                                                     _____, _____, _____, _____, _____, \
