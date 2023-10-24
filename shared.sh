@@ -69,6 +69,10 @@ link_secret_resource() {
   local src_name="$1"
   local dst_path="$(realpath -s $2)"
 
+  if [ -z $dst_path ]; then
+    dst_path="$(sudo realpath -s $2)"
+  fi
+  
   # Create link.
   local src_path="$SECRETDIR/$src_name" 
   link_resource "$src_path" "$dst_path"
