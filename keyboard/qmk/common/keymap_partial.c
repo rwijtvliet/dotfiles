@@ -195,8 +195,9 @@ void custom_post_init(void);
 #define l_Y      LT(L_FUN, KC_Y)
 #define l_G      LT(L_FUN, KC_G)
 #define l_C      LT(L_SYM, KC_C)
-#define l_K      LT(L_MOUSE, KC_K)
-#define l_M      LT(L_MOUSE, KC_M)
+#define l_X      LT(L_MOUSE, KC_X)
+#define l_K      LT(L_NUM, KC_K)
+#define l_B      LT(L_MOUSE, KC_B)
 #define l_TAB    LT(L_NAV, KC_TAB)
 #define l_SPC    LT(L_NAV, KC_SPC)
 #define lNAV     MO(L_NAV)
@@ -235,7 +236,7 @@ void custom_post_init(void);
 #define LAYER_BASE \
     KC_QUOT   ,KC_COMM   ,l_DOT     ,l_P       ,l_Y       ,                      KC_F      ,l_G       ,l_C       ,KC_R      ,KC_L      ,\
     ctl_A     ,sft_O     ,maj_E     ,alt_U     ,KC_I      ,                      KC_D      ,alt_H     ,maj_T     ,sft_N     ,ctl_S     ,\
-    mnr_SCLN  ,KC_Q      ,KC_J      ,l_K       ,KC_X      ,KC_VOLD   ,KC_VOLU   ,KC_B      ,l_M       ,KC_W      ,KC_V      ,mnr_Z     ,\
+    mnr_SCLN  ,KC_Q      ,KC_J      ,l_K       ,l_X       ,KC_VOLD   ,KC_VOLU   ,l_B       ,KC_M      ,KC_W      ,KC_V      ,mnr_Z     ,\
     KC_ESC    ,XXXXXXX   ,XXXXXXX   ,mWM       ,l_SPC     ,kcLINUX   ,kcMACOS   ,sft_BSPC  ,l_TAB     ,XXXXXXX   ,XXXXXXX   ,KC_ENT
 
 //Dvorak without modifiers. Never switched to, just as base for the combos
@@ -290,7 +291,7 @@ void custom_post_init(void);
 #define LAYER_MOUSE \
     KC_WH_U   ,KC_BTN1   ,KC_MS_U   ,KC_BTN2   ,QK_BOOT   ,                      pGAME     ,KC_BTN1   ,KC_MS_U   ,KC_BTN2   ,KC_WH_U   ,\
     KC_WH_D   ,KC_MS_L   ,KC_MS_D   ,KC_MS_R   ,fEE_CLR   ,                      XXXXXXX   ,KC_MS_L   ,KC_MS_D   ,KC_MS_R   ,KC_WH_D   ,\
-    KC_ACL0   ,KC_ACL1   ,KC_ACL2   ,___f___   ,XXXXXXX   ,_______   ,_______   ,XXXXXXX   ,___f___   ,KC_ACL2   ,KC_ACL1   ,KC_ACL0   ,\
+    KC_ACL0   ,KC_ACL1   ,KC_ACL2   ,XXXXXXX   ,___f___   ,_______   ,_______   ,___f___   ,XXXXXXX   ,KC_ACL2   ,KC_ACL1   ,KC_ACL0   ,\
     ___f___   ,_______   ,_______   ,pBASE     ,___f___   ,_______   ,_______   ,_______   ,_______   ,_______   ,_______   ,_______
 
 #define LAYER_GAME \
@@ -394,6 +395,18 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       set_current_os_from_keycode(keycode);
     }
     return false; // don't continue processing this key
+
+  case l_K:
+    if (!record->tap.count) {
+      if (record->event.pressed) {
+        register_code(kc_ALT);
+        register_code(kc_GUI);
+      } else {
+        unregister_code(kc_ALT);
+        unregister_code(kc_GUI);
+      }
+    }
+    return true;
 
   case KC_HOME:
   case KC_END:

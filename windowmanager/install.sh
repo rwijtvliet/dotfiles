@@ -47,7 +47,7 @@ case "$OS" in
 
   "macos" )
     info "Removing app if already installed"
-    krew remove yabai skhd
+    brew remove yabai skhd
     rm -rf "$HOME/.config/yabai"
     rm -rf "$HOME/.config/skhd"
     sudo rm /private/etc/sudoers.d/yabai
@@ -67,8 +67,8 @@ case "$OS" in
     info "Linking config"
     mkdir -p "$HOME/.config/yabai"
     mkdir -p "$HOME/.config/skhd"
-    link_public_resource "./macos/yabairc" "$HOME/.config/yabai/yabairc"
-    link_public_resource "./macos/skhdrc" "$HOME/.config/skhd/skhdrc"
+    link_public_resource "./macos/yabai/yabairc" "$HOME/.config/yabai/yabairc"
+    link_public_resource "./macos/skhd/skhdrc" "$HOME/.config/skhd/skhdrc"
     # for sketchybar
     link_public_resource "./macos/sketchybar" "$HOME/.config/sketchybar"
     

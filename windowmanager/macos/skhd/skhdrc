@@ -1,15 +1,20 @@
+alt + cmd - a : \
+    ~/python/yabaipy/cli.py sort_displays 
+# --- Unified shortcuts
+
+
 # Focus
 
 # window
 alt + cmd - h :     yabai -m window --focus west
-alt + cmd - left :  yabai -m window --focus west
 alt + cmd - t :     yabai -m window --focus north
-alt + cmd - up :    yabai -m window --focus north
 alt + cmd - n :     yabai -m window --focus south
-alt + cmd - down :  yabai -m window --focus south
 alt + cmd - s :     yabai -m window --focus east
-alt + cmd - right : yabai -m window --focus east
 alt + cmd - d :     yabai -m window --focus largest
+# alt + cmd - left :  yabai -m window --focus west
+# alt + cmd - up :    yabai -m window --focus north
+# alt + cmd - down :  yabai -m window --focus south
+# alt + cmd - right : yabai -m window --focus east
 
 # space
 alt + cmd - 1 : yabai -m space --focus 1_files
@@ -34,14 +39,14 @@ alt + cmd - l : yabai -m display --focus east
 
 # window (inside space)
 alt + cmd + shift - h :     yabai -m window --swap west
-alt + cmd + shift - left :  yabai -m window --swap west
 alt + cmd + shift - t :     yabai -m window --swap north
-alt + cmd + shift - up :    yabai -m window --swap north
 alt + cmd + shift - n :     yabai -m window --swap south
-alt + cmd + shift - down :  yabai -m window --swap south
 alt + cmd + shift - s :     yabai -m window --swap east
-alt + cmd + shift - right : yabai -m window --swap east
 alt + cmd + shift - d :     yabai -m window --swap largest
+# alt + cmd + shift - left :  yabai -m window --swap west
+# alt + cmd + shift - up :    yabai -m window --swap north
+# alt + cmd + shift - down :  yabai -m window --swap south
+# alt + cmd + shift - right : yabai -m window --swap east
 
 # (window) to space
 alt + cmd + shift - 1 : yabai -m window --space 1_files; \
@@ -73,22 +78,43 @@ alt + cmd + shift - 9 : yabai -m window --space 9_media; \
                         sketchybar --trigger windows_on_spaces 
 
 # (space) to monitor
-alt + cmd + shift - g : yabai -m space   --display west; \
-                               yabai -m display --focus west
-alt + cmd + shift - l : yabai -m space   --display east; \
-                               yabai -m display --focus east
+alt + cmd + shift - g : \
+    ~/python/yabaipy/cli.py send_to_display west
+    # yabai -m space   --display west; \
+    # yabai -m display --focus west
+alt + cmd + shift - l : \
+    ~/python/yabaipy/cli.py send_to_display east
+    # yabai -m space   --display east; \
+    # yabai -m display --focus east
 
 
 # Close
-alt + cmd - w : yabai -m window --close
+
+alt + cmd - w : \
+    yabai -m window --close
+
 
 # Size
 
 # width
-# TODO
-
+alt + cmd - right : \
+    yabai -m window --resize bottom_right:10:0; \
+    yabai -m window --resize top_left:-10:0
+alt + cmd - left : \
+    yabai -m window --resize bottom_right:-10:0; \
+    yabai -m window --resize top_left:10:0 
+#TODO: add [ and ]
 # height
-# TODO
+alt + cmd - down : \
+    yabai -m window --resize bottom_right:0:10; \
+    yabai -m window --resize top_left:0:-10
+alt + cmd - up : \
+    yabai -m window --resize bottom_right:0:-10; \
+    yabai -m window --resize top_left:0:10 
+#TODO: add { and }
+# balance
+alt + cmd - 0 : \
+    yabai -m space --balance
 
 
 # Layout
@@ -104,13 +130,20 @@ alt + cmd - m : \
     yabai -m window --toggle zoom-fullscreen; \
     sketchybar --trigger window_focus
 
+# where to position new window
+alt + cmd - v : \
+    yabai -m window --insert south
+alt + cmd + shift - v : \
+    yabai -m window --insert east
+
 # Create 3 colums with center one the biggest
 # TODO
 
 
+
 # Appearance
 
-# Toggle gap between windows
+# toggle gap between windows
 alt + cmd - j : \
     yabai -m space --toggle gap --toggle padding 
 
@@ -119,7 +152,8 @@ alt + cmd - j : \
 
 # start
 alt + cmd - f3 : \
-    /usr/bin/env osascript <<< "display notification \"Restarting Yabai\" with title \"Yabai\""; \
+    /usr/bin/env osascript <<< "display notification \"(Re)starting Yabai\" with title \"Yabai\""; \
+    yabai --stop-service; \
     yabai --start-service; \
     /usr/bin/env osascript -e 'tell application id "tracesOf.Uebersicht" to refresh'
 
@@ -135,7 +169,7 @@ alt + cmd - f4 : \
 
 # terminal
 alt + cmd - return : \
-    open /Applications/Alacritty.app
+    open -n /Applications/Alacritty.app
 
 # screenshot
 # . to clipboard

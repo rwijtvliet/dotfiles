@@ -35,8 +35,7 @@ yabai -m space 9 --label "9_media"
 # windows to ignore 
 yabai -m rule --add app="^(Calculator|System Preferences|Archive Utility|System Settings)$" manage=off
 yabai -m rule --add app="^mpv$" manage=off sticky=on layer=above opacity=1.0 grid=8:8:6:0:2:2
-yabai -m rule --add title="Reminder|Notification" manage=off sticky=on layer=above opacity=0.9
-yabai -m rule --add title="Reminder" manage=off sticky=on layer=above opacity=0.9
+yabai -m rule --add title="(Reminder|Notification|Preferences)$" manage=off sticky=on layer=above opacity=0.9
 
 # assign to space
 yabai -m rule --add app="^Finder$" space=^1_files # use label incase order is changed (i.e., by moving space to other monitor)
@@ -67,7 +66,7 @@ yabai -m signal --add event=window_destroyed action="sketchybar --trigger window
 # global settings
 # window-topmost must be off, otherwise pop-up windows hide behind main window
 yabai -m config                              \
-    external_bar                all:20:30     \
+    external_bar                all:0:30     \
     mouse_follows_focus         off          \
     focus_follows_mouse         off          \
     window_placement            second_child \
@@ -91,5 +90,14 @@ yabai -m config                              \
     mouse_action1               move         \
     mouse_action2               resize       \
     mouse_drop_action           swap
+
+
+# Apps to start 
+
+open /Applications/Firefox.app
+open /Applications/Spotify.app
+open /Applications/Outlook.app
+open /Applications/Teams.app
+
 
 echo "yabai configuration loaded.."
