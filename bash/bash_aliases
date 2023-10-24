@@ -29,3 +29,11 @@ alias qma='qmca && qmfa'
 # nvim stuff
 alias cdswap='cd ~/.local/state/nvim/swap'
 alias rmswap='rm ~/.local/state/nvim/swap/*'
+
+# window manager stuff
+# . on linux
+alias wml='cd ~/.dotfiles/windowmanager/linux && nvim i3/config polybar/config.ini rofi/config.rasi'
+# . on macos
+alias wmm='cd ~/.dotfiles/windowmanager/macos && nvim sketchybar/sketchybarrc skhd/skhdrc yabai/yabairc'
+
+
