@@ -65,10 +65,14 @@ case "$OS" in
     curl -L https://github.com/kvndrsslr/sketchybar-app-font/releases/download/latest/sketchybar-app-font.ttf -o $HOME/Library/Fonts/sketchybar-app-font.ttf
     
     info "Linking config"
-    mkdir -p "$HOME/.config/yabai"
     mkdir -p "$HOME/.config/skhd"
-    link_public_resource "./macos/yabai/yabairc" "$HOME/.config/yabai/yabairc"
+    link_public_resource "./macos/yabai" "$HOME/.config/yabai"
     link_public_resource "./macos/skhd/skhdrc" "$HOME/.config/skhd/skhdrc"
+    $(
+      git clone https://github.com/rwijtvliet/yabpy "$HOME/.config/skhd/yabpy"
+      cd "$HOME/.config/skhd/yabpy"
+      poetry install
+    )
     # for sketchybar
     link_public_resource "./macos/sketchybar" "$HOME/.config/sketchybar"
     

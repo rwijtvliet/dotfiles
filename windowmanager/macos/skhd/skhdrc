@@ -79,11 +79,11 @@ alt + cmd + shift - 9 : yabai -m window --space 9_media; \
 
 # (space) to monitor
 alt + cmd + shift - g : \
-    ~/python/yabaipy/cli.py send_to_display west
-    # yabai -m space   --display west; \
+    $HOME/.config/skhd/yabpy/cli.py send_to_display west
+    # yabai -m space   --display west; \''
     # yabai -m display --focus west
 alt + cmd + shift - l : \
-    ~/python/yabaipy/cli.py send_to_display east
+    $HOME/.config/skhd/yabpy/cli.py send_to_display east
     # yabai -m space   --display east; \
     # yabai -m display --focus east
 
