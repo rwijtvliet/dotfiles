@@ -147,3 +147,5 @@ eval "$(starship init bash)"
 # message so I know it worked
 echo "successfully loaded Ruud Wijtvliet user profile"
 
+
+source /Users/ruud.wijtvliet/.bash_completions/yabpy.sh
