@@ -19,17 +19,17 @@ source "$CONFIG_DIR/colors.sh"
 # https://felixkratz.github.io/SketchyBar/config/tricks#color-picker
 
 bar=(
-  height=32
-  color=$BAR_COLOR
+  height=27
+  color=$background
   border_width=0
-  border_color=$BAR_BORDER_COLOR
+  border_color=$background
   shadow=off
   position=bottom
   sticky=on
-  padding_right=10
-  padding_left=10
+  padding_right=0
+  padding_left=0
   y_offset=0
-  margin=-2
+  margin=0
   topmost=window
 )
 sketchybar --bar "${bar[@]}"
@@ -48,17 +48,17 @@ defaults=(
   label.color=$LABEL_COLOR
   label.padding_left=5
   label.padding_right=5
-  padding_right=4
-  padding_left=4
-  background.height=26
-  background.corner_radius=9
-  background.border_width=2
+  background.height=27
+  background.corner_radius=0
+  background.border_width=0
+  background.padding_left=4
+  background.padding_right=4
   popup.background.border_width=2
   popup.background.corner_radius=9
   popup.background.border_color=$POPUP_BORDER_COLOR
   popup.background.color=$POPUP_BACKGROUND_COLOR
   popup.blur_radius=20
-  popup.background.shadow.drawing=on
+  popup.background.shadow.drawing=off
 )
 sketchybar --default "${defaults[@]}"
 
@@ -70,7 +70,7 @@ sketchybar --default "${defaults[@]}"
 
 
 # Left
-source "$ITEM_DIR/apple.sh"
+# source "$ITEM_DIR/apple.sh"
 source "$ITEM_DIR/spaces.sh"
 source "$ITEM_DIR/yabai.sh"
 source "$ITEM_DIR/front_app.sh"
@@ -79,11 +79,11 @@ source "$ITEM_DIR/front_app.sh"
 source "$ITEM_DIR/spotify.sh"
 
 # Right
-source "$ITEM_DIR/calendar.sh"
+# source "$ITEM_DIR/calendar.sh"
 source "$ITEM_DIR/brew.sh"
 source "$ITEM_DIR/github.sh"
 source "$ITEM_DIR/wifi.sh"
-source "$ITEM_DIR/battery.sh"
+# source "$ITEM_DIR/battery.sh"
 source "$ITEM_DIR/volume.sh"
 source "$ITEM_DIR/cpu.sh"
 

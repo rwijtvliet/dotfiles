@@ -1,5 +1,3 @@
-alt + cmd - a : \
-    ~/python/yabaipy/cli.py sort_displays 
 # --- Unified shortcuts
 
 
@@ -18,23 +16,23 @@ alt + cmd - d :     yabai -m window --focus largest
 
 # space
 alt + cmd - 1 : \
-    yabpycli focus_space_by_key 1
+    yabpy focus-space 1
 alt + cmd - 2 : \
-    yabpycli focus_space_by_key 2
+    yabpy focus-space 2
 alt + cmd - 3 : \
-    yabpycli focus_space_by_key 3
+    yabpy focus-space 3
 alt + cmd - 4 : \
-    yabpycli focus_space_by_key 4
+    yabpy focus-space 4
 alt + cmd - 5 : \
-    yabpycli focus_space_by_key 5
+    yabpy focus-space 5
 alt + cmd - 6 : \
-    yabpycli focus_space_by_key 6
+    yabpy focus-space 6
 alt + cmd - 7 : \
-    yabpycli focus_space_by_key 7
+    yabpy focus-space 7
 alt + cmd - 8 : \
-    yabpycli focus_space_by_key 8
+    yabpy focus-space 8
 alt + cmd - 9 : \
-    yabpycli focus_space_by_key 9
+    yabpy focus-space 9
     
 # monitor
 alt + cmd - g : yabai -m display --focus west
@@ -59,33 +57,29 @@ alt + cmd + shift - d :     yabai -m window --swap largest
 
 # (window) to space
 alt + cmd + shift - 1 : \
-    yabpycli move_window_to_space_by_key 1
+    yabpy window-to-space 1
 alt + cmd + shift - 2 : \
-    yabpycli move_window_to_space_by_key 2
+    yabpy window-to-space 2
 alt + cmd + shift - 3 : \
-    yabpycli move_window_to_space_by_key 3
+    yabpy window-to-space 3
 alt + cmd + shift - 4 : \
-    yabpycli move_window_to_space_by_key 4
+    yabpy window-to-space 4
 alt + cmd + shift - 5 : \
-    yabpycli move_window_to_space_by_key 5
+    yabpy window-to-space 5
 alt + cmd + shift - 6 : \
-    yabpycli move_window_to_space_by_key 6
+    yabpy window-to-space 6
 alt + cmd + shift - 7 : \
-    yabpycli move_window_to_space_by_key 7
+    yabpy window-to-space 7
 alt + cmd + shift - 8 : \
-    yabpycli move_window_to_space_by_key 8 
+    yabpy window-to-space 8 
 alt + cmd + shift - 9 : \
-    yabpycli move_window_to_space_by_key 9
+    yabpy window-to-space 9
 
 # (space) to monitor
 alt + cmd + shift - g : \
-    $HOME/.config/skhd/yabpy/cli.py send_to_display west
-    # yabai -m space   --display west; \''
-    # yabai -m display --focus west
+    yabpy space-to-display west
 alt + cmd + shift - l : \
-    $HOME/.config/skhd/yabpy/cli.py send_to_display east
-    # yabai -m space   --display east; \
-    # yabai -m display --focus east
+    yabpy space-to-display east
 
 
 # Close

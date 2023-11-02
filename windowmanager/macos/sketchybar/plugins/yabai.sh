@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 window_state() {
   source "$CONFIG_DIR/colors.sh"
@@ -6,9 +6,6 @@ window_state() {
 
   WINDOW=$(yabai -m query --windows --window)
   STACK_INDEX=$(echo "$WINDOW" | jq '.["stack-index"]')
-
-  COLOR=$BAR_BORDER_COLOR
-  ICON=""
 
   if [ "$(echo "$WINDOW" | jq '.["is-floating"]')" = "true" ]; then
     ICON+=$YABAI_FLOAT
@@ -24,6 +21,9 @@ window_state() {
     ICON+=$YABAI_STACK
     LABEL="$(printf "[%s/%s]" "$STACK_INDEX" "$LAST_STACK_INDEX")"
     COLOR=$RED
+  else
+    ICON=$YABAI_GRID
+    COLOR=$WHITE
   fi
 
   args=(--animate sin 10 --bar border_color=$COLOR
@@ -39,24 +39,27 @@ window_state() {
 }
 
 windows_on_spaces () {
+  source "$CONFIG_DIR/colors.sh"
   CURRENT_SPACES="$(yabai -m query --displays | jq -r '.[].spaces | @sh')"
 
-  args=(--set spaces_bracket drawing=off
-        --set '/space\..*/' background.drawing=on
-        --animate sin 10)
+  args=(--set spaces_bracket drawing=on
+        --set '/space_.*/' background.drawing=on
+        --animate sin 1)
 
   while read -r line
   do
-    for space in $line
+    for spidx in $line # space index
     do
-      icon_strip=" "
-      apps=$(yabai -m query --windows --space $space | jq -r ".[].app")
+      icon_strip=""
+      apps=$(yabai -m query --windows --space $spidx | jq -r ".[].app")
       if [ "$apps" != "" ]; then
         while IFS= read -r app; do
           icon_strip+=" $($CONFIG_DIR/plugins/icon_map.sh "$app")"
         done <<< "$apps"
+        args+=(--set space_$spidx label="$icon_strip" label.drawing=on icon.color=$foreground)
+      else
+        args+=(--set space_$spidx label=""            label.drawing=off icon.color=$almost_invisible)
       fi
-      args+=(--set space.$space label="$icon_strip" label.drawing=on)
     done
   done <<< "$CURRENT_SPACES"
 

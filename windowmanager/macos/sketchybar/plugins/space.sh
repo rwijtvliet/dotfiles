@@ -1,15 +1,15 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 update() {
   source "$CONFIG_DIR/colors.sh"
-  COLOR=$BACKGROUND_2
   if [ "$SELECTED" = "true" ]; then
-    COLOR=$GREY
+    color=$background_alt
+  else
+    color=$background
   fi
-  echo $NAME
   sketchybar --set $NAME icon.highlight=$SELECTED \
                          label.highlight=$SELECTED \
-                         background.border_color=$COLOR
+                         background.color=$color
 }
 
 mouse_clicked() {

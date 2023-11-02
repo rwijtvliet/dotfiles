@@ -6,28 +6,7 @@ sudo yabai --load-sa
 
 
 # Mission-control spaces
-
-# correct number
-WANTEDSPACES=9
-spacecount=$(yabai -m query --spaces | jq '.[].index' | wc -l)
-# . adding spaces so that there are no fewer than wanted
-for (( i=$spacecount; i<$WANTEDSPACES; i++)); do
-    yabai -m space --create
-done
-# . delete spaces so that there are no more than wanted
-for (( i=$spacecount; i>$WANTEDSPACES; i--)); do
-    yabai -m space --destroy $((WANTEDSPACES + 1))
-done
-# add names 
-yabai -m space 1 --label "1_files"
-yabai -m space 2 --label "2_www"
-yabai -m space 3 --label "3_office"
-yabai -m space 4 --label "4_terminal"
-yabai -m space 5 --label "5_vscode"
-yabai -m space 6 --label "6_"
-yabai -m space 7 --label "7_teams"
-yabai -m space 8 --label "8_email"
-yabai -m space 9 --label "9_media"
+yabpy prepare-spaces
 
 
 # Window rules
@@ -41,7 +20,7 @@ yabai -m rule --add title="(Reminder|Notification|Preferences)$" manage=off stic
 yabai -m rule --add app="^Finder$" space=^1_files # use label incase order is changed (i.e., by moving space to other monitor)
 yabai -m rule --add app="^Firefox$" space=^2_www
 # yabai -m rule --add app="^Alacritty$" space=^4_terminal # alacritty can be opened everywhere
-yabai -m rule --add app="^Teams$" space=^7_teams
+yabai -m rule --add app="Teams" space=^7_teams
 yabai -m rule --add app="Outlook" space=^8_email
 yabai -m rule --add app="^Spotify$" space=9_media
 
@@ -94,10 +73,10 @@ yabai -m config                              \
 
 # Apps to start 
 
-open /Applications/Firefox.app
-open /Applications/Spotify.app
-open /Applications/Outlook.app
-open /Applications/Teams.app
+open "/Applications/Firefox.app"
+open "/Applications/Spotify.app"
+open "/Applications/Microsoft Outlook.app"
+open "/Applications/Microsoft Teams classic.app"
 
 
 echo "yabai configuration loaded.."

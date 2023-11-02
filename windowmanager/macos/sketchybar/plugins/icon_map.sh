@@ -368,7 +368,10 @@ case "$1" in
 "KeePassXC")
   icon_result=":kee_pass_x_c:"
   ;;
-"Microsoft Teams")
+"Microsoft Outlook")
+  icon_result=":android_messages:"
+  ;;
+"Microsoft Teams" | "Microsoft Teams classic")
   icon_result=":microsoft_teams:"
   ;;
 "카카오톡")
