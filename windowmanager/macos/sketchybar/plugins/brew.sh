@@ -30,8 +30,10 @@ case "$SENDER" in
     "brew_update")
         update
         ;;
-    "mouse.click")
-        brew upgrade
+    "mouse.clicked")
+        if [ "$MODIFIER" = "cmd" ]; then
+            brew upgrade
+        fi
         update
         ;;
     *)

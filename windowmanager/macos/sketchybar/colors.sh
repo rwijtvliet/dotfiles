@@ -31,7 +31,7 @@ export disabled=0xff707880
 export almost_invisible=0x9a707880
 
 
-export POPUP_BACKGROUND_COLOR=0xff1e1e2e
-export POPUP_BORDER_COLOR=$WHITE
+export POPUP_BACKGROUND_COLOR=$background
+export POPUP_BORDER_COLOR=$GREY
 
 export SHADOW_COLOR=$BLACK

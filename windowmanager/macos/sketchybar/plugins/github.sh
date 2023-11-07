@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+BELL=􀋚
+BELL_DOT=􀝗
 GIT_ISSUE=􀍷
 GIT_DISCUSSION=􀒤
 GIT_PULL_REQUEST=􀙡
@@ -16,7 +18,7 @@ update() {
         &&  args+=(--set "$NAME" icon="$BELL" label="0") \
         ||  args+=(--set "$NAME" icon="$BELL_DOT" label="$count")
 
-    prev_count=$(sketchybar --query github.bell | jq -r .label.value)
+    prev_count=$(sketchybar --query github_bell | jq -r .label.value)
     # For sound to play around with:
     # afplay /System/Library/Sounds/Morse.aiff
 
@@ -24,7 +26,7 @@ update() {
 
     counter=0
     color=$BLUE
-    args+=(--set github.bell icon.color="$color")
+    args+=(--set github_bell icon.color="$color")
 
     while read -r repo url type title
     do
@@ -35,6 +37,7 @@ update() {
 
         if [ "${repo}" = "" ] && [ "${title}" = "" ]; then
             repo="Note"
+            icon=""
             title="No new notifications"
         fi
         case "${type}" in
@@ -63,23 +66,22 @@ update() {
         if [ "$important" != "" ]; then
             color=$RED
             icon=􀁞
-            args+=(--set github.bell icon.color="$color")
+            args+=(--set github_bell icon.color="$color")
         fi
 
         notification=(
-            label="$(echo "$title" | sed -e "s/^'//" -e "s/'$//")"
             icon="$icon $(echo "$repo" | sed -e "s/^'//" -e "s/'$//"):"
-            icon.padding_left="$padding"
-            label.padding_right="$padding"
             icon.color="$color"
-            position=popup.github.bell
-            icon.background.color="$color"
+            icon.padding_left="$padding"
+            label="$(echo "$title" | sed -e "s/^'//" -e "s/'$//")"
+            label.padding_right="$padding"
+            position=popup.github_bell
             drawing=on
-            click_script="open $url; sketchybar --set github.bell popup.drawing=off"
+            click_script="open $url; sketchybar --set github_bell popup.drawing=off"
         )
 
         args+=(
-            --clone "github.notification.$counter" github.template
+            --clone "github.notification.$counter" github_template
             --set "github.notification.$counter" "${notification[@]}"
         )
     done <<< "$(echo "$notifications" | jq -r '.[] | [.repository.name, .subject.latest_comment_url, .subject.type, .subject.title] | @sh')"
@@ -87,7 +89,7 @@ update() {
     sketchybar -m "${args[@]}" > /dev/null
 
     if [ "$count" -gt "$prev_count" ] 2>/dev/null || [ "$SENDER" = "forced" ]; then
-        sketchybar --animate tanh 15 --set github.bell label.y_offset=5 label.y_offset=0
+        sketchybar --animate tanh 15 --set github_bell label.y_offset=5 label.y_offset=0
     fi
 }
 
@@ -106,6 +108,10 @@ case "$SENDER" in
         popup off
         ;;
     "mouse.clicked")
-        popup toggle
+        if [ "$BUTTON" = "right" ]; then
+            update
+        else
+            popup toggle
+        fi
         ;;
 esac

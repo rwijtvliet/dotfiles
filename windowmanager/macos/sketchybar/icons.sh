@@ -1,13 +1,10 @@
 #!/usr/bin/env bash
 
 # General Icons
-LOADING=􀖇
 APPLE=􀣺
 PREFERENCES=􀺽
 ACTIVITY=􀒓
 LOCK=􀒳
-BELL=􀋚
-BELL_DOT=􀝗
 
 # Git Icons
 # Spotify Icons
