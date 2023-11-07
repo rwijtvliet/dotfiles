@@ -1,26 +1,33 @@
 #!/usr/bin/env bash
 
 update() {
-  source "$CONFIG_DIR/colors.sh"
-  if [ "$SELECTED" = "true" ]; then
-    color=$background_alt
-  else
-    color=$background
-  fi
-  sketchybar --set $NAME icon.highlight=$SELECTED \
-                         label.highlight=$SELECTED \
-                         background.color=$color
+    source "$CONFIG_DIR/colors.sh"
+    args=(
+        icon="$(yabpy space-prop index "$SID" key)"
+        icon.highlight="$SELECTED"
+        label.highlight="$SELECTED"
+    )
+    if [ "$SELECTED" = "true" ]; then
+        colorrrggbb="$(yabpy space-prop index "$SID" color)"
+        color="0xff${colorrrggbb:1:100}"
+        args+=(background.color="$color")
+    else
+        args+=(background.color="$background")
+    fi
+    sketchybar --set "$NAME" "${args[@]}"
 }
 
-mouse_clicked() {
-  if [ "$BUTTON" = "left" ]; then
-    yabai -m space --focus $SID 2>/dev/null
-  fi
+focus_space() {
+    yabai -m space --focus "$SID" 2>/dev/null
 }
 
 case "$SENDER" in
-  "mouse.clicked") mouse_clicked
-  ;;
-  *) update
-  ;;
+    "mouse.clicked")
+        if [ "$BUTTON" = "left" ]; then
+            focus_space
+        fi
+        ;;
+    *)
+        update
+        ;;
 esac

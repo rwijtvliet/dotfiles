@@ -1,43 +1,53 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
+source "$CONFIG_DIR/colors.sh"
+
+volume_source=(
+    icon.drawing=off
+    label.width=dynamic
+    label.align=left
+    label.color="$foreground"
+    label.padding_left=0
+    label.padding_right=10
+    script="$PLUGIN_DIR/volume_source.sh"
+)
 
 volume_slider=(
-  script="$PLUGIN_DIR/volume.sh"
-  updates=on
-  label.drawing=off
-  icon.drawing=off
-  slider.highlight_color=$BLUE
-  slider.background.height=5
-  slider.background.corner_radius=3
-  slider.background.color=$BACKGROUND_2
-  slider.knob=􀀁
-  slider.knob.drawing=on
+    updates=on
+    label.drawing=off
+    icon.drawing=off
+    slider.highlight_color="$primary"
+    slider.background.height=5
+    slider.background.corner_radius=3
+    slider.background.color="$disabled"
+    slider.knob=􀀁
+    slider.knob.drawing=on
+    background.padding_left=0
+    background.padding_right=0
+    script="$PLUGIN_DIR/volume_slider.sh"
 )
 
 volume_icon=(
-  click_script="$PLUGIN_DIR/volume_click.sh"
-  padding_left=10
-  icon=$VOLUME_100
-  icon.width=0
-  icon.align=left
-  icon.color=$GREY
-  icon.font="$FONT:Regular:14.0"
-  label.width=25
-  label.align=left
-  label.font="$FONT:Regular:14.0"
+    padding_left=10
+    icon=""
+    icon.width=dynamic
+    icon.color="$primary"
+    icon.font="$FONT:Regular:20.0"
+    label.width=dynamic
+    label.color="$foreground"
+    label.padding_right=0
+    script="$PLUGIN_DIR/volume_icon.sh"
 )
 
-status_bracket=(
-  background.color=$BACKGROUND_1
-  background.border_color=$BACKGROUND_2
-)
-
-sketchybar --add slider volume right            \
-           --set volume "${volume_slider[@]}"   \
-           --subscribe volume volume_change     \
-                              mouse.clicked     \
-                                                \
-           --add item volume_icon right         \
-           --set volume_icon "${volume_icon[@]}"
-
-sketchybar --add bracket status brew github.bell volume_icon \
-           --set status "${status_bracket[@]}"
+sketchybar \
+    --add item volume_source right \
+    --set volume_source "${volume_source[@]}" \
+    --subscribe volume_source mouse.clicked volume_change \
+    \
+    --add slider volume_slider right            \
+    --set volume_slider "${volume_slider[@]}"   \
+    --subscribe volume_slider mouse.clicked volume_change \
+    \
+    --add item volume_icon right         \
+    --set volume_icon "${volume_icon[@]}" \
+    --subscribe volume_icon mouse.clicked volume_change

@@ -1,21 +1,33 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-source "$CONFIG_DIR/colors.sh"
+update() {
+    source "$CONFIG_DIR/colors.sh"
 
-COUNT="$(brew outdated | wc -l | tr -d ' ')"
+    count="$(brew outdated | wc -l | tr -d ' ')"
+    case "$count" in
+        [3-5][0-9])
+            color=$ORANGE
+            ;;
+        [1-2][0-9])
+            color=$YELLOW
+            ;;
+        [1-9])
+            color=$WHITE
+            ;;
+        0)
+            color=$GREEN
+            count=􀆅
+            ;;
+        *)
+            color=$RED
+    esac
 
-COLOR=$RED
+    sketchybar --set "$NAME" label="$count" icon.color="$color"
+}
 
-case "$COUNT" in
-  [3-5][0-9]) COLOR=$ORANGE
-  ;;
-  [1-2][0-9]) COLOR=$YELLOW
-  ;;
-  [1-9]) COLOR=$WHITE
-  ;;
-  0) COLOR=$GREEN
-     COUNT=􀆅
-  ;;
+
+case "$SENDER" in
+    "mouse.clicked")
+        popup toggle
+        ;;
 esac
-
-sketchybar --set $NAME label=$COUNT icon.color=$COLOR

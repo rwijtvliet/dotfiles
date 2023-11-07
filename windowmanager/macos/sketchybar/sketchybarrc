@@ -1,13 +1,12 @@
 #!/usr/bin/env bash
- 
+
 # This is a demo config to show some of the most important commands more easily.
 # This is meant to be changed and configured, as it is intentionally kept sparse.
 # For a more advanced configuration example see my dotfiles:
 # https://github.com/FelixKratz/dotfiles
 FONT="Hack Nerd Font"
-
-ITEM_DIR="$CONFIG_DIR/items"
-PLUGIN_DIR="$CONFIG_DIR/plugins"
+export PLUGIN_DIR="$CONFIG_DIR/plugins"
+export ITEM_DIR="$CONFIG_DIR/items"
 source "$CONFIG_DIR/icons.sh"
 source "$CONFIG_DIR/colors.sh"
 
@@ -19,18 +18,18 @@ source "$CONFIG_DIR/colors.sh"
 # https://felixkratz.github.io/SketchyBar/config/tricks#color-picker
 
 bar=(
-  height=27
-  color=$background
-  border_width=0
-  border_color=$background
-  shadow=off
-  position=bottom
-  sticky=on
-  padding_right=0
-  padding_left=0
-  y_offset=0
-  margin=0
-  topmost=window
+    height=27
+    color="$background"
+    border_width=0
+    border_color="$background"
+    shadow=off
+    position=bottom
+    sticky=on
+    padding_right=0
+    padding_left=0
+    y_offset=0
+    margin=0
+    topmost=window
 )
 sketchybar --bar "${bar[@]}"
 
@@ -40,25 +39,26 @@ sketchybar --bar "${bar[@]}"
 # https://felixkratz.github.io/SketchyBar/config/items
 
 defaults=(
-  icon.font="Agave Nerd Font:Bold:20"   
-  icon.color=$ICON_COLOR
-  icon.padding_left=4
-  icon.padding_right=4
-  label.font="$FONT:Bold:14"
-  label.color=$LABEL_COLOR
-  label.padding_left=5
-  label.padding_right=5
-  background.height=27
-  background.corner_radius=0
-  background.border_width=0
-  background.padding_left=4
-  background.padding_right=4
-  popup.background.border_width=2
-  popup.background.corner_radius=9
-  popup.background.border_color=$POPUP_BORDER_COLOR
-  popup.background.color=$POPUP_BACKGROUND_COLOR
-  popup.blur_radius=20
-  popup.background.shadow.drawing=off
+    icon.font="Agave Nerd Font:Bold:20"
+    icon.color="$ICON_COLOR"
+    icon.padding_left=4
+    icon.padding_right=4
+    label.font="$FONT:Bold:14"
+    label.color="$LABEL_COLOR"
+    label.padding_left=5
+    label.padding_right=5
+    background.height=27
+    background.color="$TRANSPARENT"
+    background.corner_radius=0
+    background.border_width=0
+    background.padding_left=4
+    background.padding_right=4
+    popup.background.border_width=2
+    popup.background.corner_radius=9
+    popup.background.border_color="$POPUP_BORDER_COLOR"
+    popup.background.color="$POPUP_BACKGROUND_COLOR"
+    popup.blur_radius=20
+    popup.background.shadow.drawing=off
 )
 sketchybar --default "${defaults[@]}"
 
@@ -72,11 +72,11 @@ sketchybar --default "${defaults[@]}"
 # Left
 # source "$ITEM_DIR/apple.sh"
 source "$ITEM_DIR/spaces.sh"
-source "$ITEM_DIR/yabai.sh"
+source "$ITEM_DIR/windows.sh"
 source "$ITEM_DIR/front_app.sh"
 
 # Center
-source "$ITEM_DIR/spotify.sh"
+# source "$ITEM_DIR/spotify.sh"
 
 # Right
 # source "$ITEM_DIR/calendar.sh"
@@ -85,19 +85,19 @@ source "$ITEM_DIR/github.sh"
 source "$ITEM_DIR/wifi.sh"
 # source "$ITEM_DIR/battery.sh"
 source "$ITEM_DIR/volume.sh"
-source "$ITEM_DIR/cpu.sh"
+# source "$ITEM_DIR/cpu.sh"
 
 
 
 
-# SPACE_ICONS=("" #1 
-#              "" #2 
+# SPACE_ICONS=("" #1
+#              "" #2
 #              "" #3
 #              "" #4
 #              "󰨞" #5
-#              " " #6 
-#              "󰊻" #7 
-#              "󰇰" #8 
+#              " " #6
+#              "󰊻" #7
+#              "󰇰" #8
 #              "󰎈" #9
 #              )
 #
@@ -105,17 +105,17 @@ source "$ITEM_DIR/cpu.sh"
 # do
 #   sid=$(($i+1))
 #   sketchybar --add space space.$sid left                                 \
-#              --set space.$sid associated_space=$sid                      \
-#                               icon="${SPACE_ICONS[i]}"                   \
-#                               icon.padding_left=8                        \
-#                               background.color=0x44ffffff                \
-#                               background.corner_radius=5                 \
-#                               background.height=20                       \
-#                               background.drawing=off                     \
-#                               label="$sid"                               \
-#                               label.padding_right=6                      \
-#                               script="$PLUGIN_DIR/space.sh"              \
-#                               click_script="yabai -m space --focus $sid"
+    #              --set space.$sid associated_space=$sid                      \
+    #                               icon="${SPACE_ICONS[i]}"                   \
+    #                               icon.padding_left=8                        \
+    #                               background.color=0x44ffffff                \
+    #                               background.corner_radius=5                 \
+    #                               background.height=20                       \
+    #                               background.drawing=off                     \
+    #                               label="$sid"                               \
+    #                               label.padding_right=6                      \
+    #                               script="$PLUGIN_DIR/space.sh"              \
+    #                               click_script="yabai -m space --focus $sid"
 # done
 #
 # ##### Adding Left Items #####
@@ -123,15 +123,15 @@ source "$ITEM_DIR/cpu.sh"
 # # only the properties deviating from the current defaults need to be set
 #
 # sketchybar --add item space_separator left                         \
-#            --set space_separator icon=                            \
-#                                  padding_left=10                   \
-#                                  padding_right=10                  \
-#                                  label.drawing=off                 \
-#                                                                    \
-#            --add item front_app left                               \
-#            --set front_app       script="$PLUGIN_DIR/front_app.sh" \
-#                                  icon.drawing=off                  \
-#            --subscribe front_app front_app_switched
+    #            --set space_separator icon=                            \
+    #                                  padding_left=10                   \
+    #                                  padding_right=10                  \
+    #                                  label.drawing=off                 \
+    #                                                                    \
+    #            --add item front_app left                               \
+    #            --set front_app       script="$PLUGIN_DIR/front_app.sh" \
+    #                                  icon.drawing=off                  \
+    #            --subscribe front_app front_app_switched
 #
 # ##### Adding Right Items #####
 # # In the same way as the left items we can add items to the right side.
@@ -145,30 +145,30 @@ source "$ITEM_DIR/cpu.sh"
 # # https://felixkratz.github.io/SketchyBar/config/events
 #
 # # sketchybar --add item clock right                              \
-# #            --set clock   update_freq=10                        \
-# #                          icon=""                              \
-# #                          script="$PLUGIN_DIR/clock.sh"         \
-# #                                                                \
-# #            --add item wifi right                               \
-# #            --set wifi    script="$PLUGIN_DIR/wifi.sh"          \
-# #                          icon="󰖩"                              \
-# #            --subscribe wifi wifi_change                        \
-# #                                                                \
-# #            --add item volume right                             \
-# #            --set volume  script="$PLUGIN_DIR/volume.sh"        \
-# #                          icon.font="Agave Nerd Font:Bold:18"   \
-# #            --subscribe volume volume_change                    \
-# #                                                                \
-# #            --add item battery right                            \
-# #            --set battery script="$PLUGIN_DIR/battery.sh"       \
-# #                          update_freq=120                       \
-# #                          icon.font="Agave Nerd Font:Bold:18"   \
-# #            --subscribe battery system_woke power_source_change \
-# #                                                                \
-# #            --add alias "Control Centre,Bluetooth" right        \
-# #                                                                \
-# #            --add alias "Espanso,Item-0" right
-# #                      
+    # #            --set clock   update_freq=10                        \
+    # #                          icon=""                              \
+    # #                          script="$PLUGIN_DIR/clock.sh"         \
+    # #                                                                \
+    # #            --add item wifi right                               \
+    # #            --set wifi    script="$PLUGIN_DIR/wifi.sh"          \
+    # #                          icon="󰖩"                              \
+    # #            --subscribe wifi wifi_change                        \
+    # #                                                                \
+    # #            --add item volume right                             \
+    # #            --set volume  script="$PLUGIN_DIR/volume.sh"        \
+    # #                          icon.font="Agave Nerd Font:Bold:18"   \
+    # #            --subscribe volume volume_change                    \
+    # #                                                                \
+    # #            --add item battery right                            \
+    # #            --set battery script="$PLUGIN_DIR/battery.sh"       \
+    # #                          update_freq=120                       \
+    # #                          icon.font="Agave Nerd Font:Bold:18"   \
+    # #            --subscribe battery system_woke power_source_change \
+    # #                                                                \
+    # #            --add alias "Control Centre,Bluetooth" right        \
+    # #                                                                \
+    # #            --add alias "Espanso,Item-0" right
+# #
 #
 sketchybar --hotload on
 
@@ -176,4 +176,3 @@ sketchybar --hotload on
 # The below command is only needed at the end of the initial configuration to
 # force all scripts to run the first time, it should never be run in an item script.
 sketchybar --update
-

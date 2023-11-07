@@ -1,14 +1,15 @@
-#!/bin/bash
-
-FRONT_APP_SCRIPT='[ "$SENDER" = "front_app_switched" ] && sketchybar --set $NAME label="$INFO"'
+#!/usr/bin/env bash
 
 front_app=(
-  icon.drawing=off
-  label.font="$FONT:Black:12.0"
-  associated_display=active
-  script="$FRONT_APP_SCRIPT"
+    icon.drawing=off
+    label.font="$FONT:Bold:14"
+    label.y_offset=1
+    label.color="$foreground"
+    associated_display=active
+    script='[ "$SENDER" = "front_app_switched" ] && sketchybar --set $NAME label="$INFO"'
 )
 
-sketchybar --add item front_app left         \
-           --set front_app "${front_app[@]}" \
-           --subscribe front_app front_app_switched
+sketchybar \
+    --add item front_app left         \
+    --set front_app "${front_app[@]}" \
+    --subscribe front_app front_app_switched
