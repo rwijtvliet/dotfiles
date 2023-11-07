@@ -5,18 +5,18 @@ update() {
 
     count="$(brew outdated | wc -l | tr -d ' ')"
     case "$count" in
-        [3-5][0-9])
-            color=$ORANGE
-            ;;
-        [1-2][0-9])
-            color=$YELLOW
+        0)
+            color=$GREEN
+            count=􀆅
             ;;
         [1-9])
             color=$WHITE
             ;;
-        0)
-            color=$GREEN
-            count=􀆅
+        [1-2][0-9])
+            color=$YELLOW
+            ;;
+        [3-5][0-9])
+            color=$ORANGE
             ;;
         *)
             color=$RED
@@ -27,7 +27,13 @@ update() {
 
 
 case "$SENDER" in
-    "mouse.clicked")
-        popup toggle
+    "brew_update")
+        update
         ;;
+    "mouse.click")
+        brew upgrade
+        update
+        ;;
+    *)
+        update
 esac
