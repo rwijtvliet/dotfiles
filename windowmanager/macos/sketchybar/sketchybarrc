@@ -176,3 +176,5 @@ sketchybar --hotload on
 # The below command is only needed at the end of the initial configuration to
 # force all scripts to run the first time, it should never be run in an item script.
 sketchybar --update
+
+sketchybar --trigger windows_on_spaces # to ensure icons are showing on reload

@@ -78,5 +78,6 @@ open "/Applications/Spotify.app"
 open "/Applications/Microsoft Outlook.app"
 open "/Applications/Microsoft Teams (work or school).app"
 
+brew services start sketchybar
 
 echo "yabai configuration loaded.."
