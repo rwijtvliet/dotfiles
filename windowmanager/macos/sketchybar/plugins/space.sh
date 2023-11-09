@@ -3,12 +3,12 @@
 update() {
     source "$CONFIG_DIR/colors.sh"
     args=(
-        icon="$(yabpy space-prop index "$SID" key)"
+        icon="$(/usr/local/bin/yabpy space-prop index "$SID" key)"
         icon.highlight="$SELECTED"
         label.highlight="$SELECTED"
     )
     if [ "$SELECTED" = "true" ]; then
-        colorrrggbb="$(yabpy space-prop index "$SID" color)"
+        colorrrggbb="$(/usr/local/bin/yabpy space-prop index "$SID" color)"
         color="0xff${colorrrggbb:1:100}"
         args+=(background.color="$color")
     else

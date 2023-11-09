@@ -32,7 +32,7 @@ windows_on_spaces () {
 }
 
 prepare_spaces() {
-    yabpy prepare-spaces
+    /usr/local/bin/yabpy prepare-spaces
 }
 
 case "$SENDER" in

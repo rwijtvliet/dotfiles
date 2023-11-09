@@ -6,7 +6,7 @@ sudo yabai --load-sa
 
 
 # Mission-control spaces
-yabpy prepare-spaces
+/usr/local/bin/yabpy prepare-spaces
 
 
 # Window rules
