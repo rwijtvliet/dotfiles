@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-SPACE_ICONS=("x" "2" "3" "4" "5" "6" "7" "8" "9" "10" "11" "12" "13" "14" "15")
+SPACE_ICONS=("x" "2" "3" "4" "5" "6" "7" "8" "9")  # add more if you ever need more
 
 # Destroy space on right click, focus space on left click.
 # New space by left clicking separator (>)
@@ -32,7 +32,14 @@ do
     sketchybar \
         --add space space_$space_idx left    \
         --set space_$space_idx "${space[@]}" \
-        --subscribe space_$space_idx mouse.clicked system_woke
+        --subscribe space_$space_idx mouse.clicked system_woke \
+        \
+        --add item anchor_left_$space_idx left \
+        --set anchor_left_$space_idx width=0 space=$space_idx \
+        --add item anchor_right_$space_idx right \
+        --set anchor_right_$space_idx width=0 space=$space_idx \
+        --add bracket bracket_$space_idx anchor_left_$space_idx anchor_right_$space_idx \
+        --set bracket_$space_idx background.color=0xAAFF0000
 done
 
 spaces_bracket=(
@@ -47,4 +54,4 @@ sketchybar \
     --add event windows_on_spaces       \
     --add bracket spaces_bracket '/space_.*/'  \
     --set spaces_bracket "${spaces_bracket[@]}" \
-    --subscribe spaces_bracket space_change windows_on_spaces system_woke
+    --subscribe spaces_bracket space_change windows_on_spaces system_woke \
