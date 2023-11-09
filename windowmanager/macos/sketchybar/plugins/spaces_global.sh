@@ -42,5 +42,9 @@ case "$SENDER" in
 
     "system_woke" )
         prepare_spaces
+        windows_on_spaces
+        ;;
+    *)
+        windows_on_spaces
         ;;
 esac

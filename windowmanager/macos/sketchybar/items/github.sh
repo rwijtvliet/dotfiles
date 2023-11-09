@@ -1,21 +1,23 @@
 #!/usr/bin/env bash
 
 
-source "$CONFIG_DIR/colors.sh"
+# source "$CONFIG_DIR/colors.sh"
 
-github_bell=(
-    padding_right=6
-    update_freq=180
-    icon="$BELL"
-    icon.font="$FONT:Bold:15.0"
-    icon.color="$BLUE"
+github=(
+    icon=""
+    icon.font.family="$FONT"
+    icon.font.size=21
+    icon.color="$foreground"
     label="$LOADING_ICON"
-    label.highlight_color="$BLUE"
+    label.font.style="Bold"
+    label.font.size=20
+    padding_right=10
+    update_freq=180
     popup.align=right
     script="$PLUGIN_DIR/github.sh"
 )
 
-github_template=(
+github_popup_template=(
     drawing=off
     icon.font.family="$FONT"
     icon.font.size=14
@@ -26,9 +28,9 @@ github_template=(
 )
 
 sketchybar \
-    --add item github_bell right                 \
-    --set github_bell "${github_bell[@]}"        \
-    --subscribe github_bell  mouse.entered mouse.exited mouse.exited.global mouse.clicked \
+    --add item github right                 \
+    --set github "${github[@]}"        \
+    --subscribe github mouse.entered mouse.exited mouse.exited.global mouse.clicked \
     \
-    --add item github_template popup.github_bell \
-    --set github_template "${github_template[@]}"
+    --add item github_popup_template popup.github \
+    --set github_popup_template "${github_popup_template[@]}"

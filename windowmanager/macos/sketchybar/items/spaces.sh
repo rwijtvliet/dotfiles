@@ -32,7 +32,7 @@ do
     sketchybar \
         --add space space_$space_idx left    \
         --set space_$space_idx "${space[@]}" \
-        --subscribe space_$space_idx mouse.clicked
+        --subscribe space_$space_idx mouse.clicked system_woke
 done
 
 spaces_bracket=(

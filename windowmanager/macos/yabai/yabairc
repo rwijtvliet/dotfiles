@@ -17,11 +17,11 @@ yabai -m rule --add app="^mpv$" manage=off sticky=on layer=above opacity=1.0 gri
 yabai -m rule --add title="(Reminder|Notification|Preferences|Settings)$" manage=off sticky=on layer=above opacity=0.9
 
 # assign to space
-yabai -m rule --add app="^Finder$" space=^1_files # use label incase order is changed (i.e., by moving space to other monitor)
+# yabai -m rule --add app="^Finder$" space=^1_files # use label incase order is changed (i.e., by moving space to other monitor)
 yabai -m rule --add app="^Firefox$" space=^2_www
 # yabai -m rule --add app="^Alacritty$" space=^4_terminal # alacritty can be opened everywhere
-yabai -m rule --add app="^Microsoft Teams (work or school)$" space=^7_teams
-yabai -m rule --add app="^Microsoft Outlook$" space=^8_email
+# yabai -m rule --add app="^Microsoft Teams (work or school)$" space=^7_teams
+# yabai -m rule --add app="^Microsoft Outlook$" space=^8_email
 yabai -m rule --add app="^Spotify$" space=9_media
 
 
@@ -45,7 +45,7 @@ yabai -m signal --add event=window_destroyed action="sketchybar --trigger window
 # global settings
 # window-topmost must be off, otherwise pop-up windows hide behind main window
 yabai -m config                              \
-    external_bar                all:0:30     \
+    external_bar                all:0:28     \
     mouse_follows_focus         off          \
     focus_follows_mouse         off          \
     window_placement            second_child \
@@ -70,6 +70,9 @@ yabai -m config                              \
     mouse_action2               resize       \
     mouse_drop_action           swap
 
+brew services start sketchybar
+
+sleep 10  # sleep to see if it helps sketchybar/yabai recognise the apps launched below
 
 # Apps to start
 
@@ -77,7 +80,5 @@ open "/Applications/Firefox.app"
 open "/Applications/Spotify.app"
 open "/Applications/Microsoft Outlook.app"
 open "/Applications/Microsoft Teams (work or school).app"
-
-brew services start sketchybar
 
 echo "yabai configuration loaded.."

@@ -92,19 +92,19 @@ alt + cmd - w : \
 
 # width
 alt + cmd - right : \
-    yabai -m window --resize bottom_right:10:0; \
-    yabai -m window --resize top_left:-10:0
+    yabai -m window --resize bottom_right:30:0; \
+    yabai -m window --resize top_left:-30:0
 alt + cmd - left : \
-    yabai -m window --resize bottom_right:-10:0; \
-    yabai -m window --resize top_left:10:0 
+    yabai -m window --resize bottom_right:-30:0; \
+    yabai -m window --resize top_left:30:0 
 #TODO: add [ and ]
 # height
 alt + cmd - down : \
-    yabai -m window --resize bottom_right:0:10; \
-    yabai -m window --resize top_left:0:-10
+    yabai -m window --resize bottom_right:0:30; \
+    yabai -m window --resize top_left:0:-30
 alt + cmd - up : \
-    yabai -m window --resize bottom_right:0:-10; \
-    yabai -m window --resize top_left:0:10 
+    yabai -m window --resize bottom_right:0:-30; \
+    yabai -m window --resize top_left:0:30 
 #TODO: add { and }
 # balance
 alt + cmd - 0 : \

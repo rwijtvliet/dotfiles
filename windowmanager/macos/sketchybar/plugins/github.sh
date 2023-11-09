@@ -1,45 +1,44 @@
 #!/usr/bin/env bash
 
-BELL=􀋚
-BELL_DOT=􀝗
 GIT_ISSUE=􀍷
 GIT_DISCUSSION=􀒤
 GIT_PULL_REQUEST=􀙡
 GIT_COMMIT=􀡚
-GIT_INDICATOR=􀂓
 
 update() {
+    source "$CONFIG_DIR/plugins/count_to_color.sh"
     source "$CONFIG_DIR/colors.sh"
 
     notifications="$(gh api notifications)"
     count="$(echo "$notifications" | jq 'length')"
-    args=()
-    [ "$notifications" = "[]" ] \
-        &&  args+=(--set "$NAME" icon="$BELL" label="0") \
-        ||  args+=(--set "$NAME" icon="$BELL_DOT" label="$count")
+    read -r labelcolor label <<< "$(count_to_color "$count")"
 
-    prev_count=$(sketchybar --query github_bell | jq -r .label.value)
+    args=(
+        --set "$NAME" label="$label" label.color="$labelcolor" icon.color="$foreground"
+        --remove '/github.notification\.*/'
+    )
+
+    prev_count=$(sketchybar --query "$NAME" | jq -r .label.value)
     # For sound to play around with:
     # afplay /System/Library/Sounds/Morse.aiff
 
-    args+=(--remove '/github.notification\.*/')
-
     counter=0
-    color=$BLUE
-    args+=(--set github_bell icon.color="$color")
 
     while read -r repo url type title
     do
         counter=$((counter + 1))
-        important="$(echo "$title" | grep -E -i "(deprecat|break|broke)")"
-        color=$BLUE
         padding=0
 
+        # If there are no messages, still make a popup.
         if [ "${repo}" = "" ] && [ "${title}" = "" ]; then
-            repo="Note"
+            color=$BLUE
             icon=""
+            url="https://www.github.com/"
+            repo="Note"
             title="No new notifications"
         fi
+
+        # Now create entry for this message in pop-up
         case "${type}" in
             "'Issue'")
                 color=$GREEN
@@ -62,11 +61,11 @@ update() {
                 url="$(gh api "$(echo "${url}" | sed -e "s/^'//" -e "s/'$//")" | jq .html_url)"
                 ;;
         esac
-
+        important="$(echo "$title" | grep -E -i "(deprecat|break|broke)")"
         if [ "$important" != "" ]; then
-            color=$RED
-            icon=􀁞
-            args+=(--set github_bell icon.color="$color")
+            color=$RED # if important, override color
+            # If there is at least one important message, make bar icon red as well.
+            args+=(--set "$NAME" icon.color="$alert")
         fi
 
         notification=(
@@ -75,21 +74,22 @@ update() {
             icon.padding_left="$padding"
             label="$(echo "$title" | sed -e "s/^'//" -e "s/'$//")"
             label.padding_right="$padding"
-            position=popup.github_bell
+            position=popup.github
             drawing=on
-            click_script="open $url; sketchybar --set github_bell popup.drawing=off"
+            click_script="open $url; sketchybar --set github popup.drawing=off"
         )
 
         args+=(
-            --clone "github.notification.$counter" github_template
+            --clone "github.notification.$counter" github_popup_template
             --set "github.notification.$counter" "${notification[@]}"
         )
     done <<< "$(echo "$notifications" | jq -r '.[] | [.repository.name, .subject.latest_comment_url, .subject.type, .subject.title] | @sh')"
 
     sketchybar -m "${args[@]}" > /dev/null
 
-    if [ "$count" -gt "$prev_count" ] 2>/dev/null || [ "$SENDER" = "forced" ]; then
-        sketchybar --animate tanh 15 --set github_bell label.y_offset=5 label.y_offset=0
+    if [ "$count" != "$prev_count" ] 2>/dev/null || [ "$SENDER" = "forced" ]; then
+        # Animate a jump.
+        sketchybar --animate tanh 15 --set "$NAME" label.y_offset=-5 label.y_offset=5 label.y_offset=0
     fi
 }
 
@@ -110,8 +110,6 @@ case "$SENDER" in
     "mouse.clicked")
         if [ "$BUTTON" = "right" ]; then
             update
-        else
-            popup toggle
         fi
         ;;
 esac

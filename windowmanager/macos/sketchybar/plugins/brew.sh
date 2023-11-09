@@ -1,41 +1,83 @@
 #!/usr/bin/env bash
 
+
 update() {
+    source "$CONFIG_DIR/plugins/count_to_color.sh"
     source "$CONFIG_DIR/colors.sh"
 
     count="$(brew outdated | wc -l | tr -d ' ')"
-    case "$count" in
-        0)
-            color=$GREEN
-            count=􀆅
-            ;;
-        [1-9])
-            color=$WHITE
-            ;;
-        [1-2][0-9])
-            color=$YELLOW
-            ;;
-        [3-5][0-9])
-            color=$ORANGE
-            ;;
-        *)
-            color=$RED
-    esac
+    read -r labelcolor label <<< "$(count_to_color "$count")"
 
-    sketchybar --set "$NAME" label="$count" icon.color="$color"
+    args=(
+        --set "$NAME" label="$label" label.color="$labelcolor" icon.color="$foreground"
+        --remove '/brew.notification\.*/'
+    )
+
+    prev_count=$(sketchybar --query "$NAME" | jq -r .label.value)
+    # For sound to play around with:
+    # afplay /System/Library/Sounds/Morse.aiff
+
+    counter=0
+
+    while read -r package oldversion comparisonsign newversion
+    do
+        counter=$((counter + 1))
+
+        # If there are no messages, still make a popup.
+        if [ "${package}" = "" ] ; then
+            color=$BLUE
+            package=""
+            oldversion="(No outdated packages)"
+        else
+            color=$GREEN
+        fi
+
+        notification=(
+            icon="$package"
+            icon.color="$color"
+            label="$oldversion $comparisonsign $newversion"
+            position=popup.brew
+            drawing=on
+            click_script="brew upgrade $package; brew update"
+        )
+
+        args+=(
+            --clone "brew.notification.$counter" brew_popup_template
+            --set "brew.notification.$counter" "${notification[@]}"
+        )
+    done <<< "$(brew outdated)"
+
+    sketchybar -m "${args[@]}" > /dev/null
+
+    if [ "$count" != "$prev_count" ] 2>/dev/null || [ "$SENDER" = "forced" ]; then
+        # Animate a jump.
+        sketchybar --animate tanh 15 --set "$NAME" label.y_offset=-5 label.y_offset=5 label.y_offset=0
+    fi
 }
 
+popup() {
+    sketchybar --set "$NAME" popup.drawing="$1"
+}
 
 case "$SENDER" in
-    "brew_update")
+    "routine"|"forced"|"brew_update")
         update
         ;;
+    "mouse.entered")
+        popup on
+        ;;
+    "mouse.exited"|"mouse.exited.global")
+        popup off
+        ;;
     "mouse.clicked")
-        if [ "$MODIFIER" = "cmd" ]; then
+        if [ "$BUTTON" = "right" ]; then
+            update
+        elif [ "$MODIFIER" = "cmd" ]; then
             brew upgrade
+            update
         fi
-        update
         ;;
     *)
         update
+        ;;
 esac
