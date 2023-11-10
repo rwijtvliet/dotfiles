@@ -166,9 +166,9 @@ alt + cmd - return : \
     open -n /Applications/Alacritty.app
 
 # screenshot
-# . to clipboard
+# . directly to clipboard
 alt + cmd - y : \
-    screencapture -coW
+    screencapture -coi # press space to toggle between rectangle selection and window
 # . to editor
 # TODO
 
