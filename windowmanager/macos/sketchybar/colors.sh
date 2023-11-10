@@ -13,25 +13,13 @@ export GREY=0xff939ab7
 export TRANSPARENT=0x00000000
 
 # General bar colors
-export BAR_COLOR=0xaadadada
-export BAR_BORDER_COLOR=0xffdadada
-export ICON_COLOR=$WHITE # Color of all icons
-export LABEL_COLOR=$WHITE # Color of all labels
-export BACKGROUND_1=0x60eeeeee
-export BACKGROUND_2=0x60ffffff
-
-export background=0xff282A2E
-export background_alt=0xff373B41
-export foreground=0xffC5C8C6
-export primary=0xffF0C674
-export secondary=0xff8ABEB7
-export alert=0xffea2707
-export warning=0xffff8833
-export disabled=0xff707880
-export almost_invisible=0x9a707880
-
-
-export POPUP_BACKGROUND_COLOR=$background
-export POPUP_BORDER_COLOR=$GREY
-
-export SHADOW_COLOR=$BLACK
+export BACKGROUND=0XFF282A2E
+export BACKGROUND_ALT=0XFf373B41
+export FOREGROUND=0XFFC5C8C6
+export FOREGROUND_ALT=0XFf666666
+export PRIMARY=0XFFF0C674
+export SECONDARY=0XFF8ABEB7
+export ALERT=0XFFEA2707
+export WARNING=0XFFFF8833
+export DISABLED=0XFF707880
+export ALMOST_INVISIBLE=0x9a707880

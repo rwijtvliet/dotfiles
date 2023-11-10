@@ -5,7 +5,7 @@ update() {
     info="$(/System/Library/PrivateFrameworks/Apple80211.framework/Resources/airport -I | awk -F ' SSID: '  '/ SSID: / {print $2}')"
     label="$info ($(ipconfig getifaddr en0))"
     icon=$([ -n "$info" ] && echo 􀙇 || echo 􀙈)
-    color=$([ -n "$info" ] && echo "$primary" || echo "$RED")
+    color=$([ -n "$info" ] && echo "$PRIMARY" || echo "$RED")
 
     sketchybar --set "$NAME" icon="$icon" label="$label" icon.color="$color"
 }

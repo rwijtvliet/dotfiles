@@ -8,16 +8,16 @@ count_to_color() {
 
     case "$count" in
         0)
-            echo "$foreground" "$OK_ICON"
+            echo "$FOREGROUND" "$OK_ICON"
             ;;
         [1-9])
             echo "$BLUE" "$count"
             ;;
         [1-2][0-9])
-            echo "$warning" "$count"
+            echo "$WARNING" "$count"
             ;;
         *)
-            echo "$alert" "$count"
+            echo "$ALERT" "$count"
             ;;
     esac
     return 0

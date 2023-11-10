@@ -7,7 +7,6 @@ github=(
     icon=""
     icon.font.family="$FONT"
     icon.font.size=21
-    icon.color="$foreground"
     label="$LOADING_ICON"
     label.font.style="Bold"
     label.font.size=20

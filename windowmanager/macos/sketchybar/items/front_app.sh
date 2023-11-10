@@ -4,7 +4,6 @@ front_app=(
     icon.drawing=off
     label.font="$FONT:Bold:14"
     label.y_offset=1
-    label.color="$foreground"
     associated_display=active
     script='[ "$SENDER" = "front_app_switched" ] && sketchybar --set $NAME label="$INFO"'
 )

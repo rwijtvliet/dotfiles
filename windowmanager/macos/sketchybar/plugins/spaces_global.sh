@@ -21,9 +21,9 @@ windows_on_spaces () {
                 while IFS= read -r app; do
                     icon_strip+=" $("$CONFIG_DIR/plugins/icon_map.sh" "$app")"
                 done <<< "$apps"
-                args+=(--set "space_$space_idx" label="$icon_strip" label.drawing=on icon.color="$foreground")
+                args+=(--set "space_$space_idx" label="$icon_strip" label.drawing=on icon.color="$FOREGROUND")
             else
-                args+=(--set "space_$space_idx" label=""            label.drawing=off icon.color="$almost_invisible")
+                args+=(--set "space_$space_idx" label=""            label.drawing=off icon.color="$ALMOST_INVISIBLE")
             fi
         done
     done <<< "$spaces"

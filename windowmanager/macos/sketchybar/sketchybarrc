@@ -8,7 +8,6 @@ export FONT="Hack Nerd Font"
 export LOADING_ICON=􀖇
 export PLUGIN_DIR="$CONFIG_DIR/plugins"
 export ITEM_DIR="$CONFIG_DIR/items"
-source "$CONFIG_DIR/icons.sh"
 source "$CONFIG_DIR/colors.sh"
 
 ##### Bar Appearance #####
@@ -20,9 +19,9 @@ source "$CONFIG_DIR/colors.sh"
 
 bar=(
     height=27
-    color="$background"
+    color="$BACKGROUND"
     border_width=0
-    border_color="$background"
+    border_color="$BACKGROUND"
     shadow=off
     position=bottom
     sticky=on
@@ -41,11 +40,11 @@ sketchybar --bar "${bar[@]}"
 
 defaults=(
     icon.font="Agave Nerd Font:Bold:20"
-    icon.color="$ICON_COLOR"
+    icon.color="$FOREGROUND"
     icon.padding_left=4
     icon.padding_right=4
     label.font="$FONT:Bold:14"
-    label.color="$LABEL_COLOR"
+    label.color="$FOREGROUND"
     label.padding_left=5
     label.padding_right=5
     background.height=27
@@ -56,8 +55,8 @@ defaults=(
     background.padding_right=4
     popup.background.border_width=2
     popup.background.corner_radius=6
-    popup.background.border_color="$POPUP_BORDER_COLOR"
-    popup.background.color="$POPUP_BACKGROUND_COLOR"
+    popup.background.border_color="$BACKGROUND_ALT"
+    popup.background.color="$BACKGROUND"
     popup.blur_radius=20
     popup.background.shadow.drawing=off
 )

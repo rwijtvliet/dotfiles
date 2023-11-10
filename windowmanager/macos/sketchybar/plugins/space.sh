@@ -5,9 +5,9 @@ update() {
     if [ "$SELECTED" = "true" ]; then
         colorrrggbb="$(/usr/local/bin/yabpy space-prop index "$SID" color)"
         color="0xff${colorrrggbb:1:100}"
-        color_bar="0x55${colorrrggbb:1:100}"
+        color2="0x55${colorrrggbb:1:100}"
     else
-        color="$background"
+        color="$BACKGROUND"
     fi
     args=(
         icon="$(/usr/local/bin/yabpy space-prop index "$SID" key)"
@@ -17,7 +17,7 @@ update() {
     )
     sketchybar \
         --set "$NAME" "${args[@]}" \
-        --set "bracket_$SID" background.color="$color_bar"
+        --set "bracket_$SID" background.color="$color2"
 }
 
 focus_space() {

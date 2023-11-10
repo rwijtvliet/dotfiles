@@ -14,15 +14,15 @@ do
         icon="${SPACE_ICONS[i]}"
         icon.padding_left=10
         icon.padding_right=10
-        icon.color="$foreground"
-        icon.highlight_color="$background"
+        icon.color="$FOREGROUND"
+        icon.highlight_color="$BACKGROUND"
         label.padding_right=20
         label.color="$GREY"
-        label.highlight_color="$background"
+        label.highlight_color="$BACKGROUND"
         label.font="sketchybar-app-font:Regular:16.0"
         label.y_offset=-1
         label.drawing=off
-        background.color="$background"
+        background.color="$BACKGROUND"
         background.padding_left=0
         background.padding_right=1
         background.drawing=on
@@ -43,7 +43,7 @@ do
 done
 
 spaces_bracket=(
-    background.color="$BACKGROUND_2"
+    background.color="$FOREGROUND_ALT"
     background.border_width=0
     background.padding_left=0
     background.padding_right=0

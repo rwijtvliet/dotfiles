@@ -27,8 +27,8 @@ show_popup(){
     while IFS= read -r device; do
 
         [ "${device}" = "$current" ] \
-            && color="$primary" \
-            || color="$disabled"
+            && color="$PRIMARY" \
+            || color="$DISABLED"
 
         args+=(
             --add item "volume.device.$counter" popup."$NAME"
@@ -36,7 +36,7 @@ show_popup(){
             click_script="SwitchAudioSource -s \"${device}\" && \
                 sketchybar \
                 --set /volume.device\.*/ label.color=$GREY \
-                --set \$NAME label.color=$secondary \
+                --set \$NAME label.color=$SECONDARY \
                 --set volume_source popup.drawing=off"
         )
         counter=$((counter+1))
