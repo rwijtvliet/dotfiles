@@ -74,6 +74,7 @@ case "$SENDER" in
             update
         elif [ "$MODIFIER" = "cmd" ]; then
             brew upgrade
+            sleep 1
             update
         fi
         ;;

@@ -15,24 +15,16 @@ alt + cmd - d :     yabai -m window --focus largest
 # alt + cmd - right : yabai -m window --focus east
 
 # space
-alt + cmd - 1 : \
-    yabpy focus-space 1
-alt + cmd - 2 : \
-    yabpy focus-space 2
-alt + cmd - 3 : \
-    yabpy focus-space 3
-alt + cmd - 4 : \
-    yabpy focus-space 4
-alt + cmd - 5 : \
-    yabpy focus-space 5
-alt + cmd - 6 : \
-    yabpy focus-space 6
-alt + cmd - 7 : \
-    yabpy focus-space 7
-alt + cmd - 8 : \
-    yabpy focus-space 8
-alt + cmd - 9 : \
-    yabpy focus-space 9
+# [change -k to -kp if yabai is not working on this macos version]
+alt + cmd - 1 :     yabpy -n focus-space -kp 1
+alt + cmd - 2 :     yabpy -n focus-space -kp 2
+alt + cmd - 3 :     yabpy -n focus-space -kp 3
+alt + cmd - 4 :     yabpy -n focus-space -kp 4
+alt + cmd - 5 :     yabpy -n focus-space -kp 5
+alt + cmd - 6 :     yabpy -n focus-space -kp 6
+alt + cmd - 7 :     yabpy -n focus-space -kp 7
+alt + cmd - 8 :     yabpy -n focus-space -kp 8
+alt + cmd - 9 :     yabpy -n focus-space -kp 9
     
 # monitor
 alt + cmd - g : yabai -m display --focus west
@@ -56,24 +48,15 @@ alt + cmd + shift - d :     yabai -m window --swap largest
 # alt + cmd + shift - right : yabai -m window --swap east
 
 # (window) to space
-alt + cmd + shift - 1 : \
-    yabpy window-to-space 1
-alt + cmd + shift - 2 : \
-    yabpy window-to-space 2
-alt + cmd + shift - 3 : \
-    yabpy window-to-space 3
-alt + cmd + shift - 4 : \
-    yabpy window-to-space 4
-alt + cmd + shift - 5 : \
-    yabpy window-to-space 5
-alt + cmd + shift - 6 : \
-    yabpy window-to-space 6
-alt + cmd + shift - 7 : \
-    yabpy window-to-space 7
-alt + cmd + shift - 8 : \
-    yabpy window-to-space 8 
-alt + cmd + shift - 9 : \
-    yabpy window-to-space 9
+alt + cmd + shift - 1 :     yabpy -n window-to-space -k 1
+alt + cmd + shift - 2 :     yabpy -n window-to-space -k 2
+alt + cmd + shift - 3 :     yabpy -n window-to-space -k 3
+alt + cmd + shift - 4 :     yabpy -n window-to-space -k 4
+alt + cmd + shift - 5 :     yabpy -n window-to-space -k 5
+alt + cmd + shift - 6 :     yabpy -n window-to-space -k 6
+alt + cmd + shift - 7 :     yabpy -n window-to-space -k 7
+alt + cmd + shift - 8 :     yabpy -n window-to-space -k 8
+alt + cmd + shift - 9 :     yabpy -n window-to-space -k 9
 
 # (space) to monitor
 alt + cmd + shift - g : \
