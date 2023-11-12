@@ -70,11 +70,12 @@ case "$SENDER" in
         popup off
         ;;
     "mouse.clicked")
+        source "$CONFIG_DIR/shared.sh"
         if [ "$BUTTON" = "right" ]; then
-            source "$CONFIG_DIR/shared.sh"
             sketchybar --set "$NAME" label="$LOADING_ICON" label.color="$FOREGROUND"
             update
         elif [ "$MODIFIER" = "cmd" ]; then
+            sketchybar --set "$NAME" label="$LOADING_ICON" label.color="$FOREGROUND"
             brew upgrade
             update
         fi

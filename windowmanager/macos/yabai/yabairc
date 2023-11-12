@@ -77,8 +77,5 @@ sleep 10  # sleep to see if it helps sketchybar/yabai recognise the apps launche
 # Apps to start
 
 open "/Applications/Firefox.app"
-open "/Applications/Spotify.app"
-open "/Applications/Microsoft Outlook.app"
-open "/Applications/Microsoft Teams (work or school).app"
 
 echo "yabai configuration loaded.."

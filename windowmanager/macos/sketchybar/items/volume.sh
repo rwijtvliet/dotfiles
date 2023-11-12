@@ -30,6 +30,7 @@ volume_icon=(
     icon=""
     icon.width=dynamic
     icon.color="$PRIMARY"
+    icon.padding_left=8
     icon.font="$FONT:Regular:20.0"
     label.width=dynamic
     label.padding_right=0

@@ -22,8 +22,11 @@ case "$1" in
     "Pine")
         icon_result=":pine:"
         ;;
-    "Alacritty" | "Hyper" | "iTerm2" | "kitty" | "Terminal" | "终端" | "WezTerm")
+    "Alacritty" | "Hyper" | "kitty")
         icon_result=":terminal:"
+        ;;
+    "iTerm2" | "Terminal" | "终端" | "WezTerm")
+        icon_result=":chevron_right:"
         ;;
     "Podcasts" | "播客")
         icon_result=":podcasts:"
@@ -371,7 +374,7 @@ case "$1" in
         icon_result=":kee_pass_x_c:"
         ;;
     "Microsoft Outlook")
-        icon_result=":android_messages:"
+        icon_result=":mail:"
         ;;
     "Microsoft Teams" | "Microsoft Teams classic" | "Microsoft Teams (work or school)")
         icon_result=":microsoft_teams:"
