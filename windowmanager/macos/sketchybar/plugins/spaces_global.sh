@@ -2,7 +2,7 @@
 
 
 windows_on_spaces () {
-    source "$CONFIG_DIR/colors.sh"
+    source "$CONFIG_DIR/shared.sh"
     spaces="$(yabai -m query --displays | jq -r '.[].spaces | @sh')"
 
     args=(

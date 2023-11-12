@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-source "$CONFIG_DIR/colors.sh"
 
 volume_source=(
     icon.drawing=off

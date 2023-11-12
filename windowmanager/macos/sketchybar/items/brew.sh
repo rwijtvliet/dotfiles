@@ -7,7 +7,6 @@ brew=(
     icon=""
     icon.font.family="$FONT"
     icon.font.size=18
-    icon.color="$FOREGROUND"
     label="$LOADING_ICON"
     label.font.style="Bold"
     label.font.size=20

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 update() {
-    source "$CONFIG_DIR/colors.sh"
+    source "$CONFIG_DIR/shared.sh"
     if [ "$SELECTED" = "true" ]; then
         colorrrggbb="$(/usr/local/bin/yabpy space-prop index "$SID" color)"
         color="0xff${colorrrggbb:1:100}"

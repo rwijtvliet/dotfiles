@@ -1,9 +1,11 @@
 #!/usr/bin/env bash
 
+IGNORE=("LG HDR 4K" "ThinkPad Thunderbolt 3 Dock USB Audio" "Microsoft Teams Audio")
+
 
 update(){
     which SwitchAudioSource >/dev/null || exit 0
-    source "$CONFIG_DIR/colors.sh"
+    source "$CONFIG_DIR/shared.sh"
 
     current="$(SwitchAudioSource -t output -c)"
     args=(
@@ -13,6 +15,13 @@ update(){
 
     counter=0
     while IFS= read -r device; do
+        must_ignore=false
+        for ign in "${IGNORE[@]}"; do
+            [ "${ign}" = "$device" ] && must_ignore=true
+        done
+        if $must_ignore; then
+            continue
+        fi
 
         [ "${device}" = "$current" ] \
             && color="$PRIMARY" \

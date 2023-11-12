@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-source "$CONFIG_DIR/colors.sh"
-
 windowmode=(
     icon.width=0
     icon.color="$GREY"

@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 
 
-# source "$CONFIG_DIR/colors.sh"
-
 github=(
     icon=""
     icon.font.family="$FONT"

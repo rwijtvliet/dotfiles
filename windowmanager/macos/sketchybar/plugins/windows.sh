@@ -7,7 +7,7 @@ YABAI_FLOAT=􀢌
 YABAI_GRID=􀧍
 
 update() {
-    source "$CONFIG_DIR/colors.sh"
+    source "$CONFIG_DIR/shared.sh"
 
     window=$(yabai -m query --windows --window)
     stack_idx=$(echo "$window" | jq '.["stack-index"]')

@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+# Paths
+export PLUGIN_DIR="$CONFIG_DIR/plugins"
+export ITEM_DIR="$CONFIG_DIR/items"
+
 # Color Palette
 export RED=0xffed8796
 export DARK_RED=0xff731120
@@ -31,3 +35,10 @@ export FOREGROUND=0XFFC5C8C6
 export FOREGROUND_ALT=0XFf666666
 export PRIMARY=0XFFF0C674
 export SECONDARY=0XFF8ABEB7
+
+# Shared icons
+export OK_ICON=􀆅
+export LOADING_ICON=􀖇
+
+# Fonts
+export FONT="Hack Nerd Font"

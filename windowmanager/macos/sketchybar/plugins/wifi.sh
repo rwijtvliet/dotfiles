@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 update() {
-    source "$CONFIG_DIR/colors.sh"
+    source "$CONFIG_DIR/shared.sh"
     info="$(/System/Library/PrivateFrameworks/Apple80211.framework/Resources/airport -I | awk -F ' SSID: '  '/ SSID: / {print $2}')"
     label="$info ($(ipconfig getifaddr en0))"
     icon=$([ -n "$info" ] && echo 􀙇 || echo 􀙈)

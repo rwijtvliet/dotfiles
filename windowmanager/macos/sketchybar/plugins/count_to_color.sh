@@ -1,11 +1,10 @@
 #!/usr/bin/env bash
 
-OK_ICON=􀆅
 
 count_to_color() {
     count="$1"
     dark="$2"
-    source "$CONFIG_DIR/colors.sh"
+    source "$CONFIG_DIR/shared.sh"
 
     case "$count" in
         0)

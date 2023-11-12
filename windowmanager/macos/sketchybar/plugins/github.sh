@@ -6,8 +6,8 @@ GIT_PULL_REQUEST=􀙡
 GIT_COMMIT=􀡚
 
 update() {
+    source "$CONFIG_DIR/shared.sh"
     source "$CONFIG_DIR/plugins/count_to_color.sh"
-    source "$CONFIG_DIR/colors.sh"
 
     notifications="$(gh api notifications)"
     count="$(echo "$notifications" | jq 'length')"
@@ -109,6 +109,8 @@ case "$SENDER" in
         ;;
     "mouse.clicked")
         if [ "$BUTTON" = "right" ]; then
+            source "$CONFIG_DIR/shared.sh"
+            sketchybar --set "$NAME" label="$LOADING_ICON" label.color="$FOREGROUND"
             update
         fi
         ;;

@@ -2,8 +2,8 @@
 
 
 update() {
+    source "$CONFIG_DIR/shared.sh"
     source "$CONFIG_DIR/plugins/count_to_color.sh"
-    source "$CONFIG_DIR/colors.sh"
 
     count="$(brew outdated | wc -l | tr -d ' ')"
     read -r labelcolor label <<< "$(count_to_color "$count")"
@@ -71,10 +71,11 @@ case "$SENDER" in
         ;;
     "mouse.clicked")
         if [ "$BUTTON" = "right" ]; then
+            source "$CONFIG_DIR/shared.sh"
+            sketchybar --set "$NAME" label="$LOADING_ICON" label.color="$FOREGROUND"
             update
         elif [ "$MODIFIER" = "cmd" ]; then
             brew upgrade
-            sleep 1
             update
         fi
         ;;

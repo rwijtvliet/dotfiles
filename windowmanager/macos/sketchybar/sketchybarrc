@@ -1,21 +1,8 @@
 #!/usr/bin/env bash
 
-# This is a demo config to show some of the most important commands more easily.
-# This is meant to be changed and configured, as it is intentionally kept sparse.
-# For a more advanced configuration example see my dotfiles:
-# https://github.com/FelixKratz/dotfiles
-export FONT="Hack Nerd Font"
-export LOADING_ICON=􀖇
-export PLUGIN_DIR="$CONFIG_DIR/plugins"
-export ITEM_DIR="$CONFIG_DIR/items"
-source "$CONFIG_DIR/colors.sh"
+source "$CONFIG_DIR/shared.sh"
 
 ##### Bar Appearance #####
-# Configuring the general appearance of the bar, these are only some of the
-# options available. For all options see:
-# https://felixkratz.github.io/SketchyBar/config/bar
-# If you are looking for other colors, see the color picker:
-# https://felixkratz.github.io/SketchyBar/config/tricks#color-picker
 
 bar=(
     height=27
@@ -33,9 +20,6 @@ bar=(
 sketchybar --bar "${bar[@]}"
 
 ##### Changing Defaults #####
-# We now change some default values that are applied to all further items
-# For a full list of all available item properties see:
-# https://felixkratz.github.io/SketchyBar/config/items
 
 defaults=(
     icon.font="Agave Nerd Font:Bold:20"
@@ -70,13 +54,10 @@ defaults=(
 )
 sketchybar --default "${defaults[@]}"
 
-##### Adding Mission Control Space Indicators #####
-# Now we add some mission control spaces:
-# https://felixkratz.github.io/SketchyBar/config/components#space----associate-mission-control-spaces-with-an-item
-# to indicate active and available mission control spaces
-
 
 # Parts outside of big colored part.
+# Left
+# (nothing)
 # Right
 source "$ITEM_DIR/brew.sh"
 source "$ITEM_DIR/github.sh"
@@ -92,6 +73,7 @@ source "$ITEM_DIR/spaces.sh"
 source "$ITEM_DIR/windows.sh"
 source "$ITEM_DIR/front_app.sh"
 # Right
+# (nothing)
 
 sketchybar --hotload on
 
