@@ -5,7 +5,7 @@ update() {
     if [ "$SELECTED" = "true" ]; then
         colorrrggbb="$(/usr/local/bin/yabpy space-prop index "$SID" color)"
         color="0xff${colorrrggbb:1:100}"
-        color2="0x55${colorrrggbb:1:100}"
+        color2="0xff${colorrrggbb:1:100}" #use other alpha value to change color of bar
     else
         color="$BACKGROUND"
     fi

@@ -48,15 +48,15 @@ alt + cmd + shift - d :     yabai -m window --swap largest
 # alt + cmd + shift - right : yabai -m window --swap east
 
 # (window) to space
-alt + cmd + shift - 1 :     yabpy -n window-to-space -k 1
-alt + cmd + shift - 2 :     yabpy -n window-to-space -k 2
-alt + cmd + shift - 3 :     yabpy -n window-to-space -k 3
-alt + cmd + shift - 4 :     yabpy -n window-to-space -k 4
-alt + cmd + shift - 5 :     yabpy -n window-to-space -k 5
-alt + cmd + shift - 6 :     yabpy -n window-to-space -k 6
-alt + cmd + shift - 7 :     yabpy -n window-to-space -k 7
-alt + cmd + shift - 8 :     yabpy -n window-to-space -k 8
-alt + cmd + shift - 9 :     yabpy -n window-to-space -k 9
+alt + cmd + shift - 1 :     yabpy -n window-to-space -k 1 ; sketchybar --trigger space_focus windows_on_spaces
+alt + cmd + shift - 2 :     yabpy -n window-to-space -k 2 ; sketchybar --trigger windows_on_spaces
+alt + cmd + shift - 3 :     yabpy -n window-to-space -k 3 ; sketchybar --trigger windows_on_spaces
+alt + cmd + shift - 4 :     yabpy -n window-to-space -k 4 ; sketchybar --trigger windows_on_spaces
+alt + cmd + shift - 5 :     yabpy -n window-to-space -k 5 ; sketchybar --trigger windows_on_spaces
+alt + cmd + shift - 6 :     yabpy -n window-to-space -k 6 ; sketchybar --trigger windows_on_spaces
+alt + cmd + shift - 7 :     yabpy -n window-to-space -k 7 ; sketchybar --trigger windows_on_spaces
+alt + cmd + shift - 8 :     yabpy -n window-to-space -k 8 ; sketchybar --trigger windows_on_spaces
+alt + cmd + shift - 9 :     yabpy -n window-to-space -k 9 ; sketchybar --trigger windows_on_spaces
 
 # (space) to monitor
 alt + cmd + shift - g : \

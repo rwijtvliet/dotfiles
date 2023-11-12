@@ -6,7 +6,7 @@ YABAI_PARENT_ZOOM=􀥃
 YABAI_FLOAT=􀢌
 YABAI_GRID=􀧍
 
-window_state() {
+update() {
     source "$CONFIG_DIR/colors.sh"
 
     window=$(yabai -m query --windows --window)
@@ -14,21 +14,21 @@ window_state() {
 
     if [ "$(echo "$window" | jq '.["is-floating"]')" = "true" ]; then
         icon+=$YABAI_FLOAT
-        color=$MAGENTA
+        color=$DARK_MAGENTA
     elif [ "$(echo "$window" | jq '.["has-fullscreen-zoom"]')" = "true" ]; then
         icon+=$YABAI_FULLSCREEN_ZOOM
-        color=$GREEN
+        color=$DARK_GREEN
     elif [ "$(echo "$window" | jq '.["has-parent-zoom"]')" = "true" ]; then
         icon+=$YABAI_PARENT_ZOOM
-        color=$BLUE
+        color=$DARK_BLUE
     elif [[ $stack_idx -gt 0 ]]; then
         last_stack_idx=$(yabai -m query --windows --window stack.last | jq '.["stack-index"]')
         icon+=$YABAI_STACK
         label="$(printf "[%s/%s]" "$stack_idx" "$last_stack_idx")"
-        color=$RED
+        color=$DARK_RED
     else
         icon=$YABAI_GRID
-        color=$GREY
+        color=$BACKGROUND
     fi
 
     args=(--set "$NAME" icon.color="$color")
@@ -47,7 +47,7 @@ window_state() {
 
 mouse_clicked() {
     yabai -m window --toggle float
-    window_state
+    update
 }
 
 
@@ -56,9 +56,12 @@ case "$SENDER" in
         mouse_clicked
         ;;
     "forced")
-        exit 0
+        update
         ;;
     "window_focus")
-        window_state
+        update
+        ;;
+    *)
+        update
         ;;
 esac

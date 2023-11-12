@@ -23,18 +23,15 @@ update() {
     # afplay /System/Library/Sounds/Morse.aiff
 
     counter=0
-
-    while read -r repo url type title
-    do
+    while read -r repo url type title; do
         counter=$((counter + 1))
-        padding=0
 
         # If there are no messages, still make a popup.
         if [ "${repo}" = "" ] && [ "${title}" = "" ]; then
             color=$BLUE
             icon=""
             url="https://www.github.com/"
-            repo="Note"
+            repo=""
             title="No new notifications"
         fi
 
@@ -69,11 +66,11 @@ update() {
         fi
 
         notification=(
-            icon="$icon $(echo "$repo" | sed -e "s/^'//" -e "s/'$//"):"
+            icon="$icon $(echo "$repo" | sed -e "s/^'//" -e "s/'$//")"
             icon.color="$color"
-            icon.padding_left="$padding"
+            icon.padding_left=10
             label="$(echo "$title" | sed -e "s/^'//" -e "s/'$//")"
-            label.padding_right="$padding"
+            label.padding_right=10
             position=popup.github
             drawing=on
             click_script="open $url; sketchybar --set github popup.drawing=off"
@@ -85,12 +82,15 @@ update() {
         )
     done <<< "$(echo "$notifications" | jq -r '.[] | [.repository.name, .subject.latest_comment_url, .subject.type, .subject.title] | @sh')"
 
-    sketchybar -m "${args[@]}" > /dev/null
-
+    # Animate a jump.
     if [ "$count" != "$prev_count" ] 2>/dev/null || [ "$SENDER" = "forced" ]; then
-        # Animate a jump.
-        sketchybar --animate tanh 15 --set "$NAME" label.y_offset=-5 label.y_offset=5 label.y_offset=0
+        args+=(
+            --animate tanh 15
+            --set "$NAME" label.y_offset=-5 label.y_offset=5 label.y_offset=0
+        )
     fi
+
+    sketchybar -m "${args[@]}" > /dev/null
 }
 
 popup() {

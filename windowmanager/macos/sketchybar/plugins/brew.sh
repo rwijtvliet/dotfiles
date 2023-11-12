@@ -27,7 +27,7 @@ update() {
         if [ "${package}" = "" ] ; then
             color=$BLUE
             package=""
-            oldversion="(No outdated packages)"
+            oldversion="No outdated packages"
         else
             color=$GREEN
         fi

@@ -21,7 +21,6 @@ bar=(
     height=27
     color="$BACKGROUND"
     border_width=0
-    border_color="$BACKGROUND"
     shadow=off
     position=bottom
     sticky=on
@@ -53,6 +52,15 @@ defaults=(
     background.border_width=0
     background.padding_left=4
     background.padding_right=4
+    popup.icon.font.size=100
+    popup.icon.font.family="$FONT"
+    popup.icon.font.size=30
+    popup.icon.padding_right=10
+    popup.label.font.size=30
+    popup.padding_left=7
+    popup.padding_right=7
+    popup.background.corner_radius=12
+    popup.icon.padding_right=100
     popup.background.border_width=2
     popup.background.corner_radius=6
     popup.background.border_color="$BACKGROUND_ALT"
@@ -68,26 +76,26 @@ sketchybar --default "${defaults[@]}"
 # to indicate active and available mission control spaces
 
 
-
-# Left
-# source "$ITEM_DIR/apple.sh"
-source "$ITEM_DIR/spaces.sh"
-source "$ITEM_DIR/windows.sh"
-source "$ITEM_DIR/front_app.sh"
-
-# Center
-# source "$ITEM_DIR/spotify.sh"
-
+# Parts outside of big colored part.
 # Right
 source "$ITEM_DIR/brew.sh"
 source "$ITEM_DIR/github.sh"
 source "$ITEM_DIR/wifi.sh"
 source "$ITEM_DIR/volume.sh"
 
+# Addings spaces and big colored part.
+# Left
+source "$ITEM_DIR/spaces.sh"
+
+# Adding items on top of big colored part.
+# Left
+source "$ITEM_DIR/windows.sh"
+source "$ITEM_DIR/front_app.sh"
+# Right
 
 sketchybar --hotload on
 
 # The below command is only needed at the end of the initial configuration to
 # force all scripts to run the first time, it should never be run in an item script.
 sketchybar --update
-sketchybar --trigger windows_on_spaces # to ensure icons are showing on reload
+sketchybar --trigger windows_on_spaces focus_space # to ensure icons are showing on reload

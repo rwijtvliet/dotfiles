@@ -20,6 +20,7 @@ brew_popup_template=(
     drawing=off
     icon.font.family="$FONT"
     icon.font.size=14
+    icon.padding_right=10
     label.font.size=14
     padding_left=7
     padding_right=7
