@@ -31,8 +31,8 @@ windows_on_spaces () {
     sketchybar -m "${args[@]}"
 }
 
-prepare_spaces() {
-    /usr/local/bin/yabpy prepare-spaces
+create_spaces() {
+    /usr/local/bin/yabpy create-spaces
 }
 
 case "$SENDER" in
@@ -41,7 +41,7 @@ case "$SENDER" in
         ;;
 
     "system_woke" )
-        prepare_spaces
+        create_spaces
         windows_on_spaces
         ;;
     *)
