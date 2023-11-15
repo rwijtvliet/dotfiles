@@ -14,7 +14,6 @@ update() {
     read -r labelcolor label <<< "$(count_to_color "$count")"
 
     args=(
-        --set "$NAME" label="$label" label.color="$labelcolor" icon.color="$FOREGROUND"
         --remove '/github.notification\.*/'
     )
 
@@ -23,6 +22,7 @@ update() {
     # afplay /System/Library/Sounds/Morse.aiff
 
     counter=0
+    is_important=false
     while read -r repo url type title; do
         counter=$((counter + 1))
 
@@ -58,12 +58,8 @@ update() {
                 url="$(gh api "$(echo "${url}" | sed -e "s/^'//" -e "s/'$//")" | jq .html_url)"
                 ;;
         esac
-        important="$(echo "$title" | grep -E -i "(deprecat|break|broke)")"
-        if [ "$important" != "" ]; then
-            color=$RED # if important, override color
-            # If there is at least one important message, make bar icon red as well.
-            args+=(--set "$NAME" icon.color="$alert")
-        fi
+        [ -z "$(echo "$title" | grep -E -i "(deprecat|break|broke|failed)")" ] \
+            || is_important=true
 
         notification=(
             icon="$icon $(echo "$repo" | sed -e "s/^'//" -e "s/'$//")"
@@ -81,6 +77,11 @@ update() {
             --set "github.notification.$counter" "${notification[@]}"
         )
     done <<< "$(echo "$notifications" | jq -r '.[] | [.repository.name, .subject.latest_comment_url, .subject.type, .subject.title] | @sh')"
+
+    [ -z "$is_important" ] \
+        && color="$PRIMARY" \
+        ||  color="$ALERT"
+    args+=(--set "$NAME" label="$label" label.color="$labelcolor" icon.color="$color")
 
     # Animate a jump.
     if [ "$count" != "$prev_count" ] 2>/dev/null || [ "$SENDER" = "forced" ]; then

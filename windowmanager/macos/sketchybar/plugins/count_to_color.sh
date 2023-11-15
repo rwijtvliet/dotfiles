@@ -7,14 +7,15 @@ count_to_color() {
     source "$CONFIG_DIR/shared.sh"
 
     case "$count" in
-        0)
+        [0-9])
             [ -n "$dark" ] && color="$BACKGROUND" || color="$FOREGROUND"
-            count="$OK_ICON"
-            ;;
-        [1-9])
-            [ -n "$dark" ] && color="$DARK_BLUE" || color="$BLUE"
+            [ "$count" -eq "0" ] \
+                && count="$OK_ICON"
             ;;
         [1-2][0-9])
+            [ -n "$dark" ] && color="$DARK_BLUE" || color="$BLUE"
+            ;;
+        [3-4][0-9])
             [ -n "$dark" ] && color="$DARK_WARNING" || color="$WARNING"
             ;;
         *)

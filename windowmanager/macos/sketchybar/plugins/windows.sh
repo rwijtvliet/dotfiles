@@ -12,12 +12,13 @@ update() {
     window=$(yabai -m query --windows --window)
     stack_idx=$(echo "$window" | jq '.["stack-index"]')
 
+    color=$BACKGROUND
     if [ "$(echo "$window" | jq '.["is-floating"]')" = "true" ]; then
         icon+=$YABAI_FLOAT
-        color=$DARK_MAGENTA
+        #color=$DARK_MAGENTA
     elif [ "$(echo "$window" | jq '.["has-fullscreen-zoom"]')" = "true" ]; then
         icon+=$YABAI_FULLSCREEN_ZOOM
-        color=$DARK_GREEN
+        # color=$DARK_GREEN
     elif [ "$(echo "$window" | jq '.["has-parent-zoom"]')" = "true" ]; then
         icon+=$YABAI_PARENT_ZOOM
         color=$DARK_BLUE
@@ -25,10 +26,10 @@ update() {
         last_stack_idx=$(yabai -m query --windows --window stack.last | jq '.["stack-index"]')
         icon+=$YABAI_STACK
         label="$(printf "[%s/%s]" "$stack_idx" "$last_stack_idx")"
-        color=$DARK_RED
+        # color=$DARK_RED
     else
         icon=$YABAI_GRID
-        color=$BACKGROUND
+        # color=$BACKGROUND
     fi
 
     args=(--set "$NAME" icon.color="$color")

@@ -23,7 +23,7 @@ sketchybar --bar "${bar[@]}"
 
 defaults=(
     icon.font="Agave Nerd Font:Bold:20"
-    icon.color="$FOREGROUND"
+    icon.color="$PRIMARY"
     icon.padding_left=4
     icon.padding_right=4
     label.font="$FONT:Bold:14"

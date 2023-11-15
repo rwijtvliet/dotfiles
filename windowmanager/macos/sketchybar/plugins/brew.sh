@@ -9,7 +9,7 @@ update() {
     read -r labelcolor label <<< "$(count_to_color "$count")"
 
     args=(
-        --set "$NAME" label="$label" label.color="$labelcolor" icon.color="$FOREGROUND"
+        --set "$NAME" label="$label" label.color="$labelcolor"
         --remove '/brew.notification\.*/'
     )
 
