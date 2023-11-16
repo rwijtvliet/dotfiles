@@ -192,7 +192,7 @@ void custom_post_init(void);
 // Layer switching ("l..." if layer while held; "p..." for permanent switch)
 #define l_DOT    LT(L_SYM, KC_DOT)
 #define l_P      LT(L_NUM, KC_P)
-#define l_Y      LT(L_FUN, KC_Y)
+#define l_Y      LT(L_NUM, KC_Y)
 #define l_G      LT(L_FUN, KC_G)
 #define l_C      LT(L_SYM, KC_C)
 #define l_X      LT(L_MOUSE, KC_X)
@@ -395,6 +395,16 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       set_current_os_from_keycode(keycode);
     }
     return false; // don't continue processing this key
+
+  case l_Y:
+    if (!record->tap.count) {
+      if (record->event.pressed) {
+        register_code(kc_SFT);
+      } else {
+        unregister_code(kc_SFT);
+      }
+    }
+    return true;
 
   case l_K:
     if (!record->tap.count) {

@@ -1,9 +1,11 @@
 #!/usr/bin/env bash
 
-GIT_ISSUE=􀍷
-GIT_DISCUSSION=􀒤
-GIT_PULL_REQUEST=􀙡
-GIT_COMMIT=􀡚
+ISSUE=
+DISCUSSION=
+PULL_REQUEST=
+COMMIT=
+ERROR=
+UNKNOWN=
 
 update() {
     source "$CONFIG_DIR/shared.sh"
@@ -22,54 +24,62 @@ update() {
     # afplay /System/Library/Sounds/Morse.aiff
 
     counter=0
-    is_important=false
+    is_important=
     while read -r repo url type title; do
         counter=$((counter + 1))
 
-        # If there are no messages, still make a popup.
-        if [ "${repo}" = "" ] && [ "${title}" = "" ]; then
+        if [ -z "${repo}" ] && [ -z "${title}" ]; then
+            # If there are no messages, still make a popup.
             color=$BLUE
             icon=""
             url="https://www.github.com/"
             repo=""
             title="No new notifications"
-        fi
 
-        # Now create entry for this message in pop-up
-        case "${type}" in
-            "'Issue'")
-                color=$GREEN
-                icon=$GIT_ISSUE
-                url="$(gh api "$(echo "${url}" | sed -e "s/^'//" -e "s/'$//")" | jq .html_url)"
-                ;;
-            "'Discussion'")
-                color=$WHITE
-                icon=$GIT_DISCUSSION
-                url="https://www.github.com/notifications"
-                ;;
-            "'PullRequest'")
-                color=$MAGENTA
-                icon=$GIT_PULL_REQUEST
-                url="$(gh api "$(echo "${url}" | sed -e "s/^'//" -e "s/'$//")" | jq .html_url)"
-                ;;
-            "'Commit'")
-                color=$WHITE
-                icon=$GIT_COMMIT
-                url="$(gh api "$(echo "${url}" | sed -e "s/^'//" -e "s/'$//")" | jq .html_url)"
-                ;;
-        esac
+        else
+
+            # Create entry for this message in pop-up
+            [ "$url" = "null" ] \
+                && url="https://www.github.com/notifications" \
+                || url="$(gh api "$(echo "${url}" | sed -e "s/^'//" -e "s/'$//")" | jq .html_url)"
+            color=$RED
+            icon=$UNKNOWN
+            case "${type}" in
+                "'CheckSuite'")
+                    color=$RED
+                    icon=$ERROR
+                    ;;
+                "'Issue'")
+                    color=$GREEN
+                    icon=$ISSUE
+                    ;;
+                "'Discussion'")
+                    color=$WHITE
+                    icon=$DISCUSSION
+                    ;;
+                "'PullRequest'")
+                    color=$MAGENTA
+                    icon=$PULL_REQUEST
+                    ;;
+                "'Commit'")
+                    color=$WHITE
+                    icon=$COMMIT
+                    ;;
+            esac
+
+        fi
         [ -z "$(echo "$title" | grep -E -i "(deprecat|break|broke|failed)")" ] \
             || is_important=true
 
         notification=(
-            icon="$icon $(echo "$repo" | sed -e "s/^'//" -e "s/'$//")"
+            icon="$icon  $(echo "$repo" | sed -e "s/^'//" -e "s/'$//")"
             icon.color="$color"
             icon.padding_left=10
             label="$(echo "$title" | sed -e "s/^'//" -e "s/'$//")"
             label.padding_right=10
             position=popup.github
             drawing=on
-            click_script="open $url; sketchybar --set github popup.drawing=off"
+            click_script="echo $url; open $url; sketchybar --set github popup.drawing=off"
         )
 
         args+=(
@@ -78,9 +88,10 @@ update() {
         )
     done <<< "$(echo "$notifications" | jq -r '.[] | [.repository.name, .subject.latest_comment_url, .subject.type, .subject.title] | @sh')"
 
+    # Color icon too if >=1 message is important
     [ -z "$is_important" ] \
         && color="$PRIMARY" \
-        ||  color="$ALERT"
+        || color="$ALERT"
     args+=(--set "$NAME" label="$label" label.color="$labelcolor" icon.color="$color")
 
     # Animate a jump.
@@ -112,6 +123,13 @@ case "$SENDER" in
         if [ "$BUTTON" = "right" ]; then
             source "$CONFIG_DIR/shared.sh"
             sketchybar --set "$NAME" label="$LOADING_ICON" label.color="$FOREGROUND"
+            update
+        elif [ "$MODIFIER" = "cmd" ]; then
+            gh api \
+                --method PUT \
+                -H "Accept: application/vnd.github+json" \
+                -H "X-GitHub-Api-Version: 2022-11-28" \
+                /notifications -F read=true
             update
         fi
         ;;

@@ -9,27 +9,27 @@ VOLUME_10=􀊡
 VOLUME_0=􀊣
 
 update() {
+    source "$CONFIG_DIR/shared.sh"
+    color="$PRIMARY"
     case $INFO in
-        [6-9][0-9]|100)
-            icon=$VOLUME_100
-            ;;
-        [3-5][0-9])
-            icon=$VOLUME_66
-            ;;
-        [1-2][0-9])
-            icon=$VOLUME_33
+        0)
+            icon=$VOLUME_0
+            color="$ALERT"
             ;;
         [1-9])
             icon=$VOLUME_10
             ;;
-        0)
-            icon=$VOLUME_0
+        [1-2][0-9])
+            icon=$VOLUME_33
+            ;;
+        [3-6][0-9])
+            icon=$VOLUME_66
             ;;
         *)
             icon=$VOLUME_100
     esac
 
-    sketchybar --set "$NAME" icon="$icon" label="$INFO"
+    sketchybar --set "$NAME" icon="$icon" icon.color="$color" label="$INFO"
 }
 
 toggle_slider() {

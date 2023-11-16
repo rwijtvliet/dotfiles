@@ -1,22 +1,19 @@
 #!/usr/bin/env bash
 
-CONNECTED="􀙇"
-DISCONNECTED="􀙈"
-
 update() {
     source "$CONFIG_DIR/shared.sh"
     info="$(/System/Library/PrivateFrameworks/Apple80211.framework/Resources/airport -I | awk -F ' SSID: '  '/ SSID: / {print $2}')"
     if [ -n "$info" ]; then
-        ip="$(ipconfig getifaddr en0)"
+        ip=ipconfig getifaddr en0
         label="$info ($ip)"
-        icon="$CONNECTED"
+        icon="􀙇"
         color="$PRIMARY"
     else
         label="-"
-        icon="$DISCONNECTED"
+        icon="􀙈"
         color="$ALERT"
     fi
-    sketchybar --set "$NAME" icon="$icon" label="$label" icon.color="$color"
+    sketchybar --set "$NAME" icon="$icon" label="$info ($label)" icon.color="$color"
 }
 
 click() {
