@@ -16,15 +16,15 @@ alt + cmd - d :     yabai -m window --focus largest
 
 # space
 # [change -k to -kp if yabai is not working on this macos version]
-alt + cmd - 1 :     yabpy -n focus-space -k 1
-alt + cmd - 2 :     yabpy -n focus-space -k 2
-alt + cmd - 3 :     yabpy -n focus-space -k 3
-alt + cmd - 4 :     yabpy -n focus-space -k 4
-alt + cmd - 5 :     yabpy -n focus-space -k 5
-alt + cmd - 6 :     yabpy -n focus-space -k 6
-alt + cmd - 7 :     yabpy -n focus-space -k 7
-alt + cmd - 8 :     yabpy -n focus-space -k 8
-alt + cmd - 9 :     yabpy -n focus-space -k 9
+alt + cmd - 1 :     yabpy focus-space 1_files
+alt + cmd - 2 :     yabpy focus-space 2_www
+alt + cmd - 3 :     yabpy focus-space 3_office
+alt + cmd - 4 :     yabpy focus-space 4_terminal
+alt + cmd - 5 :     yabpy focus-space 5_vscode
+alt + cmd - 6 :     yabpy focus-space -k 6
+alt + cmd - 7 :     yabpy focus-space 7_teams
+alt + cmd - 8 :     yabpy focus-space 8_email
+alt + cmd - 9 :     yabpy focus-space 9_media
     
 # monitor
 alt + cmd - g : yabai -m display --focus west
@@ -48,15 +48,15 @@ alt + cmd + shift - d :     yabai -m window --swap largest
 # alt + cmd + shift - right : yabai -m window --swap east
 
 # (window) to space
-alt + cmd + shift - 1 :     yabpy -n window-to-space -k 1 ; sketchybar --trigger space_focus windows_on_spaces
-alt + cmd + shift - 2 :     yabpy -n window-to-space -k 2 ; sketchybar --trigger windows_on_spaces
-alt + cmd + shift - 3 :     yabpy -n window-to-space -k 3 ; sketchybar --trigger windows_on_spaces
-alt + cmd + shift - 4 :     yabpy -n window-to-space -k 4 ; sketchybar --trigger windows_on_spaces
-alt + cmd + shift - 5 :     yabpy -n window-to-space -k 5 ; sketchybar --trigger windows_on_spaces
-alt + cmd + shift - 6 :     yabpy -n window-to-space -k 6 ; sketchybar --trigger windows_on_spaces
-alt + cmd + shift - 7 :     yabpy -n window-to-space -k 7 ; sketchybar --trigger windows_on_spaces
-alt + cmd + shift - 8 :     yabpy -n window-to-space -k 8 ; sketchybar --trigger windows_on_spaces
-alt + cmd + shift - 9 :     yabpy -n window-to-space -k 9 ; sketchybar --trigger windows_on_spaces
+alt + cmd + shift - 1 :     yabpy window-to-space -k 1 ; sketchybar --trigger windows_on_spaces
+alt + cmd + shift - 2 :     yabpy window-to-space -k 2 ; sketchybar --trigger windows_on_spaces
+alt + cmd + shift - 3 :     yabpy window-to-space -k 3 ; sketchybar --trigger windows_on_spaces
+alt + cmd + shift - 4 :     yabpy window-to-space -k 4 ; sketchybar --trigger windows_on_spaces
+alt + cmd + shift - 5 :     yabpy window-to-space -k 5 ; sketchybar --trigger windows_on_spaces
+alt + cmd + shift - 6 :     yabpy window-to-space -k 6 ; sketchybar --trigger windows_on_spaces
+alt + cmd + shift - 7 :     yabpy window-to-space -k 7 ; sketchybar --trigger windows_on_spaces
+alt + cmd + shift - 8 :     yabpy window-to-space -k 8 ; sketchybar --trigger windows_on_spaces
+alt + cmd + shift - 9 :     yabpy window-to-space -k 9 ; sketchybar --trigger windows_on_spaces
 
 # (space) to monitor
 alt + cmd + shift - g : \
@@ -151,8 +151,10 @@ alt + cmd - return : \
 # screenshot
 # . directly to clipboard
 alt + cmd - y : \
-    screencapture -coi # press space to toggle between rectangle selection and window
+    screencapture -oic # press space to toggle between rectangle selection and window
 # . to editor
+alt + cmd + shift - y : \
+    screencapture -oiu /tmp/wontbecreated.png
 # TODO
 
 # lock the machine

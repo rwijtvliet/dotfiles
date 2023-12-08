@@ -14,13 +14,14 @@ sudo yabai --load-sa
 # windows to ignore
 yabai -m rule --add app="^(Calculator|System Preferences|Archive Utility|System Settings)$" manage=off
 yabai -m rule --add app="^mpv$" manage=off sticky=on layer=above opacity=1.0 grid=8:8:6:0:2:2
-yabai -m rule --add title="(Reminder|Notification|Preferences|Settings)$" manage=off sticky=on layer=above opacity=0.9
+yabai -m rule --add title="(Reminder|Reminders|Notification|Notifications|Preferences|Settings)$" manage=off sticky=on opacity=0.9
+yabai -m rule --add title="^(Share|Confirm)" manage=off sticky=on layer=above opacity=0.9
 
 # assign to space
-yabai -m rule --add app="^Finder$" space=^1_files # use label incase order is changed (i.e., by moving space to other monitor)yabai
+yabai -m rule --add app="^Finder$" space=^1_files # use label incase order is changed (i.e., by moving space to other monitor)
 yabai -m rule --add app="^Firefox$" space=^2_www
 # yabai -m rule --add app="^Alacritty$" space=^4_terminal # alacritty can be opened everywhere
-yabai -m rule --add app="^Microsoft Teams (work or school)$" space=^7_teamsyabai
+yabai -m rule --add app="^Microsoft Teams (work or school)$" space=^7_teams
 yabai -m rule --add app="^Microsoft Outlook$" space=^8_email
 yabai -m rule --add app="^Spotify$" space=9_media
 

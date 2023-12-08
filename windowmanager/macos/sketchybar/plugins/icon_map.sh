@@ -1,6 +1,14 @@
 #!/usr/bin/env bash
 
+# use
+#   yabai -m query --windows --space "$space_idx" | jq -r ".[].app"
+# to find the cases to add here.
+
 case "$1" in
+
+    "TextEdit")
+        icon_result=":pages:"
+        ;;
     "WhatsApp")
         icon_result=":whats_app:"
         ;;
