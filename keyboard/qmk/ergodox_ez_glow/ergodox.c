@@ -120,7 +120,7 @@ const uint8_t PROGMEM ledmap[][RGB_MATRIX_LED_COUNT][3] = {
                                                            tabul, _____, _____, tabul, \
                 // left side, but mirrored
                 _____, _____, _____, _____, _____, \
-                l_fun, l_num, l_sym, _____, _____, \
+                l_num, l_num, l_sym, _____, _____, \
                 _____, modif, modif, modif, modif, \
                 mou_2, winma, _____, _____, modif, \
                        winma, _____, _____, tabul },
@@ -186,7 +186,7 @@ const uint8_t PROGMEM ledmap[][RGB_MATRIX_LED_COUNT][3] = {
                                                     _____, _____, _____, _____, _____, \
                                                            tabul, _____, _____, tabul, \
                 _____, _____, _____, _____, _____, \
-                _____, fun_1, fun_1, fun_1, fun_1, \
+                delet, fun_1, fun_1, fun_1, fun_1, \
                 _____, fun_1, fun_1, fun_1, fun_1, \
                 _____, fun_1, fun_1, fun_1, fun_1, \
                        _____, _____, _____, tabul },

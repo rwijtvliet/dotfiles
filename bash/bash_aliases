@@ -13,9 +13,10 @@ alias l='ls -CF --color'
 
 # starting apps
 alias at='alacritty-themes'
-alias myip='curl ipinfo.io/ip' 
+alias myip='curl ipinfo.io/ip'
 alias bashconf='nvim ~/.bashrc'
 alias python=python3
+alias vim=nvim
 
 # keyboard compilation and flashing
 alias qm='cd ~/.dotfiles/keyboard/ && nvim qmk/common/keymap_partial.c qmk/ergodox_ez_glow/ergodox.c qmk/keyboardio_atreus/atreus.c'
@@ -35,5 +36,4 @@ alias rmswap='rm ~/.local/state/nvim/swap/*'
 alias wml='cd ~/.dotfiles/windowmanager/linux && nvim i3/config polybar/config.ini rofi/config.rasi'
 # . on macos
 alias wmm='cd ~/.dotfiles/windowmanager/macos && nvim sketchybar/sketchybarrc skhd/skhdrc yabai/yabairc'
-
 
