@@ -26,7 +26,9 @@ alias qme='qmce && qmfe'
 alias qmca='qmk compile -kb keyboardio/atreus -km rwijtvliet'
 alias qmfa='qmk flash -kb keyboardio/atreus -km rwijtvliet'
 alias qma='qmca && qmfa'
-
+alias qmcv='( cd ~/syncNone/Software/qmk_firmware_zsa && qmk compile -kb voyager -km rwijtvliet )'
+alias qmfv='( cd ~/syncNone/Software/qmk_firmware_zsa && qmk flash -kb voyager -km rwijtvliet )'
+alias qmv='qmcv && qmfv'
 # nvim stuff
 alias cdswap='cd ~/.local/state/nvim/swap'
 alias rmswap='rm ~/.local/state/nvim/swap/*'

@@ -5,6 +5,8 @@ alias pf='cd ~/python/portfolyo/ && poetry shell'
 alias lb='cd ~/python/lichtblyck/ && poetry shell'
 alias bv='cd ~/python/belvys/ && poetry shell' 
 
+alias sc='echo "opening excel file with windowmanager shortcuts" && open ~/.dotfiles/windowmanager/shortcuts.xlsx'
+
 PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
 PATH="/opt/homebrew/bin:$PATH"
 
