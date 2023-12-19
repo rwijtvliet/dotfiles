@@ -4,6 +4,10 @@ source ../shared.sh
 
 case "$OS" in
   "linux" )
+    info "Removing old installation"
+    rm -rf "$HOME/.local/share/nvim"
+    rm -rf "$HOME/.config/nvim" 
+    
     # install nvim
     info "Installing app"
     sudo apt install ripgrep
@@ -19,7 +23,6 @@ case "$OS" in
 
     # get astronvim
     info "getting astronvim"
-    rm -rf "$HOME/.config/nvim" # TODO: ask for confirmation
     git clone "https://github.com/AstroNvim/AstroNvim" "$HOME/.config/nvim"
 
     # add user config
@@ -28,6 +31,10 @@ case "$OS" in
     ;;
 
   "windows" )
+    info "Removing old installation"
+    # TODO: where is .local/share/nvim on windows?
+    rm -rf "$USERPROFILE/AppData/Local/nvim" 
+    
     # install nvim
     info "Installing app"
     scoop bucket add main
@@ -36,7 +43,6 @@ case "$OS" in
 
     # get astronvim
     info "getting astronvim"
-    rm -rf "$USERPROFILE/AppData/Local/nvim" # TODO: ask for confirmation
     git clone "https://github.com/AstroNvim/AstroNvim" "$USERPROFILE/AppData/Local/nvim"
     
     # add user config
@@ -44,13 +50,16 @@ case "$OS" in
     ;;
 
   "macos" )
+    info "Removing old installation"
+    rm -rf "$HOME/.local/share/nvim"
+    rm -rf "$HOME/.config/nvim" 
+     
     # install nvim
     info "Installing app"
     brew install neovim
 
     # get astronvim
     info "getting astronvim"
-    rm -rf "$HOME/.config/nvim" # TODO: ask for confirmation
     git clone "https://github.com/AstroNvim/AstroNvim" "$HOME/.config/nvim"
 
     # add user config

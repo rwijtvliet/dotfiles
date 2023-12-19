@@ -9,6 +9,7 @@ return {
     wrap = false, -- sets vim.opt.wrap
     cursorline = true,
     colorcolumn = "88",
+    scrolloff = 8,
   },
   g = {
     mapleader = " ", -- sets vim.g.mapleader
