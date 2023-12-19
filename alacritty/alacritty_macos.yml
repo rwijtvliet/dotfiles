@@ -1,6 +1,7 @@
 font:
   normal:
-    family: Hack Nerd Font Mono
+    #family: Hack Nerd Font Mono
+    family: JetBrainsMono Nerd Font Mono
 
 window:
   title: "Ruud's alacritty"
