@@ -59,6 +59,8 @@ setup_and_config2() {
   
   info "Installing ZSA fork of qmk."
   git clone http://www.github.com/zsa/qmk_firmware "$home"/"$ROOT2"
+  cd "$home"/"$ROOT2"
+  make git-submodule
   
   info "Linking config for voyager"
   rm -rf   "$home"/"$VOYAGER"

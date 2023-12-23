@@ -8,7 +8,7 @@
 // clang-format off
 
 #include "os_detection.h"
-#include "keymap_partial.c"
+#include "keymap_common.c"
 #include "atreus.c"
 #include "g/keymap_combo.h"
 

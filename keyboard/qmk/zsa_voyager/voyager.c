@@ -30,10 +30,10 @@
     _CORNERL  ,_ALPHA11  ,_ALPHA12  ,_ALPHA13  ,_ALPHA14  ,_ALPHA15  ,\
     _CORNERL  ,_ALPHA21  ,_ALPHA22  ,_ALPHA23  ,_ALPHA24  ,_ALPHA25  ,\
                                                 _THUMBL1  ,_THUMBL2  ,\
-                                                                                             XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,\  
+                                                                                             XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,\
                                                                                              _ALPHA06  ,_ALPHA07  ,_ALPHA08  ,_ALPHA09  ,_ALPHA10  ,XXXXX     ,\
                                                                                              _ALPHA16  ,_ALPHA17  ,_ALPHA18  ,_ALPHA19  ,_ALPHA20  ,_CORNERR  ,\
-                                                                                             _ALPHA26  ,_ALPHA27  ,_ALPHA28  ,_ALPHA29  ,_ALPHA30  ,_CORNERR  ,\ 
+                                                                                             _ALPHA26  ,_ALPHA27  ,_ALPHA28  ,_ALPHA29  ,_ALPHA30  ,_CORNERR  ,\
                                                                                              _THUMBR2  ,_THUMBR1
 
 // clang-format on
@@ -69,7 +69,7 @@ const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL] = {
     [L_SYSTEM] = {PREP_LIGHTS(LIGHTS_SYSTEM)},
     [L_GAME] = {PREP_LIGHTS(LIGHTS_GAME)},
 };
-bool get_ledmap_color(uint8_t layer, int i, rgb_led_t *rgb) {
+bool get_ledmap_color(uint8_t layer, int i, RGB *rgb) {
   if (layer < 0) {
     return false;
   }
@@ -99,37 +99,37 @@ bool get_ledmap_color(uint8_t layer, int i, rgb_led_t *rgb) {
 }
 
 void set_layer_color(int layer) {
-  rgb_led_t rgb;
-  for (int i = 0; i < RGB_MATRIX_LED_COUNT; i++) {
+  RGB rgb;
+  for (int i = 0; i < DRIVER_LED_TOTAL; i++) {
     if (get_ledmap_color(layer, i, &rgb)) {
       rgb_matrix_set_color(i, rgb.r, rgb.g, rgb.b);
     }
   }
 }
 
-bool rgb_matrix_indicators_user(void) {
-  // if (g_suspend_state || keyboard_config.disable_layer_led) { return; }
-  uint8_t bitval = biton32(layer_state);
-  if (bitval <= 8) {
-    set_layer_color(bitval);
-  } else if (rgb_matrix_get_flags() == LED_FLAG_NONE) {
-    rgb_matrix_set_color_all(0, 0, 0);
-  }
-  return true;
-}
-
-// Required by keymap_partail.c
-void custom_led_indicators(enum supported_os os) {
-  ergodox_board_led_off();
-  ergodox_right_led_1_off();
-  ergodox_right_led_2_off();
-  ergodox_right_led_3_off();
-  if (os == LINUX) {
-    ergodox_right_led_1_on();
-  } else if (os == WINDOWS) {
-    ergodox_right_led_2_on();
-  } else { // MACOS
-    ergodox_right_led_3_on();
-  }
-}
-void custom_post_init(void) { rgb_matrix_enable(); }
+// bool rgb_matrix_indicators_user(void) {
+//   // if (g_suspend_state || keyboard_config.disable_layer_led) { return; }
+//   uint8_t bitval = biton32(layer_state);
+//   if (bitval <= 8) {
+//     set_layer_color(bitval);
+//   } else if (rgb_matrix_get_flags() == LED_FLAG_NONE) {
+//     rgb_matrix_set_color_all(0, 0, 0);
+//   }
+//   return true;
+// }
+//
+// // Required by keymap_partail.c
+// void custom_led_indicators(enum supported_os os) {
+//   ergodox_board_led_off();
+//   ergodox_right_led_1_off();
+//   ergodox_right_led_2_off();
+//   ergodox_right_led_3_off();
+//   if (os == LINUX) {
+//     ergodox_right_led_1_on();
+//   } else if (os == WINDOWS) {
+//     ergodox_right_led_2_on();
+//   } else { // MACOS
+//     ergodox_right_led_3_on();
+//   }
+// }
+// void custom_post_init(void) { rgb_matrix_enable(); }

@@ -4,8 +4,10 @@
 // https://precondition.github.io/home-row-mods
 
 // clang-format off
-#include "os_detection.h"
+#include "config.h"
+#include QMK_KEYBOARD_H
+#include "version.h"
 #include "keymap_partial.c"
 #include "voyager.c"
-#include "g/keymap_combo.h"
+// #include "g/keymap_combo.h"
 // clang-format on

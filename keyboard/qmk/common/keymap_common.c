@@ -114,7 +114,7 @@ enum layer_names {
   L_SYM,
   L_NUM,
   L_NAV,
-  L_NAV2,
+  L_WEBNAV,
   L_FUN,
   L_MOUSE,
   L_SYSTEM,
@@ -136,7 +136,10 @@ enum custom_keycodes {
   kcShowApp,
   kcShowWin,
   kcOpenApp,
-  RGB_SLD
+  kcSatUp,
+  kcSatDn,
+  kcValUp,
+  kcValDn,
 };
 enum supported_os {
   LINUX = 1,
@@ -150,40 +153,40 @@ void custom_post_init(void);
 
 // clang-format off
 
-// Aliases.
-
+// Aliases for keys.
+ 
 // Special keys
 #define ___f___  _______ // transparent by design; must remain empty e.g. to capture underlying layer keys
 
-// Modifiers (no prefix if function, "kc" if keycode (=modifier while held), "mod_..." if used in macro)
-// . modifier, always ALT
+// Modifiers (no prefix if function, "kc" if keycode (=Modifier while held), "mod_..." if used in macro)
+// . Modifier, always ALT
 #undef A
 #define A(kc)      LALT(kc) //function
 #define ALT(kc)    LALT(kc) //function
 #define kc_ALT     KC_LALT  //key
-#define mod_ALT    MOD_LALT //modifier in home-row mods
-// . modifier, always SFT
+#define mod_ALT    MOD_LALT //Modifier in home-row mods
+// . Modifier, always SFT
 #define SFT(kc)    LSFT(kc)
 #define kc_SFT     KC_LSFT
 #define mod_SFT    MOD_LSFT
-// . modifier, always CTL
+// . Modifier, always CTL
 #undef C
 #define C(kc)      LCTL(kc)
 #define CTL(kc)    LCTL(kc)
 #define kc_CTL     KC_LCTL
 #define mod_CTL    MOD_LCTL
-// . modifier, always GUI
+// . Modifier, always GUI
 #undef G
 #define G(kc)      LGUI(kc)
 #define GUI(kc)    LGUI(kc)
 #define kc_GUI     KC_LGUI
 #define mod_GUI    MOD_LGUI
-// . major modifier, is CTL on linux and GUI (=command) on mac
+// . major Modifier, is CTL on linux and GUI (=command) on mac
 #define J(kc)      RCTL(kc)
 #define MAJ(kc)    RCTL(kc)
 #define kc_MAJOR   KC_RCTL
 #define mod_MAJOR  MOD_RCTL
-// . minor modifier, is GUI (=win/meta) on linux and CTL on mac
+// . minor Modifier, is GUI (=win/meta) on linux and CTL on mac
 #define N(kc)      RGUI(kc)
 #define MNR(kc)    RGUI(kc)
 #define kc_MINOR   KC_RGUI
@@ -191,17 +194,17 @@ void custom_post_init(void);
 
 // Layer switching ("l..." if layer while held; "p..." for permanent switch)
 #define l_DOT    LT(L_SYM, KC_DOT)
-#define l_P      LT(L_NUM, KC_P)
-#define l_Y      LT(L_NUM, KC_Y)
+#define l_P      LT(L_NUM , KC_P)
+#define l_Y      LT(L_NUM , KC_Y)
 #define l_G      LT(L_FUN, KC_G)
 #define l_C      LT(L_SYM, KC_C)
+#define l_K      LT(L_SYSTEM, KC_K)
 #define l_X      LT(L_MOUSE, KC_X)
-#define l_K      LT(L_NUM, KC_K)
 #define l_B      LT(L_MOUSE, KC_B)
 #define l_TAB    LT(L_NAV, KC_TAB)
 #define l_SPC    LT(L_NAV, KC_SPC)
 #define lNAV     MO(L_NAV)
-#define lNAV2    MO(L_NAV2)
+#define lWEBNAV  MO(L_WEBNAV)
 #define pGAME    TO(L_GAME)
 #define pBASE    TO(L_BASE)
 
@@ -229,23 +232,69 @@ void custom_post_init(void);
 // Special functions ("f...")
 #define fEE_CLR  QK_CLEAR_EEPROM // if something gets mixed up, this will clear the persistent values.
 
+// Colors (hue, 0...255) for leds.
+enum colors {
+    RED = 0,
+    ORANGE = 21,
+    YELLOW = 43,
+    LIME = 64,
+    GREEN = 85,
+    SPRING = 106,
+    CYAN = 127,
+    AZURE = 148,
+    BLUE = 169,
+    VIOLET = 180,
+    MAGENTA = 201,
+    ROSE = 222,
+    LAVENDER = 250,
 
+    // special values
+    _____ = 252, //transparent
+    WHITE = 253,
+    GRAY = 254,
+    XXXXX = 255,  //off
+
+    // has to be equal to the smallest special value
+    _MARKER_ = _____,
+};
 
 // Layouts.
+// The layouts here contain keys that can reasonably be assumed to be present on many (but not necessarily all) keyboards. For each halve,
+// we have:
+// * 3 rows x 5 keys for the alpha-grid
+// * 1 corner key (to be pressed with palm of hand)
+// * 2 thumb keys
+// * 2 additional central keys (should be non-essential functions, as not always present)
+// _ALPHA01  ,_ALPHA02  ,_ALPHA03  ,_ALPHA04  ,_ALPHA05  ,                      _ALPHA06  ,_ALPHA07  ,_ALPHA08  ,_ALPHA09  ,_ALPHA10  ,
+// _ALPHA11  ,_ALPHA12  ,_ALPHA13  ,_ALPHA14  ,_ALPHA15  ,                      _ALPHA16  ,_ALPHA17  ,_ALPHA18  ,_ALPHA19  ,_ALPHA20  ,
+// _ALPHA21  ,_ALPHA22  ,_ALPHA23  ,_ALPHA24  ,_ALPHA25  ,_CENTRL1  ,_CENTRR1  ,_ALPHA26  ,_ALPHA27  ,_ALPHA28  ,_ALPHA29  ,_ALPHA30  ,
+// _CORNERL  ,                      _THUMBL1  ,_THUMBL2  ,_CENTRL2  ,_CENTRR2  ,_THUMBR2  ,_THUMBR1  ,                      _CORNERR  
+// Other keys, such as a numbers row, an outside column, or additional keys below the bottom row, must be specified for the specific keyboard
 
 #define LAYER_BASE \
     KC_QUOT   ,KC_COMM   ,l_DOT     ,l_P       ,l_Y       ,                      KC_F      ,l_G       ,l_C       ,KC_R      ,KC_L      ,\
     ctl_A     ,sft_O     ,maj_E     ,alt_U     ,KC_I      ,                      KC_D      ,alt_H     ,maj_T     ,sft_N     ,ctl_S     ,\
     mnr_SCLN  ,KC_Q      ,KC_J      ,l_K       ,l_X       ,KC_VOLD   ,KC_VOLU   ,l_B       ,KC_M      ,KC_W      ,KC_V      ,mnr_Z     ,\
-    KC_ESC    ,XXXXXXX   ,XXXXXXX   ,mWM       ,l_SPC     ,kcLINUX   ,kcMACOS   ,sft_BSPC  ,l_TAB     ,XXXXXXX   ,XXXXXXX   ,KC_ENT
+    KC_ESC    ,                      mWM       ,l_SPC     ,kcLINUX   ,kcMACOS   ,sft_BSPC  ,l_TAB     ,                      KC_ENT
+#define LIGHTS_BASE \
+    XXXXX     ,XXXXX     ,YELLOW    ,BLUE      ,BLUE      ,                      XXXXX     ,ORANGE    ,YELLOW    ,XXXXX     ,XXXXX     ,\
+    WHITE     ,WHITE     ,WHITE     ,WHITE     ,XXXXX     ,                      XXXXX     ,WHITE     ,WHITE     ,WHITE     ,WHITE     ,\
+    WHITE     ,XXXXX     ,XXXXX     ,LIME      ,ROSE      ,XXXXX     ,XXXXX     ,ROSE      ,XXXXX     ,XXXXX     ,XXXXX     ,WHITE     ,\
+    GRAY      ,                      MAGENTA   ,GRAY      ,XXXXX     ,XXXXX     ,GRAY      ,GRAY      ,                      GRAY 
 
 //Dvorak without modifiers. Never switched to, just as base for the combos
 #define LAYER_BASE2 \
     KC_QUOT   ,KC_COMM   ,KC_DOT    ,KC_P      ,KC_Y      ,                      KC_F      ,KC_G      ,KC_C      ,KC_R      ,KC_L      ,\
     KC_A      ,KC_O      ,KC_E      ,KC_U      ,KC_I      ,                      KC_D      ,KC_H      ,KC_T      ,KC_N      ,KC_S      ,\
     KC_SCLN   ,KC_Q      ,KC_J      ,KC_K      ,KC_X      ,XXXXXXX   ,XXXXXXX   ,KC_B      ,KC_M      ,KC_W      ,KC_V      ,KC_Z      ,\
-    XXXXXXX   ,XXXXXXX   ,XXXXXXX   ,XXXXXXX   ,XXXXXXX   ,XXXXXXX   ,XXXXXXX   ,XXXXXXX   ,XXXXXXX   ,XXXXXXX   ,XXXXXXX   ,XXXXXXX
+    XXXXXXX   ,                      XXXXXXX   ,XXXXXXX   ,XXXXXXX   ,XXXXXXX   ,XXXXXXX   ,XXXXXXX   ,                      XXXXXXX
+#define LIGHTS_BASE2 \
+    _____     ,_____     ,_____     ,_____     ,_____     ,                      _____     ,_____     ,_____     ,_____     ,_____     ,\
+    _____     ,_____     ,_____     ,_____     ,_____     ,                      _____     ,_____     ,_____     ,_____     ,_____     ,\
+    _____     ,_____     ,_____     ,_____     ,_____     ,_____     ,_____     ,_____     ,_____     ,_____     ,_____     ,_____     ,\
+    _____     ,                      _____     ,_____     ,_____     ,_____     ,_____     ,_____     ,                      _____     
 
+// Symbols:
 //  `          %          #          $          ^                                &          [          ]          \          /
 //                                                                               -          (          )          =          _
 //  @          ~          ?          !                                           +          {          }          |          *
@@ -253,15 +302,27 @@ void custom_post_init(void);
     KC_GRV    ,KC_TILD   ,KC_HASH   ,KC_DLR    ,KC_CIRC   ,                      KC_AMPR   ,KC_LBRC   ,KC_RBRC   ,KC_BSLS   ,KC_SLSH   ,\
     kc_CTL    ,kc_SFT    ,kc_MAJOR  ,kc_ALT    ,XXXXXXX   ,                      KC_MINS   ,KC_LPRN   ,KC_RPRN   ,KC_EQL    ,KC_UNDS   ,\
     KC_AT     ,KC_PERC   ,KC_QUES   ,KC_EXLM   ,XXXXXXX   ,_______   ,_______   ,KC_PLUS   ,KC_LCBR   ,KC_RCBR   ,KC_PIPE   ,KC_ASTR   ,\
-    ___f___   ,_______   ,_______   ,pBASE     ,___f___   ,_______   ,_______   ,___f___   ,___f___   ,_______   ,_______   ,___f___
+    ___f___   ,                      pBASE     ,___f___   ,_______   ,_______   ,___f___   ,___f___   ,                      ___f___
+#define LIGHTS_SYM \
+    YELLOW    ,YELLOW    ,YELLOW    ,YELLOW    ,LIME      ,                      YELLOW    ,SPRING    ,SPRING    ,YELLOW    ,LIME      ,\
+    WHITE     ,WHITE     ,WHITE     ,WHITE     ,XXXXX     ,                      LIME      ,SPRING    ,SPRING    ,LIME      ,YELLOW    ,\
+    YELLOW    ,YELLOW    ,YELLOW    ,YELLOW    ,XXXXX     ,XXXXX     ,XXXXX     ,LIME      ,SPRING    ,SPRING    ,YELLOW    ,LIME      ,\
+    _____     ,                      GREEN     ,_____     ,XXXXX     ,XXXXX     ,_____     ,_____      ,                      _____ 
 
+
+// Numbers.
 #define LAYER_NUM \
     KC_QUOT   ,KC_COMM   ,KC_DOT    ,___f___   ,KC_CIRC   ,                      KC_0      ,KC_1      ,KC_2      ,KC_3      ,KC_SLSH   ,\
     kc_MINOR  ,kc_SFT    ,kc_MAJOR  ,kc_ALT    ,XXXXXXX   ,                      KC_MINUS  ,KC_4      ,KC_5      ,KC_6      ,KC_UNDS   ,\
     KC_COLN   ,KC_PERC   ,XXXXXXX   ,XXXXXXX   ,XXXXXXX   ,_______   ,_______   ,KC_PLUS   ,KC_7      ,KC_8      ,KC_9      ,KC_ASTR   ,\
-    ___f___   ,_______   ,_______   ,pBASE     ,___f___   ,_______   ,_______   ,_______   ,___f___   ,_______   ,_______   ,___f___
+    ___f___   ,                      pBASE     ,___f___   ,_______   ,_______   ,_______   ,___f___   ,                      ___f___
+#define LIGHTS_NUM \
+    YELLOW    ,YELLOW    ,YELLOW    ,YELLOW    ,LIME      ,                      BLUE      ,BLUE      ,BLUE      ,BLUE      ,LIME      ,\
+    WHITE     ,WHITE     ,WHITE     ,WHITE     ,XXXXX     ,                      LIME      ,BLUE      ,BLUE      ,BLUE      ,YELLOW    ,\
+    YELLOW    ,YELLOW    ,YELLOW    ,YELLOW    ,XXXXX     ,XXXXX     ,XXXXX     ,LIME      ,BLUE      ,BLUE      ,BLUE      ,LIME      ,\
+    _____     ,                      GREEN     ,_____     ,XXXXX     ,XXXXX     ,_____     ,_____     ,                      _____ 
 
-
+// Navigation:
 //  Win of app Win of app Apps       Apps       Copy                             DocStart   LineStart  PageUp     PageDown   LineEnd
 //  (cycle)    (show all) (show all) (cycle)                                                           
 //    
@@ -272,47 +333,94 @@ void custom_post_init(void);
 //                                                                               BspWord
 #define LAYER_NAV \
     kcCycleWin,kcShowWin ,kcShowApp ,kcCycleApp,J(KC_C)   ,                      J(KC_HOME),KC_HOME   ,KC_PGUP   ,KC_PGDN   ,KC_END    ,\
-    kc_CTL    ,kc_SFT    ,kc_MAJOR  ,lNAV2     ,J(KC_V)   ,                      J(KC_END) ,KC_LEFT   ,KC_UP     ,KC_DOWN   ,KC_RGHT   ,\
+    kc_CTL    ,kc_SFT    ,kc_MAJOR  ,lWEBNAV   ,J(KC_V)   ,                      J(KC_END) ,KC_LEFT   ,KC_UP     ,KC_DOWN   ,KC_RGHT   ,\
     kc_MINOR  ,J(KC_MINS),J(KC_EQL) ,kcOpenApp ,J(KC_X)   ,KC_MPRV   ,KC_MNXT   ,kcDelWord ,KC_DEL    ,kcPrevWord,kcNextWord,KC_INS    ,\
-    ___f___   ,_______   ,_______   ,pBASE     ,___f___   ,KC_MPLY   ,KC_MUTE   ,kcBspWord,_______   ,_______   ,_______   ,___f___
+    ___f___   ,                      pBASE     ,___f___   ,KC_MPLY   ,KC_MUTE   ,kcBspWord ,_______   ,                      ___f___
+#define LIGHTS_NAV \
+    CYAN      ,CYAN      ,AZURE     ,AZURE     ,GREEN     ,                      SPRING    ,AZURE     ,AZURE     ,AZURE     ,AZURE     ,\
+    WHITE     ,WHITE     ,WHITE     ,WHITE     ,GREEN     ,                      SPRING    ,CYAN      ,CYAN      ,CYAN      ,CYAN      ,\
+    WHITE     ,CYAN      ,CYAN      ,SPRING    ,GREEN     ,XXXXX     ,XXXXX     ,RED       ,RED       ,SPRING    ,SPRING    ,GRAY      ,\
+    _____     ,                      GREEN     ,_____     ,XXXXX     ,XXXXX     ,WHITE     ,_____     ,                      _____ 
 
-#define LAYER_NAV2 \
+// Navigation for web
+#define LAYER_WEBNAV \
     _______   ,_______   ,_______   ,_______   ,_______   ,                      _______   ,_______   ,C(KC_PGUP),C(KC_PGDN),_______   ,\
     _______   ,_______   ,_______   ,_______   ,_______   ,                      _______   ,kcWebBack ,C(KC_PGUP),C(KC_PGDN),kcWebFwd  ,\
     _______   ,_______   ,_______   ,_______   ,_______   ,_______   ,_______   ,_______   ,_______   ,_______   ,_______   ,_______   ,\
-    _______   ,_______   ,_______   ,_______   ,_______   ,_______   ,_______   ,_______   ,_______   ,_______   ,_______   ,_______
+    ___f___   ,                      _______   ,_______   ,_______   ,_______   ,_______   ,_______   ,                      _______
+#define LIGHTS_WEBNAV \
+    XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,                      XXXXX     ,XXXXX     ,AZURE     ,AZURE     ,XXXXX     ,\
+    XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,                      XXXXX     ,CYAN      ,AZURE     ,AZURE     ,CYAN      ,\
+    XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,\
+    _____     ,                      XXXXX     ,_____     ,XXXXX     ,XXXXX     ,GRAY      ,_____     ,                      _____     
 
+// F-keys.
 #define LAYER_FUN \
     KC_F1     ,KC_F2     ,KC_F3     ,KC_F4     ,___f___   ,                      XXXXXXX   ,___f___   ,kc_ALT    ,XXXXXXX   ,XXXXXXX   ,\
     KC_F5     ,KC_F6     ,KC_F7     ,KC_F8     ,kc_ALT    ,                      XXXXXXX   ,kc_ALT    ,kc_MAJOR  ,kc_SFT    ,kc_CTL    ,\
     KC_F9     ,KC_F10    ,KC_F11    ,KC_F12    ,XXXXXXX   ,_______   ,_______   ,XXXXXXX   ,XXXXXXX   ,XXXXXXX   ,XXXXXXX   ,kc_MINOR  ,\
-    ___f___   ,_______   ,_______   ,pBASE     ,___f___   ,_______   ,_______   ,___f___   ,___f___   ,_______   ,_______   ,_______
+    ___f___   ,                      pBASE     ,___f___   ,_______   ,_______   ,___f___   ,___f___   ,                      ___f___
+#define LIGHTS_FUN \
+    ORANGE    ,ORANGE    ,ORANGE    ,ORANGE    ,XXXXX     ,                      XXXXX     ,XXXXX     ,WHITE     ,XXXXX     ,XXXXX     ,\
+    ORANGE    ,ORANGE    ,ORANGE    ,ORANGE    ,WHITE     ,                      XXXXX     ,XXXXX     ,WHITE     ,WHITE     ,WHITE     ,\
+    ORANGE    ,ORANGE    ,ORANGE    ,ORANGE    ,XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,WHITE     ,\
+    _____     ,                      GREEN     ,_____     ,XXXXX     ,XXXXX     ,_____     ,_____     ,                      _____     
 
+// Mouse.
 #define LAYER_MOUSE \
-    KC_WH_U   ,KC_BTN1   ,KC_MS_U   ,KC_BTN2   ,QK_BOOT   ,                      pGAME     ,KC_BTN1   ,KC_MS_U   ,KC_BTN2   ,KC_WH_U   ,\
-    KC_WH_D   ,KC_MS_L   ,KC_MS_D   ,KC_MS_R   ,fEE_CLR   ,                      XXXXXXX   ,KC_MS_L   ,KC_MS_D   ,KC_MS_R   ,KC_WH_D   ,\
+    KC_WH_U   ,KC_BTN1   ,KC_MS_U   ,KC_BTN2   ,XXXXXXX   ,                      XXXXXXX     ,KC_BTN1   ,KC_MS_U   ,KC_BTN2   ,KC_WH_U   ,\
+    KC_WH_D   ,KC_MS_L   ,KC_MS_D   ,KC_MS_R   ,XXXXXXX   ,                      XXXXXXX   ,KC_MS_L   ,KC_MS_D   ,KC_MS_R   ,KC_WH_D   ,\
     KC_ACL0   ,KC_ACL1   ,KC_ACL2   ,XXXXXXX   ,___f___   ,_______   ,_______   ,___f___   ,XXXXXXX   ,KC_ACL2   ,KC_ACL1   ,KC_ACL0   ,\
-    ___f___   ,_______   ,_______   ,pBASE     ,___f___   ,_______   ,_______   ,_______   ,_______   ,_______   ,_______   ,_______
+    ___f___   ,                      pBASE     ,___f___   ,_______   ,_______   ,_______   ,_______   ,                      _______
+#define LIGHTS_MOUSE \
+    VIOLET    ,LAVENDER  ,MAGENTA   ,LAVENDER  ,XXXXX     ,                      XXXXX     ,LAVENDER  ,MAGENTA   ,LAVENDER  ,VIOLET    ,\
+    VIOLET    ,MAGENTA   ,MAGENTA   ,MAGENTA   ,XXXXX     ,                      XXXXX     ,MAGENTA   ,MAGENTA   ,MAGENTA   ,VIOLET    ,\
+    LAVENDER  ,LAVENDER  ,LAVENDER  ,XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,LAVENDER  ,LAVENDER  ,LAVENDER  ,\
+    _____     ,                      GREEN     ,_____     ,XXXXX     ,XXXXX     ,_____     ,_____     ,                      _____     
 
+// Querty.
 #define LAYER_GAME \
     KC_Q      ,KC_W      ,KC_E      ,KC_R      ,KC_T      ,                      KC_Y      ,KC_U      ,KC_I      ,KC_O      ,KC_P      ,\
     KC_A      ,KC_S      ,KC_D      ,KC_F      ,KC_G      ,                      KC_H      ,KC_J      ,KC_K      ,KC_L      ,KC_SCLN   ,\
     KC_Z      ,KC_X      ,KC_C      ,KC_V      ,KC_B      ,_______   ,_______   ,KC_N      ,KC_M      ,KC_UP     ,KC_DOT    ,KC_SLSH   ,\
-    _______   ,kc_SFT    ,_______   ,pBASE     ,_______   ,_______   ,_______   ,_______   ,KC_LEFT   ,KC_DOWN   ,KC_RGHT   ,_______
+    _______   ,                      pBASE     ,_______   ,_______   ,_______   ,_______   ,_______   ,                      _______
+#define LIGHTS_GAME \
+    XXXXX     ,CYAN      ,XXXXX     ,XXXXX     ,XXXXX     ,                      XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,\
+    CYAN      ,CYAN      ,CYAN      ,XXXXX     ,XXXXX     ,                      XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,\
+    XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,\
+    _____     ,                      GREEN     ,_____     ,XXXXX     ,XXXXX     ,_____     ,_____     ,                      _____
 
+// System.
 #define LAYER_SYSTEM \
-    _______   ,_______   ,_______   ,_______   ,_______   ,                      KC_MPLY   ,KC_MPRV   ,KC_MNXT   ,_______   ,KC_BRIU   ,\
-    _______   ,_______   ,_______   ,_______   ,_______   ,                      KC_MUTE   ,KC_VOLD   ,KC_VOLU   ,_______   ,KC_BRID   ,\
-    _______   ,_______   ,_______   ,_______   ,_______   ,_______   ,_______   ,_______   ,_______   ,_______   ,KC_LCAP   ,KC_INS    ,\
-    _______   ,_______   ,_______   ,_______   ,___f___   ,_______   ,_______   ,___f___   ,_______   ,_______   ,_______   ,_______
+    kcSatUp   ,kcValUp   ,_______   ,_______   ,QK_BOOT   ,                      KC_MPLY   ,KC_MPRV   ,KC_MNXT   ,_______   ,KC_BRIU   ,\
+    kcSatDn   ,kcValDn   ,_______   ,_______   ,fEE_CLR   ,                      KC_MUTE   ,KC_VOLD   ,KC_VOLU   ,_______   ,KC_BRID   ,\
+    kcLINUX   ,kcWINDO   ,kcMACOS   ,___f___   ,pGAME     ,_______   ,_______   ,_______   ,_______   ,_______   ,KC_LCAP   ,KC_INS    ,\
+    XXXXXXX   ,                      _______   ,_______   ,_______   ,_______   ,XXXXXXX   ,XXXXXXX   ,                      XXXXXXX
+#define LIGHTS_SYSTEM \
+    ORANGE    ,YELLOW    ,XXXXX     ,XXXXX     ,RED       ,                      LIME      ,YELLOW    ,YELLOW    ,XXXXX     ,BLUE      ,\
+    ORANGE    ,YELLOW    ,XXXXX     ,XXXXX     ,RED       ,                      MAGENTA   ,LAVENDER  ,LAVENDER  ,XXXXX     ,BLUE      ,\
+    BLUE      ,BLUE      ,BLUE      ,XXXXX     ,ORANGE    ,XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,GRAY      ,GRAY      ,\
+    XXXXX     ,                      XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,                      XXXXX     
 
+// Templates.
 #define LAYER_TEMPLATE \
     _______   ,_______   ,_______   ,_______   ,_______   ,                      _______   ,_______   ,_______   ,_______   ,_______   ,\
     _______   ,_______   ,_______   ,_______   ,_______   ,                      _______   ,_______   ,_______   ,_______   ,_______   ,\
     _______   ,_______   ,_______   ,_______   ,_______   ,_______   ,_______   ,_______   ,_______   ,_______   ,_______   ,_______   ,\
-    _______   ,_______   ,_______   ,_______   ,_______   ,_______   ,_______   ,_______   ,_______   ,_______   ,_______   ,_______
+    _______   ,                      _______   ,_______   ,_______   ,_______   ,_______   ,_______   ,                      _______
+#define LIGHTS_TEMPLATE \
+    XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,                      XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,\
+    XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,                      XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,\
+    XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,\
+    XXXXX     ,                      XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,                      XXXXX
 
 // clang-format on
+
+// Global variables.
+
+enum supported_os current_os;
+int hsv_saturation;
+int hsv_value;
 
 // Functions.
 
@@ -324,8 +432,6 @@ bool get_tapping_force_hold(uint16_t keycode, keyrecord_t *record) {
     return true;
   }
 }
-
-enum supported_os current_os = 0;
 
 void set_current_os_from_keycode(uint16_t keycode) {
   // Process the MAGIC keycodes manually. Reason: avoid persistently storing the
@@ -385,6 +491,24 @@ layer_state_t layer_state_set_user(layer_state_t state) {
   prev_layer = get_highest_layer(state);
   return state;
 }
+void change_hsv_value(int amount) {
+  // Change value of leds.
+  hsv_value += amount;
+  if (hsv_value < 0) {
+    hsv_value = 0;
+  } else if (hsv_value > 255) {
+    hsv_value = 255;
+  }
+}
+void change_hsv_saturation(int amount) {
+  // Change saturation of leds.
+  hsv_saturation += amount;
+  if (hsv_saturation < 100) {
+    hsv_saturation = 100;
+  } else if (hsv_saturation > 255) {
+    hsv_saturation = 255;
+  }
+}
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   // Custom processing of keypresses.
   switch (keycode) {
@@ -396,24 +520,33 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     }
     return false; // don't continue processing this key
 
+  case kcSatUp:
+    if (record->event.pressed) {
+      change_hsv_saturation(16);
+    }
+    return false;
+  case kcSatDn:
+    if (record->event.pressed) {
+      change_hsv_saturation(-16);
+    }
+    return false;
+  case kcValUp:
+    if (record->event.pressed) {
+      change_hsv_value(16);
+    }
+    return false;
+  case kcValDn:
+    if (record->event.pressed) {
+      change_hsv_value(-16);
+    }
+    return false;
+
   case l_Y:
     if (!record->tap.count) {
       if (record->event.pressed) {
         register_code(kc_SFT);
       } else {
         unregister_code(kc_SFT);
-      }
-    }
-    return true;
-
-  case l_K:
-    if (!record->tap.count) {
-      if (record->event.pressed) {
-        register_code(kc_ALT);
-        register_code(kc_GUI);
-      } else {
-        unregister_code(kc_ALT);
-        unregister_code(kc_GUI);
       }
     }
     return true;
@@ -514,6 +647,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 }
 
 void keyboard_post_init_user(void) {
-  set_current_os_from_keycode(kcLINUX);
+  set_current_os_from_keycode(kcMACOS);
+  hsv_saturation = 220;
+  hsv_value = 128;
   custom_post_init();
 }
