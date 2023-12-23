@@ -31,7 +31,7 @@ the minor modifier.
 ## Navigation
 
 The navigational keys work slightly different on the OS as well. Backspace
-(called RED  e on macos) is included here.
+(called delete on macos) is included here.
 
 Movement:
 * Move by one character or line:
@@ -63,11 +63,11 @@ until beginning/end of document: SFT+movement.
 
 Removal:
 * Remove one character:
-  --> BACKSPACE/RED  E on all OS
+  --> BACKSPACE/DELETE on all OS
 * Remove one word:
-  - CTL+BACKSPACE/RED  E on linux/windows
-  - ALT+BACKSPACE/RED  E on macos. GUI+BACKSPACE/RED  E also works.
-  --> MAJOR+BACKSPACE/RED  E on all OS
+  - CTL+BACKSPACE/DELETE on linux/windows
+  - ALT+BACKSPACE/DELETE on macos. GUI+BACKSPACE/DELETE also works.
+  --> MAJOR+BACKSPACE/DELETE on all OS
 * Remove to beginning/end of line:
   --> Not implemented as custom key.
 
