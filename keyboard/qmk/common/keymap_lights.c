@@ -15,10 +15,7 @@ const uint8_t PROGMEM ledmap[][NUMBER_OF_LEDS] = {
     [L_GAME] = {PREP_LIGHTS(LIGHTS_GAME)},
 };
 
-bool get_ledmap_color(uint8_t layer, int i, rgb_led_t *rgb) {
-  if (NUMBER_OF_LEDS == 0) {
-    return false;
-  }
+bool get_ledmap_color(uint8_t layer, int i, RGB *rgb) {
   uint8_t hue = pgm_read_byte(&ledmap[layer][i]);
   HSV hsv;
   switch (hue) {
@@ -47,28 +44,11 @@ bool get_ledmap_color(uint8_t layer, int i, rgb_led_t *rgb) {
 }
 
 void set_layer_color(int layer) {
-  if (NUMBER_OF_LEDS == 0) {
-    return;
-  }
-  rgb_led_t rgb;
+  RGB rgb;
   for (int i = 0; i < NUMBER_OF_LEDS; i++) {
     if (!get_ledmap_color(layer, i, &rgb)) {
-      rgb = (rgb_led_t){.r = 0, .g = 0, .b = 0};
+      rgb = (RGB){.r = 0, .g = 0, .b = 0};
     }
     rgb_matrix_set_color(i, rgb.r, rgb.g, rgb.b);
   }
-}
-
-bool rgb_matrix_indicators_user(void) {
-  // if (g_suspend_state || keyboard_config.disable_layer_led) { return; }
-  if (NUMBER_OF_LEDS == 0) {
-    return false;
-  }
-  uint8_t bitval = biton32(layer_state);
-  if (bitval <= 8) {
-    set_layer_color(bitval);
-  } else if (rgb_matrix_get_flags() == LED_FLAG_NONE) {
-    rgb_matrix_set_color_all(0, 0, 0);
-  }
-  return true;
 }

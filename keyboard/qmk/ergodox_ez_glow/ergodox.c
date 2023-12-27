@@ -39,8 +39,9 @@
 // clang-format on
 
 #define PREP_LAYER(...) PREP_LAYER_FOR_ERGODOX(__VA_ARGS__)
-#define PREP_LIGHTS(...) PREP_LIGHTS_FOR_ERGODOX(__VA_ARGS__)
 #define EXPAND_LAYOUT(x) LAYOUT_ergodox_pretty(x)
+
+// Required by keymap_common.c
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [L_BASE] = EXPAND_LAYOUT(PREP_LAYER(LAYER_BASE)),
@@ -55,7 +56,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [L_GAME] = EXPAND_LAYOUT(PREP_LAYER(LAYER_GAME)),
 };
 
-// Required by keymap_common.c
 void custom_led_indicators(enum supported_os os) {
   ergodox_board_led_off();
   ergodox_right_led_1_off();
@@ -72,4 +72,19 @@ void custom_led_indicators(enum supported_os os) {
 void custom_post_init(void) { rgb_matrix_enable(); }
 
 // Required by keymap_lights.c
+
+#define PREP_LIGHTS(...) PREP_LIGHTS_FOR_ERGODOX(__VA_ARGS__)
 #define NUMBER_OF_LEDS RGB_MATRIX_LED_COUNT
+
+void set_layer_color(int);
+
+bool rgb_matrix_indicators_user(void) {
+  // if (g_suspend_state || keyboard_config.disable_layer_led) { return; }
+  uint8_t bitval = biton32(layer_state);
+  if (bitval <= 8) {
+    set_layer_color(bitval);
+  } else if (rgb_matrix_get_flags() == LED_FLAG_NONE) {
+    rgb_matrix_set_color_all(0, 0, 0);
+  }
+  return true;
+}

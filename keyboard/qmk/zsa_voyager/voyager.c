@@ -1,7 +1,4 @@
 // 2022 2023 Ruud Wijtvliet (@rwijtvliet)
-//
-// good tutorial:
-// https://precondition.github.io/home-row-mods
 
 // clang-format off
 
@@ -39,8 +36,9 @@
 // clang-format on
 
 #define PREP_LAYER(...) PREP_LAYER_FOR_VOYAGER(__VA_ARGS__)
-#define PREP_LIGHTS(...) PREP_LIGHTS_FOR_VOYAGER(__VA_ARGS__)
 #define EXPAND_LAYOUT(x) LAYOUT_voyager(x)
+
+// Required by keymap_common.c
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [L_BASE] = EXPAND_LAYOUT(PREP_LAYER(LAYER_BASE)),
@@ -55,81 +53,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [L_GAME] = EXPAND_LAYOUT(PREP_LAYER(LAYER_GAME)),
 };
 
-extern rgb_config_t rgb_matrix_config;
+void custom_led_indicators(enum supported_os os) {}
+void custom_post_init(void) { rgb_matrix_enable(); }
 
-const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL] = {
-    [L_BASE] = {PREP_LIGHTS(LIGHTS_BASE)},
-    [L_BASE2] = {PREP_LIGHTS(LIGHTS_BASE2)},
-    [L_SYM] = {PREP_LIGHTS(LIGHTS_SYM)},
-    [L_NUM] = {PREP_LIGHTS(LIGHTS_NUM)},
-    [L_NAV] = {PREP_LIGHTS(LIGHTS_NAV)},
-    [L_WEBNAV] = {PREP_LIGHTS(LIGHTS_WEBNAV)},
-    [L_FUN] = {PREP_LIGHTS(LIGHTS_FUN)},
-    [L_MOUSE] = {PREP_LIGHTS(LIGHTS_MOUSE)},
-    [L_SYSTEM] = {PREP_LIGHTS(LIGHTS_SYSTEM)},
-    [L_GAME] = {PREP_LIGHTS(LIGHTS_GAME)},
-};
-bool get_ledmap_color(uint8_t layer, int i, RGB *rgb) {
-  if (layer < 0) {
-    return false;
+// Required by keymap_lights.c
+
+#define PREP_LIGHTS(...) PREP_LIGHTS_FOR_VOYAGER(__VA_ARGS__)
+#define NUMBER_OF_LEDS DRIVER_LED_TOTAL
+
+void set_layer_color(int);
+
+void rgb_matrix_indicators_user(void) {
+  if (keyboard_config.disable_layer_led) {
+    return;
   }
-  uint8_t hue = ledmap[layer][i];
-  HSV hsv;
-  switch (hue) {
-  case _____:
-    return get_ledmap_color(layer - 1, i, rgb);
-
-  case WHITE:
-    hsv = (HSV){0, 0, hsv_value};
-    break;
-
-  case GRAY:
-    hsv = (HSV){0, 0, hsv_value / 2};
-    break;
-
-  case XXXXX:
-    hsv = (HSV){0, 0, 0};
-    break;
-
-  default:
-    hsv = (HSV){hue, hsv_saturation, hsv_value};
-  };
-  *rgb = hsv_to_rgb(hsv);
-  return true;
+  int layer = biton32(layer_state);
+  set_layer_color(layer);
 }
-
-void set_layer_color(int layer) {
-  RGB rgb;
-  for (int i = 0; i < DRIVER_LED_TOTAL; i++) {
-    if (get_ledmap_color(layer, i, &rgb)) {
-      rgb_matrix_set_color(i, rgb.r, rgb.g, rgb.b);
-    }
-  }
-}
-
-// bool rgb_matrix_indicators_user(void) {
-//   // if (g_suspend_state || keyboard_config.disable_layer_led) { return; }
-//   uint8_t bitval = biton32(layer_state);
-//   if (bitval <= 8) {
-//     set_layer_color(bitval);
-//   } else if (rgb_matrix_get_flags() == LED_FLAG_NONE) {
-//     rgb_matrix_set_color_all(0, 0, 0);
-//   }
-//   return true;
-// }
-//
-// // Required by keymap_partail.c
-// void custom_led_indicators(enum supported_os os) {
-//   ergodox_board_led_off();
-//   ergodox_right_led_1_off();
-//   ergodox_right_led_2_off();
-//   ergodox_right_led_3_off();
-//   if (os == LINUX) {
-//     ergodox_right_led_1_on();
-//   } else if (os == WINDOWS) {
-//     ergodox_right_led_2_on();
-//   } else { // MACOS
-//     ergodox_right_led_3_on();
-//   }
-// }
-// void custom_post_init(void) { rgb_matrix_enable(); }

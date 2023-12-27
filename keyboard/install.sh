@@ -21,7 +21,7 @@ setup_and_config() {
   info "Linking config for atreus"
   rm -rf   "$home"/"$ATREUS"
   mkdir -p "$home"/"$ATREUS"
-  link_public_resource "./qmk/common/keymap_partial.c"     "$home"/"$ATREUS"/keymap_partial.c
+  link_public_resource "./qmk/common/keymap_common.c"     "$home"/"$ATREUS"/keymap_common.c
   link_public_resource "./qmk/common/dicts.def"            "$home"/"$ATREUS"/dicts.def
   link_public_resource "./qmk/common/config.h"             "$home"/"$ATREUS"/config.h
   link_public_resource "./qmk/keyboardio_atreus/atreus.c"  "$home"/"$ATREUS"/atreus.c
@@ -32,7 +32,8 @@ setup_and_config() {
   info "Linking config for ergodox_ez"
   rm -rf   "$home"/"$ERGODOX"
   mkdir -p "$home"/"$ERGODOX"
-  link_public_resource "./qmk/common/keymap_partial.c"     "$home"/"$ERGODOX"/keymap_partial.c
+  link_public_resource "./qmk/common/keymap_common.c"      "$home"/"$ERGODOX"/keymap_common.c
+  link_public_resource "./qmk/common/keymap_lights.c"      "$home"/"$ERGODOX"/keymap_lights.c
   link_public_resource "./qmk/common/dicts.def"            "$home"/"$ERGODOX"/dicts.def
   link_public_resource "./qmk/common/config.h"             "$home"/"$ERGODOX"/config.h
   link_public_resource "./qmk/ergodox_ez_glow/ergodox.c"   "$home"/"$ERGODOX"/ergodox.c
@@ -65,7 +66,8 @@ setup_and_config2() {
   info "Linking config for voyager"
   rm -rf   "$home"/"$VOYAGER"
   mkdir -p "$home"/"$VOYAGER"
-  link_public_resource "./qmk/common/keymap_partial.c"     "$home"/"$VOYAGER"/keymap_partial.c
+  link_public_resource "./qmk/common/keymap_common.c"      "$home"/"$VOYAGER"/keymap_common.c
+  link_public_resource "./qmk/common/keymap_lights.c"      "$home"/"$VOYAGER"/keymap_lights.c
   link_public_resource "./qmk/common/dicts.def"            "$home"/"$VOYAGER"/dicts.def
   link_public_resource "./qmk/common/config.h"             "$home"/"$VOYAGER"/config.h
   link_public_resource "./qmk/zsa_voyager/voyager.c"       "$home"/"$VOYAGER"/voyager.c
