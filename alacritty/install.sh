@@ -27,7 +27,7 @@ case "$OS" in
     # config
     info "Linking config file"
     mkdir -p "$HOME/.config/alacritty/"
-    link_public_resource "./alacritty_linux.yml" "$HOME/.config/alacritty/alacritty.yml"
+    link_public_resource "./alacritty_linux.toml" "$HOME/.config/alacritty/alacritty.toml"
     # themes
     info "Installing theme selector"
     install_themes
@@ -54,7 +54,7 @@ case "$OS" in
     # config
     info "Linking config file"
     mkdir -p "$HOME/.config/alacritty/"
-    link_public_resource "./alacritty_macos.yml" "$HOME/.config/alacritty/alacritty.yml"
+    link_public_resource "./alacritty_macos.toml" "$HOME/.config/alacritty/alacritty.toml"
     # themes
     info "Installing theme selector"
     install_themes
