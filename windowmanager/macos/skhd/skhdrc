@@ -16,15 +16,15 @@ alt + cmd - d :     yabai -m window --focus largest
 
 # space
 # [add -p flage if yabai is not working yet on this macos version]
-alt + cmd - 1 :     yabpy focus-space -p 1_files
-alt + cmd - 2 :     yabpy focus-space -p 2_www
-alt + cmd - 3 :     yabpy focus-space -p 3_office
-alt + cmd - 4 :     yabpy focus-space -p 4_terminal
-alt + cmd - 5 :     yabpy focus-space -p 5_vscode
+alt + cmd - 1 :     yabpy focus-space  1_files
+alt + cmd - 2 :     yabpy focus-space  2_www
+alt + cmd - 3 :     yabpy focus-space  3_office
+alt + cmd - 4 :     yabpy focus-space  4_terminal
+alt + cmd - 5 :     yabpy focus-space  5_vscode
 alt + cmd - 6 :     yabpy focus-space -k 6
-alt + cmd - 7 :     yabpy focus-space -p 7_teams
-alt + cmd - 8 :     yabpy focus-space -p 8_email
-alt + cmd - 9 :     yabpy focus-space -p 9_media
+alt + cmd - 7 :     yabpy focus-space  7_teams
+alt + cmd - 8 :     yabpy focus-space  8_email
+alt + cmd - 9 :     yabpy focus-space  9_media
     
 # monitor
 alt + cmd - g : yabai -m display --focus west
