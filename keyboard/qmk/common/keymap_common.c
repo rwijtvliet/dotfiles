@@ -140,6 +140,7 @@ enum custom_keycodes {
   kcSatDn,
   kcValUp,
   kcValDn,
+  kcEmoji,
 };
 enum supported_os {
   LINUX = 1,
@@ -201,6 +202,7 @@ void custom_post_init(void);
 #define l_K      LT(L_SYSTEM, KC_K)
 #define l_X      LT(L_MOUSE, KC_X)
 #define l_B      LT(L_MOUSE, KC_B)
+#define l_M      LT(L_SYSTEM, KC_M)
 #define l_TAB    LT(L_NAV, KC_TAB)
 #define l_SPC    LT(L_NAV, KC_SPC)
 #define lNAV     MO(L_NAV)
@@ -274,12 +276,12 @@ enum colors {
 #define LAYER_BASE \
     KC_QUOT   ,KC_COMM   ,l_DOT     ,l_P       ,l_Y       ,                      KC_F      ,l_G       ,l_C       ,KC_R      ,KC_L      ,\
     ctl_A     ,sft_O     ,maj_E     ,alt_U     ,KC_I      ,                      KC_D      ,alt_H     ,maj_T     ,sft_N     ,ctl_S     ,\
-    mnr_SCLN  ,KC_Q      ,KC_J      ,l_K       ,l_X       ,KC_VOLD   ,KC_VOLU   ,l_B       ,KC_M      ,KC_W      ,KC_V      ,mnr_Z     ,\
+    mnr_SCLN  ,KC_Q      ,KC_J      ,l_K       ,l_X       ,KC_VOLD   ,KC_VOLU   ,l_B       ,l_M      ,KC_W      ,KC_V      ,mnr_Z     ,\
     KC_ESC    ,                      mWM       ,l_SPC     ,kcLINUX   ,kcMACOS   ,sft_BSPC  ,l_TAB     ,                      KC_ENT
 #define LIGHTS_BASE \
     XXXXX     ,XXXXX     ,YELLOW    ,BLUE      ,BLUE      ,                      XXXXX     ,ORANGE    ,YELLOW    ,XXXXX     ,XXXXX     ,\
     WHITE     ,WHITE     ,WHITE     ,WHITE     ,XXXXX     ,                      XXXXX     ,WHITE     ,WHITE     ,WHITE     ,WHITE     ,\
-    WHITE     ,XXXXX     ,XXXXX     ,LIME      ,ROSE      ,XXXXX     ,XXXXX     ,ROSE      ,XXXXX     ,XXXXX     ,XXXXX     ,WHITE     ,\
+    WHITE     ,XXXXX     ,XXXXX     ,LIME      ,ROSE      ,XXXXX     ,XXXXX     ,ROSE      ,LIME      ,XXXXX     ,XXXXX     ,WHITE     ,\
     GRAY      ,                      MAGENTA   ,GRAY      ,XXXXX     ,XXXXX     ,GRAY      ,GRAY      ,                      GRAY 
 
 //Dvorak without modifiers. Never switched to, just as base for the combos
@@ -344,10 +346,10 @@ enum colors {
 
 // Navigation for web
 #define LAYER_WEBNAV \
-    _______   ,_______   ,_______   ,_______   ,_______   ,                      _______   ,_______   ,C(KC_PGUP),C(KC_PGDN),_______   ,\
-    _______   ,_______   ,_______   ,_______   ,_______   ,                      _______   ,kcWebBack ,C(KC_PGUP),C(KC_PGDN),kcWebFwd  ,\
-    _______   ,_______   ,_______   ,_______   ,_______   ,_______   ,_______   ,_______   ,_______   ,_______   ,_______   ,_______   ,\
-    ___f___   ,                      _______   ,_______   ,_______   ,_______   ,_______   ,_______   ,                      _______
+    _______   ,_______   ,_______   ,XXXXXXX   ,XXXXXXX   ,                      _______   ,_______   ,C(KC_PGUP),C(KC_PGDN),_______   ,\
+    _______   ,_______   ,_______   ,XXXXXXX   ,XXXXXXX   ,                      kcEmoji   ,kcWebBack ,C(KC_PGUP),C(KC_PGDN),kcWebFwd  ,\
+    _______   ,_______   ,_______   ,XXXXXXX   ,XXXXXXX   ,_______   ,_______   ,_______   ,_______   ,_______   ,_______   ,_______   ,\
+    ___f___   ,                      XXXXXXX   ,___f___   ,_______   ,_______   ,_______   ,_______   ,                      _______
 #define LIGHTS_WEBNAV \
     XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,                      XXXXX     ,XXXXX     ,AZURE     ,AZURE     ,XXXXX     ,\
     XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,                      XXXXX     ,CYAN      ,AZURE     ,AZURE     ,CYAN      ,\
@@ -394,7 +396,7 @@ enum colors {
 #define LAYER_SYSTEM \
     kcSatUp   ,kcValUp   ,_______   ,_______   ,QK_BOOT   ,                      KC_MPLY   ,KC_MPRV   ,KC_MNXT   ,_______   ,KC_BRIU   ,\
     kcSatDn   ,kcValDn   ,_______   ,_______   ,fEE_CLR   ,                      KC_MUTE   ,KC_VOLD   ,KC_VOLU   ,_______   ,KC_BRID   ,\
-    kcLINUX   ,kcWINDO   ,kcMACOS   ,___f___   ,pGAME     ,_______   ,_______   ,_______   ,_______   ,_______   ,KC_LCAP   ,KC_INS    ,\
+    kcLINUX   ,kcWINDO   ,kcMACOS   ,___f___   ,pGAME     ,_______   ,_______   ,_______   ,___f___   ,_______   ,KC_LCAP   ,KC_INS    ,\
     XXXXXXX   ,                      _______   ,_______   ,_______   ,_______   ,XXXXXXX   ,XXXXXXX   ,                      XXXXXXX
 #define LIGHTS_SYSTEM \
     ORANGE    ,YELLOW    ,XXXXX     ,XXXXX     ,RED       ,                      LIME      ,YELLOW    ,YELLOW    ,XXXXX     ,BLUE      ,\
@@ -564,16 +566,21 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     }
     return false;
 
+  case kcEmoji:
+    linwinmac(GUI(KC_SCLN), GUI(KC_SCLN), GUI(CTL(KC_SPC)), true,
+              record); // linux code not correct
+    return false;
+
   case kcBspWord:
-    linwinmac(C(KC_BSPC), C(KC_BSPC), ALT(KC_BSPC), true, record);
+    linwinmac(CTL(KC_BSPC), C(KC_BSPC), ALT(KC_BSPC), true, record);
     return false;
 
   case kcDelWord:
-    linwinmac(C(KC_DEL), C(KC_DEL), ALT(KC_DEL), true, record);
+    linwinmac(CTL(KC_DEL), CTL(KC_DEL), ALT(KC_DEL), true, record);
     return false;
 
   case kcPrevWord:
-    linwinmac(C(KC_LEFT), CTL(KC_LEFT), ALT(KC_LEFT), false, record);
+    linwinmac(CTL(KC_LEFT), CTL(KC_LEFT), ALT(KC_LEFT), false, record);
     return false;
 
   case kcNextWord:

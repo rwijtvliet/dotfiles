@@ -11,6 +11,12 @@ alias ll='ls -alF --color'
 alias la='ls -alF --color'
 alias l='ls -CF --color'
 
+# git
+alias ga='echo "git add ." && git add .'
+alias gc='echo "git commit -m $1" && git commit -m $1'
+alias gs='echo "git status" && git status'
+alias gp='echo "git push" && git push'
+alias gl='echo "git pull" && git pull'
 # starting apps
 alias at='alacritty-themes'
 alias myip='curl ipinfo.io/ip'
@@ -19,7 +25,7 @@ alias python=python3
 alias vim=nvim
 
 # keyboard compilation and flashing
-alias qm='cd ~/.dotfiles/keyboard/ && nvim qmk/common/keymap_partial.c qmk/ergodox_ez_glow/ergodox.c qmk/keyboardio_atreus/atreus.c'
+alias qm='cd ~/.dotfiles/keyboard/ && nvim qmk/common/keymap_common.c qmk/ergodox_ez_glow/ergodox.c qmk/keyboardio_atreus/atreus.c'
 alias qmce='qmk compile -kb ergodox_ez/glow -km rwijtvliet'
 alias qmfe='qmk flash -kb ergodox_ez/glow -km rwijtvliet'
 alias qme='qmce && qmfe'
