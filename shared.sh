@@ -97,9 +97,8 @@ link_public_resource() {
     #
     # Creates link from specified source path (=first arg) to the specified destination
     # path (=second arg). The source must exist.
-    local src_path="$(realpath -s $1)"  # create absolute paths
-    local dst_path="$(realpath -s $2)"  # create absolute paths
-
+    local src_path="$(realpath -s "$1")"  # create absolute paths
+    local dst_path="$(realpath -s "$2")"  # create absolute paths
     # Ensure source exists (or warn).
     if [ ! -f "$src_path" ] && [ ! -d "$src_path" ] && [ ! -L "$src_path" ]; then
         fail "source $src_path does not exist"
