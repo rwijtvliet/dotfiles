@@ -157,6 +157,13 @@ alt + cmd + shift - y : \
     screencapture -oiu /tmp/wontbecreated.png
 # TODO
 
+# set the keyboard layout
+alt + cmd - f1 : \
+    ~/.dotfiles/kblayout/set_dvorak_undead
+alt + cmd - f2 : \
+    ~/.dotfiles/kblayout/set_us_undead
+
+
 # lock the machine
 alt + cmd - f5 : \
     pmset displaysleepnow

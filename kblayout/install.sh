@@ -13,7 +13,8 @@ case "$OS" in
 
   "macos" )
     info "Linking config"
-    link_public_resource "./undead.bundle" "$HOME/Library/Keyboard Layouts/undead.bundle"
+    copy_public_resource "./undead.bundle/Contents/Resources/Dvorak undead.keylayout" "$HOME/Library/Keyboard Layouts/Dvorak undead.keylayout"
+    copy_public_resource "./undead.bundle/Contents/Resources/U.S. undead.keylayout" "$HOME/Library/Keyboard Layouts/U.S. undead.keylayout"
     ;;
     
   * )

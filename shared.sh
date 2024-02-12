@@ -75,7 +75,7 @@ link_secret_resource() {
 
     # Create link.
     local src_path="$SECRETDIR/$src_name"
-    link_resource "$src_path" "$dst_path"
+    link_or_copy "link" "$src_path" "$dst_path" 
 
     # Notify user if source must still be created.
     if [ ! -f "$src_path" ] && [ ! -d "$src_path" ] && [ ! -L "$src_path" ]; then
@@ -105,13 +105,40 @@ link_public_resource() {
         exit 1
     fi
 
-    link_resource "$src_path" "$dst_path"
+    link_or_copy "link" "$src_path" "$dst_path" 
 }
 
-link_resource () {
-    # Creates link from source path (=first arg) to destination path (=second arg).
-    local src="$1"
-    local dst="$2"
+copy_public_resource() {
+    # Create copy to public file or dir.
+    #
+    # Usage: copy_public_resource "./git_config" "$HOME/.git_config"
+    #
+    # Creates link from specified source path (=first arg) to the specified destination
+    # path (=second arg). The source must exist.
+    local src_path="$(realpath -s "$1")"  # create absolute paths
+    local dst_path="$(realpath -s "$2")"  # create absolute paths
+    # Ensure source exists (or warn).
+    if [ ! -f "$src_path" ] && [ ! -d "$src_path" ] && [ ! -L "$src_path" ]; then
+        fail "source $src_path does not exist"
+        exit 1
+    fi
+
+    link_or_copy "copy" "$src_path" "$dst_path"
+}
+link_or_copy () {
+    # Creates link (first arg = "link") or copy (first arg = "copy") from source path (=second arg) to destination path (=third arg).
+    local what="$1"
+    local src="$2"
+    local dst="$3"
+
+    if [ "$what" == "link" ]; then
+        obj="link to"
+    elif [ "$what" == "copy" ]; then
+        obj="copy of"
+    else
+        fail "Function must be called with 'link' or 'copy' as first argument."
+        exit 1
+    fi
 
     local overwrite= backup= skip=
     local action=
@@ -122,13 +149,13 @@ link_resource () {
     fi
 
     # Ensure destination not accidentally overwritten.
-    if [ -f "$dst" ] || [ -d "$dst" ] || [ -L "$dst" ]; then
+    if [ -f "$dst" ] || [ -d "$dst" ] || [ -L "$dst" ]; then # something already here
 
         if [ "$overwrite_all" == "false" ] && [ "$backup_all" == "false" ] && [ "$skip_all" == "false" ]; then
 
             local currentSrc="$(readlink "$dst")"
 
-            if [ "$currentSrc" == "$src" ]; then
+            if [ "$what" == "link" ] && [ "$currentSrc" == "$src" ]; then
 
                 skip=true
                 skipwhy="because the source is already correct"
@@ -142,7 +169,7 @@ link_resource () {
                 else
                     exists="a link to [$currentSrc]"
                 fi
-                user "[$dst] (= $exists) already exists, but we want to replace it with a link to [$src]. What do you want to do?\n\
+                user "[$dst] (= $exists) already exists, but we want to replace it with a $obj [$src]. What do you want to do?\n\
         [s]kip, [S]kip all, [o]verwrite, [O]verwrite all, [b]ackup, [B]ackup all?"
                 read -n 1 action
 
@@ -191,16 +218,21 @@ link_resource () {
         fi
 
         if [ "$skip" == "true" ]; then
-            success "skipped linking [$src] -> [$dst] $skipwhy"
+            success "skipped [$what]ing [$src] -> [$dst] $skipwhy"
         fi
     fi
 
     if [ "$skip" != "true" ]; then  # "false" or empty
         sudo mkdir -p "$(dirname "$dst")"
-        if sudo ln -s "$src" "$dst"; then
-            success "linked [$src] -> [$dst]"
+        if [ "$what" == "link" ]; then
+            result=$(sudo ln -s "$src" "$dst")
         else
-            fail "could not link [$src] -> [$dst]"
+            result=$(sudo cp -r "$src" "$dst")
+        fi
+        if [[ $result -eq 0 ]]; then
+            success "created $what [$src] -> [$dst]"
+        else
+            fail "could not create $what [$src] -> [$dst]"
             exit 1
         fi
     fi

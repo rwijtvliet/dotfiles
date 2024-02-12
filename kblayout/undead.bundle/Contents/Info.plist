@@ -3,32 +3,10 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleIdentifier</key>
-	<string>org.sil.ukelele.keyboardlayout.</string>
+	<string>org.sil.ukelele.keyboardlayout.undead</string>
 	<key>CFBundleName</key>
-	<string></string>
+	<string>undead</string>
 	<key>CFBundleVersion</key>
 	<string></string>
-	<key>KLInfo_Dvorak copy</key>
-	<dict>
-		<key>TICapsLockLanguageSwitchCapable</key>
-		<false/>
-		<key>TISIconIsTemplate</key>
-		<false/>
-		<key>TISInputSourceID</key>
-		<string>org.sil.ukelele.keyboardlayout..dvorakcopy</string>
-		<key>TISIntendedLanguage</key>
-		<string>en</string>
-	</dict>
-	<key>KLInfo_U.S. copy</key>
-	<dict>
-		<key>TICapsLockLanguageSwitchCapable</key>
-		<false/>
-		<key>TISIconIsTemplate</key>
-		<false/>
-		<key>TISInputSourceID</key>
-		<string>org.sil.ukelele.keyboardlayout..u.s.copy</string>
-		<key>TISIntendedLanguage</key>
-		<string>en</string>
-	</dict>
 </dict>
 </plist>
