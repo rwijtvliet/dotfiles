@@ -16,7 +16,7 @@ If the files are incorrect, they can be recreated with ukelele.
 
 Copy the `*.keylayout` files to `~/Library/Keyboard Layouts/`. This is done by the install script.
 
-Probably a reboot is necessary. Then they must be added to the list.
+Probably a reboot is necessary. Then they must be added to the input selection list (click "open keyboard settings", search for "undead"). The entries "Dvorak undead" and "US undead" should now be selectable from the list.
 
 ## 3. Make scripts that can change selected layout to a *specific* one
 
