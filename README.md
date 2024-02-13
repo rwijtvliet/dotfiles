@@ -63,13 +63,13 @@ As this link is pointing to a location outside of the repository, namely, inside
     .../this_dotfiles_repository/secrets/espanso             # empty textfile
     ```
 
-This file serves as a reminder, which resources are expected in `~/.secrets/`. The user can go to the `~/.secrets/` folder (create it if not yet existing), and create the resource called (`espanso.symlink`) inside it.
+This file serves as a reminder, which resources are expected in `~/.secrets/`. The user can go to the `~/.secrets/` folder (create it if not yet existing), and create the resource called (`espanso`) inside it.
 
 Of course, instead of copying the resource into this folder, the user can also create a (secondary) symlink from elsewhere. Or, instead of creating the `~/.secrets/` folder, the user can also choose symlink to the entire folder instead of the individual items it contains.
 
 ## Development
 
-When adding an application, copy the `.template` folder, an example file can be found inside.
+When adding an application, copy the `.template` folder, an example install file can be found inside.
 
 Also add the foldername to `part1` or `part2` or (...), so that it is installed when running `./install.sh -r part1`.
 
