@@ -24,7 +24,8 @@ return {
               ["<C-s>"] = actions.cycle_history_next,
             }
           }
-        }
+        },
+      pickers = { colorscheme = {enable_preview = true}}
       })
     end,
   }

@@ -35,6 +35,21 @@ local maps = {
   n = {
     -- substitute
     ["j"] = { "s", expr = false, noremap = true, desc = "Substitute character" }, -- expr = false needed to override astrovim mapping for j
+    -- REPL with iron (see :h iron-commands for all available commands)
+    ["<leader>s"] = { desc = "󰜎 Run code" },
+    ["<leader>so"] = { "<cmd>IronRepl<cr>", desc = "Open/toggle REPL" },
+    ["<leader>sr"] = { "<cmd>IronRestart<cr>", desc = "Restart REPL" },
+    ["<leader>ss"] = { "<cmd>IronFocus<cr>", desc = "Focus REPL" },
+    ["<leader>sf"] = { function() require("iron.core").send_file() end, desc = "Run entire file" },
+    ["<leader>sl"] = { function() require("iron.core").send_line() end, desc = "Run line" },
+    ["<leader>sm"] = { function() require("iron.core").send_motion() end, desc = "Run motion" },
+    ["<leader>sv"] = { function() require("iron.core").send_visual() end, desc = "Run selection" },
+    ["<leader>sX"] = { function() require("notebook-navigator").run_and_move() end, desc = "Run cell + move" },
+    ["<leader>sx"] = { function() require("notebook-navigator").run_cell() end, desc = "Run cell" },
+    ["<leader>sq"] = { "<cmd>IronHide<cr>", desc = "Hide REPL" },
+    -- Notebooknavigation (parts not shown above)
+    ["]h"] = { function() require("notebook-navigator").move_cell "d" end, desc = "Next cell" },
+    ["[h"] = { function() require("notebook-navigator").move_cell "u" end, desc = "Prev cell" },
     -- Testing with Neotest
     ["<leader>T"] = { desc = get_icon("Testing", 1, true) .. "Test" },
     ["<leader>Ta"] = { function() require("neotest").run.attach() end, desc = "Attach" },
@@ -118,6 +133,8 @@ local maps = {
       end,
       desc = "Find words in all files",
     },
+    -- color picker
+    ["<leader>uo"] = { "<cmd>Telescope colorscheme<cr>", desc = "Pick colorscheme" },
   },
   t = {
     -- setting a mapping to false will disable it
