@@ -595,7 +595,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     return false;
 
   case kcLaunchr:
-    linwinmac(kc_GUI, kc_GUI, ALT(KC_SPACE), true, record);
+    linwinmac(kc_GUI, kc_GUI, ALT(KC_SPACE), // opens raycast launcher in mac
+              true, record);
+
     return false;
 
   case kcPickWin:
@@ -603,8 +605,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       if (current_os == LINUX || current_os == WINDOWS) {
         set_mods(mod_ALT);
         tap_code(KC_TAB);
-      } else { // MACOS
-        tap_code16(ALT(KC_QUOT);
+      } else {                  // MACOS
+        tap_code16(ALT(KC_QUOT);// shortcut opens raycast "switch windows"
       }
     }
     return false;
