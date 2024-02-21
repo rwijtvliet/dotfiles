@@ -23,9 +23,10 @@ alias myip='curl ipinfo.io/ip'
 alias bashconf='nvim ~/.bashrc'
 alias python=python3
 alias vim=nvim
+alias prnm='poetry run nvim main.py'
 
 # keyboard compilation and flashing
-alias qm='cd ~/.dotfiles/keyboard/ && nvim qmk/common/keymap_common.c qmk/ergodox_ez_glow/ergodox.c qmk/keyboardio_atreus/atreus.c'
+alias qm='cd ~/.dotfiles/keyboard/ && nvim qmk/common/keymap_common.c qmk/ergodox_ez_glow/ergodox.c qmk/keyboardio_atreus/atreus.c qmk/zsa_voyager/voyager.c'
 alias qmce='qmk compile -kb ergodox_ez/glow -km rwijtvliet'
 alias qmfe='qmk flash -kb ergodox_ez/glow -km rwijtvliet'
 alias qme='qmce && qmfe'
@@ -35,6 +36,7 @@ alias qma='qmca && qmfa'
 alias qmcv='( cd ~/syncNone/Software/qmk_firmware_zsa && qmk compile -kb voyager -km rwijtvliet )'
 alias qmfv='( cd ~/syncNone/Software/qmk_firmware_zsa && qmk flash -kb voyager -km rwijtvliet )'
 alias qmv='qmcv && qmfv'
+
 # nvim stuff
 alias cdswap='cd ~/.local/state/nvim/swap'
 alias rmswap='rm ~/.local/state/nvim/swap/*'

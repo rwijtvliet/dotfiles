@@ -1,12 +1,10 @@
-# Window management 
-encryption
+# System. Connection, security, window management.
+launcher
 windowmanager
-ubersicht
+encryption
+wireguard
+locale
 tweaks
 ubuntuextras
-virtualbox
-filebrowser
 remove
-python
-locale
-wireguard
+kblayout

@@ -36,7 +36,7 @@ local maps = {
     -- substitute
     ["j"] = { "s", expr = false, noremap = true, desc = "Substitute character" }, -- expr = false needed to override astrovim mapping for j
     -- REPL with iron (see :h iron-commands for all available commands)
-    ["<leader>s"] = { desc = "󰜎 Run code" },
+    ["<leader>s"] = { desc = get_icon("Run", 1, true) .. "Run" },
     ["<leader>so"] = { "<cmd>IronRepl<cr>", desc = "Open/toggle REPL" },
     ["<leader>sr"] = { "<cmd>IronRestart<cr>", desc = "Restart REPL" },
     ["<leader>ss"] = { "<cmd>IronFocus<cr>", desc = "Focus REPL" },
@@ -44,6 +44,7 @@ local maps = {
     ["<leader>sl"] = { function() require("iron.core").send_line() end, desc = "Run line" },
     ["<leader>sm"] = { function() require("iron.core").send_motion() end, desc = "Run motion" },
     ["<leader>sv"] = { function() require("iron.core").send_visual() end, desc = "Run selection" },
+    ["<leader>sa"] = { function() require("iron.core").send_until_cursor() end, desc = "Run code above" },
     ["<leader>sX"] = { function() require("notebook-navigator").run_and_move() end, desc = "Run cell + move" },
     ["<leader>sx"] = { function() require("notebook-navigator").run_cell() end, desc = "Run cell" },
     ["<leader>sq"] = { "<cmd>IronHide<cr>", desc = "Hide REPL" },
@@ -149,6 +150,8 @@ local maps = {
     [">"] = { ">gv", desc = "Increase indentation (visual mode)" },
     ["<"] = { "<gv", desc = "Decrease indentation (visual mode)" },
     ["p"] = { '"_dP', desc = "Don't replace register when pasting in visual mode" },
+    ["<leader>s"] = { desc = get_icon("Run", 1, true) .. "Run" },
+    ["<leader>sv"] = { function() require("iron.core").send_visual() end, desc = "Run selection" },
   },
 }
 -- Move lines.
