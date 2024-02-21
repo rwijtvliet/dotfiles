@@ -227,7 +227,7 @@ void custom_post_init(void);
 #define mnr_Z    MT(mod_MINOR, KC_Z)
 #define ctl_Z    MT(mod_CTL, KC_Z)
 // . other mods
-#define mWM      ALT(kc_GUI)
+#define mWM      OSM(mod_ALT + mod_GUI)//ALT(kc_GUI)
 #define sft_TAB  MT(mod_SFT, KC_TAB)
 #define sft_BSPC MT(mod_SFT, KC_BSPC)
 
@@ -605,8 +605,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       if (current_os == LINUX || current_os == WINDOWS) {
         set_mods(mod_ALT);
         tap_code(KC_TAB);
-      } else {                  // MACOS
-        tap_code16(ALT(KC_QUOT);// shortcut opens raycast "switch windows"
+      } else {                    // MACOS
+        tap_code16(ALT(KC_QUOT)); // shortcut opens raycast "switch windows"
       }
     }
     return false;
