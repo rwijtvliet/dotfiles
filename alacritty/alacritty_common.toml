@@ -1,0 +1,11 @@
+[font.normal]
+family = "JetBrainsMono Nerd Font Mono"
+
+
+[shell]
+program = "bash"
+
+[window]
+opacity = 1
+option_as_alt = "Both"
+title = "Ruud's alacritty"

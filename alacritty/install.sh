@@ -27,7 +27,8 @@ case "$OS" in
     # config
     info "Linking config file"
     mkdir -p "$HOME/.config/alacritty/"
-    link_public_resource "./alacritty_linux.toml" "$HOME/.config/alacritty/alacritty.toml"
+    link_public_resource "./alacritty_osspecific_linux.toml" "$HOME/.config/alacritty/alacritty.toml"
+    link_public_resource "./alacritty_common.toml" "$HOME/.config/alacritty/alacritty_common.toml"
     # themes
     info "Installing theme selector"
     install_themes
@@ -41,7 +42,8 @@ case "$OS" in
     # config
     info "Linking config file"
     mkdir -p "$APPDATA/alacritty/"
-    link_public_resource "./alacritty_windows.yml" "$APPDATA/alacritty/alacritty.yml"
+    link_public_resource "./alacritty_osspecific_windows.yml" "$APPDATA/alacritty/alacritty.yml"
+    link_public_resource "./alacritty_common.toml" "$APPDATA/alacritty/alacritty_common.toml"
     # themes
     info "Installing theme selector"
     install_themes
@@ -54,7 +56,8 @@ case "$OS" in
     # config
     info "Linking config file"
     mkdir -p "$HOME/.config/alacritty/"
-    link_public_resource "./alacritty_macos.toml" "$HOME/.config/alacritty/alacritty.toml"
+    link_public_resource "./alacritty_osspecific_macos.toml" "$HOME/.config/alacritty/alacritty.toml"
+    link_public_resource "./alacritty_common.toml" "$HOME/.config/alacritty/alacritty_common.toml"
     # themes
     info "Installing theme selector"
     install_themes
