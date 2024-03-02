@@ -1,11 +1,9 @@
 # Set any rules.mk overrides for your specific keymap here.
 # See rules at https://docs.qmk.fm/#/config_options?id=the-rulesmk-file
 COMBOS_ENABLE = yes
-VPATH += keyboards/gboards
+VPATH += keyboards/gboards/
 
-OS_DETECTION_ENABLE = yes
-CONSOLE_ENABLE = yes
-
+CONSOLE_ENABLE = no
 COMMAND_ENABLE = no
 MOUSEKEY_ENABLE = no
 ORYX_ENABLE = yes

@@ -382,8 +382,8 @@ enum colors {
 // Querty.
 #define LAYER_GAME \
   KC_Q      ,KC_W      ,KC_E      ,KC_R      ,KC_T      ,                      KC_Y      ,KC_U      ,KC_I      ,KC_O      ,KC_P      ,\
-  KC_A      ,KC_S      ,KC_D      ,KC_F      ,KC_G      ,                      KC_H      ,KC_J      ,KC_K      ,KC_L      ,KC_SCLN   ,\
-  KC_Z      ,KC_X      ,KC_C      ,KC_V      ,KC_B      ,_______   ,_______   ,KC_N      ,KC_M      ,KC_UP     ,KC_DOT    ,KC_SLSH   ,\
+  KC_A      ,KC_S      ,KC_D      ,KC_F      ,KC_G      ,                      KC_H      ,KC_J      ,KC_K      ,KC_UP      ,KC_SCLN   ,\
+  KC_Z      ,KC_X      ,KC_C      ,KC_V      ,KC_B      ,_______   ,_______   ,KC_N      ,KC_M      ,KC_LEFT     ,KC_DOWN    ,KC_RIGHT   ,\
   _______   ,                      pBASE     ,_______   ,_______   ,_______   ,_______   ,_______   ,                      _______
 #define LIGHTS_GAME \
   XXXXX     ,CYAN      ,XXXXX     ,XXXXX     ,XXXXX     ,                      XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,\
@@ -605,8 +605,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       if (current_os == LINUX || current_os == WINDOWS) {
         set_mods(mod_ALT);
         tap_code(KC_TAB);
-      } else {                    // MACOS
-        tap_code16(ALT(KC_QUOT)); // shortcut opens raycast "switch windows"
+      } else {                   // MACOS
+        tap_code16(ALT(KC_GRV)); // shortcut opens raycast "switch windows"
       }
     }
     return false;
