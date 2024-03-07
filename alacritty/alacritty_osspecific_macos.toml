@@ -28,12 +28,9 @@ foreground = "#ebdbb2"
 columns = 133
 lines = 40
 
-[[keyboard.bindings]]
-action = "Paste"
-key = "V"
-mods = "Control|Shift"
-
-[[keyboard.bindings]]
-action = "Copy"
-key = "C"
-mods = "Control|Shift"
+[keyboard]
+bindings = [
+  { key = "V", mods = "Control|Shift", action = "Paste" },
+  { key = "C", mods = "Control|Shift", action = "Copy" },
+  { key = "W", mods = "Command", action = "None" },        # Prevent accidentally closing 
+]
