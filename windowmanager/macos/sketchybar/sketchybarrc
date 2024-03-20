@@ -70,8 +70,8 @@ source "$ITEM_DIR/spaces.sh"
 
 # Adding items on top of big colored part.
 # Left
-source "$ITEM_DIR/windows.sh"
-source "$ITEM_DIR/front_app.sh"
+source "$ITEM_DIR/windowmode.sh"
+source "$ITEM_DIR/frontapp.sh"
 # Right
 # (nothing)
 

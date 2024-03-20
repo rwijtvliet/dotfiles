@@ -2,9 +2,6 @@
 
 SPACE_ICONS=("x" "2" "3" "4" "5" "6" "7" "8" "9")  # add more if you ever need more
 
-# Destroy space on right click, focus space on left click.
-# New space by left clicking separator (>)
-
 for i in "${!SPACE_ICONS[@]}"
 do
     space_idx=$(($i+1))

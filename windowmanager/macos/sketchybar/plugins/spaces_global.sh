@@ -16,7 +16,10 @@ windows_on_spaces () {
         for space_idx in $line # space index
         do
             icon_strip=""
+            # Next line should work, but query returns windows not on space_idx.
             apps=$(yabai -m query --windows --space "$space_idx" | jq -r ".[].app")
+            # Here we add an additional filter.
+            apps=$(yabai -m query --windows --space "$space_idx" | jq -r ".[] | select (.space == $space_idx)" | jq -r ".app")
             if [ "$apps" != "" ]; then
                 while IFS= read -r app; do
                     icon_strip+=" $("$CONFIG_DIR/plugins/icon_map.sh" "$app")"
