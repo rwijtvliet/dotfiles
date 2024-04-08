@@ -10,8 +10,12 @@ local maps = {
   [""] = {
     -- navigation
     ["h"] = { "h", desc = "Move left" },
-    ["n"] = { "v:count == 0 || mode(1)[0:1] == 'no' ? 'j' : 'gj'", expr = true, desc = "Move down" },
-    ["t"] = { "v:count == 0 || mode(1)[0:1] == 'no' ? 'k' : 'gk'", expr = true, desc = "Move up" },
+    -- ["n"] = { "v:count == 0 || mode(1)[0:1] == 'no' ? 'j' : 'gj'", expr = true, desc = "Move down" },
+    ["n"] = { "gj", desc = "Move down" },
+    ["<down>"] = { "gj", desc = "Move down" },
+    -- ["t"] = { "v:count == 0 || mode(1)[0:1] == 'no' ? 'k' : 'gk'", expr = true, desc = "Move up" },
+    ["t"] = { "gk", desc = "Move up" },
+    ["<up>"] = { "gk", desc = "Move up" },
     ["s"] = { "l", desc = "Move right" },
     ["S"] = { "L", desc = "Move cursor to bottom of screen" },
     -- search

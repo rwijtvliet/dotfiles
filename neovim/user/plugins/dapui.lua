@@ -1,7 +1,7 @@
 return {
   "rcarriga/nvim-dap-ui",
   name = "nvimdapui",
-  lazi = true,
+  lazy = true,
   config = function()
     require("nvimdapui").setup {
       mappings = { toggle = "r" },
