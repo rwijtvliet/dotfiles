@@ -13,3 +13,7 @@ PATH="/opt/homebrew/bin:$PATH"
 
 alias python=python3
 alias pip=pip3
+
+# window manager stuff
+# . on macos
+alias wm='cd ~/.dotfiles/windowmanager/macos && nvim sketchybar/sketchybarrc skhd/skhdrc yabai/yabairc'
