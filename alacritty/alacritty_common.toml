@@ -1,6 +1,8 @@
 [font.normal]
 family = "JetBrainsMono Nerd Font Mono"
 
+[font]
+size = 8
 
 [shell]
 program = "bash"
@@ -9,3 +11,9 @@ program = "bash"
 opacity = 1
 option_as_alt = "Both"
 title = "Ruud's alacritty"
+
+[cursor.style]
+shape = "Beam"
+
+[cursor.vi_mode_style]
+shape = "Block"
