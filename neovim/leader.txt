@@ -17,6 +17,8 @@ Functions and groupings under <leader>
  h home
  W save [resembles :w]
  c close buffer
+ o open line below stay in normal mode
+ O open line above stay in normal mode
  q close window [resembles :q]
  Q quit neovim 
 
@@ -68,22 +70,6 @@ Functions and groupings under <leader>
    b buffer
    w workspace
    ...
-   
-[s search/find]
-   " registers
-   b buffers
-   c commands
-   C command history
-   n notifications
-   k keymaps
-   h help
-   m manpages
-   p yank history
-   o colorscheme
-   r registers
-   s neovim settings (?)
-   ' marks
-   <cr> resume previous search
     
 
 [D debug]
@@ -106,6 +92,27 @@ Functions and groupings under <leader>
  
 [T test]
    ...
+
+[S Session]
+   l open last
+   ...
+   
+[s search/find]
+   " registers
+   b buffers
+   c commands
+   C command history
+   d personal dotfiles
+   n notifications
+   k keymaps
+   h help
+   m manpages
+   p yank history
+   o colorscheme
+   r registers
+   s neovim settings (?)
+   ' marks
+   <cr> resume previous search
 
 [u user-interface]
    a toggle autopairs
