@@ -8,18 +8,31 @@ local is_available = utils.is_available
 -- automatically pick-up stored data by this setting.)
 local maps = {
   [""] = {
-    -- -- leap
-    -- ["m"] = { "<Plug>(leap-forward-to)", desc = "Leap forward to match" },
-    -- ["M"] = { "<Plug>(leap-backward-to)", desc = "Leap backward to match" },
-    -- ["gm"] = { "<Plug>(leap-from-window)", desc = "Leap to match in other window" },
-    -- -- move begining/end of line
-    -- ["B"] = { "^", desc = "Move to beginning of line" },
-    -- ["E"] = { "$", desc = "Move to end of line" },
-    -- -- set mark
-    -- ["<A-m>"] = { "m", desc = "Set marker" },
-    -- -- move till word
-    -- ["k"] = { "t", noremap = true, desc = "Till (forward)" }, -- expr = false needed to override astrovim mapping for k
-    -- ["K"] = { "T", noremap = true, desc = "Till (backward)" },
+    -- navigation
+    ["h"] = { "h", desc = "Move left" },
+    -- ["n"] = { "v:count == 0 || mode(1)[0:1] == 'no' ? 'j' : 'gj'", expr = true, desc = "Move down" },
+    ["n"] = { "gj", desc = "Move down" },
+    ["<down>"] = { "gj", desc = "Move down" },
+    -- ["t"] = { "v:count == 0 || mode(1)[0:1] == 'no' ? 'k' : 'gk'", expr = true, desc = "Move up" },
+    ["t"] = { "gk", desc = "Move up" },
+    ["<up>"] = { "gk", desc = "Move up" },
+    ["s"] = { "l", desc = "Move right" },
+    ["S"] = { "L", desc = "Move cursor to bottom of screen" },
+    -- search
+    ["l"] = { "n", desc = "Next search result" },
+    ["L"] = { "N", desc = "Prev search result" },
+    -- leap
+    ["m"] = { "<Plug>(leap-forward-to)", desc = "Leap forward to match" },
+    ["M"] = { "<Plug>(leap-backward-to)", desc = "Leap backward to match" },
+    ["gm"] = { "<Plug>(leap-from-window)", desc = "Leap to match in other window" },
+    -- move begining/end of line
+    ["B"] = { "^", desc = "Move to beginning of line" },
+    ["E"] = { "$", desc = "Move to end of line" },
+    -- set mark
+    ["<A-m>"] = { "m", desc = "Set marker" },
+    -- move till word
+    ["k"] = { "t", noremap = true, desc = "Till (forward)" }, -- expr = false needed to override astrovim mapping for k
+    ["K"] = { "T", noremap = true, desc = "Till (backward)" },
   },
 
   -- first key is the mode

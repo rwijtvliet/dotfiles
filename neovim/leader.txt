@@ -1,0 +1,131 @@
+TODO: 
+- ensure K ('keywordprg') (remapped to T) can more easily find information about keyword
+- keymap for adding empty line above or below (without entering insert mode)
+- replace keymaps on dashboard with always-valid keymap
+
+Functions without <leader>
+--------------------------
+ | vsplit
+ \ hsplit
+
+Functions and groupings under <leader>
+--------------------------------------
+
+ / comment
+ : command history
+ e explorer
+ h home
+ W save [resembles :w]
+ c close buffer
+ q close window [resembles :q]
+ Q quit neovim 
+
+[b buffer (and tab)]
+   b go to previously active buffer
+  [c close] 
+     c current buffer
+     C all others buffers
+     r buffers to right
+     l buffers to left
+  [p pick] 
+     t from tabline
+   H go to first buffer
+   S go to last buffer
+   s search inside buffer 
+   t new tab
+ 
+[w window]
+   w go to previously active window
+  [c close]
+     c current window 
+
+[f file]
+   n new file
+   f by name
+   g by text (grep)
+   G git file
+   t live grep
+   r recent
+   w word under cursor
+   Y filepath to clipboard
+   y filepath
+
+[g git]
+   l start lazygit
+   ...
+   
+[l lsp and code]
+   a code action (?)
+   A source action (?)
+   d docstring
+   f format
+   l lsp info
+   m mason
+   r rename
+
+[x diagnostics]
+   l line
+   b buffer
+   w workspace
+   ...
+   
+[s search/find]
+   " registers
+   b buffers
+   c commands
+   C command history
+   n notifications
+   k keymaps
+   h help
+   m manpages
+   p yank history
+   o colorscheme
+   r registers
+   s neovim settings (?)
+   ' marks
+   <cr> resume previous search
+    
+
+[D debug]
+   ... 
+     
+[p plugins]    
+   h checkhealth
+   m mason
+   u update
+   ... 
+
+
+[r run code]
+   ...
+
+[t terminal]
+   f in floating window
+   | in vertical split
+   \ in horizontal split
+ 
+[T test]
+   ...
+
+[u user-interface]
+   a toggle autopairs
+   b toggle background
+   c toggle autocompletion
+   C toggle color highlight (?) 
+   d dismiss notifications
+   e toggle diagnostics
+   g toggle signcolumn
+   f toggle foldcolumn
+   i indentation
+   l toggle codelens
+   N toggle notifications
+   n line numbering
+   o colorscheme
+   p toggle paste mode
+   s toggle spellcheck  
+   S toggle statusline
+   T toggle tabline
+   u toggle url highlight
+   w toggle word wrap
+   y toggle syntax highlight (buffer)
+
