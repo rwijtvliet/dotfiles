@@ -28,6 +28,9 @@ foreground = "#ebdbb2"
 columns = 133
 lines = 40
 
+[font]
+size = 13
+
 [keyboard]
 bindings = [
   { key = "V", mods = "Control|Shift", action = "Paste" },
