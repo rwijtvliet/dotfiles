@@ -10,11 +10,11 @@ local maps = {
   [""] = {
     -- navigation
     ["h"] = { "h", desc = "Move left" },
-    -- ["n"] = { "v:count == 0 || mode(1)[0:1] == 'no' ? 'j' : 'gj'", expr = true, desc = "Move down" },
-    ["n"] = { "gj", desc = "Move down" },
+    ["n"] = { "v:count == 0 || mode(1)[0:1] == 'no' ? 'j' : 'gj'", expr = true, desc = "Move down" },
+    -- ["n"] = { "gj", desc = "Move down" },
     ["<down>"] = { "gj", desc = "Move down" },
-    -- ["t"] = { "v:count == 0 || mode(1)[0:1] == 'no' ? 'k' : 'gk'", expr = true, desc = "Move up" },
-    ["t"] = { "gk", desc = "Move up" },
+    ["t"] = { "v:count == 0 || mode(1)[0:1] == 'no' ? 'k' : 'gk'", expr = true, desc = "Move up" },
+    -- ["t"] = { "gk", desc = "Move up" },
     ["<up>"] = { "gk", desc = "Move up" },
     ["s"] = { "l", desc = "Move right" },
     ["S"] = { "L", desc = "Move cursor to bottom of screen" },
@@ -31,14 +31,14 @@ local maps = {
     -- set mark
     ["<A-m>"] = { "m", desc = "Set marker" },
     -- move till word
-    ["k"] = { "t", noremap = true, desc = "Till (forward)" }, -- expr = false needed to override astrovim mapping for k
+    ["k"] = { "t", noremap = true, expr = false, desc = "Till (forward)" }, -- expr = false needed to override astrovim mapping for k
     ["K"] = { "T", noremap = true, desc = "Till (backward)" },
   },
 
   -- first key is the mode
   n = {
     -- substitute
-    -- ["j"] = { "s", expr = false, noremap = true, desc = "Substitute character" }, -- expr = false needed to override astrovim mapping for j
+    ["j"] = { "s", expr = false, noremap = true, desc = "Substitute character" }, -- expr = false needed to override astrovim mapping for j
     -- REPL with iron (see :h iron-commands for all available commands)
     ["<leader>s"] = { desc = get_icon("Run", 1, true) .. "Run" },
     ["<leader>so"] = { "<cmd>IronRepl<cr>", desc = "Open/toggle REPL" },
@@ -158,3 +158,5 @@ local maps = {
     ["<leader>sv"] = { function() require("iron.core").send_visual() end, desc = "Run selection" },
   },
 }
+
+return maps
