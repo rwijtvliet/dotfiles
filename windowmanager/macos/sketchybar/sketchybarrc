@@ -5,55 +5,54 @@ source "$CONFIG_DIR/shared.sh"
 ##### Bar Appearance #####
 
 bar=(
-    height=27
-    color="$BACKGROUND"
-    border_width=0
-    shadow=off
-    position=bottom
-    sticky=on
-    padding_right=0
-    padding_left=0
-    y_offset=0
-    margin=0
-    topmost=window
+	height=27
+	color="$BACKGROUND"
+	border_width=0
+	shadow=off
+	position=bottom
+	sticky=on
+	padding_right=0
+	padding_left=0
+	y_offset=0
+	margin=0
+	topmost=window
 )
 sketchybar --bar "${bar[@]}"
 
 ##### Changing Defaults #####
 
 defaults=(
-    icon.font="Agave Nerd Font:Bold:20"
-    icon.color="$PRIMARY"
-    icon.padding_left=4
-    icon.padding_right=4
-    label.font="$FONT:Bold:14"
-    label.color="$FOREGROUND"
-    label.padding_left=5
-    label.padding_right=5
-    background.height=27
-    background.color="$TRANSPARENT"
-    background.corner_radius=0
-    background.border_width=0
-    background.padding_left=4
-    background.padding_right=4
-    popup.icon.font.size=100
-    popup.icon.font.family="$FONT"
-    popup.icon.font.size=30
-    popup.icon.padding_right=10
-    popup.label.font.size=30
-    popup.padding_left=7
-    popup.padding_right=7
-    popup.background.corner_radius=12
-    popup.icon.padding_right=100
-    popup.background.border_width=2
-    popup.background.corner_radius=6
-    popup.background.border_color="$BACKGROUND_ALT"
-    popup.background.color="$BACKGROUND"
-    popup.blur_radius=20
-    popup.background.shadow.drawing=off
+	icon.font="Agave Nerd Font:Bold:20"
+	icon.color="$PRIMARY"
+	icon.padding_left=4
+	icon.padding_right=4
+	label.font="$FONT:Bold:14"
+	label.color="$FOREGROUND"
+	label.padding_left=5
+	label.padding_right=5
+	background.height=27
+	background.color="$TRANSPARENT"
+	background.corner_radius=0
+	background.border_width=0
+	background.padding_left=4
+	background.padding_right=4
+	popup.icon.font.size=100
+	popup.icon.font.family="$FONT"
+	popup.icon.font.size=30
+	popup.icon.padding_right=10
+	popup.label.font.size=30
+	popup.padding_left=7
+	popup.padding_right=7
+	popup.background.corner_radius=12
+	popup.icon.padding_right=100
+	popup.background.border_width=2
+	popup.background.corner_radius=6
+	popup.background.border_color="$BACKGROUND_ALT"
+	popup.background.color="$BACKGROUND"
+	popup.blur_radius=20
+	popup.background.shadow.drawing=off
 )
 sketchybar --default "${defaults[@]}"
-
 
 # Parts outside of big colored part.
 # Left
@@ -61,7 +60,7 @@ sketchybar --default "${defaults[@]}"
 # Right
 source "$ITEM_DIR/brew.sh"
 source "$ITEM_DIR/github.sh"
-source "$ITEM_DIR/wifi.sh"
+# source "$ITEM_DIR/wifi.sh"
 source "$ITEM_DIR/volume.sh"
 
 # Addings spaces and big colored part.
