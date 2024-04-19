@@ -1,9 +1,15 @@
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
-
--- -----------------------------------------------------------------------------
--- Remapping for Ruud
--- -----------------------------------------------------------------------------
+--
+-- ================
+-- Ruud's remapping
+-- ================
+--
+--
+-- ------------------------------
+-- Normal-mode alphanumberic keys
+-- ------------------------------
+--
 -- Default key for action;   Wanted mapping         Default action for key;
 -- key is now freed up                              new key needed for it
 -- (key reused?              ACTION         KEY              (new key assigned?
@@ -24,6 +30,154 @@
 -- ----------------------------------------------------------------------------
 -- We have not yet set a key for: SUBSTLINE. This is not a problem, because it's
 -- the same as CHANGELINE (key: cc).
+--
+--
+-- ----------
+-- Leader key
+-- ----------
+-- (* = implemented)
+--
+-- *   / Search current buffer
+--    [b buffer (and tab)]
+--     c close buffer
+--    [C config]
+--    [D debug]
+-- *   e file explorer
+--    [f file]
+--    [g git]
+-- *   h home
+--    [l lsp and code]
+-- *   m toggle comment
+--     o open line below stay in normal mode
+--     O open line above stay in normal mode
+--    [p plugins]
+--     q close window [resembles :q]
+--     Q quit neovim
+--    [s search/find]
+--    [S Session]
+--    [t terminal]
+--    [T test]
+--    [u user-interface]
+--    [w window]
+--     W save [resembles :w]
+--    [x diagnostics]
+--
+-- Groups
+--
+--    [b buffer (and tab)]
+--       b go to previously active buffer
+--      [c close]
+--         c current buffer
+--         C all others buffers
+--         r buffers to right
+--         l buffers to left
+-- *     f find buffer by filename
+-- *     g grep in buffers
+--       H go to first buffer
+--      [p pick]
+--         t from tabline
+--       S go to last buffer
+--       t new tab
+--
+--    [w window]
+--       w go to previously active window
+--      [c close]
+--         c current window
+--
+--    [f file]
+--       n new file
+-- *     f find file by filename
+-- *     g grep in files
+-- *     o old (recent) files
+-- *     w find word in files
+-- *     y filepath
+-- *     Y filepath to clipboard
+--
+--    [g git]
+--       l start lazygit
+-- *     c list commits
+-- *     b list branches
+-- *     s status
+--
+--    [l lsp and code]
+--       a code action (?)
+--       A source action (?)
+--       d docstring
+--       f format
+--       l lsp info
+--       m mason
+--       r rename
+-- *     s symbols (? builtin.symbols or builtin.lsp_xxx_symbols?)
+-- *     x diagnostics in all buffers (or: seperate menu?)
+--
+--    [x diagnostics]
+--       b current buffer
+--       w all buffers
+--       ...
+--
+--
+--    [D debug]
+--       ...
+--
+--    [p plugins]
+--       h checkhealth
+--       m mason
+--       u update
+--       ...
+--
+--    [C config]
+-- *     n neovim config files
+-- *     d personal dotfiles
+--
+--    [r run code]
+--       ...
+--
+--    [t terminal]
+--       f in floating window
+--       | in vertical split
+--       \ in horizontal split
+--
+--    [T test]
+--       ...
+--
+--    [S Session]
+--       l open last
+--       ...
+--
+--    [s search/find]
+-- *     ' marks
+-- *     . previous search
+-- *     : command history
+-- *     " registers
+-- *     b telescope builtin
+-- *     c commands
+--       n notifications
+-- *     k keymaps
+-- *     h help
+-- *     m manpages
+--       p yank history
+--
+--    [u user-interface]
+--       a toggle autopairs
+--       b toggle background
+--       c toggle autocompletion
+--       C toggle color highlight (?)
+--       d dismiss notifications
+--       e toggle diagnostics
+--       g toggle signcolumn
+--       f toggle foldcolumn
+--       i indentation
+--       l toggle codelens
+--       N toggle notifications
+--       n line numbering
+-- *     o colorscheme
+--       p toggle paste mode
+--       s toggle spellcheck
+--       S toggle statusline
+--       T toggle tabline
+--       u toggle url highlight
+--       w toggle word wrap
+--       y toggle syntax highlight (buffer)
 
 -- Set highlight on search, but clear on pressing <Esc> in normal mode
 vim.opt.hlsearch = true
@@ -67,14 +221,14 @@ vim.keymap.set('', 'l', 'n', { desc = 'Next search result' })
 vim.keymap.set('', 'L', 'N', { desc = 'Prev search result' })
 
 -- Help
-vim.keymap.set('n', 'T', 'K', { desc = 'Help' })
+vim.keymap.set('n', 'T', 'K', { remap = false, desc = 'Help' })
 
 -- Substitute (substitute line not remapped; not necessary because is same as cc)
 vim.keymap.set('n', 'j', 's', { desc = 'Substitute character' })
 
 -- Till -- TODO: Use flash instead. Currently problem with flash settings, see flash.lua.
 vim.keymap.set('', 'k', 't', { desc = 'Till (forward)' })
-vim.keymap.set('', 'K', 'T', { desc = 'Till (backward)' })
+vim.keymap.set('', 'K', 'T', { remap = false, desc = 'Till (backward)' })
 
 -- Move Lines
 vim.keymap.set('n', '<A-n>', '<cmd>m .+1<cr>==', { desc = 'Move Down' })
@@ -85,8 +239,8 @@ vim.keymap.set('v', '<A-n>', ":m '>+1<cr>gv=gv", { desc = 'Move Down' })
 vim.keymap.set('v', '<A-t>', ":m '<-2<cr>gv=gv", { desc = 'Move Up' })
 
 -- Commenting lines
-vim.keymap.set('n', '<leader>m', 'gcc', { desc = 'Co[m]ment line' })
-vim.keymap.set('x', '<leader>m', 'gc', { desc = 'Co[m]ment selection' })
+vim.keymap.set('n', '<leader>m', 'gcc', { remap = true, desc = 'Co[m]ment line' })
+vim.keymap.set('x', '<leader>m', 'gc', { remap = true, desc = 'Co[m]ment selection' })
 
 ---- File info
 vim.keymap.set('n', '<leader>fy', function()

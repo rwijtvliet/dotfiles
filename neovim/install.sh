@@ -26,8 +26,10 @@ case "$OS" in
 	git clone "https://github.com/AstroNvim/AstroNvim" "$HOME/.config/nvim"
 
 	# add user config
-	info "adding user config"
-	link_public_resource "./user" "$HOME/.config/nvim/lua/user"
+	info "adding user configs"
+	link_public_resource "./nvim" "$HOME/.config/nvim"
+	link_public_resource "./alternative_configs/lazyvim" "$HOME/.config/nvim-lazyvim"
+	link_public_resource "./alternative_configs/astronvim" "$HOME/.config/nvim-astronvim"
 	;;
 
 "windows")
@@ -41,12 +43,11 @@ case "$OS" in
 	scoop install gcc
 	scoop install neovim
 
-	# get astronvim
-	info "getting astronvim"
-	git clone "https://github.com/AstroNvim/AstroNvim" "$USERPROFILE/AppData/Local/nvim"
-
 	# add user config
-	link_public_resource "./user" "$USERPROFILE/AppData/Local/nvim/lua/user"
+	info "adding user configs"
+	link_public_resource "./nvim" "$USERPROFILE/AppData/Local/nvim"
+	link_public_resource "./alternative_configs/lazyvim" "$USERPROFILE/AppData/Local/nvim-lazyvim"
+	link_public_resource "./alternative_configs/astronvim" "$HOME/.config/nvim-astronvim"
 	;;
 
 "macos")
@@ -58,13 +59,11 @@ case "$OS" in
 	info "Installing app"
 	brew install neovim
 
-	# get astronvim
-	info "getting astronvim"
-	git clone "https://github.com/AstroNvim/AstroNvim" "$HOME/.config/nvim"
-
 	# add user config
-	info "adding user config"
-	link_public_resource "./user" "$HOME/.config/nvim/lua/user"
+	info "adding user configs"
+	link_public_resource "./nvim" "$HOME/.config/nvim"
+	link_public_resource "./alternative_configs/lazyvim" "$HOME/.config/nvim-lazyvim"
+	link_public_resource "./alternative_configs/astronvim" "$HOME/.config/nvim-astronvim"
 	;;
 
 *) ;;
