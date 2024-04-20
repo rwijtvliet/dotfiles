@@ -29,7 +29,7 @@ columns = 133
 lines = 40
 
 [font]
-size = 8
+size = 10
 
 [keyboard]
 bindings = [

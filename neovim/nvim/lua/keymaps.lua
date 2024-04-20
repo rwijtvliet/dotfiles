@@ -242,7 +242,14 @@ vim.keymap.set('v', '<A-t>', ":m '<-2<cr>gv=gv", { desc = 'Move Up' })
 vim.keymap.set('n', '<leader>m', 'gcc', { remap = true, desc = 'Co[m]ment line' })
 vim.keymap.set('x', '<leader>m', 'gc', { remap = true, desc = 'Co[m]ment selection' })
 
+-- Closing buffer, window, and neovim
+vim.keymap.set('n', '<leader>c', '<cmd>bdelete<cr>', { desc = '[C]lose buffer' })
+vim.keymap.set('n', '<leader>q', '<cmd>q<cr>', { desc = '[Q]uit window' })
+vim.keymap.set('n', '<leader>Q', '<cmd>qa<cr>', { desc = '[Q]uit neovim' })
+vim.keymap.set('n', '<leader>bc', '<cmd>bdelete<cr>', { desc = '[C]lose buffer' })
+
 -- File info
+vim.keymap.set('n', '<leader>fn', '<cmd>ene | startinsert<cr>', { desc = '[n]ew file' })
 vim.keymap.set('n', '<leader>fy', function()
   local path = vim.fn.expand '%:p'
   vim.notify(path)
@@ -299,5 +306,4 @@ vim.api.nvim_create_autocmd('TextYankPost', {
     vim.highlight.on_yank()
   end,
 })
-
 -- vim: ts=4 sts=4 sw=4 et
