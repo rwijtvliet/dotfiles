@@ -151,7 +151,7 @@
 -- *     " registers
 -- *     b telescope builtin
 -- *     c commands
---       n notifications
+-- *     n notifications
 -- *     k keymaps
 -- *     h help
 -- *     m manpages
@@ -162,7 +162,7 @@
 --       b toggle background
 --       c toggle autocompletion
 --       C toggle color highlight (?)
---       d dismiss notifications
+-- *     d dismiss notifications
 --       e toggle diagnostics
 --       g toggle signcolumn
 --       f toggle foldcolumn
@@ -221,7 +221,7 @@ vim.keymap.set('', 'l', 'n', { desc = 'Next search result' })
 vim.keymap.set('', 'L', 'N', { desc = 'Prev search result' })
 
 -- Help
-vim.keymap.set('n', 'T', 'K', { remap = false, desc = 'Help' })
+vim.keymap.set('n', 'T', 'K', { remap = true, desc = 'Help' })
 
 -- Substitute (substitute line not remapped; not necessary because is same as cc)
 vim.keymap.set('n', 'j', 's', { desc = 'Substitute character' })
@@ -242,7 +242,7 @@ vim.keymap.set('v', '<A-t>', ":m '<-2<cr>gv=gv", { desc = 'Move Up' })
 vim.keymap.set('n', '<leader>m', 'gcc', { remap = true, desc = 'Co[m]ment line' })
 vim.keymap.set('x', '<leader>m', 'gc', { remap = true, desc = 'Co[m]ment selection' })
 
----- File info
+-- File info
 vim.keymap.set('n', '<leader>fy', function()
   local path = vim.fn.expand '%:p'
   vim.notify(path)
@@ -252,15 +252,19 @@ vim.keymap.set('n', '<leader>fY', function()
   vim.fn.setreg('+', path)
   vim.notify('Copied "' .. path .. '" to the clipboard!')
 end, { desc = '[Y] Current file path to clipboard' })
+
+-- Go to dashboard (home)
+vim.keymap.set('n', '<leader>H', '<cmd>Dashboard<cr>', { desc = '[H]ome (dashboard)' })
 --
---
+-- User interface
+vim.keymap.set('n', '<leader>ud', function()
+  require('notify').dismiss { pending = true, silent = true }
+end, { desc = '[D]ismiss notifications' })
 --
 --
 --
 --
 
----- Go to dashboard (home)
-vim.keymap.set('n', '<leader>h', '<cmd>Dashboard<cr>', { desc = 'Home (dashboard)' })
 --
 --
 -- TODO: These are from the initial kickstart config. See if still needed later.

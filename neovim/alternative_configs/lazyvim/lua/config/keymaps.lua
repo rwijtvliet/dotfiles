@@ -1,3 +1,5 @@
+-- IMPORTED
+
 -- Keymaps are automatically loaded on the VeryLazy event
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
@@ -111,3 +113,16 @@ end, { desc = "Current file path to clipboard" })
 
 ---- Go to dashboard (home)
 vim.keymap.set("n", "<leader>h", "<cmd>Dashboard<cr>", { desc = "Home (dashboard)" })
+
+vim.keymap.set("n", "<leader>Cd", function()
+  require("telescope.builtin").find_files({ cwd = "~/.dotfiles/" })
+end, { desc = "Find personal [d]otfiles" })
+vim.keymap.set("n", "<leader>CD", function()
+  require("telescope.builtin").live_grep({ cwd = "~/.dotfiles/" })
+end, { desc = "Grep personal [d]otfiles" })
+vim.keymap.set("n", "<leader>Cn", function()
+  require("telescope.builtin").find_files({ cwd = vim.fn.stdpath("config") })
+end, { desc = "Find [n]eovim config files" })
+vim.keymap.set("n", "<leader>CN", function()
+  require("telescope.builtin").live_grep({ cwd = vim.fn.stdpath("config") })
+end, { desc = "Grep [n]eovim config files" })

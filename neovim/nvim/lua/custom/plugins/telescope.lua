@@ -135,11 +135,17 @@ return {
       -- Section 4: Search in configuration
       vim.keymap.set('n', '<leader>Cd', function()
         builtin.find_files { cwd = '~/.dotfiles/' }
-      end, { desc = 'Search personal [d]otfiles' })
+      end, { desc = 'Find personal [d]otfiles' })
+      vim.keymap.set('n', '<leader>CD', function()
+        builtin.live_grep { cwd = '~/.dotfiles/' }
+      end, { desc = 'Grep personal [d]otfiles' })
       vim.keymap.set('n', '<leader>Cn', function()
         builtin.find_files { cwd = vim.fn.stdpath 'config' }
-      end, { desc = 'Search [n]eovim config' })
-      vim.keymap.set('n', '<leader>Co', builtin.vim_options, { desc = 'Search vim options' })
+      end, { desc = 'Find [n]eovim config files' })
+      vim.keymap.set('n', '<leader>CN', function()
+        builtin.live_grep { cwd = vim.fn.stdpath 'config' }
+      end, { desc = 'Grep [n]eovim config files' })
+      vim.keymap.set('n', '<leader>Co', builtin.vim_options, { desc = 'Search vim [o]ptions' })
 
       -- Section 5: Search in misc.
       vim.keymap.set('n', "<leader>s'", builtin.marks, { desc = "['] Search marks" })
@@ -151,6 +157,9 @@ return {
       vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = 'Search [h]elp' })
       vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = 'Search [k]eymaps' })
       vim.keymap.set('n', '<leader>sm', builtin.man_pages, { desc = 'Search [m]anpages' })
+      vim.keymap.set('n', '<leader>sn', function()
+        require('telescope').extensions.notify.notify()
+      end, { desc = 'Find notifications' })
 
       -- Section 6: No search; change UI etc
       vim.keymap.set('n', '<leader>uo', function()
