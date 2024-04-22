@@ -306,4 +306,8 @@ vim.api.nvim_create_autocmd('TextYankPost', {
     vim.highlight.on_yank()
   end,
 })
+vim.api.nvim_create_autocmd({ 'FileType' }, {
+  pattern = { '*' },
+  command = 'nnoremap <buffer> K T',
+})
 -- vim: ts=4 sts=4 sw=4 et
