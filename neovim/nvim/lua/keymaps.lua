@@ -39,7 +39,7 @@
 --
 -- *   / Search current buffer
 --    [b buffer (and tab)]
---     c close buffer
+-- *   c close buffer
 --    [C config]
 --    [D debug]
 -- *   e file explorer
@@ -51,15 +51,15 @@
 --     o open line below stay in normal mode
 --     O open line above stay in normal mode
 --    [p plugins]
---     q close window [resembles :q]
---     Q quit neovim
+-- *   q close window [resembles :q]
+-- *   Q quit neovim
 --    [s search/find]
 --    [S Session]
 --    [t terminal]
 --    [T test]
 --    [u user-interface]
 --    [w window]
---     W save [resembles :w]
+-- *   W save [resembles :w]
 --    [x diagnostics]
 --
 -- Groups
@@ -181,6 +181,7 @@
 
 -- Set highlight on search, but clear on pressing <Esc> in normal mode
 vim.opt.hlsearch = true
+vim.keymap.set('', '<C-e>', '<Nop>')
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
 -- Navigation
@@ -238,6 +239,12 @@ vim.keymap.set('i', '<A-t>', '<esc><cmd>m .-2<cr>==gi', { desc = 'Move Up' })
 vim.keymap.set('v', '<A-n>', ":m '>+1<cr>gv=gv", { desc = 'Move Down' })
 vim.keymap.set('v', '<A-t>', ":m '<-2<cr>gv=gv", { desc = 'Move Up' })
 
+------------
+-- LEADER --
+------------
+
+---- Direct actions ----
+
 -- Commenting lines
 vim.keymap.set('n', '<leader>m', 'gcc', { remap = true, desc = 'Co[m]ment line' })
 vim.keymap.set('x', '<leader>m', 'gc', { remap = true, desc = 'Co[m]ment selection' })
@@ -246,7 +253,13 @@ vim.keymap.set('x', '<leader>m', 'gc', { remap = true, desc = 'Co[m]ment selecti
 vim.keymap.set('n', '<leader>c', '<cmd>bdelete<cr>', { desc = '[C]lose buffer' })
 vim.keymap.set('n', '<leader>q', '<cmd>q<cr>', { desc = '[Q]uit window' })
 vim.keymap.set('n', '<leader>Q', '<cmd>qa<cr>', { desc = '[Q]uit neovim' })
+vim.keymap.set('n', '<leader>W', '<cmd>w<cr>', { desc = '[W]rite (save)' })
 vim.keymap.set('n', '<leader>bc', '<cmd>bdelete<cr>', { desc = '[C]lose buffer' })
+
+-- Go to dashboard (home)
+vim.keymap.set('n', '<leader>H', '<cmd>Dashboard<cr>', { desc = '[H]ome (dashboard)' })
+
+---- Inside menu ----
 
 -- File info
 vim.keymap.set('n', '<leader>fn', '<cmd>ene | startinsert<cr>', { desc = '[n]ew file' })
@@ -260,9 +273,6 @@ vim.keymap.set('n', '<leader>fY', function()
   vim.notify('Copied "' .. path .. '" to the clipboard!')
 end, { desc = '[Y] Current file path to clipboard' })
 
--- Go to dashboard (home)
-vim.keymap.set('n', '<leader>H', '<cmd>Dashboard<cr>', { desc = '[H]ome (dashboard)' })
---
 -- User interface
 vim.keymap.set('n', '<leader>ud', function()
   require('notify').dismiss { pending = true, silent = true }

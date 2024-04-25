@@ -109,10 +109,10 @@ return {
       end, { desc = '[G]rep in buffers' })
 
       -- Section 2: Search for a file / in all files
-      vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Find file by [f]ilename' })
-      vim.keymap.set('n', '<leader>fg', function()
+      vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Find [f]iles' })
+      vim.keymap.set('n', '<leader>fF', function()
         builtin.live_grep { prompt_title = 'Live grep in files' }
-      end, { desc = '[G]rep in files' })
+      end, { desc = 'Grep [f]iles' })
       vim.keymap.set('n', '<leader>fo', builtin.oldfiles, { desc = 'Find [o]ld (recent) file' })
       vim.keymap.set('n', '<leader>fw', builtin.grep_string, { desc = 'Find current [w]ord in files' })
 
@@ -121,7 +121,7 @@ return {
       vim.keymap.set('n', '<leader>ls', builtin.lsp_document_symbols, { desc = 'Goto [s]ymbol in current buffer' })
       vim.keymap.set('n', '<leader>lS', builtin.lsp_workspace_symbols, { desc = 'Goto [s]ymbol in all buffers' })
 
-      -- Section 3: Git
+      -- Section 4: Git
       vim.keymap.set('n', '<leader>gb', function()
         builtin.git_branches { prompt_title = 'Git branches. <cr> check-out; <C-d> delete; <C-y> merge; <C-a> create new' }
       end, { desc = 'List [b]ranchs' })
@@ -132,21 +132,6 @@ return {
         builtin.git_status { prompt_title = 'Git status. <cr> open file; <tab> stage/unstage file' }
       end, { desc = 'Git [s]tatus' })
 
-      -- Section 4: Search in configuration
-      vim.keymap.set('n', '<leader>Cd', function()
-        builtin.find_files { cwd = '~/.dotfiles/' }
-      end, { desc = 'Find personal [d]otfiles' })
-      vim.keymap.set('n', '<leader>CD', function()
-        builtin.live_grep { cwd = '~/.dotfiles/' }
-      end, { desc = 'Grep personal [d]otfiles' })
-      vim.keymap.set('n', '<leader>Cn', function()
-        builtin.find_files { cwd = vim.fn.stdpath 'config' }
-      end, { desc = 'Find [n]eovim config files' })
-      vim.keymap.set('n', '<leader>CN', function()
-        builtin.live_grep { cwd = vim.fn.stdpath 'config' }
-      end, { desc = 'Grep [n]eovim config files' })
-      vim.keymap.set('n', '<leader>Co', builtin.vim_options, { desc = 'Search vim [o]ptions' })
-
       -- Section 5: Search in misc.
       vim.keymap.set('n', "<leader>s'", builtin.marks, { desc = "['] Search marks" })
       vim.keymap.set('n', '<leader>s.', builtin.resume, { desc = '[.] Repeat previous search' })
@@ -154,12 +139,25 @@ return {
       vim.keymap.set('n', '<leader>s:', builtin.command_history, { desc = '[:] Search command history' })
       vim.keymap.set('n', '<leader>sb', builtin.builtin, { desc = 'Select telescope [b]uiltin' })
       vim.keymap.set('n', '<leader>sc', builtin.commands, { desc = 'Search [c]ommands' })
+      vim.keymap.set('n', '<leader>sd', function()
+        builtin.find_files { cwd = '~/.dotfiles/' }
+      end, { desc = 'Find personal [d]otfiles' })
+      vim.keymap.set('n', '<leader>sD', function()
+        builtin.live_grep { prompt_title = 'Live grep in dotfiles', cwd = '~/.dotfiles/' }
+      end, { desc = 'Grep personal [d]otfiles' })
       vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = 'Search [h]elp' })
       vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = 'Search [k]eymaps' })
-      vim.keymap.set('n', '<leader>sm', builtin.man_pages, { desc = 'Search [m]anpages' })
-      vim.keymap.set('n', '<leader>sn', function()
+      vim.keymap.set('n', '<leader>sm', function()
         require('telescope').extensions.notify.notify()
-      end, { desc = 'Find notifications' })
+      end, { desc = 'Search [m]essages (notifications)' })
+      vim.keymap.set('n', '<leader>sM', builtin.man_pages, { desc = 'Search [m]anpages' })
+      vim.keymap.set('n', '<leader>sn', function()
+        builtin.find_files { cwd = vim.fn.stdpath 'config' }
+      end, { desc = 'Find [n]eovim config files' })
+      vim.keymap.set('n', '<leader>sN', function()
+        builtin.live_grep { prompt_title = 'Live grep in neovim config files', cwd = vim.fn.stdpath 'config' }
+      end, { desc = 'Grep [n]eovim config files' })
+      vim.keymap.set('n', '<leader>so', builtin.vim_options, { desc = 'Search vim [o]ptions' })
 
       -- Section 6: No search; change UI etc
       vim.keymap.set('n', '<leader>uo', function()

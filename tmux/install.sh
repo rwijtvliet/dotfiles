@@ -8,6 +8,8 @@ case "$OS" in
     sudo apt-get install tmux
     info "Linking config"
     link_public_resource "./tmux.conf" "$HOME/.tmux.conf"
+    info "Installing package manager"
+    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm 
     ;;
 
   "windows" )
@@ -21,6 +23,8 @@ case "$OS" in
     brew install tmux
     info "Linking config"
     link_public_resource "./tmux.conf" "$HOME/.tmux.conf"
+    info "Installing package manager"
+    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm 
     ;;
     
   * )

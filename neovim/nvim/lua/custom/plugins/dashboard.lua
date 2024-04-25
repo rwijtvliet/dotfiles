@@ -29,8 +29,8 @@ return {
       { desc = "Find text",          icon = "", key = "SPC f g", action = false },
       { desc = "Recent files",       icon = "", key = "SPC f o", action = false },
       { desc = "Restore session",    icon = "", key = "SPC", action = false }, --'lua require("persistence").load()' },
-      { desc = "Personal dotfiles",  icon = "", key = "SPC C d", action = false },
-      { desc = "Neovim config",      icon = "", key = "SPC C n", action = false },
+      { desc = "Personal dotfiles",  icon = "", key = "SPC s d", action = false },
+      { desc = "Neovim config",      icon = "", key = "SPC s n", action = false },
       { desc = "Quit",               icon = "", key = "SPC Q", action = "qa" },
       -- stylua: ignore end
     }

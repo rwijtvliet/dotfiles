@@ -18,26 +18,26 @@ return {
       end,
       desc = 'File explorer',
     },
-    {
-      '<leader>re',
-      function()
-        require('neo-tree.command').execute { toggle = true, dir = vim.uv.cwd() }
-      end,
-      desc = 'File explorer (cwd)',
-    },
+    -- {
+    --   '<leader>re',
+    --   function()
+    --     require('neo-tree.command').execute { toggle = true, dir = vim.uv.cwd() }
+    --   end,
+    --   desc = 'File explorer (cwd)',
+    -- },
     {
       '<leader>ge',
       function()
         require('neo-tree.command').execute { source = 'git_status', toggle = true }
       end,
-      desc = 'Git Explorer',
+      desc = 'Git [e]xplorer',
     },
     {
       '<leader>be',
       function()
         require('neo-tree.command').execute { source = 'buffers', toggle = true }
       end,
-      desc = 'Buffer Explorer',
+      desc = 'Buffer [e]xplorer',
     },
   },
   opts = {

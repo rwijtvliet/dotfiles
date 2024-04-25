@@ -82,8 +82,6 @@ vim.keymap.set("n", "j", "s", { desc = "Substitute character" })
 vim.keymap.set("", "k", "t", { expr = false, noremap = true, desc = "Till (forward)" })
 vim.keymap.set("", "K", "T", { expr = false, noremap = true, desc = "Till (backward)" })
 
----- Move Lines
-vim.keymap.set("n", "<A-Down>", "<cmd>m .+1<cr>==", { desc = "Move Down" })
 vim.keymap.set("n", "<A-Up>", "<cmd>m .-2<cr>==", { desc = "Move Up" })
 vim.keymap.set("i", "<A-Down>", "<esc><cmd>m .+1<cr>==gi", { desc = "Move Down" })
 vim.keymap.set("i", "<A-Up>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move Up" })
@@ -102,11 +100,11 @@ vim.keymap.set("x", "<leader>/", "gc", { remap = true, silent = true, desc = "Co
 
 ---- File info
 vim.keymap.set("n", "<leader>fp", function()
-  local path = vim.fn.expand("%:p")
+  local path = vim.fn.expand("%:i")
   vim.notify(path)
 end, { desc = "Current file path" })
 vim.keymap.set("n", "<leader>fP", function()
-  local path = vim.fn.expand("%:p")
+  local path = vim.fn.expand("%:I")
   vim.fn.setreg("+", path)
   vim.notify('Copied "' .. path .. '" to the clipboard!')
 end, { desc = "Current file path to clipboard" })

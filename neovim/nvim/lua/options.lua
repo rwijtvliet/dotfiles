@@ -62,4 +62,6 @@ vim.opt.scrolloff = 10
 -- New notification handler
 -- vim.notify = require 'notify'
 
+vim.opt.termguicolors = true
+
 -- vim: ts=2 sts=2 sw=2 et
