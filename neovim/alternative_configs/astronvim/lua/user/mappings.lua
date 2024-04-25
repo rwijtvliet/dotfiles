@@ -182,18 +182,18 @@ else
   maps.n["<C-s>"] = { "<C-w>l", desc = "Move to right split" }
 end
 
-maps.n["<leader>Cd"] = {
+maps.n["<leader>sd"] = {
   function() require("telescope.builtin").find_files { cwd = "~/.dotfiles/" } end,
   desc = "Search personal [d]otfiles",
 }
-maps.n["<leader>Cn"] = {
+maps.n["<leader>sn"] = {
   function() require("telescope.builtin").find_files { cwd = vim.fn.stdpath "config" } end,
   desc = "Search [n]eovim config",
 }
-maps.n["<leader>Co"] = { function() require("telescope.builtin").vim_options {} end, desc = "Search vim options" }
+maps.n["<leader>so"] = { function() require("telescope.builtin").vim_options {} end, desc = "Search vim options" }
 vim.keymap.set(
   "n",
-  "<leader>CN",
+  "<leader>sN",
   function() require("telescope.builtin").live_grep { cwd = vim.fn.stdpath "config" } end,
   { desc = "Grep [n]eovim config files" }
 )
