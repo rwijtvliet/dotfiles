@@ -38,53 +38,55 @@
 -- (* = implemented)
 --
 -- *   / Search current buffer
---    [b buffer (and tab)]
+-- *  [b buffer (and tab)]
 -- *   c close buffer
---    [C config]
---    [D debug]
+-- *  [d debug]
 -- *   e file explorer
---    [f file]
---    [g git]
+-- *  [f file]
+-- *  [g git]
 -- *   h home
---    [l lsp and code]
+-- *  [l lsp and code]
 -- *   m toggle comment
 --     o open line below stay in normal mode
 --     O open line above stay in normal mode
---    [p plugins]
+-- *  [p plugins]
 -- *   q close window [resembles :q]
 -- *   Q quit neovim
---    [s search/find]
---    [S Session]
---    [t terminal]
---    [T test]
---    [u user-interface]
---    [w window]
+-- *  [s search/find]
+-- *  [S Session]
+-- *  [t terminal]
+-- *  [T test]
+-- *  [u user-interface]
+-- *  [w window]
 -- *   W save [resembles :w]
---    [x diagnostics]
+-- *  [x diagnostics]
 --
 -- Groups
 --
---    [b buffer (and tab)]
+-- *  [b buffer (and tab)]
 --       b go to previously active buffer
---      [c close]
+-- *    [c close]
 --         c current buffer
 --         C all others buffers
 --         r buffers to right
 --         l buffers to left
+-- *     e pick buffer from explorer
 -- *     f find buffer by filename
 -- *     g grep in buffers
 --       H go to first buffer
---      [p pick]
---         t from tabline
+--       h go to buffer on left
+--       s go to buffer on right
 --       S go to last buffer
---       t new tab
+--       t pick from tabline
+--       T new tab
 --
---    [w window]
+-- *  [w window]
 --       w go to previously active window
---      [c close]
+--       = balance windows
+-- *    [c close]
 --         c current window
 --
---    [f file]
+-- *  [f file]
 --       n new file
 -- *     f find file by filename
 -- *     g grep in files
@@ -93,13 +95,13 @@
 -- *     y filepath
 -- *     Y filepath to clipboard
 --
---    [g git]
+-- *  [g git]
 --       l start lazygit
 -- *     c list commits
 -- *     b list branches
 -- *     s status
 --
---    [l lsp and code]
+-- *  [l lsp and code]
 --       a code action (?)
 --       A source action (?)
 --       d docstring
@@ -110,24 +112,20 @@
 -- *     s symbols (? builtin.symbols or builtin.lsp_xxx_symbols?)
 -- *     x diagnostics in all buffers (or: seperate menu?)
 --
---    [x diagnostics]
+-- *  [x diagnostics]
 --       b current buffer
 --       w all buffers
 --       ...
 --
 --
---    [D debug]
+-- *  [D debug]
 --       ...
 --
---    [p plugins]
+-- *  [p plugins]
 --       h checkhealth
 --       m mason
 --       u update
 --       ...
---
---    [C config]
--- *     n neovim config files
--- *     d personal dotfiles
 --
 --    [r run code]
 --       ...
@@ -144,20 +142,25 @@
 --       l open last
 --       ...
 --
---    [s search/find]
+-- *  [s search/find]
 -- *     ' marks
 -- *     . previous search
 -- *     : command history
 -- *     " registers
 -- *     b telescope builtin
 -- *     c commands
--- *     n notifications
--- *     k keymaps
+-- *     d dotfiles
+-- *     D grep dotfiles
 -- *     h help
--- *     m manpages
+-- *     k keymaps
+-- *     m messages notifications
+-- *     M manpages
+-- *     n neovim config
+-- *     N grep neovim files
+-- *     o vim options
 --       p yank history
 --
---    [u user-interface]
+-- *  [u user-interface]
 --       a toggle autopairs
 --       b toggle background
 --       c toggle autocompletion
@@ -289,8 +292,8 @@ end, { desc = '[D]ismiss notifications' })
 -- Diagnostic keymaps
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagnostic message' })
-vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Show diagnostic [E]rror messages' })
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
+vim.keymap.set('n', '<leader>xe', vim.diagnostic.open_float, { desc = 'Show diagnostic [E]rror messages' })
+vim.keymap.set('n', '<leader>xq', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
