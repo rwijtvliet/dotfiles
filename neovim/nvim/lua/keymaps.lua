@@ -250,11 +250,12 @@ vim.keymap.set('n', '<leader>m', 'gcc', { remap = true, desc = 'Co[m]ment line' 
 vim.keymap.set('x', '<leader>m', 'gc', { remap = true, desc = 'Co[m]ment selection' })
 
 -- Closing buffer, window, and neovim
-vim.keymap.set('n', '<leader>c', '<cmd>bdelete<cr>', { desc = '[C]lose buffer' })
+vim.keymap.set('n', '<leader>c', '<leader>bc', { remap = true, desc = '[C]lose buffer' })
 vim.keymap.set('n', '<leader>q', '<cmd>q<cr>', { desc = '[Q]uit window' })
 vim.keymap.set('n', '<leader>Q', '<cmd>qa<cr>', { desc = '[Q]uit neovim' })
 vim.keymap.set('n', '<leader>W', '<cmd>w<cr>', { desc = '[W]rite (save)' })
 vim.keymap.set('n', '<leader>bc', '<cmd>bdelete<cr>', { desc = '[C]lose buffer' })
+vim.keymap.set('n', '<leader>bb', '<cmd>e #<cr>', { desc = 'Go to other [b]uffer' })
 
 -- Go to dashboard (home)
 vim.keymap.set('n', '<leader>H', '<cmd>Dashboard<cr>', { desc = '[H]ome (dashboard)' })
