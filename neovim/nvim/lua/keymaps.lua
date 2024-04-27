@@ -38,6 +38,7 @@
 -- (* = implemented)
 --
 -- *   / Search current buffer
+-- *   | vsplit
 -- *  [b buffer (and tab)]
 -- *   c close buffer
 -- *  [d debug]
@@ -47,8 +48,8 @@
 -- *   h home
 -- *  [l lsp and code]
 -- *   m toggle comment
---     o open line below stay in normal mode
---     O open line above stay in normal mode
+-- *   o open line below stay in normal mode
+-- *   O open line above stay in normal mode
 -- *  [p plugins]
 -- *   q close window [resembles :q]
 -- *   Q quit neovim
@@ -64,30 +65,36 @@
 -- Groups
 --
 -- *  [b buffer (and tab)]
---       b go to previously active buffer
+-- *     b go to previously active buffer
 -- *    [c close]
---         c current buffer
---         C all others buffers
---         r buffers to right
---         l buffers to left
+-- *       c current buffer
+-- *       o all others buffers
+-- *       l buffers to left
+-- *       r buffers to right
+-- *       p non-pinned
 -- *     e pick buffer from explorer
 -- *     f find buffer by filename
 -- *     g grep in buffers
---       H go to first buffer
---       h go to buffer on left
---       s go to buffer on right
---       S go to last buffer
+-- *     hs go to buffer on left/right
+-- *     HS go to first/last buffer
+-- *     r resize mode
 --       t pick from tabline
 --       T new tab
 --
 -- *  [w window]
---       w go to previously active window
+-- *     w go to previously active window
 --       = balance windows
 -- *    [c close]
---         c current window
+-- *       c current window
+--         htns window to left/top/bottom/right
+-- *     htns go to left/top/bottom/right window
+-- *     r resize
+-- *    [m] move window (swap)
+-- *     | create vertical split
+-- *     \ create horizontal split
 --
 -- *  [f file]
---       n new file
+-- *     n new file
 -- *     f find file by filename
 -- *     g grep in files
 -- *     o old (recent) files
@@ -207,18 +214,30 @@ vim.keymap.set('', 'E', '$', { desc = 'Move to end of line' })
 
 -- Move between windows
 ---- see `:help wincmd` for a list of all window commands
+---- Commands are repeated under <leader>w
 vim.keymap.set('n', '<C-h>', '<C-w>h', { desc = 'Go to Left Window' })
 vim.keymap.set('n', '<C-n>', '<C-w>j', { desc = 'Go to Lower Window' })
 vim.keymap.set('n', '<C-t>', '<C-w>k', { desc = 'Go to Upper Window' })
 vim.keymap.set('n', '<C-s>', '<C-w>l', { desc = 'Go to Right Window' })
-vim.keymap.set('n', '<leader>wh', '<C-w>h', { desc = 'Go to Left Window' })
-vim.keymap.set('n', '<leader>wn', '<C-w>j', { desc = 'Go to Lower Window' })
-vim.keymap.set('n', '<leader>wt', '<C-w>k', { desc = 'Go to Upper Window' })
-vim.keymap.set('n', '<leader>ws', '<C-w>l', { desc = 'Go to Right Window' })
+
+-- Create windows
+vim.keymap.set('n', '|', '<cmd>vsplit<cr>', { desc = 'Vertical split' })
+vim.keymap.set('n', '\\', '<cmd>split<cr>', { desc = 'Horizontal split' })
+
+-- Resize buffers
+vim.keymap.set('n', '<C-Up>', '<cmd>resize -2<CR>', { desc = 'Resize split up' })
+vim.keymap.set('n', '<C-Down>', '<cmd>resize +2<CR>', { desc = 'Resize split down' })
+vim.keymap.set('n', '<C-Left>', '<cmd>vertical resize -2<CR>', { desc = 'Resize split left' })
+vim.keymap.set('n', '<C-Right>', '<cmd>vertical resize +2<CR>', { desc = 'Resize split right' })
+vim.keymap.set('n', '<C-A-t>', '<cmd>resize -2<CR>', { desc = 'Resize split up' })
+vim.keymap.set('n', '<C-A-n>', '<cmd>resize +2<CR>', { desc = 'Resize split down' })
+vim.keymap.set('n', '<C-A-h>', '<cmd>vertical resize -2<CR>', { desc = 'Resize split left' })
+vim.keymap.set('n', '<C-A-s>', '<cmd>vertical resize +2<CR>', { desc = 'Resize split right' })
 
 -- Move between buffers
-vim.keymap.set('n', '<A-h>', '<cmd>bprev<cr>', { desc = 'Prev Buffer' })
-vim.keymap.set('n', '<A-s>', '<cmd>bnext<cr>', { desc = 'Next Buffer' })
+-- >>> Set by bufferline plugin
+-- vim.keymap.set('n', '<A-h>', '<cmd>bprev<cr>', { desc = 'Prev Buffer' })
+-- vim.keymap.set('n', '<A-s>', '<cmd>bnext<cr>', { desc = 'Next Buffer' })
 
 -- Search results
 vim.keymap.set('', 'l', 'n', { desc = 'Next search result' })
@@ -242,6 +261,10 @@ vim.keymap.set('i', '<A-t>', '<esc><cmd>m .-2<cr>==gi', { desc = 'Move Up' })
 vim.keymap.set('v', '<A-n>', ":m '>+1<cr>gv=gv", { desc = 'Move Down' })
 vim.keymap.set('v', '<A-t>', ":m '<-2<cr>gv=gv", { desc = 'Move Up' })
 
+-- Add empty line
+vim.keymap.set('n', '<leader>o', 'o<esc>', { desc = 'Add empty line after' })
+vim.keymap.set('n', '<leader>O', 'O<esc>', { desc = 'Add empty line before' })
+
 ------------
 -- LEADER --
 ------------
@@ -249,38 +272,72 @@ vim.keymap.set('v', '<A-t>', ":m '<-2<cr>gv=gv", { desc = 'Move Up' })
 ---- Direct actions ----
 
 -- Commenting lines
-vim.keymap.set('n', '<leader>m', 'gcc', { remap = true, desc = 'Co[m]ment line' })
-vim.keymap.set('x', '<leader>m', 'gc', { remap = true, desc = 'Co[m]ment selection' })
+vim.keymap.set('n', '<leader>m', 'gcc', { remap = true, desc = 'Comment line' })
+vim.keymap.set('x', '<leader>m', 'gc', { remap = true, desc = 'Comment selection' })
 
 -- Closing buffer, window, and neovim
-vim.keymap.set('n', '<leader>c', '<leader>bc', { remap = true, desc = '[C]lose buffer' })
-vim.keymap.set('n', '<leader>q', '<cmd>q<cr>', { desc = '[Q]uit window' })
-vim.keymap.set('n', '<leader>Q', '<cmd>qa<cr>', { desc = '[Q]uit neovim' })
-vim.keymap.set('n', '<leader>W', '<cmd>w<cr>', { desc = '[W]rite (save)' })
-vim.keymap.set('n', '<leader>bc', '<cmd>bdelete<cr>', { desc = '[C]lose buffer' })
-vim.keymap.set('n', '<leader>bb', '<cmd>e #<cr>', { desc = 'Go to other [b]uffer' })
+vim.keymap.set('n', '<leader>c', '<leader>bcc', { desc = 'Close buffer' })
+vim.keymap.set('n', '<leader>q', '<cmd>q<cr>', { desc = 'Close window' })
+vim.keymap.set('n', '<leader>Q', '<cmd>qa<cr>', { desc = 'Quit neovim' })
+vim.keymap.set('n', '<leader>W', '<cmd>w<cr>', { desc = 'Write (save)' })
 
 -- Go to dashboard (home)
-vim.keymap.set('n', '<leader>H', '<cmd>Dashboard<cr>', { desc = '[H]ome (dashboard)' })
+vim.keymap.set('n', '<leader>H', '<cmd>Dashboard<cr>', { desc = 'Home (dashboard)' })
 
 ---- Inside menu ----
 
--- File info
-vim.keymap.set('n', '<leader>fn', '<cmd>ene | startinsert<cr>', { desc = '[n]ew file' })
+-- Buffers
+vim.keymap.set('n', '<leader>bb', '<cmd>e #<cr>', { desc = 'Go to other buffer' })
+vim.keymap.set('n', '<leader>bcc', '<cmd>bdelete<cr>', { desc = 'Current buffer' })
+---- additional mappings set by bufferline plugin
+
+-- Windows
+---- delete
+vim.keymap.set('n', '<leader>wcc', '<cmd>q<cr>', { desc = 'Current window' })
+---- create
+vim.keymap.set('n', '<leader>w|', '<cmd>vsplit<cr>', { desc = 'Vertical split' })
+vim.keymap.set('n', '<leader>w\\', '<cmd>split<cr>', { desc = 'Horizontal split' })
+---- resize
+vim.keymap.set('n', '<leader>wr', function()
+  require('smart-splits').start_resize_mode()
+end, { desc = 'Resize' })
+---- navigate
+vim.keymap.set('n', '<leader>ww', '<C-w>p', { desc = 'Go to other window' })
+vim.keymap.set('n', '<leader>wh', '<C-w>h', { desc = 'Go to left window' })
+vim.keymap.set('n', '<leader>wt', '<C-w>k', { desc = 'Go to upper window' })
+vim.keymap.set('n', '<leader>wn', '<C-w>j', { desc = 'Go to lower window' })
+vim.keymap.set('n', '<leader>ws', '<C-w>l', { desc = 'Go to right window' })
+---- swap
+vim.keymap.set('n', '<leader>wmh', function()
+  require('smart-splits').swap_buf_left()
+end, { desc = 'Swap buffer left' })
+vim.keymap.set('n', '<leader>wmt', function()
+  require('smart-splits').swap_buf_up()
+end, { desc = 'Swap buffer above' })
+vim.keymap.set('n', '<leader>wmn', function()
+  require('smart-splits').swap_buf_down()
+end, { desc = 'Swap buffer down' })
+vim.keymap.set('n', '<leader>wms', function()
+  require('smart-splits').swap_buf_right()
+end, { desc = 'Swap buffer right' })
+
+-- File
+---- info
+vim.keymap.set('n', '<leader>fn', '<cmd>ene | startinsert<cr>', { desc = 'New file' })
 vim.keymap.set('n', '<leader>fy', function()
   local path = vim.fn.expand '%:p'
   vim.notify(path)
-end, { desc = '[y] Current file path' })
+end, { desc = 'Current file path' })
 vim.keymap.set('n', '<leader>fY', function()
   local path = vim.fn.expand '%:p'
   vim.fn.setreg('+', path)
   vim.notify('Copied "' .. path .. '" to the clipboard!')
-end, { desc = '[Y] Current file path to clipboard' })
+end, { desc = 'Current file path to clipboard' })
 
 -- User interface
 vim.keymap.set('n', '<leader>ud', function()
   require('notify').dismiss { pending = true, silent = true }
-end, { desc = '[D]ismiss notifications' })
+end, { desc = 'Dismiss notifications' })
 --
 --
 --

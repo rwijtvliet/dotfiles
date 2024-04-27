@@ -46,6 +46,7 @@ return {
       }
     end,
   },
+
   -- notification styling
   {
     'rcarriga/nvim-notify',
@@ -74,4 +75,108 @@ return {
     },
     -- config = require 'plugins.configs.notify',
   },
+
+  -- list of buffers on top
+  {
+    'akinsho/bufferline.nvim',
+    event = 'VeryLazy',
+    dependencies = 'nvim-tree/nvim-web-devicons',
+    keys = {
+      { '<leader>bp', '<Cmd>BufferLineTogglePin<CR>', desc = 'Toggle [p]in' },
+      { '<leader>bh', '<Cmd>BufferLineCyclePrev<CR>', desc = 'Go to prev buffer' },
+      { '<leader>bH', '<Cmd>BufferLineCyclePrev<CR>', desc = 'Go to first buffer' },
+      { '<leader>bs', '<Cmd>BufferLineCycleNext<CR>', desc = 'Go to next buffer' },
+      { '<leader>bS', '<Cmd>BufferLineCycleNext<CR>', desc = 'Go to last buffer' },
+      { '<leader>bt', '<Cmd>BufferLineCycleNext<CR>', desc = 'Pick from [t]abline' }, -- TODO: not yet correct
+      { '<A-h>', '<cmd>BufferLineCyclePrev<cr>', desc = 'Prev buffer' },
+      { '<A-s>', '<cmd>BufferLineCycleNext<cr>', desc = 'Next buffer' },
+      { '[b', '<cmd>BufferLineCyclePrev<cr>', desc = 'Prev Buffer' },
+      { ']b', '<cmd>BufferLineCycleNext<cr>', desc = 'Next Buffer' },
+      -- submenu: closing
+      { '<leader>bcp', '<Cmd>BufferLineGroupClose ungrouped<CR>', desc = 'Non-[p]inned buffers' },
+      { '<leader>bco', '<Cmd>BufferLineCloseOthers<CR>', desc = 'All [o]ther buffers' },
+      { '<leader>bcr', '<Cmd>BufferLineCloseRight<CR>', desc = 'Buffers to the [r]ight' },
+      { '<leader>bcl', '<Cmd>BufferLineCloseLeft<CR>', desc = 'Buffers to the [l]eft' },
+    },
+    opts = {
+      options = {
+        indicator = {
+          icon = '', -- this should be omitted if indicator style is not 'icon'
+          style = 'underline',
+        },
+        --   -- stylua: ignore
+        --   close_command = function(n) require("mini.bufremove").delete(n, false) end,
+        --   -- stylua: ignore
+        --   right_mouse_command = function(n) require("mini.bufremove").delete(n, false) end,
+        --   diagnostics = 'nvim_lsp',
+        --   always_show_bufferline = false,
+        --   diagnostics_indicator = function(_, _, diag)
+        --     local icons = require('lazyvim.config').icons.diagnostics
+        --     local ret = (diag.error and icons.Error .. diag.error .. ' ' or '') .. (diag.warning and icons.Warn .. diag.warning or '')
+        --     return vim.trim(ret)
+        --   end,
+        offsets = {
+          {
+            filetype = 'neo-tree',
+            text = 'Neo-tree',
+            highlight = 'Directory',
+            text_align = 'left',
+          },
+        },
+      },
+    },
+    config = function(_, opts)
+      require('bufferline').setup(opts)
+      -- Fix bufferline when restoring a session
+      vim.api.nvim_create_autocmd('BufAdd', {
+        callback = function()
+          vim.schedule(function()
+            pcall(nvim_bufferline)
+          end)
+        end,
+      })
+    end,
+  },
+
+  -- Move/Resize window.
+  {
+    'mrjones2014/smart-splits.nvim',
+    lazy = true,
+    dependencies = { 'kwkarlwang/bufresize.nvim' },
+    opts = {
+      ignored_filetypes = { 'nofile', 'quickfix', 'qf', 'prompt' },
+      ignored_buftypes = { 'nofile' },
+      resize_mode = {
+        -- key to exit persistent resize mode
+        quit_key = '<ESC>',
+        -- keys to use for moving in resize mode
+        -- in order of left, down, up' right
+        resize_keys = { 'h', 'n', 't', 's' },
+        -- set to true to silence the notifications
+        -- when entering/exiting persistent resize mode
+        silent = true,
+        -- must be functions, they will be executed when
+        -- entering or exiting the resize mode
+        hooks = {
+          on_enter = function()
+            vim.notify 'Entering window resize mode, press <esc> to exit.'
+          end,
+          on_leave = function()
+            vim.notify 'Resize finished.'
+            require('bufresize').register()
+          end,
+        },
+        at_edge = 'stop',
+      },
+    },
+  },
+  --   "
+  -- maps.n["<C-h>"] = { function() require("smart-splits").move_cursor_left() end, desc = "Move to left split" }
+  -- maps.n["<C-j>"] = { function() require("smart-splits").move_cursor_down() end, desc = "Move to below split" }
+  -- maps.n["<C-k>"] = { function() require("smart-splits").move_cursor_up() end, desc = "Move to above split" }
+  -- maps.n["<C-l>"] = { function() require("smart-splits").move_cursor_right() end, desc = "Move to right split" }
+  -- maps.n["<C-Up>"] = { function() require("smart-splits").resize_up() end, desc = "Resize split up" }
+  -- maps.n["<C-Down>"] = { function() require("smart-splits").resize_down() end, desc = "Resize split down" }
+  -- maps.n["<C-Left>"] = { function() require("smart-splits").resize_left() end, desc = "Resize split left" }
+  -- maps.n["<C-Right>"] = { function() require("smart-splits").resize_right() end, desc = "Resize split right" }
 }
