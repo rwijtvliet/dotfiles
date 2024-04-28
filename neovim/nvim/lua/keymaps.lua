@@ -60,6 +60,7 @@
 -- *  [u user-interface]
 -- *  [w window]
 -- *   W save [resembles :w]
+-- *  [q Quit]
 -- *  [x diagnostics]
 --
 -- Groups
@@ -84,9 +85,7 @@
 -- *  [w window]
 -- *     w go to previously active window
 --       = balance windows
--- *    [c close]
--- *       c current window
---         htns window to left/top/bottom/right
+-- *     c close current window
 -- *     htns go to left/top/bottom/right window
 -- *     r resize
 -- *    [m] move window (swap)
@@ -188,6 +187,12 @@
 --       u toggle url highlight
 --       w toggle word wrap
 --       y toggle syntax highlight (buffer)
+--
+-- *  [q Quit]
+-- *     w Close window
+-- *     b Close buffer
+-- *     q Quit neovim
+-- *     Q Quit neovim without saving
 
 -- Set highlight on search, but clear on pressing <Esc> in normal mode
 vim.opt.hlsearch = true
@@ -276,9 +281,7 @@ vim.keymap.set('n', '<leader>m', 'gcc', { remap = true, desc = 'Comment line' })
 vim.keymap.set('x', '<leader>m', 'gc', { remap = true, desc = 'Comment selection' })
 
 -- Closing buffer, window, and neovim
-vim.keymap.set('n', '<leader>c', '<leader>bcc', { desc = 'Close buffer' })
-vim.keymap.set('n', '<leader>q', '<cmd>q<cr>', { desc = 'Close window' })
-vim.keymap.set('n', '<leader>Q', '<cmd>qa<cr>', { desc = 'Quit neovim' })
+vim.keymap.set('n', '<leader>c', '<leader>bcc', { remap = true, desc = 'Close buffer' })
 vim.keymap.set('n', '<leader>W', '<cmd>w<cr>', { desc = 'Write (save)' })
 
 -- Go to dashboard (home)
@@ -292,8 +295,8 @@ vim.keymap.set('n', '<leader>bcc', '<cmd>bdelete<cr>', { desc = 'Current buffer'
 ---- additional mappings set by bufferline plugin
 
 -- Windows
----- delete
-vim.keymap.set('n', '<leader>wcc', '<cmd>q<cr>', { desc = 'Current window' })
+---- close
+vim.keymap.set('n', '<leader>wc', '<cmd>q<cr>', { desc = 'Close current window' })
 ---- create
 vim.keymap.set('n', '<leader>w|', '<cmd>vsplit<cr>', { desc = 'Vertical split' })
 vim.keymap.set('n', '<leader>w\\', '<cmd>split<cr>', { desc = 'Horizontal split' })
@@ -321,6 +324,12 @@ vim.keymap.set('n', '<leader>wms', function()
   require('smart-splits').swap_buf_right()
 end, { desc = 'Swap buffer right' })
 
+-- Quit
+vim.keymap.set('n', '<leader>qw', '<cmd>q<cr>', { desc = 'Close window' })
+vim.keymap.set('n', '<leader>qb', '<cmd>bdelete<cr>', { desc = 'Close buffer' })
+vim.keymap.set('n', '<leader>qq', '<cmd>qa<cr>', { desc = 'Quit neovim' })
+vim.keymap.set('n', '<leader>qQ', '<cmd>qa!<cr>', { desc = "Quit neovim, don't save" })
+
 -- File
 ---- info
 vim.keymap.set('n', '<leader>fn', '<cmd>ene | startinsert<cr>', { desc = 'New file' })
@@ -342,7 +351,6 @@ end, { desc = 'Dismiss notifications' })
 --
 --
 --
-
 --
 --
 -- TODO: These are from the initial kickstart config. See if still needed later.

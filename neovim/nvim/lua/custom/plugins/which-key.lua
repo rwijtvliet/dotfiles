@@ -44,8 +44,8 @@ return {
         ['<leader>T'] = { name = 'Test', _ = 'which_key_ignore' },
         ['<leader>u'] = { name = 'User interface', _ = 'which_key_ignore' },
         ['<leader>w'] = { name = 'Window', _ = 'which_key_ignore' },
-        ['<leader>wc'] = { name = 'Close', _ = 'which_key_ignore' },
         ['<leader>wm'] = { name = 'Move window (swap)', _ = 'which_key_ignore' },
+        ['<leader>q'] = { name = 'Quit / close', _ = 'which_key_ignore' },
         ['<leader>x'] = { name = 'Diagnostics', _ = 'which_key_ignore' },
       }
       -- visual mode

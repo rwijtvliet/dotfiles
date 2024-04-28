@@ -154,7 +154,7 @@ return {
         resize_keys = { 'h', 'n', 't', 's' },
         -- set to true to silence the notifications
         -- when entering/exiting persistent resize mode
-        silent = true,
+        silent = false,
         -- must be functions, they will be executed when
         -- entering or exiting the resize mode
         hooks = {
