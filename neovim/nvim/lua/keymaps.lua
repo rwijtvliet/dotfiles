@@ -1,11 +1,10 @@
--- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 --
 -- ================
 -- Ruud's remapping
 -- ================
 --
---
+
 -- ------------------------------
 -- Normal-mode alphanumberic keys
 -- ------------------------------
@@ -220,27 +219,24 @@ vim.keymap.set('', 'E', '$', { desc = 'Move to end of line' })
 -- Move between windows
 ---- see `:help wincmd` for a list of all window commands
 ---- Commands are repeated under <leader>w
-vim.keymap.set('n', '<C-h>', '<C-w>h', { desc = 'Go to Left Window' })
-vim.keymap.set('n', '<C-n>', '<C-w>j', { desc = 'Go to Lower Window' })
-vim.keymap.set('n', '<C-t>', '<C-w>k', { desc = 'Go to Upper Window' })
-vim.keymap.set('n', '<C-s>', '<C-w>l', { desc = 'Go to Right Window' })
-
+---- >>>> Set by smart-splits plugin
+-- vim.keymap.set('n', '<C-h>', '<C-w>h', { desc = 'Go to Left Window' })
+-- vim.keymap.set('n', '<C-n>', '<C-w>j', { desc = 'Go to Lower Window' })
+-- vim.keymap.set('n', '<C-t>', '<C-w>k', { desc = 'Go to Upper Window' })
+-- vim.keymap.set('n', '<C-s>', '<C-w>l', { desc = 'Go to Right Window' })
 -- Create windows
 vim.keymap.set('n', '|', '<cmd>vsplit<cr>', { desc = 'Vertical split' })
 vim.keymap.set('n', '\\', '<cmd>split<cr>', { desc = 'Horizontal split' })
 
--- Resize buffers
-vim.keymap.set('n', '<C-Up>', '<cmd>resize -2<CR>', { desc = 'Resize split up' })
-vim.keymap.set('n', '<C-Down>', '<cmd>resize +2<CR>', { desc = 'Resize split down' })
-vim.keymap.set('n', '<C-Left>', '<cmd>vertical resize -2<CR>', { desc = 'Resize split left' })
-vim.keymap.set('n', '<C-Right>', '<cmd>vertical resize +2<CR>', { desc = 'Resize split right' })
-vim.keymap.set('n', '<C-A-t>', '<cmd>resize -2<CR>', { desc = 'Resize split up' })
-vim.keymap.set('n', '<C-A-n>', '<cmd>resize +2<CR>', { desc = 'Resize split down' })
-vim.keymap.set('n', '<C-A-h>', '<cmd>vertical resize -2<CR>', { desc = 'Resize split left' })
-vim.keymap.set('n', '<C-A-s>', '<cmd>vertical resize +2<CR>', { desc = 'Resize split right' })
+-- Resize Windows
+-- >>>> Set by smart-splits plugin
+-- vim.keymap.set('n', '<C-Up>', '<cmd>resize -2<CR>', { desc = 'Resize split up' })
+-- vim.keymap.set('n', '<C-Down>', '<cmd>resize +2<CR>', { desc = 'Resize split down' })
+-- vim.keymap.set('n', '<C-Left>', '<cmd>vertical resize -2<CR>', { desc = 'Resize split left' })
+-- vim.keymap.set('n', '<C-Right>', '<cmd>vertical resize +2<CR>', { desc = 'Resize split right' })
 
 -- Move between buffers
--- >>> Set by bufferline plugin
+-- >>>> Set by bufferline plugin
 -- vim.keymap.set('n', '<A-h>', '<cmd>bprev<cr>', { desc = 'Prev Buffer' })
 -- vim.keymap.set('n', '<A-s>', '<cmd>bnext<cr>', { desc = 'Next Buffer' })
 
@@ -281,7 +277,7 @@ vim.keymap.set('n', '<leader>m', 'gcc', { remap = true, desc = 'Comment line' })
 vim.keymap.set('x', '<leader>m', 'gc', { remap = true, desc = 'Comment selection' })
 
 -- Closing buffer, window, and neovim
-vim.keymap.set('n', '<leader>c', '<leader>bcc', { remap = true, desc = 'Close buffer' })
+vim.keymap.set('n', '<leader>c', '<cmd>bdelete<cr>', { remap = true, desc = 'Close buffer' })
 vim.keymap.set('n', '<leader>W', '<cmd>w<cr>', { desc = 'Write (save)' })
 
 -- Go to dashboard (home)
@@ -300,29 +296,13 @@ vim.keymap.set('n', '<leader>wc', '<cmd>q<cr>', { desc = 'Close current window' 
 ---- create
 vim.keymap.set('n', '<leader>w|', '<cmd>vsplit<cr>', { desc = 'Vertical split' })
 vim.keymap.set('n', '<leader>w\\', '<cmd>split<cr>', { desc = 'Horizontal split' })
----- resize
-vim.keymap.set('n', '<leader>wr', function()
-  require('smart-splits').start_resize_mode()
-end, { desc = 'Resize' })
 ---- navigate
 vim.keymap.set('n', '<leader>ww', '<C-w>p', { desc = 'Go to other window' })
-vim.keymap.set('n', '<leader>wh', '<C-w>h', { desc = 'Go to left window' })
-vim.keymap.set('n', '<leader>wt', '<C-w>k', { desc = 'Go to upper window' })
-vim.keymap.set('n', '<leader>wn', '<C-w>j', { desc = 'Go to lower window' })
-vim.keymap.set('n', '<leader>ws', '<C-w>l', { desc = 'Go to right window' })
----- swap
-vim.keymap.set('n', '<leader>wmh', function()
-  require('smart-splits').swap_buf_left()
-end, { desc = 'Swap buffer left' })
-vim.keymap.set('n', '<leader>wmt', function()
-  require('smart-splits').swap_buf_up()
-end, { desc = 'Swap buffer above' })
-vim.keymap.set('n', '<leader>wmn', function()
-  require('smart-splits').swap_buf_down()
-end, { desc = 'Swap buffer down' })
-vim.keymap.set('n', '<leader>wms', function()
-  require('smart-splits').swap_buf_right()
-end, { desc = 'Swap buffer right' })
+-- vim.keymap.set('n', '<leader>wh', '<C-w>h', { desc = 'Go to left window' })
+-- vim.keymap.set('n', '<leader>wt', '<C-w>k', { desc = 'Go to upper window' })
+-- vim.keymap.set('n', '<leader>wn', '<C-w>j', { desc = 'Go to lower window' })
+-- vim.keymap.set('n', '<leader>ws', '<C-w>l', { desc = 'Go to right window' })
+---- additional mappings set by smart-splits plugin
 
 -- Quit
 vim.keymap.set('n', '<leader>qw', '<cmd>q<cr>', { desc = 'Close window' })

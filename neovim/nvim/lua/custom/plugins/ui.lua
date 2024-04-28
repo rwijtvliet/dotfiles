@@ -82,21 +82,23 @@ return {
     event = 'VeryLazy',
     dependencies = 'nvim-tree/nvim-web-devicons',
     keys = {
-      { '<leader>bp', '<Cmd>BufferLineTogglePin<CR>', desc = 'Toggle [p]in' },
-      { '<leader>bh', '<Cmd>BufferLineCyclePrev<CR>', desc = 'Go to prev buffer' },
-      { '<leader>bH', '<Cmd>BufferLineCyclePrev<CR>', desc = 'Go to first buffer' },
-      { '<leader>bs', '<Cmd>BufferLineCycleNext<CR>', desc = 'Go to next buffer' },
-      { '<leader>bS', '<Cmd>BufferLineCycleNext<CR>', desc = 'Go to last buffer' },
-      { '<leader>bt', '<Cmd>BufferLineCycleNext<CR>', desc = 'Pick from [t]abline' }, -- TODO: not yet correct
-      { '<A-h>', '<cmd>BufferLineCyclePrev<cr>', desc = 'Prev buffer' },
-      { '<A-s>', '<cmd>BufferLineCycleNext<cr>', desc = 'Next buffer' },
-      { '[b', '<cmd>BufferLineCyclePrev<cr>', desc = 'Prev Buffer' },
-      { ']b', '<cmd>BufferLineCycleNext<cr>', desc = 'Next Buffer' },
+      -- stylua: ignore start
+      { '<leader>bp',  '<Cmd>BufferLineTogglePin<CR>',            desc = 'Toggle [p]in' },
+      { '<leader>bh',  '<Cmd>BufferLineCyclePrev<CR>',            desc = 'Go to prev buffer' },
+      { '<leader>bH',  '<Cmd>BufferLineCyclePrev<CR>',            desc = 'Go to first buffer' },
+      { '<leader>bs',  '<Cmd>BufferLineCycleNext<CR>',            desc = 'Go to next buffer' },
+      { '<leader>bS',  '<Cmd>BufferLineCycleNext<CR>',            desc = 'Go to last buffer' },
+      { '<leader>bt',  '<Cmd>BufferLineCycleNext<CR>',            desc = 'Pick from [t]abline' }, -- TODO: not yet correct
+      { '<A-h>',       '<cmd>BufferLineCyclePrev<cr>',            desc = 'Prev buffer' },
+      { '<A-s>',       '<cmd>BufferLineCycleNext<cr>',            desc = 'Next buffer' },
+      { '[b',          '<cmd>BufferLineCyclePrev<cr>',            desc = 'Prev Buffer' },
+      { ']b',          '<cmd>BufferLineCycleNext<cr>',            desc = 'Next Buffer' },
       -- submenu: closing
-      { '<leader>bcp', '<Cmd>BufferLineGroupClose ungrouped<CR>', desc = 'Non-[p]inned buffers' },
-      { '<leader>bco', '<Cmd>BufferLineCloseOthers<CR>', desc = 'All [o]ther buffers' },
-      { '<leader>bcr', '<Cmd>BufferLineCloseRight<CR>', desc = 'Buffers to the [r]ight' },
-      { '<leader>bcl', '<Cmd>BufferLineCloseLeft<CR>', desc = 'Buffers to the [l]eft' },
+      { '<leader>bcp', '<Cmd>BufferLineGroupClose ungrouped<CR>', desc = 'Non-pinned' },
+      { '<leader>bco', '<Cmd>BufferLineCloseOthers<CR>',          desc = 'All others' },
+      { '<leader>bcr', '<Cmd>BufferLineCloseRight<CR>',           desc = 'All to the right' },
+      { '<leader>bcl', '<Cmd>BufferLineCloseLeft<CR>',            desc = 'All to the left' },
+      -- stylua: ignore end
     },
     opts = {
       options = {
@@ -143,20 +145,38 @@ return {
     'mrjones2014/smart-splits.nvim',
     lazy = true,
     dependencies = { 'kwkarlwang/bufresize.nvim' },
+    keys = {
+      --stylua: ignore start
+      -- focus window
+      { '<C-h>', function() require('smart-splits').move_cursor_left() end, desc = 'Focus to left window', },
+      { '<C-t>', function() require('smart-splits').move_cursor_up() end, desc = 'Focues to above window', },
+      { '<C-n>', function() require('smart-splits').move_cursor_down() end, desc = 'Focus to below window', },
+      { '<C-s>', function() require('smart-splits').move_cursor_right() end, desc = 'Focus to right window', },
+      { '<leader>wh', function() require('smart-splits').move_cursor_left() end, desc = 'Focus to left window', },
+      { '<leader>wt', function() require('smart-splits').move_cursor_up() end, desc = 'Focues to above window', },
+      { '<leader>wn', function() require('smart-splits').move_cursor_down() end, desc = 'Focus to below window', },
+      { '<leader>ws', function() require('smart-splits').move_cursor_right() end, desc = 'Focus to right window', },
+      -- resize window
+      { '<C-Left>', function() require('smart-splits').resize_left() end, desc = 'Resize window left', },
+      { '<C-Up>', function() require('smart-splits').resize_up() end, desc = 'Resize window up', },
+      { '<C-Down>', function() require('smart-splits').resize_down() end, desc = 'Resize window down', },
+      { '<C-Right>', function() require('smart-splits').resize_right() end, desc = 'Resize window right', },
+      -- resize window: persistent
+      { '<leader>wr', function() require('smart-splits').start_resize_mode() end, desc = 'Resize', },
+      -- swap buffer
+      { '<leader>wmh', function() require('smart-splits').swap_buf_left() end, desc = 'Swap buffer left', },
+      { '<leader>wmt', function() require('smart-splits').swap_buf_up() end, desc = 'Swap buffer above', },
+      { '<leader>wmn', function() require('smart-splits').swap_buf_down() end, desc = 'Swap buffer down', },
+      { '<leader>wms', function() require('smart-splits').swap_buf_right() end, desc = 'Swap buffer right', },
+      --stylua: ignore end
+    },
     opts = {
       ignored_filetypes = { 'nofile', 'quickfix', 'qf', 'prompt' },
       ignored_buftypes = { 'nofile' },
       resize_mode = {
-        -- key to exit persistent resize mode
-        quit_key = '<ESC>',
-        -- keys to use for moving in resize mode
-        -- in order of left, down, up' right
-        resize_keys = { 'h', 'n', 't', 's' },
-        -- set to true to silence the notifications
-        -- when entering/exiting persistent resize mode
+        quit_key = '<Esc>', -- key to exit persistent resize mode
+        resize_keys = { 'h', 'n', 't', 's' }, -- keys to use for moving in resize mode in order of left, down, up' right
         silent = false,
-        -- must be functions, they will be executed when
-        -- entering or exiting the resize mode
         hooks = {
           on_enter = function()
             vim.notify 'Entering window resize mode, press <esc> to exit.'
@@ -171,12 +191,4 @@ return {
     },
   },
   --   "
-  -- maps.n["<C-h>"] = { function() require("smart-splits").move_cursor_left() end, desc = "Move to left split" }
-  -- maps.n["<C-j>"] = { function() require("smart-splits").move_cursor_down() end, desc = "Move to below split" }
-  -- maps.n["<C-k>"] = { function() require("smart-splits").move_cursor_up() end, desc = "Move to above split" }
-  -- maps.n["<C-l>"] = { function() require("smart-splits").move_cursor_right() end, desc = "Move to right split" }
-  -- maps.n["<C-Up>"] = { function() require("smart-splits").resize_up() end, desc = "Resize split up" }
-  -- maps.n["<C-Down>"] = { function() require("smart-splits").resize_down() end, desc = "Resize split down" }
-  -- maps.n["<C-Left>"] = { function() require("smart-splits").resize_left() end, desc = "Resize split left" }
-  -- maps.n["<C-Right>"] = { function() require("smart-splits").resize_right() end, desc = "Resize split right" }
 }
