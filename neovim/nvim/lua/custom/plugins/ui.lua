@@ -148,33 +148,33 @@ return {
     keys = {
       --stylua: ignore start
       -- focus window
-      { '<C-h>', function() require('smart-splits').move_cursor_left() end, desc = 'Focus to left window', },
-      { '<C-t>', function() require('smart-splits').move_cursor_up() end, desc = 'Focues to above window', },
-      { '<C-n>', function() require('smart-splits').move_cursor_down() end, desc = 'Focus to below window', },
-      { '<C-s>', function() require('smart-splits').move_cursor_right() end, desc = 'Focus to right window', },
-      { '<leader>wh', function() require('smart-splits').move_cursor_left() end, desc = 'Focus to left window', },
-      { '<leader>wt', function() require('smart-splits').move_cursor_up() end, desc = 'Focues to above window', },
-      { '<leader>wn', function() require('smart-splits').move_cursor_down() end, desc = 'Focus to below window', },
-      { '<leader>ws', function() require('smart-splits').move_cursor_right() end, desc = 'Focus to right window', },
+      { '<C-h>',       function() require('smart-splits').move_cursor_left() end,  desc = 'Focus to left window', },
+      { '<C-t>',       function() require('smart-splits').move_cursor_up() end,    desc = 'Focues to above window', },
+      { '<C-n>',       function() require('smart-splits').move_cursor_down() end,  desc = 'Focus to below window', },
+      { '<C-s>',       function() require('smart-splits').move_cursor_right() end, desc = 'Focus to right window', },
+      { '<leader>wh',  function() require('smart-splits').move_cursor_left() end,  desc = 'Focus to left window', },
+      { '<leader>wt',  function() require('smart-splits').move_cursor_up() end,    desc = 'Focues to above window', },
+      { '<leader>wn',  function() require('smart-splits').move_cursor_down() end,  desc = 'Focus to below window', },
+      { '<leader>ws',  function() require('smart-splits').move_cursor_right() end, desc = 'Focus to right window', },
       -- resize window
-      { '<C-Left>', function() require('smart-splits').resize_left() end, desc = 'Resize window left', },
-      { '<C-Up>', function() require('smart-splits').resize_up() end, desc = 'Resize window up', },
-      { '<C-Down>', function() require('smart-splits').resize_down() end, desc = 'Resize window down', },
-      { '<C-Right>', function() require('smart-splits').resize_right() end, desc = 'Resize window right', },
+      { '<C-Left>',    function() require('smart-splits').resize_left() end,       desc = 'Resize window left', },
+      { '<C-Up>',      function() require('smart-splits').resize_up() end,         desc = 'Resize window up', },
+      { '<C-Down>',    function() require('smart-splits').resize_down() end,       desc = 'Resize window down', },
+      { '<C-Right>',   function() require('smart-splits').resize_right() end,      desc = 'Resize window right', },
       -- resize window: persistent
-      { '<leader>wr', function() require('smart-splits').start_resize_mode() end, desc = 'Resize', },
+      { '<leader>wr',  function() require('smart-splits').start_resize_mode() end, desc = 'Resize', },
       -- swap buffer
-      { '<leader>wmh', function() require('smart-splits').swap_buf_left() end, desc = 'Swap buffer left', },
-      { '<leader>wmt', function() require('smart-splits').swap_buf_up() end, desc = 'Swap buffer above', },
-      { '<leader>wmn', function() require('smart-splits').swap_buf_down() end, desc = 'Swap buffer down', },
-      { '<leader>wms', function() require('smart-splits').swap_buf_right() end, desc = 'Swap buffer right', },
+      { '<leader>wmh', function() require('smart-splits').swap_buf_left() end,     desc = 'Swap buffer left', },
+      { '<leader>wmt', function() require('smart-splits').swap_buf_up() end,       desc = 'Swap buffer above', },
+      { '<leader>wmn', function() require('smart-splits').swap_buf_down() end,     desc = 'Swap buffer down', },
+      { '<leader>wms', function() require('smart-splits').swap_buf_right() end,    desc = 'Swap buffer right', },
       --stylua: ignore end
     },
     opts = {
       ignored_filetypes = { 'nofile', 'quickfix', 'qf', 'prompt' },
       ignored_buftypes = { 'nofile' },
       resize_mode = {
-        quit_key = '<Esc>', -- key to exit persistent resize mode
+        quit_key = '<Esc>',                   -- key to exit persistent resize mode
         resize_keys = { 'h', 'n', 't', 's' }, -- keys to use for moving in resize mode in order of left, down, up' right
         silent = false,
         hooks = {
