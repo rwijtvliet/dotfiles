@@ -184,6 +184,14 @@ return {
           on_leave = function()
             vim.notify 'Resize finished.'
             require('bufresize').register()
+            -- TODO: remove when solved
+            vim.keymap.set('', 'h', 'h', { desc = 'Move left' }) -- for completeness
+            vim.keymap.set('', 'n', "v:count == 0 ? 'gj' : 'j'", { expr = true, desc = 'move down' })
+            vim.keymap.set('', 't', "v:count == 0 ? 'gk' : 'k'", { expr = true, desc = 'move up' })
+            vim.keymap.set('', 's', 'l', { desc = 'move right' })
+            vim.keymap.set('', 'H', 'H', { desc = 'Move cursor to top of screen' }) -- for completeness
+            vim.keymap.set('', 'S', 'L', { desc = 'Move cursor to bottom of screen' })
+            vim.keymap.set('n', 'T', 'K', { remap = true, desc = 'Help' })
           end,
         },
         at_edge = 'stop',
