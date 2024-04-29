@@ -143,8 +143,8 @@
 --    [T test]
 --       ...
 --
---    [S Session]
---       l open last
+-- *  [S Session]
+-- *     l open last
 --       ...
 --
 -- *  [s search/find]
