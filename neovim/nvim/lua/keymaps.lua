@@ -112,7 +112,7 @@
 --       d docstring
 --       f format
 --       l lsp info
---       m mason
+-- *     m mason
 --       r rename
 -- *     s symbols (? builtin.symbols or builtin.lsp_xxx_symbols?)
 -- *     x diagnostics in all buffers (or: seperate menu?)
@@ -285,12 +285,12 @@ vim.keymap.set('n', '<leader>H', '<cmd>Dashboard<cr>', { desc = 'Home (dashboard
 
 ---- Inside menu ----
 
--- Buffers
+-- b Buffers
 vim.keymap.set('n', '<leader>bb', '<cmd>e #<cr>', { desc = 'Go to other buffer' })
 vim.keymap.set('n', '<leader>bcc', '<cmd>bdelete<cr>', { desc = 'Current buffer' })
 ---- additional mappings set by bufferline plugin
 
--- Windows
+-- w Windows
 ---- close
 vim.keymap.set('n', '<leader>wc', '<cmd>q<cr>', { desc = 'Close current window' })
 ---- create
@@ -304,13 +304,16 @@ vim.keymap.set('n', '<leader>ww', '<C-w>p', { desc = 'Go to other window' })
 -- vim.keymap.set('n', '<leader>ws', '<C-w>l', { desc = 'Go to right window' })
 ---- additional mappings set by smart-splits plugin
 
--- Quit
+-- l LSP/Code
+vim.keymap.set('n', '<leader>lm', '<cmd>Mason<cr>', { desc = 'Mason' })
+
+-- q Quit
 vim.keymap.set('n', '<leader>qw', '<cmd>q<cr>', { desc = 'Close window' })
 vim.keymap.set('n', '<leader>qb', '<cmd>bdelete<cr>', { desc = 'Close buffer' })
 vim.keymap.set('n', '<leader>qq', '<cmd>qa<cr>', { desc = 'Quit neovim' })
 vim.keymap.set('n', '<leader>qQ', '<cmd>qa!<cr>', { desc = "Quit neovim, don't save" })
 
--- File
+-- f File
 ---- info
 vim.keymap.set('n', '<leader>fn', '<cmd>ene | startinsert<cr>', { desc = 'New file' })
 vim.keymap.set('n', '<leader>fy', function()
@@ -323,7 +326,7 @@ vim.keymap.set('n', '<leader>fY', function()
   vim.notify('Copied "' .. path .. '" to the clipboard!')
 end, { desc = 'Current file path to clipboard' })
 
--- User interface
+-- u User interface
 vim.keymap.set('n', '<leader>ud', function()
   require('notify').dismiss { pending = true, silent = true }
 end, { desc = 'Dismiss notifications' })

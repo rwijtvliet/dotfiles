@@ -100,69 +100,69 @@ return {
         builtin.current_buffer_fuzzy_find(
           require('telescope.themes').get_dropdown { winblend = 10, previewer = false, prompt_title = 'Search in current buffer' }
         )
-      end, { desc = '[/] Find in current buffer' })
+      end, { desc = 'Find in current buffer' })
 
       -- Section 1: Search for a buffer / in all buffers
-      vim.keymap.set('n', '<leader>bf', builtin.buffers, { desc = 'Find buffer by [f]ilename' })
+      vim.keymap.set('n', '<leader>bf', builtin.buffers, { desc = 'Find buffer by filename' })
       vim.keymap.set('n', '<leader>bg', function()
         builtin.live_grep { grep_open_files = true, prompt_title = 'Live grep in buffers' }
-      end, { desc = '[G]rep in buffers' })
+      end, { desc = 'Grep in buffers' })
 
       -- Section 2: Search for a file / in all files
-      vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Find [f]iles' })
-      vim.keymap.set('n', '<leader>fF', function()
+      vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Find files' })
+      vim.keymap.set('n', '<leader>fg', function()
         builtin.live_grep { prompt_title = 'Live grep in files' }
-      end, { desc = 'Grep [f]iles' })
-      vim.keymap.set('n', '<leader>fo', builtin.oldfiles, { desc = 'Find [o]ld (recent) file' })
-      vim.keymap.set('n', '<leader>fw', builtin.grep_string, { desc = 'Find current [w]ord in files' })
+      end, { desc = 'Find files (grep)' })
+      vim.keymap.set('n', '<leader>fo', builtin.oldfiles, { desc = 'Find old (recent) file' })
+      vim.keymap.set('n', '<leader>fw', builtin.grep_string, { desc = 'Find current word in files' })
 
       -- Section 3: Lsp / code
-      vim.keymap.set('n', '<leader>lx', builtin.diagnostics, { desc = '[x] Workspace diagonstics' })
-      vim.keymap.set('n', '<leader>ls', builtin.lsp_document_symbols, { desc = 'Goto [s]ymbol in current buffer' })
-      vim.keymap.set('n', '<leader>lS', builtin.lsp_workspace_symbols, { desc = 'Goto [s]ymbol in all buffers' })
+      vim.keymap.set('n', '<leader>lx', builtin.diagnostics, { desc = 'Workspace diagonstics' })
+      vim.keymap.set('n', '<leader>ls', builtin.lsp_document_symbols, { desc = 'Goto symbol in current buffer' })
+      vim.keymap.set('n', '<leader>lS', builtin.lsp_workspace_symbols, { desc = 'Goto symbol in all buffers' })
 
       -- Section 4: Git
       vim.keymap.set('n', '<leader>gb', function()
         builtin.git_branches { prompt_title = 'Git branches. <cr> check-out; <C-d> delete; <C-y> merge; <C-a> create new' }
-      end, { desc = 'List [b]ranchs' })
+      end, { desc = 'List branchs' })
       vim.keymap.set('n', '<leader>gc', function()
         builtin.git_commits { prompt_title = 'Git commits. <cr> checkout; open diff in <c-v> vertical <c-x> horizontal' }
-      end, { desc = 'List [c]ommits' })
+      end, { desc = 'List commits' })
       vim.keymap.set('n', '<leader>gs', function()
         builtin.git_status { prompt_title = 'Git status. <cr> open file; <tab> stage/unstage file' }
-      end, { desc = 'Git [s]tatus' })
+      end, { desc = 'Git status' })
 
       -- Section 5: Search in misc.
-      vim.keymap.set('n', "<leader>s'", builtin.marks, { desc = "['] Search marks" })
-      vim.keymap.set('n', '<leader>s.', builtin.resume, { desc = '[.] Repeat previous search' })
-      vim.keymap.set('n', '<leader>s"', builtin.registers, { desc = '["] Search registers' })
-      vim.keymap.set('n', '<leader>s:', builtin.command_history, { desc = '[:] Search command history' })
-      vim.keymap.set('n', '<leader>sb', builtin.builtin, { desc = 'Select telescope [b]uiltin' })
-      vim.keymap.set('n', '<leader>sc', builtin.commands, { desc = 'Search [c]ommands' })
+      vim.keymap.set('n', "<leader>s'", builtin.marks, { desc = 'Marks' })
+      vim.keymap.set('n', '<leader>s.', builtin.resume, { desc = 'Repeat previous search' })
+      vim.keymap.set('n', '<leader>s"', builtin.registers, { desc = 'Registers' })
+      vim.keymap.set('n', '<leader>s:', builtin.command_history, { desc = 'Command history' })
+      vim.keymap.set('n', '<leader>sb', builtin.builtin, { desc = 'Select telescope builtin' })
+      vim.keymap.set('n', '<leader>sc', builtin.commands, { desc = 'Commands' })
       vim.keymap.set('n', '<leader>sd', function()
         builtin.find_files { cwd = '~/.dotfiles/' }
-      end, { desc = 'Find personal [d]otfiles' })
+      end, { desc = 'Personal dotfiles' })
       vim.keymap.set('n', '<leader>sD', function()
         builtin.live_grep { prompt_title = 'Live grep in dotfiles', cwd = '~/.dotfiles/' }
-      end, { desc = 'Grep personal [d]otfiles' })
-      vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = 'Search [h]elp' })
-      vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = 'Search [k]eymaps' })
+      end, { desc = 'Personal dotfiles (grep)' })
+      vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = 'Help' })
+      vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = 'Keymaps' })
       vim.keymap.set('n', '<leader>sm', function()
         require('telescope').extensions.notify.notify()
-      end, { desc = 'Search [m]essages (notifications)' })
-      vim.keymap.set('n', '<leader>sM', builtin.man_pages, { desc = 'Search [m]anpages' })
+      end, { desc = 'Messages (notifications)' })
+      vim.keymap.set('n', '<leader>sM', builtin.man_pages, { desc = 'Manpages' })
       vim.keymap.set('n', '<leader>sn', function()
         builtin.find_files { cwd = vim.fn.stdpath 'config' }
-      end, { desc = 'Find [n]eovim config files' })
+      end, { desc = 'Neovim config files' })
       vim.keymap.set('n', '<leader>sN', function()
         builtin.live_grep { prompt_title = 'Live grep in neovim config files', cwd = vim.fn.stdpath 'config' }
-      end, { desc = 'Grep [n]eovim config files' })
-      vim.keymap.set('n', '<leader>so', builtin.vim_options, { desc = 'Search vim [o]ptions' })
+      end, { desc = 'Neovim config files (grep)' })
+      vim.keymap.set('n', '<leader>so', builtin.vim_options, { desc = 'Vim options' })
 
       -- Section 6: No search; change UI etc
       vim.keymap.set('n', '<leader>uo', function()
         builtin.colorscheme { enable_preview = true }
-      end, { desc = 'Select c[o]lorscheme' })
+      end, { desc = 'Select colorscheme' })
 
       -- It's also possible to pass additional configuration options.
     end,
