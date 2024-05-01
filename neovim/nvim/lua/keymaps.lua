@@ -79,13 +79,15 @@
 -- *     HS go to first/last buffer
 -- *     r resize mode
 --       t pick from tabline
---       T new tab
+-- *     T new tab
+-- *     w save
 --
 -- *  [w window]
 -- *     w go to previously active window
 --       = balance windows
 -- *     c close current window
 -- *     htns go to left/top/bottom/right window
+--       HTNS move with buffer to left/top/bottom/right window
 -- *     r resize
 -- *    [m] move window (swap)
 -- *     | create vertical split
@@ -166,8 +168,8 @@
 --       p yank history
 --
 -- *  [u user-interface]
---       a toggle autopairs
---       b toggle background
+-- *     a toggle autopairs
+-- *     b toggle background
 --       c toggle autocompletion
 --       C toggle color highlight (?)
 -- *     d dismiss notifications
@@ -175,16 +177,16 @@
 --       g toggle signcolumn
 --       f toggle foldcolumn
 --       i indentation
---       l toggle codelens
+-- *     l toggle line numbering
+-- *     L toggle relative line numbering
 --       N toggle notifications
---       n line numbering
 -- *     o colorscheme
 --       p toggle paste mode
---       s toggle spellcheck
+-- *     s toggle spellcheck
 --       S toggle statusline
 --       T toggle tabline
 --       u toggle url highlight
---       w toggle word wrap
+-- *     w toggle word wrap
 --       y toggle syntax highlight (buffer)
 --
 -- *  [q Quit]
@@ -200,10 +202,10 @@ vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
 -- Navigation
 ---- using '' for mode to specify normal (= 'n'), visual (= 'v'), and operator-pending (= 'o') mode. See `:help map-modes`
-vim.keymap.set('', 'h', 'h', { desc = 'Move left' }) -- for completeness
-vim.keymap.set('', 'n', "v:count == 0 ? 'gj' : 'j'", { expr = true, desc = 'move down' })
-vim.keymap.set('', 't', "v:count == 0 ? 'gk' : 'k'", { expr = true, desc = 'move up' })
-vim.keymap.set('', 's', 'l', { desc = 'move right' })
+vim.keymap.set('', 'h', 'h', { desc = 'Move cursor left' }) -- for completeness
+vim.keymap.set('', 'n', "v:count == 0 ? 'gj' : 'j'", { expr = true, desc = 'Move cursor down' })
+vim.keymap.set('', 't', "v:count == 0 ? 'gk' : 'k'", { expr = true, desc = 'Move cursor up' })
+vim.keymap.set('', 's', 'l', { desc = 'Move cursor right' })
 ---- Disable arrow keys
 vim.keymap.set('', '<left>', '<cmd>echo "Use h to move left!!"<CR>')
 vim.keymap.set('', '<right>', '<cmd>echo "Use s to move right!!"<CR>')
@@ -240,6 +242,10 @@ vim.keymap.set('n', '\\', '<cmd>split<cr>', { desc = 'Horizontal split' })
 -- vim.keymap.set('n', '<A-h>', '<cmd>bprev<cr>', { desc = 'Prev Buffer' })
 -- vim.keymap.set('n', '<A-s>', '<cmd>bnext<cr>', { desc = 'Next Buffer' })
 
+-- Buffer
+vim.keymap.set('n', ']t', 'gt', { desc = 'Go to next tab' })
+vim.keymap.set('n', '[t', 'gT', { desc = 'Go to prev tab' })
+
 -- Search results
 vim.keymap.set('', 'l', 'n', { desc = 'Next search result' })
 vim.keymap.set('', 'L', 'N', { desc = 'Prev search result' })
@@ -251,30 +257,26 @@ vim.keymap.set('n', 'T', 'K', { remap = true, desc = 'Help' })
 vim.keymap.set('n', 'j', 's', { desc = 'Substitute character' })
 
 -- Till -- TODO: Use flash instead. Currently problem with flash settings, see flash.lua.
-vim.keymap.set('', 'k', 't', { desc = 'Till (forward)' })
-vim.keymap.set('', 'K', 'T', { remap = false, desc = 'Till (backward)' })
+vim.keymap.set('', 'k', 't', { desc = 'Move until next char' })
+vim.keymap.set('', 'K', 'T', { remap = false, desc = 'Move until previous char' })
 
 -- Move Lines
-vim.keymap.set('n', '<A-n>', '<cmd>m .+1<cr>==', { desc = 'Move Down' })
-vim.keymap.set('n', '<A-t>', '<cmd>m .-2<cr>==', { desc = 'Move Up' })
-vim.keymap.set('i', '<A-n>', '<esc><cmd>m .+1<cr>==gi', { desc = 'Move Down' })
-vim.keymap.set('i', '<A-t>', '<esc><cmd>m .-2<cr>==gi', { desc = 'Move Up' })
-vim.keymap.set('v', '<A-n>', ":m '>+1<cr>gv=gv", { desc = 'Move Down' })
-vim.keymap.set('v', '<A-t>', ":m '<-2<cr>gv=gv", { desc = 'Move Up' })
+vim.keymap.set('n', '<A-n>', '<cmd>m .+1<cr>==', { desc = 'Move line down' })
+vim.keymap.set('n', '<A-t>', '<cmd>m .-2<cr>==', { desc = 'Move line up' })
+vim.keymap.set('i', '<A-n>', '<esc><cmd>m .+1<cr>==gi', { desc = 'Move line down' })
+vim.keymap.set('i', '<A-t>', '<esc><cmd>m .-2<cr>==gi', { desc = 'Move line up' })
+vim.keymap.set('v', '<A-n>', ":m '>+1<cr>gv=gv", { desc = 'Move line down' })
+vim.keymap.set('v', '<A-t>', ":m '<-2<cr>gv=gv", { desc = 'Move line up' })
 
 -- Add empty line
-vim.keymap.set('n', '<leader>o', 'o<esc>', { desc = 'Add empty line after' })
-vim.keymap.set('n', '<leader>O', 'O<esc>', { desc = 'Add empty line before' })
+vim.keymap.set('n', '<leader>o', 'o<Up><Esc>', { desc = 'Add empty line after' })
+vim.keymap.set('n', '<leader>O', 'O<Down><Esc>', { desc = 'Add empty line before' })
 
 ------------
 -- LEADER --
 ------------
 
 ---- Direct actions ----
-
--- Commenting lines
-vim.keymap.set('n', '<leader>m', 'gcc', { remap = true, desc = 'Comment line' })
-vim.keymap.set('x', '<leader>m', 'gc', { remap = true, desc = 'Comment selection' })
 
 -- Closing buffer, window, and neovim
 vim.keymap.set('n', '<leader>c', '<cmd>bdelete<cr>', { remap = true, desc = 'Close buffer' })
@@ -288,6 +290,8 @@ vim.keymap.set('n', '<leader>H', '<cmd>Dashboard<cr>', { desc = 'Home (dashboard
 -- b Buffers
 vim.keymap.set('n', '<leader>bb', '<cmd>e #<cr>', { desc = 'Go to other buffer' })
 vim.keymap.set('n', '<leader>bcc', '<cmd>bdelete<cr>', { desc = 'Current buffer' })
+vim.keymap.set('n', '<leader>bT', '<cmd>tabnew<cr>', { desc = 'New tab' })
+vim.keymap.set('n', '<leader>bw', '<cmd>w<cr>', { desc = 'Write (save)' })
 ---- additional mappings set by bufferline plugin
 
 -- w Windows
@@ -310,7 +314,7 @@ vim.keymap.set('n', '<leader>lm', '<cmd>Mason<cr>', { desc = 'Mason' })
 -- q Quit
 vim.keymap.set('n', '<leader>qw', '<cmd>q<cr>', { desc = 'Close window' })
 vim.keymap.set('n', '<leader>qb', '<cmd>bdelete<cr>', { desc = 'Close buffer' })
-vim.keymap.set('n', '<leader>qq', '<cmd>qa<cr>', { desc = 'Quit neovim' })
+vim.keymap.set('n', '<leader>qq', '<cmd>wa<cr><cmd>qa<cr>', { desc = 'Quit neovim (save all' })
 vim.keymap.set('n', '<leader>qQ', '<cmd>qa!<cr>', { desc = "Quit neovim, don't save" })
 
 -- f File
@@ -327,9 +331,33 @@ vim.keymap.set('n', '<leader>fY', function()
 end, { desc = 'Current file path to clipboard' })
 
 -- u User interface
+vim.keymap.set('n', '<leader>ub', function()
+  local newbackground = (vim.go.background == 'dark' and 'light' or 'dark')
+  vim.go.background = newbackground
+  vim.notify('Background ' .. newbackground)
+end, { desc = 'Toggle background' })
 vim.keymap.set('n', '<leader>ud', function()
   require('notify').dismiss { pending = true, silent = true }
 end, { desc = 'Dismiss notifications' })
+vim.keymap.set('n', '<leader>ul', function()
+  vim.wo.nu = not vim.wo.nu
+  vim.notify('Line numbers ' .. (vim.wo.nu and 'on' or 'off'))
+end, { desc = 'Toggle line numbers' })
+vim.keymap.set('n', '<leader>uL', function()
+  if not vim.wo.nu then -- first show line numbers before toggling relative numbers
+    vim.wo.nu = true
+  end
+  vim.wo.rnu = not vim.wo.rnu
+  vim.notify('Relative line numbering ' .. (vim.wo.rnu and 'on' or 'off'))
+end, { desc = 'Toggle relative line numbers' })
+vim.keymap.set('n', '<leader>us', function()
+  vim.wo.spell = not vim.wo.spell
+  vim.notify('Spell check ' .. (vim.wo.spell and 'on' or 'off'))
+end, { desc = 'Toggle spell check' })
+vim.keymap.set('n', '<leader>uw', function()
+  vim.wo.wrap = not vim.wo.wrap
+  vim.notify('Wordwrap ' .. (vim.wo.wrap and 'on' or 'off'))
+end, { desc = 'Toggle word wrap' })
 --
 --
 --

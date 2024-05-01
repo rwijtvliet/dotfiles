@@ -32,6 +32,7 @@ return {
       { desc = "Personal dotfiles",  icon = "", key = "SPC s d", action = false },
       { desc = "Neovim config",      icon = "", key = "SPC s n", action = false },
       { desc = "Quit",               icon = "", key = "SPC q q", action = "qa" },
+      { desc = "",                   icon = " ", key = "<Esc>",   action = "bdelete" },
       -- stylua: ignore end
     }
     for _, button in ipairs(opts.config.center) do

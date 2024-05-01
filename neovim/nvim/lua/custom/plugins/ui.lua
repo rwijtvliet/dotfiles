@@ -81,19 +81,30 @@ return {
     'akinsho/bufferline.nvim',
     event = 'VeryLazy',
     dependencies = 'nvim-tree/nvim-web-devicons',
+    lazy = false, -- TODO: check why this is needed. (If removed, the bufferline is not shown when restoring a session)
     keys = {
       -- stylua: ignore start
-      { '<leader>bp',  '<Cmd>BufferLineTogglePin<CR>',            desc = 'Toggle [p]in' },
-      { '<leader>bh',  '<Cmd>BufferLineCyclePrev<CR>',            desc = 'Go to prev buffer' },
-      { '<leader>bH',  '<Cmd>BufferLineCyclePrev<CR>',            desc = 'Go to first buffer' },
-      { '<leader>bs',  '<Cmd>BufferLineCycleNext<CR>',            desc = 'Go to next buffer' },
-      { '<leader>bS',  '<Cmd>BufferLineCycleNext<CR>',            desc = 'Go to last buffer' },
-      { '<leader>bt',  '<Cmd>BufferLineCycleNext<CR>',            desc = 'Pick from [t]abline' }, -- TODO: not yet correct
+      { '<leader>1',   '<Cmd>BufferLineGoToBuffer 1<CR>',         desc = 'which_key_ignore' },
+      { '<leader>2',   '<Cmd>BufferLineGoToBuffer 2<CR>',         desc = 'which_key_ignore' },
+      { '<leader>3',   '<Cmd>BufferLineGoToBuffer 3<CR>',         desc = 'which_key_ignore' },
+      { '<leader>4',   '<Cmd>BufferLineGoToBuffer 4<CR>',         desc = 'which_key_ignore' },
+      { '<leader>5',   '<Cmd>BufferLineGoToBuffer 5<CR>',         desc = 'which_key_ignore' },
+      { '<leader>6',   '<Cmd>BufferLineGoToBuffer 6<CR>',         desc = 'which_key_ignore' },
+      { '<leader>7',   '<Cmd>BufferLineGoToBuffer 7<CR>',         desc = 'which_key_ignore' },
+      { '<leader>8',   '<Cmd>BufferLineGoToBuffer 8<CR>',         desc = 'which_key_ignore' },
+      { '<leader>9',   '<Cmd>BufferLineGoToBuffer 9<CR>',         desc = 'which_key_ignore' },
       { '<A-h>',       '<cmd>BufferLineCyclePrev<cr>',            desc = 'Prev buffer' },
       { '<A-s>',       '<cmd>BufferLineCycleNext<cr>',            desc = 'Next buffer' },
       { '[b',          '<cmd>BufferLineCyclePrev<cr>',            desc = 'Prev Buffer' },
       { ']b',          '<cmd>BufferLineCycleNext<cr>',            desc = 'Next Buffer' },
-      -- submenu: closing
+      -- submenu: buffer
+      { '<leader>bp',  '<Cmd>BufferLineTogglePin<CR>',            desc = 'Toggle pin' },
+      { '<leader>bh',  '<Cmd>BufferLineCyclePrev<CR>',            desc = 'Go to prev buffer' },
+      { '<leader>bH',  '<Cmd>BufferLineCyclePrev<CR>',            desc = 'Go to first buffer' },
+      { '<leader>bs',  '<Cmd>BufferLineCycleNext<CR>',            desc = 'Go to next buffer' },
+      { '<leader>bS',  '<Cmd>BufferLineCycleNext<CR>',            desc = 'Go to last buffer' },
+      { '<leader>bt',  '<cmd>BufferLinePick<cr>',                 desc = 'Pick a tab' },
+      -- submenu: buffer closing
       { '<leader>bcp', '<Cmd>BufferLineGroupClose ungrouped<CR>', desc = 'Non-pinned' },
       { '<leader>bco', '<Cmd>BufferLineCloseOthers<CR>',          desc = 'All others' },
       { '<leader>bcr', '<Cmd>BufferLineCloseRight<CR>',           desc = 'All to the right' },
@@ -102,21 +113,21 @@ return {
     },
     opts = {
       options = {
+        separator_style = 'thick',
         indicator = {
           icon = '', -- this should be omitted if indicator style is not 'icon'
           style = 'underline',
         },
-        --   -- stylua: ignore
         --   close_command = function(n) require("mini.bufremove").delete(n, false) end,
-        --   -- stylua: ignore
         --   right_mouse_command = function(n) require("mini.bufremove").delete(n, false) end,
-        --   diagnostics = 'nvim_lsp',
-        --   always_show_bufferline = false,
+        diagnostics = 'nvim_lsp',
+        always_show_bufferline = true,
         --   diagnostics_indicator = function(_, _, diag)
         --     local icons = require('lazyvim.config').icons.diagnostics
         --     local ret = (diag.error and icons.Error .. diag.error .. ' ' or '') .. (diag.warning and icons.Warn .. diag.warning or '')
         --     return vim.trim(ret)
         --   end,
+        sort_by = 'insert_at_end',
         offsets = {
           {
             filetype = 'neo-tree',
@@ -174,7 +185,7 @@ return {
       ignored_filetypes = { 'nofile', 'quickfix', 'qf', 'prompt' },
       ignored_buftypes = { 'nofile' },
       resize_mode = {
-        quit_key = '<Esc>',                   -- key to exit persistent resize mode
+        quit_key = '<Esc>', -- key to exit persistent resize mode
         resize_keys = { 'h', 'n', 't', 's' }, -- keys to use for moving in resize mode in order of left, down, up' right
         silent = false,
         hooks = {
@@ -198,5 +209,10 @@ return {
       },
     },
   },
-  --   "
+
+  -- Highlight certain text such as
+  -- TODO:
+  -- HACK: and
+  -- NOTE:
+  { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
 }
