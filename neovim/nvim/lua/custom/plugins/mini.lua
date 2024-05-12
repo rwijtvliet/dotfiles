@@ -65,7 +65,7 @@ return {
         find_left = 'gsF', -- Find surrounding (to the left)
         highlight = 'gsh', -- Highlight surrounding
         replace = 'gsr', -- Replace surrounding
-        update_n_lines = 'gsn', -- Update `n_lines`
+        -- update_n_lines = 'gsn', -- Update `n_lines`
       },
       n_lines = 500,
     },
@@ -81,7 +81,7 @@ return {
     },
     keys = {
       {
-        '<leader>ua',
+        '<leader>ua', -- TODO: not working
         function()
           vim.g.minipairs_disable = not vim.g.minipairs_disable
           vim.notify('Auto pairs ' .. (vim.g.minipairs_disable and 'on' or 'off'))

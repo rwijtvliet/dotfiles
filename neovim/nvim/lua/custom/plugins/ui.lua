@@ -80,7 +80,7 @@ return {
   {
     'akinsho/bufferline.nvim',
     event = 'VeryLazy',
-    dependencies = 'nvim-tree/nvim-web-devicons',
+    dependencies = { 'nvim-tree/nvim-web-devicons', 'ojroques/nvim-bufdel' },
     lazy = false, -- TODO: check why this is needed. (If removed, the bufferline is not shown when restoring a session)
     keys = {
       -- stylua: ignore start
@@ -113,6 +113,7 @@ return {
     },
     opts = {
       options = {
+        close_command = 'BufDel %d', -- can be a string | function, | false see "Mouse actions"
         separator_style = 'thick',
         indicator = {
           icon = '', -- this should be omitted if indicator style is not 'icon'
@@ -149,6 +150,18 @@ return {
         end,
       })
     end,
+  },
+
+  -- Better delete buffer (i.e., without closing window)
+  {
+    'ojroques/nvim-bufdel',
+    name = 'bufdel',
+    keys = {
+      { '<leader>c', '<cmd>BufDel<cr>', desc = 'Close buffer' },
+      { '<leader>C', '<cmd>BufDel!<cr>', desc = "Close buffer (don't save)" },
+      { '<leader>bcc', '<cmd>BufDel!<cr>', desc = 'Current buffer' },
+    },
+    opts = { next = 'alternate' },
   },
 
   -- Move/Resize window.

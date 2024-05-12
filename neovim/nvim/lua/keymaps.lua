@@ -40,6 +40,7 @@
 -- *   | vsplit
 -- *  [b buffer (and tab)]
 -- *   c close buffer
+-- *   C close buffer (don't save)
 -- *  [d debug]
 -- *   e file explorer
 -- *  [f file]
@@ -279,7 +280,6 @@ vim.keymap.set('n', '<leader>O', 'O<Down><Esc>', { desc = 'Add empty line before
 ---- Direct actions ----
 
 -- Closing buffer, window, and neovim
-vim.keymap.set('n', '<leader>c', '<cmd>bdelete<cr>', { remap = true, desc = 'Close buffer' })
 vim.keymap.set('n', '<leader>W', '<cmd>w<cr>', { desc = 'Write (save)' })
 
 -- Go to dashboard (home)
@@ -289,7 +289,6 @@ vim.keymap.set('n', '<leader>H', '<cmd>Dashboard<cr>', { desc = 'Home (dashboard
 
 -- b Buffers
 vim.keymap.set('n', '<leader>bb', '<cmd>e #<cr>', { desc = 'Go to other buffer' })
-vim.keymap.set('n', '<leader>bcc', '<cmd>bdelete<cr>', { desc = 'Current buffer' })
 vim.keymap.set('n', '<leader>bT', '<cmd>tabnew<cr>', { desc = 'New tab' })
 vim.keymap.set('n', '<leader>bw', '<cmd>w<cr>', { desc = 'Write (save)' })
 ---- additional mappings set by bufferline plugin
@@ -313,8 +312,8 @@ vim.keymap.set('n', '<leader>lm', '<cmd>Mason<cr>', { desc = 'Mason' })
 
 -- q Quit
 vim.keymap.set('n', '<leader>qw', '<cmd>q<cr>', { desc = 'Close window' })
-vim.keymap.set('n', '<leader>qb', '<cmd>bdelete<cr>', { desc = 'Close buffer' })
-vim.keymap.set('n', '<leader>qq', '<cmd>wa<cr><cmd>qa<cr>', { desc = 'Quit neovim (save all' })
+vim.keymap.set('n', '<leader>qb', '<cmd>BufDel<cr>', { desc = 'Close buffer' })
+vim.keymap.set('n', '<leader>qq', '<cmd>wa<cr><cmd>qa<cr>', { desc = 'Quit neovim (save all)' })
 vim.keymap.set('n', '<leader>qQ', '<cmd>qa!<cr>', { desc = "Quit neovim, don't save" })
 
 -- f File
@@ -340,11 +339,14 @@ vim.keymap.set('n', '<leader>ud', function()
   require('notify').dismiss { pending = true, silent = true }
 end, { desc = 'Dismiss notifications' })
 vim.keymap.set('n', '<leader>ul', function()
-  vim.wo.nu = not vim.wo.nu
-  vim.notify('Line numbers ' .. (vim.wo.nu and 'on' or 'off'))
+  if vim.wo.nu and vim.wo.rnu then -- to turn off line numbers, first deactivate relative numbers
+    vim.wo.rnu = false
+  end
+  vim.wo.number = not vim.wo.number
+  vim.notify('Line numbers ' .. (vim.wo.number and 'on' or 'off'))
 end, { desc = 'Toggle line numbers' })
 vim.keymap.set('n', '<leader>uL', function()
-  if not vim.wo.nu then -- first show line numbers before toggling relative numbers
+  if not vim.wo.nu then -- to toggle relative numbers, first show line numbers
     vim.wo.nu = true
   end
   vim.wo.rnu = not vim.wo.rnu
