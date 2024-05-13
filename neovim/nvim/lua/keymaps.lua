@@ -47,7 +47,6 @@
 -- *  [g git]
 -- *   h home
 -- *  [l lsp and code]
--- *   m toggle comment
 -- *   o open line below stay in normal mode
 -- *   O open line above stay in normal mode
 -- *  [p plugins]
@@ -130,8 +129,9 @@
 --       ...
 --
 -- *  [p plugins]
---       h checkhealth
---       m mason
+-- *     l lazy
+-- *     h checkhealth
+-- *     m mason
 --       u update
 --       ...
 --
@@ -308,7 +308,11 @@ vim.keymap.set('n', '<leader>ww', '<C-w>p', { desc = 'Go to other window' })
 ---- additional mappings set by smart-splits plugin
 
 -- l LSP/Code
-vim.keymap.set('n', '<leader>lm', '<cmd>Mason<cr>', { desc = 'Mason' })
+
+-- p plugins
+vim.keymap.set('n', '<leader>ph', '<cmd>checkhealth<cr>', { desc = 'Check health' })
+vim.keymap.set('n', '<leader>pm', '<cmd>Mason<cr>', { desc = 'Mason' })
+vim.keymap.set('n', '<leader>pl', '<cmd>Lazy<cr>', { desc = 'Lazy' })
 
 -- q Quit
 vim.keymap.set('n', '<leader>qw', '<cmd>q<cr>', { desc = 'Close window' })
