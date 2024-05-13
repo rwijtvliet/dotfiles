@@ -34,13 +34,30 @@ return {
       --  - Normal mode: ?
       -- See `:help telescope` and `:help telescope.setup()`
       local actions = require 'telescope.actions'
+      local function flash(prompt_bufnr) -- function to add labels to jump to
+        require('flash').jump {
+          pattern = '^',
+          label = { after = { 0, 0 } },
+          search = {
+            mode = 'search',
+            exclude = {
+              function(win)
+                return vim.bo[vim.api.nvim_win_get_buf(win)].filetype ~= 'TelescopeResults'
+              end,
+            },
+          },
+          action = function(match)
+            local picker = require('telescope.actions.state').get_current_picker(prompt_bufnr)
+            picker:set_selection(match.pos[1] - 1)
+          end,
+        }
+      end
       require('telescope').setup {
         defaults = {
           mappings = {
             n = {
               -- disable some keymaps
               -- ["j"] = actions.noop, -- already used for something else, see below
-              ['j'] = false,
               ['k'] = false,
               ['s'] = false,
               ['L'] = false,
@@ -59,7 +76,7 @@ return {
               ['d'] = actions.preview_scrolling_down,
               ['<C-d>'] = actions.preview_scrolling_down,
 
-              --['j'] = flash,
+              ['j'] = flash,
 
               ['<C-h>'] = actions.cycle_history_prev,
               ['<C-s>'] = actions.cycle_history_next,
@@ -72,7 +89,7 @@ return {
               ['<C-u>'] = actions.preview_scrolling_up,
               ['<C-d>'] = actions.preview_scrolling_down,
 
-              --['<C-j>'] = flash,
+              ['<C-j>'] = flash,
 
               ['<C-h>'] = actions.cycle_history_prev,
               ['<C-s>'] = actions.cycle_history_next,
