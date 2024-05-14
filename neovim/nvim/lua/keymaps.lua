@@ -147,7 +147,9 @@
 --       ...
 --
 -- *  [S Session]
--- *     l open last
+-- *     l restore last
+-- *     d restore directory
+-- *     g restore git branch
 --       ...
 --
 -- *  [s search/find]
@@ -176,15 +178,14 @@
 -- *     d dismiss notifications
 --       e toggle diagnostics
 --       g toggle signcolumn
---       f toggle foldcolumn
+-- *     f toggle flash for finding on/of
 --       i indentation
 -- *     l toggle line numbering
 -- *     L toggle relative line numbering
 --       N toggle notifications
 -- *     o colorscheme
 --       p toggle paste mode
--- *     s toggle spellcheck
---       S toggle statusline
+-- *     S toggle spellcheck
 --       T toggle tabline
 --       u toggle url highlight
 -- *     w toggle word wrap
@@ -356,7 +357,7 @@ vim.keymap.set('n', '<leader>uL', function()
   vim.wo.rnu = not vim.wo.rnu
   vim.notify('Relative line numbering ' .. (vim.wo.rnu and 'on' or 'off'))
 end, { desc = 'Toggle relative line numbers' })
-vim.keymap.set('n', '<leader>us', function()
+vim.keymap.set('n', '<leader>uS', function()
   vim.wo.spell = not vim.wo.spell
   vim.notify('Spell check ' .. (vim.wo.spell and 'on' or 'off'))
 end, { desc = 'Toggle spell check' })

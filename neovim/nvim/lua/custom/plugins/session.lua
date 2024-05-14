@@ -2,19 +2,16 @@ return {
   'stevearc/resession.nvim',
   lazy = false,
   keys = function()
-    vim.keymap.set('n', '<leader>Ss', function()
-      require('resession').save()
-    end, { desc = 'Save' })
     vim.keymap.set('n', '<leader>Sl', function()
-      require('resession').load()
-    end, { desc = 'Load ' })
-    vim.keymap.set('n', '<leader>Sd', function()
-      require('resession').delete()
-    end, { desc = 'Delete' })
+      require('resession').load('last', { silence_errors = true })
+    end, { desc = 'Restore last session' })
   end,
   config = function(_, opts)
     -- fn to get session name
-    local function get_session_name()
+    local function session_name_of_folder()
+      return vim.fn.getcwd()
+    end
+    local function session_name_of_branch()
       local name = vim.fn.getcwd()
       local branch = vim.trim(vim.fn.system 'git branch --show-current')
       if vim.v.shell_error == 0 then
@@ -26,20 +23,28 @@ return {
     -- set commands
     vim.api.nvim_create_autocmd('VimLeavePre', {
       callback = function()
-        require('resession').save(get_session_name(), { dir = 'dirsession', notify = false })
+        require('resession').save('last', { notify = false })
+        require('resession').save(session_name_of_folder(), { notify = false })
+        require('resession').save(session_name_of_branch(), { notify = false })
       end,
     })
     -- set keymap that depends on function
-    vim.keymap.set('n', '<leader>Sr', function()
-      require('resession').load(get_session_name(), { dir = 'dirsession', silence_errors = true })
-    end, { desc = 'Restore session (of folder/branch)' })
+    vim.keymap.set('n', '<leader>Sd', function()
+      require('resession').load(session_name_of_folder(), { silence_errors = true })
+      require('resession').save('last', { notify = false }) -- ensure autosaving is always done to the 'last' session (in case nvim crashes)
+    end, { desc = 'Restore session (of directory)' })
+    vim.keymap.set('n', '<leader>Sg', function()
+      require('resession').load(session_name_of_branch(), { silence_errors = true })
+      require('resession').save('last', { notify = false }) -- ensure autosaving is always done to the 'last' session (in case nvim crashes)
+    end, { desc = 'Restore session (of directory and git branch)' })
+
     require('resession').setup(opts)
   end,
   opts = {
     autosave = {
       enabled = true,
       interval = 60,
-      notify = false,
+      notify = true,
     },
   },
 }

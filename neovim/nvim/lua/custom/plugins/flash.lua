@@ -21,7 +21,7 @@ return {
       function()
         require('flash').jump()
       end,
-      desc = 'Flash',
+      desc = 'Flash: jump',
     },
     {
       'gJ',
@@ -29,7 +29,7 @@ return {
       function()
         require('flash').treesitter()
       end,
-      desc = 'Flash Treesitter',
+      desc = 'Flash: treesitter',
     },
     {
       'gw',
@@ -37,7 +37,7 @@ return {
       function()
         require('flash').jump { pattern = vim.fn.expand '<cword>' }
       end,
-      desc = 'Flash (current word)',
+      desc = 'Flash: jump (current word)',
     },
     {
       'r',
@@ -45,7 +45,7 @@ return {
       function()
         require('flash').remote()
       end,
-      desc = 'Remote Flash',
+      desc = 'Flash: remote',
     },
     {
       'R',
@@ -53,16 +53,16 @@ return {
       function()
         require('flash').treesitter_search()
       end,
-      desc = 'Treesitter Search',
+      desc = 'Flash: treesitter search',
     },
     {
-      '<leader>uj',
+      '<leader>uf',
       mode = { 'n' },
       function()
         require('flash').toggle()
         vim.notify 'Toggling search with flash'
       end,
-      desc = 'Toggle searching with flash',
+      desc = 'Toggle flash (for finding) on/off',
     },
   },
 }
