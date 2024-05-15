@@ -28,7 +28,7 @@ return {
         ['<leader>l'] = { name = '  Lsp and code', _ = 'which_key_ignore' },
         ['<leader>p'] = { name = '  Plugins', _ = 'which_key_ignore' },
         ['<leader>s'] = { name = '  Search', _ = 'which_key_ignore' },
-        ['<leader>S'] = { name = ' 󰖲 Session', _ = 'which_key_ignore' },
+        ['<leader>S'] = { name = ' 󰖲 Restore session', _ = 'which_key_ignore' },
         ['<leader>t'] = { name = '  Terminal', _ = 'which_key_ignore' },
         ['<leader>T'] = { name = '  Test', _ = 'which_key_ignore' },
         ['<leader>u'] = { name = ' 󰉼 UI/UX', _ = 'which_key_ignore' },
