@@ -5,9 +5,6 @@ return {
     vim.keymap.set('n', '<leader>Sl', function()
       require('resession').load('last', { silence_errors = true })
     end, { desc = 'Last session' })
-    vim.keymap.set('n', '<leader>Sd', function()
-      require('resession').delete()
-    end, { desc = 'Delete session' })
   end,
   config = function(_, opts)
     local function folder_name()
@@ -33,7 +30,7 @@ return {
           end
         end
       end
-      return false -- no listed, writable, named buffers with content exist
+      return false -- there are no listed, writable, named, nonempty buffers
     end
 
     -- set keymap that depends on function
