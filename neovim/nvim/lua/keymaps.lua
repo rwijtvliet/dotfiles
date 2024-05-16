@@ -125,8 +125,19 @@
 --       ...
 --
 --
--- *  [D debug]
---       ...
+-- *  [d debug]
+-- *     b toggle breakpoint
+-- *     B set contidional breakpoint
+-- *     c run to curson
+-- *     i <F2> step in
+-- *     o <F3> step over
+-- *     O <F4> step out
+-- *     l last session result
+-- *     s <F5> start
+-- *     S <S-F5> restart
+-- *     q close debugger
+-- *     Q terminate debugger
+--
 --
 -- *  [p plugins]
 -- *     l lazy
