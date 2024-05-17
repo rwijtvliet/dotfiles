@@ -4,7 +4,6 @@
 -- Ruud's remapping
 -- ================
 --
-
 -- ------------------------------
 -- Normal-mode alphanumberic keys
 -- ------------------------------
@@ -54,8 +53,8 @@
 -- *   Q quit neovim
 -- *  [s search/find]
 -- *  [S Session]
--- *  [t terminal]
--- *  [T test]
+-- *  [T terminal]
+-- *  [t test]
 -- *  [u user-interface]
 -- *  [w window]
 -- *   W save [resembles :w]
@@ -109,13 +108,12 @@
 -- *     s status
 --
 -- *  [l lsp and code]
---       a code action (?)
+-- *     a code action (?)
 --       A source action (?)
---       d docstring
+-- *     d docstring
 --       f format
 --       l lsp info
--- *     m mason
---       r rename
+-- *     r rename
 -- *     s symbols (? builtin.symbols or builtin.lsp_xxx_symbols?)
 -- *     x diagnostics in all buffers (or: seperate menu?)
 --
@@ -123,7 +121,6 @@
 --       b current buffer
 --       w all buffers
 --       ...
---
 --
 -- *  [d debug]
 -- *     b toggle breakpoint
@@ -137,7 +134,7 @@
 -- *     S <S-F5> restart
 -- *     q close debugger
 -- *     Q terminate debugger
---
+-- *     v eval var under cursor
 --
 -- *  [p plugins]
 -- *     l lazy
@@ -146,16 +143,30 @@
 --       u update
 --       ...
 --
---    [r run code]
---       ...
+-- *  [r run code].
+-- *     n navigate
+-- *     x run cell
+-- *     X run cell + move next
 --
---    [t terminal]
+--    [T terminal]
 --       f in floating window
 --       | in vertical split
 --       \ in horizontal split
 --
---    [T test]
---       ...
+-- *  [t test]
+-- *     r run nearest
+-- *     R run last
+-- *     d debug nearest
+-- *     D debug last
+-- *     s stop nearest
+-- *     a attach to nearest
+-- *    [f] file
+-- *       r run file
+-- *       d debug file
+-- *       s stop file
+-- *     a attach to file
+-- *     o toggle output
+--       u toggle summary
 --
 -- *  [S Session]
 -- *     l restore last
@@ -264,14 +275,14 @@ vim.keymap.set('', 'l', 'n', { desc = 'Next search result' })
 vim.keymap.set('', 'L', 'N', { desc = 'Prev search result' })
 
 -- Help
-vim.keymap.set('n', 'T', 'K', { remap = true, desc = 'Help' })
+vim.keymap.set('n', 'T', 'K', { desc = 'Help' })
 
 -- Substitute (substitute line not remapped; not necessary because is same as cc)
 vim.keymap.set('n', 'j', 's', { desc = 'Substitute character' })
 
--- Till -- TODO: Use flash instead. Currently problem with flash settings, see flash.lua.
+-- Till
 vim.keymap.set('', 'k', 't', { desc = 'Move until next char' })
-vim.keymap.set('', 'K', 'T', { remap = false, desc = 'Move until previous char' })
+vim.keymap.set('', 'K', 'T', { desc = 'Move until previous char' })
 
 -- Move Lines
 vim.keymap.set('n', '<A-n>', '<cmd>m .+1<cr>==', { desc = 'Move line down' })

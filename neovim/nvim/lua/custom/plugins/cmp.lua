@@ -35,7 +35,31 @@ return {
       --  into multiple repos for maintenance purposes.
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-path',
+
+      -- Docstring
+      {
+        'danymat/neogen',
+        event = 'BufEnter',
+        dependencies = 'nvim-treesitter/nvim-treesitter',
+        config = function()
+          require('neogen').setup {
+            snippet_engine = 'luasnip',
+            enabled = true,
+            languages = {
+              sh = { template = { annotation_convention = 'google_bash' } },
+              c = { template = { annotation_convention = 'doxygen' } },
+              lua = { template = { annotation_convention = 'emmylua' } },
+              python = { template = { annotation_convention = 'numpydoc' } },
+            },
+          }
+          -- stylua: ignore start
+          vim.keymap.set('n', '<leader>ld', function() require('neogen').generate() end, { desc = 'Add docstring' })
+          -- stylua: ignore end
+        end,
+      },
     },
+
+    -- Main config.
     config = function()
       -- See `:help cmp`
       local cmp = require 'cmp'
@@ -66,12 +90,17 @@ return {
           -- Accept ([y]es) the completion.
           --  This will auto-import if your LSP supports it.
           --  This will expand snippets if the LSP sent a snippet.
+          -- Variation: [p] for accept and go to normal mode (p next to y)
           ['<C-y>'] = cmp.mapping.confirm { select = true },
+          -- ['<C-p>'] = function()
+          --   cmp.mapping.confirm { select = true }
+          --   vim.api.nvim_feedkeys("<Esc>", 'n'
+          -- end,
 
           -- Manually trigger a completion from nvim-cmp.
           --  Generally you don't need this, because nvim-cmp will display
           --  completions whenever it has completion options available.
-          ['<C-Space>'] = cmp.mapping.complete {},
+          ['<C-i>'] = cmp.mapping.complete {},
 
           -- Think of <c-s> as moving to the right of your snippet expansion.
           --  So if you have a snippet that's like:

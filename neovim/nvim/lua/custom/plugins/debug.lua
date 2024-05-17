@@ -1,9 +1,8 @@
 return {
   'mfussenegger/nvim-dap',
-  -- NOTE: And you can specify dependencies as well
   dependencies = {
-    -- Creates a beautiful debugger UI
-    'rcarriga/nvim-dap-ui',
+    'rcarriga/nvim-dap-ui', -- Creates a beautiful debugger UI
+    'theHamsta/nvim-dap-virtual-text',
 
     -- Required dependency for nvim-dap-ui
     'nvim-neotest/nvim-nio',
@@ -38,11 +37,13 @@ return {
     -- *  [d debug]
     -- *     b toggle breakpoint
     vim.keymap.set('n', '<leader>db', dap.toggle_breakpoint, { desc = 'Debug: toggle breakpoint' })
-    -- *     B set contidional breakpoint
+    -- *     B set conditional breakpoint
     vim.keymap.set('n', '<leader>dB', function()
       dap.set_breakpoint(vim.fn.input 'Breakpoint condition: ')
     end, { desc = 'Debug: conditional breakpoint' })
-    -- *     c run to curson
+    -- *     C clear breakpoints
+    vim.keymap.set('n', '<leader>dC', dap.clear_breakpoints, { desc = 'Debug: clear all breakpoints' })
+    -- *     c run to cursor
     vim.keymap.set('n', '<leader>dc', dap.run_to_cursor, { desc = 'Debug: run to cursor' })
     -- *     i <F2> step in
     vim.keymap.set('n', '<leader>di', dap.step_into, { desc = 'Debug: step into' })
@@ -67,7 +68,10 @@ return {
     -- Toggle to see last session result. Without this, you can't see session output in case of unhandled exception.
     vim.keymap.set('n', '<leader>dl', dapui.toggle, { desc = 'Debug: see last session result' })
     vim.keymap.set('n', '<F7>', dapui.toggle, { desc = 'Debug: see last session result' })
-
+    -- *     v eval var under cursor
+    vim.keymap.set('n', '<leader>dv', function()
+      dapui.eval(nil, { enter = true })
+    end, { desc = 'Debug: show variable under cursor' })
     -- Dap UI setup
     -- For more information, see |:help nvim-dap-ui|
     dapui.setup {
@@ -75,14 +79,14 @@ return {
       controls = {
         icons = {
           pause = '⏸',
-          play = '▶',
+          play = '',
           step_into = '',
           step_over = '',
           step_out = '',
           step_back = '',
-          run_last = '▶▶',
-          terminate = '⏹',
-          disconnect = '⏏',
+          run_last = '',
+          terminate = '',
+          disconnect = '',
         },
       },
     }

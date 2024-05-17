@@ -52,21 +52,17 @@ return {
           --  This is where a variable was first declared, or where a function is defined, etc.
           --  To jump back, press <C-t>.
           vim.keymap.set('n', 'gd', require('telescope.builtin').lsp_definitions, { buffer = event.buf, desc = 'LSP: goto definition' })
-          vim.keymap.set('n', '<leader>ld', require('telescope.builtin').lsp_definitions, { buffer = event.buf, desc = 'LSP: goto definition' })
 
           -- WARN: This is not Goto Definition, this is Goto Declaration.
           --  For example, in C this would take you to the header.
           vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, { buffer = event.buf, desc = 'LSP: goto declaration' })
-          vim.keymap.set('n', '<leader>lD', vim.lsp.buf.declaration, { buffer = event.buf, desc = 'LSP: goto declaration' })
 
           -- Find references for the word under your cursor.
           vim.keymap.set('n', 'gr', require('telescope.builtin').lsp_references, { buffer = event.buf, desc = 'LSP: references' })
-          vim.keymap.set('n', '<leader>lr', require('telescope.builtin').lsp_references, { buffer = event.buf, desc = 'LSP: references' })
 
           -- Jump to the implementation of the word under your cursor.
           --  Useful when your language has ways of declaring types without an actual implementation.
           vim.keymap.set('n', 'gI', require('telescope.builtin').lsp_implementations, { buffer = event.buf, desc = 'LSP: goto implementation' })
-          vim.keymap.set('n', '<leader>lI', require('telescope.builtin').lsp_implementations, { buffer = event.buf, desc = 'LSP: goto implementation' })
 
           -- Jump to the type of the word under your cursor.
           --  Useful when you're not sure what type a variable is and you want to see
@@ -88,7 +84,7 @@ return {
 
           -- Rename the variable under your cursor.
           --  Most Language Servers support renaming across files, etc.
-          vim.keymap.set('n', '<leader>ln', vim.lsp.buf.rename, { buffer = event.buf, desc = 'LSP: rename' })
+          vim.keymap.set('n', '<leader>lr', vim.lsp.buf.rename, { buffer = event.buf, desc = 'LSP: rename' })
 
           -- Execute a code action, usually your cursor needs to be on top of an error
           -- or a suggestion from your LSP for this to activate.
