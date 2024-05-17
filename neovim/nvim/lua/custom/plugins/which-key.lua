@@ -1,5 +1,3 @@
--- NOTE: Plugins can also be configured to run Lua code when they are loaded.
---
 -- This is often very useful to both group configuration, as well as handle
 -- lazy loading plugins that don't need to be loaded immediately at startup.
 --
@@ -58,9 +56,9 @@ return {
         ['<leader>x'] = { name = '  Diagnostics', _ = 'which_key_ignore' },
       }
       -- visual mode
-      -- require('which-key').register({
-      --   ['<leader>h'] = { 'Git [H]unk' },
-      -- }, { mode = 'v' })
+      require('which-key').register({
+        ['<leader>h'] = { name = ' 󰊢 Git hunks', _ = 'which_key_ignore' },
+      }, { mode = 'v' })
     end,
   },
 }
