@@ -22,21 +22,39 @@ return {
       require('which-key').register {
         ['<leader>b'] = { name = '  Buffer (and tab)', _ = 'which_key_ignore' },
         ['<leader>bc'] = { name = '  Close', _ = 'which_key_ignore' },
+
         ['<leader>d'] = { name = '  Debug', _ = 'which_key_ignore' },
+
         ['<leader>f'] = { name = '  File', _ = 'which_key_ignore' },
+
         ['<leader>g'] = { name = ' 󰊢 Git', _ = 'which_key_ignore' },
+        ['<leader>gD'] = { name = '  Diff', _ = 'which_key_ignore' },
+        ['<leader>gt'] = { name = '  Toggle', _ = 'which_key_ignore' },
+
+        ['<leader>h'] = { name = ' 󰊢 Git hunks', _ = 'which_key_ignore' },
+
         ['<leader>l'] = { name = '  Lsp and code', _ = 'which_key_ignore' },
+
         ['<leader>p'] = { name = '  Plugins', _ = 'which_key_ignore' },
+
         ['<leader>r'] = { name = ' 󰜎 Run code', _ = 'which_key_ignore' },
+
         ['<leader>s'] = { name = '  Search', _ = 'which_key_ignore' },
+
         ['<leader>S'] = { name = ' 󰖲 Restore session', _ = 'which_key_ignore' },
+
         ['<leader>t'] = { name = '  Test', _ = 'which_key_ignore' },
         ['<leader>tf'] = { name = ' File', _ = 'which_key_ignore' },
+
         ['<leader>T'] = { name = '  Terminal', _ = 'which_key_ignore' },
+
         ['<leader>u'] = { name = ' 󰉼 UI/UX', _ = 'which_key_ignore' },
+
         ['<leader>w'] = { name = '  Window', _ = 'which_key_ignore' },
         ['<leader>wm'] = { name = ' 󰆾 Move window (swap)', _ = 'which_key_ignore' },
+
         ['<leader>q'] = { name = '  Quit / close', _ = 'which_key_ignore' },
+
         ['<leader>x'] = { name = '  Diagnostics', _ = 'which_key_ignore' },
       }
       -- visual mode
