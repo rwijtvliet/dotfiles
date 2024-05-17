@@ -1,4 +1,7 @@
 return {
+  {
+    'tpope/vim-fugitive',
+  },
   { -- Adds git related signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
     opts = {
@@ -6,6 +9,11 @@ return {
         add = { text = '▐' },
         change = { text = '▐' },
         untracked = { text = '▗' },
+      },
+      current_line_blame = true,
+      current_line_blame_opts = {
+        virt_text_pos = 'right_align', -- 'eol' | 'overlay' | 'right_align'
+        delay = 300,
       },
       on_attach = function(bufnr)
         local gitsigns = require 'gitsigns'
@@ -17,20 +25,12 @@ return {
         end
 
         -- Navigation
-        map('n', ']g', function()
-          --stylua: ignore start
-          if vim.wo.diff then vim.cmd.normal { ']g', bang = true } else gitsigns.nav_hunk 'next' end
-          --stylua: ignore end
-        end, { desc = 'Git: next change' })
-        map('n', '[g', function()
-          --stylua: ignore start
-          if vim.wo.diff then vim.cmd.normal { '[g', bang = true } else gitsigns.nav_hunk 'prev' end
-          --stylua: ignore end
-        end, { desc = 'Git: prev change' })
+        --stylua: ignore start
+        map('n', ']g', function() if vim.wo.diff then vim.cmd.normal { ']g', bang = true } else gitsigns.nav_hunk 'next' end end, { desc = 'Git: next change' })
+        map('n', '[g', function() if vim.wo.diff then vim.cmd.normal { '[g', bang = true } else gitsigns.nav_hunk 'prev' end end, { desc = 'Git: prev change' })
 
         -- Actions
         -- visual mode
-        --stylua: ignore start
         map('v', '<leader>hs', function() gitsigns.stage_hunk { vim.fn.line '.', vim.fn.line 'v' } end, { desc = 'Git: stage hunk' })
         map('v', '<leader>hr', function() gitsigns.reset_hunk { vim.fn.line '.', vim.fn.line 'v' } end, { desc = 'Git: reset hunk' })
         -- normal mode
