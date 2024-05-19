@@ -77,7 +77,7 @@
 -- *     hs go to buffer on left/right
 -- *     HS go to first/last buffer
 -- *     r resize mode
---       t pick from tabline
+-- *     t pick from bufferline
 -- *     T new tab
 -- *     w save
 --
@@ -104,8 +104,18 @@
 -- *  [g git]
 --       l start lazygit
 -- *     c list commits
+-- *     B line blame
 -- *     b list branches
 -- *     s status
+-- *     p preview hunk
+-- *    [a add]
+-- *       h hunk
+-- *       b buffer
+-- *    [u unstage]
+-- *       h hunk
+-- *    [r reset]
+-- *       h hunk
+-- *       b buffer
 --
 -- *  [l lsp and code]
 -- *     a code action (?)
@@ -130,8 +140,8 @@
 -- *     o <F3> step over
 -- *     O <F4> step out
 -- *     l last session result
--- *     s <F5> start
--- *     S <S-F5> restart
+-- *     s <F1> start
+-- *     S <S-F1> restart
 -- *     q close debugger
 -- *     Q terminate debugger
 -- *     v eval var under cursor

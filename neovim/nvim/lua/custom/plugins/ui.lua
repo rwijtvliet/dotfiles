@@ -107,7 +107,7 @@ return {
       { '<leader>bH',  '<Cmd>BufferLineCyclePrev<CR>',            desc = 'Go to first buffer' },
       { '<leader>bs',  '<Cmd>BufferLineCycleNext<CR>',            desc = 'Go to next buffer' },
       { '<leader>bS',  '<Cmd>BufferLineCycleNext<CR>',            desc = 'Go to last buffer' },
-      { '<leader>bt',  '<cmd>BufferLinePick<cr>',                 desc = 'Pick a tab' },
+      { '<leader>bt',  '<cmd>BufferLinePick<cr>',                 desc = 'Pick from bufferline' },
       -- submenu: buffer closing
       { '<leader>bcp', '<Cmd>BufferLineGroupClose ungrouped<CR>', desc = 'Non-pinned' },
       { '<leader>bco', '<Cmd>BufferLineCloseOthers<CR>',          desc = 'All others' },
