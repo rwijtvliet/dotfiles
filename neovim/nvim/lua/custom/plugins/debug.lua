@@ -33,46 +33,31 @@ return {
       },
     }
 
-    -- Basic debugging keymaps, feel free to change to your liking!
-    -- *  [d debug]
-    -- *     b toggle breakpoint
-    vim.keymap.set('n', '<leader>db', dap.toggle_breakpoint, { desc = 'Debug: toggle breakpoint' })
-    -- *     B set conditional breakpoint
-    vim.keymap.set('n', '<leader>dB', function()
-      dap.set_breakpoint(vim.fn.input 'Breakpoint condition: ')
-    end, { desc = 'Debug: conditional breakpoint' })
-    -- *     C clear breakpoints
-    vim.keymap.set('n', '<leader>dC', dap.clear_breakpoints, { desc = 'Debug: clear all breakpoints' })
-    -- *     c run to cursor
-    vim.keymap.set('n', '<leader>dc', dap.run_to_cursor, { desc = 'Debug: run to cursor' })
-    -- *     i <F2> step in
-    vim.keymap.set('n', '<leader>di', dap.step_into, { desc = 'Debug: step into' })
-    vim.keymap.set('n', '<F2>', dap.step_into, { desc = 'Debug: step into' })
-    -- *     o <F3> step over
-    vim.keymap.set('n', '<leader>do', dap.step_over, { desc = 'Debug: step over' })
-    vim.keymap.set('n', '<F3>', dap.step_over, { desc = 'Debug: step over' })
-    -- *     O <F4> step out
-    vim.keymap.set('n', '<leader>dO', dap.step_out, { desc = 'Debug: step out' })
-    vim.keymap.set('n', '<F4>', dap.step_out, { desc = 'Debug: step out' })
-    -- *     s <F5> start
-    vim.keymap.set('n', '<leader>ds', dap.continue, { desc = 'Debug: start/continue' })
-    vim.keymap.set('n', '<F5>', dap.continue, { desc = 'Debug: start/continue' })
-    -- *     S <S-F5> restart
-    vim.keymap.set('n', '<leader>dS', dap.restart_frame, { desc = 'Debug: restart' })
-    vim.keymap.set('n', '<F-18>', dap.restart_frame, { desc = 'Debug: restart' }) -- = S-F5
-    -- *     q close debugger
-    vim.keymap.set('n', '<leader>dq', dap.close, { desc = 'Debug: close' })
-    -- *     Q terminate debugger
-    vim.keymap.set('n', '<leader>dQ', dap.restart_frame, { desc = 'Debug: quit (terminate)' }) -- = S-F5
-    -- *     l last session result
+    -- stylua: ignore start
+    vim.keymap.set('n', '<leader>db', dap.toggle_breakpoint, { desc = 'Toggle breakpoint' })
+    vim.keymap.set('n', '<leader>dB', function() dap.set_breakpoint(vim.fn.input 'Breakpoint condition: ') end, { desc = 'Set conditional breakpoint' })
+    vim.keymap.set('n', '<leader>dC', dap.clear_breakpoints, { desc = 'Clear all breakpoints' })
+
+    vim.keymap.set('n', '<leader>ds', dap.continue,          { desc = 'Start/continue' })
+    vim.keymap.set('n', '<F1>',       dap.continue,          { desc = 'Start/continue' })
+    vim.keymap.set('n', '<leader>dS', dap.restart_frame,     { desc = 'Restart' })
+    vim.keymap.set('n', '<F13>',      dap.restart_frame,     { desc = 'Restart' }) -- = S-F1
+    vim.keymap.set('n', '<leader>dc', dap.run_to_cursor,     { desc = 'Run to cursor' })
+    vim.keymap.set('n', '<leader>di', dap.step_into,         { desc = 'Step into' })
+    vim.keymap.set('n', '<F2>',       dap.step_into,         { desc = 'Step into' })
+    vim.keymap.set('n', '<leader>do', dap.step_over,         { desc = 'Step over' })
+    vim.keymap.set('n', '<F3>',       dap.step_over,         { desc = 'Step over' })
+    vim.keymap.set('n', '<leader>dO', dap.step_out,          { desc = 'Step out' })
+    vim.keymap.set('n', '<F4>',       dap.step_out,          { desc = 'Step out' })
+
+    vim.keymap.set('n', '<leader>dq', dap.close,             { desc = 'Close debugger' })
+    vim.keymap.set('n', '<leader>dQ', dap.terminate,         { desc = 'Disconnect debugger' })
     -- Toggle to see last session result. Without this, you can't see session output in case of unhandled exception.
-    vim.keymap.set('n', '<leader>dl', dapui.toggle, { desc = 'Debug: see last session result' })
-    vim.keymap.set('n', '<F7>', dapui.toggle, { desc = 'Debug: see last session result' })
-    -- *     v eval var under cursor
-    vim.keymap.set('n', '<leader>dv', function()
-      dapui.eval(nil, { enter = true })
-    end, { desc = 'Debug: show variable under cursor' })
-    -- Dap UI setup
+    vim.keymap.set('n', '<leader>dt', dapui.toggle,          { desc = 'Toggle debug UI (and see last result)' })
+    vim.keymap.set('n', '<leader>dr', dap.repl.toggle,       { desc = 'Toggle REPL' })
+    vim.keymap.set('n', '<leader>dv', function() dapui.eval(nil, { enter = true }) end, { desc = 'Debug: show variable under cursor' }) -- Dap UI setup
+    -- stylua: ignore end
+
     -- For more information, see |:help nvim-dap-ui|
     dapui.setup {
       icons = { expanded = '▾', collapsed = '▸', current_frame = '*' },

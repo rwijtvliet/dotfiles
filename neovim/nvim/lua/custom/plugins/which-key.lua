@@ -26,10 +26,10 @@ return {
         ['<leader>f'] = { name = '  File', _ = 'which_key_ignore' },
 
         ['<leader>g'] = { name = ' 󰊢 Git', _ = 'which_key_ignore' },
+        ['<leader>ga'] = { name = '  Add (stage)', _ = 'which_key_ignore' },
+        ['<leader>gu'] = { name = '  Unstage', _ = 'which_key_ignore' },
         ['<leader>gD'] = { name = '  Diff', _ = 'which_key_ignore' },
         ['<leader>gt'] = { name = '  Toggle', _ = 'which_key_ignore' },
-
-        ['<leader>h'] = { name = ' 󰊢 Git hunks', _ = 'which_key_ignore' },
 
         ['<leader>l'] = { name = '  Lsp and code', _ = 'which_key_ignore' },
 
@@ -57,7 +57,7 @@ return {
       }
       -- visual mode
       require('which-key').register({
-        ['<leader>h'] = { name = ' 󰊢 Git hunks', _ = 'which_key_ignore' },
+        ['<leader>g'] = { name = ' 󰊢 Git', _ = 'which_key_ignore' },
       }, { mode = 'v' })
     end,
   },

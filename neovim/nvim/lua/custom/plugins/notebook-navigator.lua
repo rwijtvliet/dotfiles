@@ -12,18 +12,9 @@ return {
       config = function()
         local notebooknav_hydra = require 'hydra' {
           name = 'navigate notebook',
-          hint = [[ 
-  _t_ / _n_: move up/down          _x_: run cell         _X_: run cell + move down  
-                             (Quit with _q_ or _<Esc>_)
-              ]], -- multiline string
-          config = {
-            foreign_keys = 'run',
-            invoke_on_body = true,
-            hint = {
-              position = 'bottom',
-              border = 'rounded',
-            },
-          },
+          hint = [[ _t_ / _n_: move up/down          _x_: run cell         _X_: run cell + move down  
+                         (Quit with _q_ or _<Esc>_) ]], -- multiline string
+          config = { invoke_on_body = true, hint = { position = 'bottom', border = 'rounded' } },
           mode = 'n',
           heads = {
             --stylua: ignore start
