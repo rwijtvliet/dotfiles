@@ -102,7 +102,7 @@
 -- *     Y filepath to clipboard
 --
 -- *  [g git]
---       l start lazygit
+-- *     l start lazygit
 -- *     c list commits
 -- *     B line blame
 -- *     b list branches

@@ -199,6 +199,9 @@ return {
         --markdown
         'marksman',
         'markdownlint',
+        -- many languages
+        'prettier',
+        'prettierd',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
