@@ -72,7 +72,7 @@ keybinding:
     toggleWhitespaceInDiffView: <c-w>
     increaseContextInDiffView: "}"
     decreaseContextInDiffView: "{"
-    openDiffTool: <c-t>
+    openDiffTool: <c-j>
   status:
     checkForUpdate: u
     recentRepos: <enter>
