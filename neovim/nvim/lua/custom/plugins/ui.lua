@@ -99,8 +99,8 @@ return {
       { '<leader>9',   '<Cmd>BufferLineGoToBuffer 9<CR>',         desc = 'which_key_ignore' },
       { '<A-h>',       '<cmd>BufferLineCyclePrev<cr>',            desc = 'Prev buffer' },
       { '<A-s>',       '<cmd>BufferLineCycleNext<cr>',            desc = 'Next buffer' },
-      { '[b',          '<cmd>BufferLineCyclePrev<cr>',            desc = 'Prev Buffer' },
-      { ']b',          '<cmd>BufferLineCycleNext<cr>',            desc = 'Next Buffer' },
+      { '[b',          '<cmd>BufferLineCyclePrev<cr>',            desc = 'Prev buffer' },
+      { ']b',          '<cmd>BufferLineCycleNext<cr>',            desc = 'Next buffer' },
       -- submenu: buffer
       { '<leader>bp',  '<Cmd>BufferLineTogglePin<CR>',            desc = 'Toggle pin' },
       { '<leader>bh',  '<Cmd>BufferLineCyclePrev<CR>',            desc = 'Go to prev buffer' },

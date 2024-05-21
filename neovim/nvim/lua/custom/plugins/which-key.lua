@@ -42,7 +42,8 @@ return {
         ['<leader>S'] = { name = ' 󰖲 Restore session', _ = 'which_key_ignore' },
 
         ['<leader>t'] = { name = '  Test', _ = 'which_key_ignore' },
-        ['<leader>tf'] = { name = ' File', _ = 'which_key_ignore' },
+        ['<leader>tf'] = { name = '  File', _ = 'which_key_ignore' },
+        ['<leader>tt'] = { name = '  Toggle', _ = 'which_key_ignore' },
 
         ['<leader>T'] = { name = '  Terminal', _ = 'which_key_ignore' },
 

@@ -56,6 +56,7 @@ return {
   -- vim.keymap.set('n', ']n', function() require('neotest').jump.next { status='failed' } end,
   --   { desc = 'Neotest: next failed' })
   -- stylua: ignore end
+  mappings = {},
   keys = {
     -- stylua: ignore start
     { '<leader>tr', function() require('neotest').run.run() end,                                        desc = 'Neotest: run nearest' },
@@ -68,10 +69,12 @@ return {
     { '<leader>tfa', function() require('neotest').run.attach { vim.fn.expand '%' } end,                desc = 'Neotest: attach to file' },
     { '<leader>tR', function() require('neotest').run.run_last() end,                                   desc = 'Neotest: run last' },
     { '<leader>tD', function() require('neotest').run.run_last { strategy = 'dap' } end,                desc = 'Neotest: debug last' },
-    { '<leader>to', function() require('neotest').output_panel.toggle() end,                            desc = 'Neotest: toggle output panel' },
-    { '<leader>tu', function() require('neotest').summary.toggle() end,                                 desc = 'Neotest: toggle summary' },
-    { '[n', function() require('neotest').jump.prev { status = 'failed' } end,                          desc = 'Neotest: prev failed' },
-    { ']n', function() require('neotest').jump.next { status = 'failed' } end,                          desc = 'Neotest: next failed' },
+    -- toggle
+    { '<leader>tto', function() require('neotest').output_panel.toggle() end,                            desc = 'Neotest: toggle output panel' },
+    { '<leader>ttu', function() require('neotest').summary.toggle() end,                                 desc = 'Neotest: toggle summary' },
+    -- next/prev
+    { '[f', function() require('neotest').jump.prev { status = 'failed' } end,                          desc = 'Prev failed test' },
+    { ']f', function() require('neotest').jump.next { status = 'failed' } end,                          desc = 'Next failed test' },
     -- stylua: ignore end
   },
 }

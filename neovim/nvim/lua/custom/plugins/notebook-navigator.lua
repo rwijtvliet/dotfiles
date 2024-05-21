@@ -48,8 +48,8 @@ return {
     -- stylua: ignore start
     { '<leader>rx', function() require('notebook-navigator').run_cell() end,     desc = 'Notebook: run cell' },
     { '<leader>rX', function() require('notebook-navigator').run_and_move() end, desc = 'Notebook: run cell + move' },
-    { ']h', function() require('notebook-navigator').move_cell 'd' end,          desc = 'Notebook: next cell ' },
-    { '[h', function() require('notebook-navigator').move_cell 'u' end,          desc = 'Notebook: prev cell ' },
+    { ']c', function() require('notebook-navigator').move_cell 'd' end,          desc = 'Next notebook cell' },
+    { '[c', function() require('notebook-navigator').move_cell 'u' end,          desc = 'Prev notebook cell' },
     -- stylua: ignore end
   },
 }

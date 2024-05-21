@@ -30,6 +30,13 @@
 -- the same as CHANGELINE (key: cc).
 --
 --
+-- ---------------------
+-- prev ([) and next (])
+-- ---------------------
+-- *   q Prev/next quickfix item
+--
+--
+--
 -- ----------
 -- Leader key
 -- ----------
@@ -276,10 +283,6 @@ vim.keymap.set('n', '\\', '<cmd>split<cr>', { desc = 'Horizontal split' })
 -- vim.keymap.set('n', '<A-h>', '<cmd>bprev<cr>', { desc = 'Prev Buffer' })
 -- vim.keymap.set('n', '<A-s>', '<cmd>bnext<cr>', { desc = 'Next Buffer' })
 
--- Buffer
-vim.keymap.set('n', ']t', 'gt', { desc = 'Go to next tab' })
-vim.keymap.set('n', '[t', 'gT', { desc = 'Go to prev tab' })
-
 -- Search results
 vim.keymap.set('', 'l', 'n', { desc = 'Next search result' })
 vim.keymap.set('', 'L', 'N', { desc = 'Prev search result' })
@@ -305,6 +308,27 @@ vim.keymap.set('v', '<A-t>', ":m '<-2<cr>gv=gv", { desc = 'Move line up' })
 -- Add empty line
 vim.keymap.set('n', '<leader>o', 'o<Up><Esc>', { desc = 'Add empty line after' })
 vim.keymap.set('n', '<leader>O', 'O<Down><Esc>', { desc = 'Add empty line before' })
+
+------------------------
+-- prev ([) and next (])
+------------------------
+
+-- Alternatives for [ and ] (because difficult on custom keyboards).
+vim.keymap.set('n', 'gt', '[', { remap = true, desc = 'Go prev' })
+vim.keymap.set('n', 'gn', ']', { remap = true, desc = 'Go next' })
+-- TODO: remap gN and gn to gL and gl (search and select)
+
+-- Buffer
+vim.keymap.set('n', ']t', 'gt', { desc = 'Next tab' })
+vim.keymap.set('n', '[t', 'gT', { desc = 'Prev tab' })
+
+-- Quickfix item
+vim.keymap.set('n', '[q', '<cmd>cprev<cr>', { desc = 'Prev quickfix item' })
+vim.keymap.set('n', ']q', '<cmd>cnext<cr>', { desc = 'Next quickfix item' })
+
+-- Diagnostics
+vim.keymap.set('n', '[x', vim.diagnostic.goto_prev, { desc = 'Prev diagnostic message' })
+vim.keymap.set('n', ']x', vim.diagnostic.goto_next, { desc = 'Next diagnostic message' })
 
 ------------
 -- LEADER --
@@ -403,10 +427,6 @@ end, { desc = 'Toggle word wrap' })
 --
 --
 --
--- TODO: These are from the initial kickstart config. See if still needed later.
--- Diagnostic keymaps
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagnostic message' })
 vim.keymap.set('n', '<leader>xe', vim.diagnostic.open_float, { desc = 'Show diagnostic [E]rror messages' })
 vim.keymap.set('n', '<leader>xq', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 

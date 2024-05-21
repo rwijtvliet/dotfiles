@@ -26,8 +26,8 @@ return {
 
         -- Navigation
         --stylua: ignore start
-        map('n', ']g', function() if vim.wo.diff then vim.cmd.normal { ']g', bang = true } else gitsigns.nav_hunk 'next' end end, { desc = 'Git: next change' })
-        map('n', '[g', function() if vim.wo.diff then vim.cmd.normal { '[g', bang = true } else gitsigns.nav_hunk 'prev' end end, { desc = 'Git: prev change' })
+        map('n', ']g', function() if vim.wo.diff then vim.cmd.normal { ']g', bang = true } else gitsigns.nav_hunk 'next' end end, { desc = 'Next git change' })
+        map('n', '[g', function() if vim.wo.diff then vim.cmd.normal { '[g', bang = true } else gitsigns.nav_hunk 'prev' end end, { desc = 'Prev git change' })
 
         -- Actions
         -- visual mode
