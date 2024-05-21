@@ -23,13 +23,13 @@ case "$OS" in
   "windows" )
     choco install lazygit
     info "Linking lazygit config"
-    fail "Todo - not sure where to put this config"
+    link_public_resource "./config.yml" "$APPDATA\lazygit\config.yml"
     ;;
 
   "macos" )
     brew install lazygit
     info "Linking lazygit config"
-    link_public_resource "./config.yml" "$HOME/.config/lazygit/config.yml"
+    link_public_resource "./config.yml" "$HOME/Library/Application Support/lazygit/config.yml"
     ;;
     
   * )
