@@ -33,7 +33,9 @@
 -- ---------------------
 -- prev ([) and next (])
 -- ---------------------
--- *   q Prev/next quickfix item
+-- *   b buffer
+-- *   c notebook cell
+-- *   q quickfix item
 --
 --
 --
@@ -314,8 +316,8 @@ vim.keymap.set('n', '<leader>O', 'O<Down><Esc>', { desc = 'Add empty line before
 ------------------------
 
 -- Alternatives for [ and ] (because difficult on custom keyboards).
-vim.keymap.set('n', 'gt', '[', { remap = true, desc = 'Go prev' })
-vim.keymap.set('n', 'gn', ']', { remap = true, desc = 'Go next' })
+vim.keymap.set('', 'gt', '[', { remap = true, desc = 'Go prev' })
+vim.keymap.set('', 'gn', ']', { remap = true, desc = 'Go next' })
 -- TODO: remap gN and gn to gL and gl (search and select)
 
 -- Buffer
