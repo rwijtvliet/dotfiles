@@ -98,8 +98,8 @@
 --       HTNS move with buffer to left/top/bottom/right window
 -- *     r resize
 -- *    [m] move window (swap)
--- *     | create vertical split
--- *     \ create horizontal split
+-- *     | force vertical split
+-- *     \ force horizontal split
 --
 -- *  [f file]
 -- *     n new file
@@ -356,8 +356,8 @@ vim.keymap.set('n', '<leader>bw', '<cmd>w<cr>', { desc = 'Write (save)' })
 ---- close
 vim.keymap.set('n', '<leader>wc', '<cmd>q<cr>', { desc = 'Close current window' })
 ---- create
-vim.keymap.set('n', '<leader>w|', '<cmd>vsplit<cr>', { desc = 'Vertical split' })
-vim.keymap.set('n', '<leader>w\\', '<cmd>split<cr>', { desc = 'Horizontal split' })
+vim.keymap.set('n', '<leader>w|', '<C-w>H', { desc = 'Current window to vertical split' })
+vim.keymap.set('n', '<leader>w\\', '<C-w>K', { desc = 'Current window to horizontal split' })
 ---- navigate
 vim.keymap.set('n', '<leader>ww', '<C-w>p', { desc = 'Go to other window' })
 -- vim.keymap.set('n', '<leader>wh', '<C-w>h', { desc = 'Go to left window' })

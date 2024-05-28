@@ -40,18 +40,23 @@ return {
 
     vim.keymap.set('n', '<leader>ds', dap.continue,          { desc = 'Start/continue' })
     vim.keymap.set('n', '<F1>',       dap.continue,          { desc = 'Start/continue' })
+    vim.keymap.set('n', '<leader>dc', dap.run_to_cursor,     { desc = 'Run to cursor' })
+    vim.keymap.set('n', '<leader>di', dap.step_into,         { desc = ' Step into' })
+    vim.keymap.set('n', '<F2>',       dap.step_into,         { desc = ' Step into' })
+    vim.keymap.set('n', '<leader>do', dap.step_over,         { desc = ' Step over' })
+    vim.keymap.set('n', '<F3>',       dap.step_over,         { desc = ' Step over' })
+    vim.keymap.set('n', '<leader>dO', dap.step_out,          { desc = ' Step out' })
+    vim.keymap.set('n', '<F4>',       dap.step_out,          { desc = ' Step out' })
+
+    vim.keymap.set('n', '<leader>dh', dap.step_back,         { desc = ' Step back' })
+    vim.keymap.set('n', '<F5>',       dap.step_back,         { desc = ' Step back' })
     vim.keymap.set('n', '<leader>dS', dap.restart_frame,     { desc = 'Restart' })
     vim.keymap.set('n', '<F13>',      dap.restart_frame,     { desc = 'Restart' }) -- = S-F1
-    vim.keymap.set('n', '<leader>dc', dap.run_to_cursor,     { desc = 'Run to cursor' })
-    vim.keymap.set('n', '<leader>di', dap.step_into,         { desc = 'Step into' })
-    vim.keymap.set('n', '<F2>',       dap.step_into,         { desc = 'Step into' })
-    vim.keymap.set('n', '<leader>do', dap.step_over,         { desc = 'Step over' })
-    vim.keymap.set('n', '<F3>',       dap.step_over,         { desc = 'Step over' })
-    vim.keymap.set('n', '<leader>dO', dap.step_out,          { desc = 'Step out' })
-    vim.keymap.set('n', '<F4>',       dap.step_out,          { desc = 'Step out' })
-
+    vim.keymap.set('n', '<F6>',       dap.restart_frame,     { desc = 'Restart' })
     vim.keymap.set('n', '<leader>dq', dap.close,             { desc = 'Close debugger' })
+    vim.keymap.set('n', '<F7>',       dap.close,             { desc = 'Close debugger' })
     vim.keymap.set('n', '<leader>dQ', dap.terminate,         { desc = 'Disconnect debugger' })
+    vim.keymap.set('n', '<F8>',       dap.terminate,         { desc = 'Disconnect debugger' })
     -- Toggle to see last session result. Without this, you can't see session output in case of unhandled exception.
     vim.keymap.set('n', '<leader>dt', dapui.toggle,          { desc = 'Toggle debug UI (and see last result)' })
     vim.keymap.set('n', '<leader>dr', dap.repl.toggle,       { desc = 'Toggle REPL' })

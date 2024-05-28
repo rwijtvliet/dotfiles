@@ -64,4 +64,43 @@ vim.opt.scrolloff = 10
 
 vim.opt.termguicolors = true
 
+-- Ensure python is available
+local function get_base_python()
+  local virtual_env = os.getenv 'VIRTUAL_ENV'
+  if not virtual_env then
+    print 'No virtual environment is currently activated.'
+  else
+    -- Get the parent directory of the virtual environment
+    local base_dir = virtual_env:match '(.+)/.+$'
+    local base_python = base_dir .. '/bin/python'
+    print(base_python)
+  end
+end
+
+local function get_base_python()
+  local venv = os.getenv 'VIRTUAL_ENV'
+  local path = os.getenv 'PATH'
+  local j = 0
+  if not path then
+    return
+  end
+  while true do
+    -- find directory
+    local i = j + 1
+    _, j = string.find(path, ':', j + 1)
+    if j == nil then
+      break
+    end
+    dir = string.sub(path, i, j - 1)
+
+    -- only consider if not part of venv
+    if not (venv and string.find(dir, venv)) then
+      local candidate = dir .. '/python'
+      if io.open(candidate) then
+        return candidate
+      end
+    end
+  end
+end
+vim.g.python3_host_prog = get_base_python()
 -- vim: ts=2 sts=2 sw=2 et

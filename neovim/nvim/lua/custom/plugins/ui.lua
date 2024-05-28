@@ -280,4 +280,51 @@ return {
       }
     end,
   },
+
+  --hexcolors
+  {
+    'norcalli/nvim-colorizer.lua',
+    config = function()
+      require('colorizer').setup { '*' }
+    end,
+  },
+
+  --indentation guides
+  {
+    'lukas-reineke/indent-blankline.nvim',
+    -- Enable `lukas-reineke/indent-blankline.nvim`
+    -- See `:help ibl`
+    main = 'ibl',
+    config = function()
+      local highlight = {
+        'RainbowRed',
+        'RainbowYellow',
+        'RainbowBlue',
+        'RainbowOrange',
+        'RainbowGreen',
+        'RainbowViolet',
+        'RainbowCyan',
+      }
+
+      local hooks = require 'ibl.hooks'
+      -- create the highlight groups in the highlight setup hook, so they are reset
+      -- every time the colorscheme changes
+      hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
+        -- 0 1 2 3 4 5 6 7 8 9 a b c d e
+        -- 0   1   2   3   4   5   6   7
+        vim.api.nvim_set_hl(0, 'RainbowRed', { fg = '#703C35' })
+        vim.api.nvim_set_hl(0, 'RainbowYellow', { fg = '#75603B' })
+        vim.api.nvim_set_hl(0, 'RainbowBlue', { fg = '#315F7F' })
+        vim.api.nvim_set_hl(0, 'RainbowOrange', { fg = '#614A36' })
+        vim.api.nvim_set_hl(0, 'RainbowGreen', { fg = '#486339' })
+        vim.api.nvim_set_hl(0, 'RainbowViolet', { fg = '#66386D' })
+        vim.api.nvim_set_hl(0, 'RainbowCyan', { fg = '#265662' })
+      end)
+      require('ibl').setup {
+        scope = { char = '▋' },
+        indent = { char = '▏', highlight = highlight },
+        exclude = { filetypes = { 'dashboard' } },
+      }
+    end,
+  },
 }

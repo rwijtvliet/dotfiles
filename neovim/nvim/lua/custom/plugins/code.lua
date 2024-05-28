@@ -14,6 +14,7 @@ return {
   {
     'folke/trouble.nvim',
     branch = 'dev', -- IMPORTANT!
+    enabled = true,
     keys = {
       {
         '<leader>xx',

@@ -56,7 +56,6 @@ return {
   -- vim.keymap.set('n', ']n', function() require('neotest').jump.next { status='failed' } end,
   --   { desc = 'Neotest: next failed' })
   -- stylua: ignore end
-  mappings = {},
   keys = {
     -- stylua: ignore start
     { '<leader>tr', function() require('neotest').run.run() end,                                        desc = 'Neotest: run nearest' },
