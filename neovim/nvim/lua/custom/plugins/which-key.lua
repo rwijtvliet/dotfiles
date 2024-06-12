@@ -33,6 +33,8 @@ return {
 
         ['<leader>l'] = { name = '  Lsp and code', _ = 'which_key_ignore' },
 
+        ['<leader>m'] = { name = '  Markdown', _ = 'which_key_ignore' },
+
         ['<leader>p'] = { name = '  Plugins', _ = 'which_key_ignore' },
 
         ['<leader>r'] = { name = ' 󰜎 Run code', _ = 'which_key_ignore' },

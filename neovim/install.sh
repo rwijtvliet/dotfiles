@@ -21,10 +21,9 @@ case "$OS" in
 	# (alternative: install from apt, but often outdated)
 	# sudo apt install neovim
 
-	# get astronvim
-	info "getting astronvim"
-	git clone "https://github.com/AstroNvim/AstroNvim" "$HOME/.config/nvim"
-
+	# needed for developing python
+	pip install ueberzug cairosvg pnglatex plotly kaleido 
+	
 	# add user config
 	info "adding user configs"
 	link_public_resource "./nvim" "$HOME/.config/nvim"
@@ -42,6 +41,9 @@ case "$OS" in
 	scoop bucket add main
 	scoop install gcc
 	scoop install neovim
+	
+	# needed for developing python
+	pip install ueberzug cairosvg pnglatex plotly kaleido
 
 	# add user config
 	info "adding user configs"
@@ -58,6 +60,10 @@ case "$OS" in
 	# install nvim
 	info "Installing app"
 	brew install neovim
+	
+	# needed for developing python
+	pip install cairosvg pnglatex plotly kaleido
+        brew install jstkdng/programs/ueberzugpp 
 
 	# add user config
 	info "adding user configs"

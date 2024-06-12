@@ -41,8 +41,6 @@ return {
     'EdenEast/nightfox.nvim',
     init = function()
       -- Load the colorscheme here.
-      -- Like many other themes, this one has different styles, and you could load
-      -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
       vim.cmd.colorscheme 'nightfox'
 
       -- You can configure highlights by doing something like:
@@ -176,19 +174,19 @@ return {
     keys = {
       --stylua: ignore start
       -- focus window
-      { '<C-h>',       function() require('smart-splits').move_cursor_left() end,  desc = 'Focus to left window', },
-      { '<C-t>',       function() require('smart-splits').move_cursor_up() end,    desc = 'Focues to above window', },
-      { '<C-n>',       function() require('smart-splits').move_cursor_down() end,  desc = 'Focus to below window', },
-      { '<C-s>',       function() require('smart-splits').move_cursor_right() end, desc = 'Focus to right window', },
-      { '<leader>wh',  function() require('smart-splits').move_cursor_left() end,  desc = 'Focus to left window', },
+      { '<C-h>',       function() require('smart-splits').move_cursor_left() end,  desc = 'Focus to left window',   mode = {'', 't', 'i'}},
+      { '<C-t>',       function() require('smart-splits').move_cursor_up() end,    desc = 'Focues to above window', mode = {'', 't', 'i'}},
+      { '<C-n>',       function() require('smart-splits').move_cursor_down() end,  desc = 'Focus to below window',  mode = {'', 't', 'i'}},
+      { '<C-s>',       function() require('smart-splits').move_cursor_right() end, desc = 'Focus to right window',  mode = {'', 't', 'i'}},
+      { '<leader>wh',  function() require('smart-splits').move_cursor_left() end,  desc = 'Focus to left window',   },
       { '<leader>wt',  function() require('smart-splits').move_cursor_up() end,    desc = 'Focues to above window', },
-      { '<leader>wn',  function() require('smart-splits').move_cursor_down() end,  desc = 'Focus to below window', },
-      { '<leader>ws',  function() require('smart-splits').move_cursor_right() end, desc = 'Focus to right window', },
+      { '<leader>wn',  function() require('smart-splits').move_cursor_down() end,  desc = 'Focus to below window',  },
+      { '<leader>ws',  function() require('smart-splits').move_cursor_right() end, desc = 'Focus to right window',  },
       -- resize window
-      { '<C-Left>',    function() require('smart-splits').resize_left() end,       desc = 'Resize window left', },
-      { '<C-Up>',      function() require('smart-splits').resize_up() end,         desc = 'Resize window up', },
-      { '<C-Down>',    function() require('smart-splits').resize_down() end,       desc = 'Resize window down', },
-      { '<C-Right>',   function() require('smart-splits').resize_right() end,      desc = 'Resize window right', },
+      { '<C-Left>',    function() require('smart-splits').resize_left() end,       desc = 'Resize window left',  mode = {'', 't', 'i'}},
+      { '<C-Up>',      function() require('smart-splits').resize_up() end,         desc = 'Resize window up',    mode = {'', 't', 'i'}},
+      { '<C-Down>',    function() require('smart-splits').resize_down() end,       desc = 'Resize window down',  mode = {'', 't', 'i'}},
+      { '<C-Right>',   function() require('smart-splits').resize_right() end,      desc = 'Resize window right', mode = {'', 't', 'i'}},
       -- resize window: persistent
       { '<leader>wr',  function() require('smart-splits').start_resize_mode() end, desc = 'Resize', },
       -- swap buffer

@@ -18,37 +18,61 @@ return {
       on_attach = function(bufnr)
         local gitsigns = require 'gitsigns'
 
-        local function map(mode, l, r, opts)
-          opts = opts or {}
-          opts.buffer = bufnr
-          vim.keymap.set(mode, l, r, opts)
-        end
-
         -- Navigation
-        --stylua: ignore start
-        map('n', ']g', function() if vim.wo.diff then vim.cmd.normal { ']g', bang = true } else gitsigns.nav_hunk 'next' end end, { desc = 'Next git change' })
-        map('n', '[g', function() if vim.wo.diff then vim.cmd.normal { '[g', bang = true } else gitsigns.nav_hunk 'prev' end end, { desc = 'Prev git change' })
+        vim.keymap.set('n', ']g', function()
+          if vim.wo.diff then
+            vim.cmd.normal { ']g', bang = true }
+          else
+            gitsigns.nav_hunk 'next'
+          end
+        end, { buffer = bufnr, desc = 'Next git change' })
+        vim.keymap.set('n', ']G', function()
+          if vim.wo.diff then
+            vim.cmd.normal { ']G', bang = true }
+          else
+            gitsigns.nav_hunk 'next'
+          end
+        end, { desc = 'Next git change (project)' })
+        vim.keymap.set('n', '[g', function()
+          if vim.wo.diff then
+            vim.cmd.normal { '[g', bang = true }
+          else
+            gitsigns.nav_hunk 'prev'
+          end
+        end, { buffer = bufnr, desc = 'Prev git change' })
+        vim.keymap.set('n', '[G', function()
+          if vim.wo.diff then
+            vim.cmd.normal { '[G', bang = true }
+          else
+            gitsigns.nav_hunk 'prev'
+          end
+        end, { desc = 'Prev git change (buffer)' })
 
         -- Actions
-        -- visual mode
-        map('v', '<leader>gs', function() gitsigns.stage_hunk { vim.fn.line '.', vim.fn.line 'v' } end, { desc = 'Git: stage hunk' })
-        map('v', '<leader>gr', function() gitsigns.reset_hunk { vim.fn.line '.', vim.fn.line 'v' } end, { desc = 'Git: reset hunk' })
-        -- normal mode
-        map('n', '<leader>gah', gitsigns.stage_hunk,                   { desc = 'Git: add (stage) hunk' })
-        map('n', '<leader>gab', gitsigns.stage_buffer,                 { desc = 'Git: add (stage) entire buffer' })
-        map('n', '<leader>guh', gitsigns.undo_stage_hunk,              { desc = 'Git: unstage hunk' })
-        map('n', '<leader>grh', gitsigns.reset_hunk,                   { desc = 'Git: reset hunk' })
-        map('n', '<leader>grb', gitsigns.reset_buffer,                 { desc = 'Git: reset entire buffer' })
-        map('n', '<leader>gp', gitsigns.preview_hunk,                 { desc = 'Git: preview hunk' })
-        map('n', '<leader>gB', gitsigns.blame_line,                   { desc = 'Git: blame current line' })
-        -- Diff
-        map('n', '<leader>gDd', gitsigns.diffthis,                    { desc = 'Git: diff against index' })
-        map('n', '<leader>gDc', function() gitsigns.diffthis '@' end, { desc = 'Git: diff against last commit' })
-        -- Toggles
-        map('n', '<leader>gtb', gitsigns.toggle_current_line_blame,    { desc = 'Git: toggle show blame' })
-        map('n', '<leader>gtd', gitsigns.toggle_deleted,               { desc = 'Git: toggle show deleted' })
-        map('n', '<leader>gth', "<Cmd>Gitsigns toggle_linehl<Cr>",     { desc = 'Git: toggle line highlighting' })
-        --stylua: ignore end
+        --- In visual mode
+        vim.keymap.set('v', '<leader>gs', function()
+          gitsigns.stage_hunk { vim.fn.line '.', vim.fn.line 'v' }
+        end, { buffer = bufnr, desc = 'Git: stage hunk' })
+        vim.keymap.set('v', '<leader>gr', function()
+          gitsigns.reset_hunk { vim.fn.line '.', vim.fn.line 'v' }
+        end, { buffer = bufnr, desc = 'Git: reset hunk' })
+        --- In normal mode
+        vim.keymap.set('n', '<leader>gah', gitsigns.stage_hunk, { buffer = bufnr, desc = 'Git: add (stage) hunk' })
+        vim.keymap.set('n', '<leader>gab', gitsigns.stage_buffer, { buffer = bufnr, desc = 'Git: add (stage) entire buffer' })
+        vim.keymap.set('n', '<leader>guh', gitsigns.undo_stage_hunk, { buffer = bufnr, desc = 'Git: unstage hunk' })
+        vim.keymap.set('n', '<leader>grh', gitsigns.reset_hunk, { buffer = bufnr, desc = 'Git: reset hunk' })
+        vim.keymap.set('n', '<leader>grb', gitsigns.reset_buffer, { buffer = bufnr, desc = 'Git: reset entire buffer' })
+        vim.keymap.set('n', '<leader>gp', gitsigns.preview_hunk, { buffer = bufnr, desc = 'Git: preview hunk' })
+        vim.keymap.set('n', '<leader>gB', gitsigns.blame_line, { buffer = bufnr, desc = 'Git: blame current line' })
+        ----- Diff
+        vim.keymap.set('n', '<leader>gDd', gitsigns.diffthis, { buffer = bufnr, desc = 'Git: diff against index' })
+        vim.keymap.set('n', '<leader>gDc', function()
+          gitsigns.diffthis '@'
+        end, { buffer = bufnr, desc = 'Git: diff against last commit' })
+        ----- Toggles
+        vim.keymap.set('n', '<leader>gtb', gitsigns.toggle_current_line_blame, { buffer = bufnr, desc = 'Git: toggle show blame' })
+        vim.keymap.set('n', '<leader>gtd', gitsigns.toggle_deleted, { buffer = bufnr, desc = 'Git: toggle show deleted' })
+        vim.keymap.set('n', '<leader>gth', '<Cmd>Gitsigns toggle_linehl<Cr>', { buffer = bufnr, desc = 'Git: toggle line highlighting' })
       end,
     },
   },

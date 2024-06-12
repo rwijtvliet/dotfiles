@@ -1,5 +1,77 @@
 return {
   {
+    'benlubas/molten-nvim',
+    version = '^1.0.0', -- use version <2.0.0 to avoid breaking changes
+    build = ':UpdateRemotePlugins',
+    dependencies = { { 'willothy/wezterm.nvim', config = true } },
+    config = function()
+      vim.g.molten_output_win_max_height = 12
+      vim.g.molten_image_provider = 'wezterm'
+      vim.g.molten_auto_open_output = false
+      vim.g.molten_split_direction = 'bottom'
+      vim.g.molten_split_size = 30
+    end,
+    keys = {
+      -- Normal mode
+      { '<leader>Ri', '<Cmd>MoltenImagePopup<Cr>', desc = 'Show image' },
+      { '<leader>Rl', '<Cmd>MoltenEvaluateLine<Cr>', desc = 'Run current line' },
+      { '<leader>Rs', '<Cmd>MoltenShowOutput<Cr>', desc = 'Show output' },
+      { '<leader>Rh', '<Cmd>MoltenHideOutput<Cr>', desc = 'Hide output' },
+      { '<leader>Rx', '<Cmd>MoltenReevaluateCell<Cr>', desc = 'Run cell' },
+      { '<leader>RR', '<Cmd>noautocmd MoltenEnterOutput<Cr>', desc = 'Enter output window' },
+      { '<leader>Ro', '<Cmd>MoltenEvaluateOperator<Cr>', desc = 'Run + operator' },
+      -- Visual mode
+      { '<leader>R', ':<C-u>MoltenEvaluateVisual<CR>gv', desc = 'Run selection', mode = 'v' },
+    },
+  },
+  -- {
+  --   '3rd/image.nvim',
+  --   dependencies = {
+  --     {
+  --       'vhyrro/luarocks.nvim',
+  --       priority = 1001, -- this plugin needs to run before anything else
+  --       opts = {
+  --         rocks = { 'magick' },
+  --       },
+  --     },
+  --   },
+  --   opts = {
+  --     backend = 'ueberzug',
+  --     integrations = {
+  --       markdown = {
+  --         enabled = true,
+  --         clear_in_insert_mode = false,
+  --         download_remote_images = true,
+  --         only_render_image_at_cursor = false,
+  --         filetypes = { 'markdown', 'vimwiki' }, -- markdown extensions (ie. quarto) can go here
+  --       },
+  --       neorg = {
+  --         enabled = true,
+  --         clear_in_insert_mode = false,
+  --         download_remote_images = true,
+  --         only_render_image_at_cursor = false,
+  --         filetypes = { 'norg' },
+  --       },
+  --       html = {
+  --         enabled = false,
+  --       },
+  --       css = {
+  --         enabled = false,
+  --       },
+  --     },
+  --     max_width = nil,
+  --     max_height = nil,
+  --     max_width_window_percentage = nil,
+  --     max_height_window_percentage = 50,
+  --     window_overlap_clear_enabled = false, -- toggles images when windows are overlapped
+  --     window_overlap_clear_ft_ignore = { 'cmp_menu', 'cmp_docs', '' },
+  --     editor_only_render_when_focused = false, -- auto show/hide images when the editor gains/looses focus
+  --     tmux_show_only_in_active_window = false, -- auto show/hide images in the correct Tmux window (needs visual-activity off)
+  --     hijack_file_patterns = { '*.png', '*.jpg', '*.jpeg', '*.gif', '*.webp', '*.avif' }, -- render image files as images when opened
+  --   },
+  -- },
+
+  {
     'Vigemus/iron.nvim',
     config = function()
       local iron = require 'iron.core'
@@ -15,30 +87,30 @@ return {
               -- returns a table (see below)
               command = { 'zsh' },
             },
-            python = { command = 'python3' },
+            python = { command = 'ipython --nosep --no-autoindent' }, -- NOTE: currently not used due to ipython crash with matplotlib.
+            -- python = { command = 'python' },
           },
           -- How the repl window will be displayed
           -- See below for more information
-          repl_open_cmd = require('iron.view').right(40),
+          repl_open_cmd = require('iron.view').split.vertical.botright(0.40, {
+            winfixwidth = false,
+            winfixheight = false,
+            number = true,
+          }),
         },
         -- Iron doesn't set keymaps by default anymore.
         -- You can set them here or manually add keymaps to the functions in iron.core
-        keymaps = {
-          send_motion = '<leader>rc',
-          visual_send = '<leader>rc',
-          send_file = '<leader>rf',
-          send_line = '<leader>rl',
-          send_paragraph = '<leader>rp',
-          send_until_cursor = '<leader>ru',
-          send_mark = '<leader>rm',
-          mark_motion = '<leader>mc',
-          mark_visual = '<leader>mc',
-          remove_mark = '<leader>md',
-          cr = '<leader>r<cr>',
-          interrupt = '<leader>r<leader>',
-          exit = '<leader>rq',
-          clear = '<leader>cl',
-        },
+        -- keymaps = {
+        --   send_motion = '<leader>rc',
+        --   send_mark = '<leader>rm',
+        --   mark_motion = '<leader>mc',
+        --   mark_visual = '<leader>mc',
+        --   remove_mark = '<leader>md',
+        --   cr = '<leader>r<cr>',
+        --   interrupt = '<leader>r<leader>',
+        --   exit = '<leader>rq',
+        --   clear = '<leader>cl',
+        -- },
         -- If the highlight is on, you can change how it looks
         -- For the available options, check nvim_set_hl
         highlight = {
@@ -47,11 +119,25 @@ return {
         ignore_blank_lines = true, -- ignore blank lines when sending visual select lines
       }
 
+      --stylua: ignore start
       -- iron also has a list of commands, see :h iron-commands for all available commands
-      vim.keymap.set('n', '<leader>rs', '<cmd>IronRepl<cr>')
-      vim.keymap.set('n', '<leader>rr', '<cmd>IronRestart<cr>')
-      vim.keymap.set('n', '<leader>rf', '<cmd>IronFocus<cr>')
-      vim.keymap.set('n', '<leader>rh', '<cmd>IronHide<cr>')
+
+      -- from outside REPL only
+      vim.keymap.set('n', '<leader>rr', function() iron.repl_for(vim.bo.filetype) end, { desc = 'REPL: start/toggle/hide (from code buffer)' })
+      vim.keymap.set('n', '<leader>rf', function() iron.focus_on(vim.bo.filetype) end, { desc = 'REPL: focus on repl (from code buffer)' })
+      vim.keymap.set('n', '<leader>rC', function() iron.close_repl(vim.bo.filetype) end, { desc = 'REPL: close (from code buffer)' })
+      -- vim.keymap.set('n', 'gR', iron.send_motion, { desc = 'Run motion' }) -- TODO: not working
+      vim.keymap.set('n', '<leader>rl', iron.send_line, { desc = 'Run line' })
+      vim.keymap.set('n', '<leader>rp', iron.send_paragraph, { desc = 'Run paragraph' })
+      vim.keymap.set('n', '<leader>rc', iron.send_until_cursor, { desc = 'Run until cursor' })
+      vim.keymap.set('n', '<leader>rb', iron.send_file, { desc = 'Run buffer' })
+
+      -- from inside REPL only
+      vim.keymap.set('n', '<leader>rR', iron.repl_restart, { desc = 'REPL: restart (from inside REPL)' })
+
+      -- visual mode
+      vim.keymap.set('v', '<leader>r', iron.visual_send, { desc = 'Run selection' })
+      --stylua: ignore end
     end,
   },
 }

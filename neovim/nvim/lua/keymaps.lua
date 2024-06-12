@@ -163,9 +163,19 @@
 --       ...
 --
 -- *  [r run code].
--- *     n navigate
+-- *     b run entire buffer
+-- *     c run until cursor
+-- *     l run line
+-- *     p run paragraph
 -- *     x run cell
--- *     X run cell + move next
+-- *     y run cell + move next
+--
+-- *     f focus REPL window
+-- *     r start/hide REPL
+-- *     c close REPL
+-- *     R restart REPL
+--
+-- *     n navigate
 --
 --    [T terminal]
 --       f in floating window
