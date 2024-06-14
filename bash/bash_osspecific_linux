@@ -4,3 +4,6 @@ alias nvconf='cd ~/.config/nvim/lua/ && nvim ~/.config/nvim/lua/ '
 # window manager stuff
 # . on linux
 alias wm='cd ~/.dotfiles/windowmanager/linux && nvim i3/config polybar/config.ini rofi/config.rasi'
+
+# opening apps
+alias wezterm='flatpak run org.wezfurlong.wezterm'

@@ -16,7 +16,19 @@ return {
     'folke/which-key.nvim',
     event = 'VimEnter', -- Sets the loading event to 'VimEnter'
     config = function() -- This is the function that runs, AFTER loading
-      require('which-key').setup()
+      require('which-key').setup {
+        icons = {
+          separator = '➜', -- symbol used between a key and it's label
+          group = ' ', -- symbol prepended to a group
+        },
+        window = {
+          border = 'rounded', -- You can choose from "none", "single", "double", "rounded", "solid", "shadow"
+          position = 'bottom', -- or "top"
+          -- margin = { 1, 0, 1, 0 }, -- extra window margin [top, right, bottom, left]
+          -- padding = { 2, 2, 2, 2 }, -- extra window padding [top, right, bottom, left]
+          winblend = 0,
+        },
+      }
       require('which-key').register {
         ['<leader>b'] = { name = '  Buffer (and tab)', _ = 'which_key_ignore' },
         ['<leader>bc'] = { name = '  Close', _ = 'which_key_ignore' },

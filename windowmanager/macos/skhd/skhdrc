@@ -146,7 +146,7 @@ alt + cmd - f4 : \
 
 # terminal
 alt + cmd - return : \
-    open -n /Applications/Alacritty.app
+    open -n /Applications/WezTerm.app
 
 # screenshot
 # . directly to clipboard

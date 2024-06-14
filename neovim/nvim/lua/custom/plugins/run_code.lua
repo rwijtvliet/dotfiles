@@ -24,9 +24,7 @@ return {
       { '<leader>R', ':<C-u>MoltenEvaluateVisual<CR>gv', desc = 'Run selection', mode = 'v' },
     },
   },
-  -- {
-  --   '3rd/image.nvim',
-  --   dependencies = {
+  -- -   dependencies = {
   --     {
   --       'vhyrro/luarocks.nvim',
   --       priority = 1001, -- this plugin needs to run before anything else
@@ -66,11 +64,12 @@ return {
   --     window_overlap_clear_enabled = false, -- toggles images when windows are overlapped
   --     window_overlap_clear_ft_ignore = { 'cmp_menu', 'cmp_docs', '' },
   --     editor_only_render_when_focused = false, -- auto show/hide images when the editor gains/looses focus
-  --     tmux_show_only_in_active_window = false, -- auto show/hide images in the correct Tmux window (needs visual-activity off)
-  --     hijack_file_patterns = { '*.png', '*.jpg', '*.jpeg', '*.gif', '*.webp', '*.avif' }, -- render image files as images when opened
-  --   },
+  --     ,
   -- },
 
+  -- Iron.
+  -- (+) Works.
+  -- (-) Cannot display images inline (?)
   {
     'Vigemus/iron.nvim',
     config = function()
@@ -87,7 +86,11 @@ return {
               -- returns a table (see below)
               command = { 'zsh' },
             },
-            python = { command = 'ipython --nosep --no-autoindent' }, -- NOTE: currently not used due to ipython crash with matplotlib.
+            python = {
+              format = require('iron.fts.common').bracketed_paste,
+              command = { 'ipython', '--no-autoindent', '--nosep' },
+            },
+            -- python = { command = 'ipython --nosep --no-autoindent' }, -- NOTE: currently not used due to ipython crash with matplotlib.
             -- python = { command = 'python' },
           },
           -- How the repl window will be displayed
@@ -140,8 +143,17 @@ return {
       --stylua: ignore end
     end,
   },
+  {
+    'kiyoon/jupynium.nvim',
+    build = 'pip3 install --user .',
+    -- build = "conda run --no-capture-output -n jupynium pip install .",
+    -- enabled = vim.fn.isdirectory(vim.fn.expand "~/miniconda3/envs/jupynium"),
+    dependencies = {
+      'rcarriga/nvim-notify', -- optional
+      'stevearc/dressing.nvim', -- optional, UI for :JupyniumKernelSelect
+    },
+  },
 }
-
 -- return {
 --   {
 --     'CRAG666/code_runner.nvim',

@@ -1,6 +1,6 @@
 return {
   -- Detect tabstop and shiftwidth automatically
-  'tpope/vim-sleuth',
+  { 'tpope/vim-sleuth' },
 
   -- Use `opts = {}` to force a plugin to be loaded.
   --
@@ -13,8 +13,7 @@ return {
   -- Find problems in code
   {
     'folke/trouble.nvim',
-    branch = 'dev', -- IMPORTANT!
-    enabled = true,
+    opts = {}, -- for default options, refer to the configuration section for custom setup.
     keys = {
       {
         '<leader>xx',
@@ -47,6 +46,5 @@ return {
         desc = 'Trouble: quickfix list',
       },
     },
-    opts = {}, -- for default options, refer to the configuration section for custom setup.
   },
 }

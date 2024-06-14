@@ -1,5 +1,6 @@
 # apps to use in terminal
 alacritty
+wezterm
 neovim
 nerdfonts
 starship
