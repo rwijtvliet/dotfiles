@@ -47,4 +47,21 @@ return {
       },
     },
   },
+
+  -- Make snapshots.
+  {
+    'mistricky/codesnap.nvim',
+    build = 'make',
+    keys = {
+      { '<leader>ss', '<Esc><Cmd>CodeSnap<Cr>', mode = 'x', desc = 'Selection to clipboard' },
+      { '<leader>sh', '<Esc><Cmd>CodeSnapHighlight<Cr>', mode = 'x', desc = 'Selection with highlights to clipboard' },
+    },
+    opts = {
+      mac_window_bar = false,
+      save_path = '~/Pictures',
+      has_breadcrumbs = true,
+      bg_theme = 'sea',
+      watermark = '',
+    },
+  },
 }

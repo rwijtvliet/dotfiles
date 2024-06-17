@@ -103,4 +103,5 @@ local function get_base_python()
   end
 end
 vim.g.python3_host_prog = get_base_python()
+
 -- vim: ts=2 sts=2 sw=2 et

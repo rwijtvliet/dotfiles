@@ -73,6 +73,7 @@ return {
       -- visual mode
       require('which-key').register({
         ['<leader>g'] = { name = ' 󰊢 Git', _ = 'which_key_ignore' },
+        ['<leader>s'] = { name = ' 󰹑 Screenshot', _ = 'which_key_ignore' },
       }, { mode = 'v' })
     end,
   },
