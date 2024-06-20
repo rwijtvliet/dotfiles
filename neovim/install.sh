@@ -21,8 +21,9 @@ case "$OS" in
 	# (alternative: install from apt, but often outdated)
 	# sudo apt install neovim
 
-	# needed for developing python
-	pip install ueberzug cairosvg pnglatex plotly kaleido 
+	# virtual environment specifically for neovim plugins, in this folder
+	info "Creating python environment for neovim"
+	poetry install
 	
 	# add user config
 	info "adding user configs"
@@ -42,8 +43,9 @@ case "$OS" in
 	scoop install gcc
 	scoop install neovim
 	
-	# needed for developing python
-	pip install ueberzug cairosvg pnglatex plotly kaleido
+	# virtual environment specifically for neovim plugins, in this folder
+	info "Creating python environment for neovim"
+	poetry install
 
 	# add user config
 	info "adding user configs"
@@ -61,12 +63,12 @@ case "$OS" in
 	info "Installing app"
 	brew install neovim
 	
-	# needed for developing python
-	pip install cairosvg pnglatex plotly kaleido
-        brew install jstkdng/programs/ueberzugpp 
+	# virtual environment specifically for neovim plugins, in this folder
+	info "Creating python environment for neovim"
+	poetry install
 
 	# add user config
-	info "adding user configs"
+	info "Adding user configs"
 	link_public_resource "./nvim" "$HOME/.config/nvim"
 	link_public_resource "./alternative_configs/lazyvim" "$HOME/.config/nvim-lazyvim"
 	link_public_resource "./alternative_configs/astronvim" "$HOME/.config/nvim-astronvim"

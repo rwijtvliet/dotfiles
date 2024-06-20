@@ -274,12 +274,24 @@ return {
     end,
   },
 
-  -- only highlight cursor in active window
+  -- only highlight cursor in active window, not in all windows.
   {
     'tummetott/reticle.nvim',
     event = 'VeryLazy', -- optionally lazy load the plugin
     opts = {
       -- add options here if you wish to override the default settings
+    },
+  },
+
+  -- popup window for command line
+  {
+    'folke/noice.nvim',
+    opts = {
+      cmdline = {
+        enabled = true,
+        view = 'cmdline_popup', -- Use a popup window for the command line
+        opts = { position = { row = '80%' }, size = { width = '60%' } },
+      },
     },
   },
 }

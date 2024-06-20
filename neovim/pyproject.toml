@@ -14,4 +14,9 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.dependencies]
 python = "^3.11"
+cairosvg = "^2.7.1"
+pnglatex = "^1.1"
+plotly = "^5.22.0"
+qtconsole = "^5.5.2"
+pyqt5 = "^5.15.10"
 
