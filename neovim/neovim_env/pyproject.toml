@@ -1,0 +1,17 @@
+# general
+
+[tool.poetry]
+name = "neovim_env"
+version = "0.1.0"
+description = "Python environment for neovim"
+authors = ["Ruud Wijtvliet <rwijtvliet@gmail.com>"]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+# dependencies
+
+[tool.poetry.dependencies]
+python = "^3.11"
+

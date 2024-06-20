@@ -35,7 +35,9 @@ return {
       },
     },
     event = 'VeryLazy',
-    opts = {},
+    opts = {
+      cell_highlight_group = 'Function',
+    },
     keys = {
     -- stylua: ignore start
     { '<leader>rx', function() require('notebook-navigator').run_cell() end,     desc = 'Run cell' },
@@ -49,6 +51,7 @@ return {
   -- Highlight cell boundaries.
   {
     'echasnovski/mini.hipatterns',
+    after = 'notebook-navigator',
     lazy = false, -- TODO: plugin doesn't always load (?) and trying to set lazy to false to force loading
     event = 'BufEnter *.py',
     opts = function()

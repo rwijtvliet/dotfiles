@@ -57,7 +57,7 @@
 -- *  [l lsp and code]
 -- *   o open line below stay in normal mode
 -- *   O open line above stay in normal mode
--- *  [p plugins]
+-- *  [P plugins]
 -- *   q close window [resembles :q]
 -- *   Q quit neovim
 -- *  [s search/find]
@@ -155,7 +155,7 @@
 -- *     Q terminate debugger
 -- *     v eval var under cursor
 --
--- *  [p plugins]
+-- *  [P plugins]
 -- *     l lazy
 -- *     h checkhealth
 -- *     m mason
@@ -354,6 +354,9 @@ vim.keymap.set('n', '<leader>W', '<cmd>w<cr>', { desc = 'Write (save)' })
 -- Go to dashboard (home)
 vim.keymap.set('n', '<leader>H', '<cmd>Dashboard<cr>', { desc = 'Home (dashboard)' })
 
+-- Paste without losing contents of paste-register
+vim.keymap.set('x', '<leader>p', '"_dP', { desc = 'Paste (keeping register)' })
+
 ---- Inside menu ----
 
 -- b Buffers
@@ -378,10 +381,10 @@ vim.keymap.set('n', '<leader>ww', '<C-w>p', { desc = 'Go to other window' })
 
 -- l LSP/Code
 
--- p plugins
-vim.keymap.set('n', '<leader>ph', '<cmd>checkhealth<cr>', { desc = 'Check health' })
-vim.keymap.set('n', '<leader>pm', '<cmd>Mason<cr>', { desc = 'Mason' })
-vim.keymap.set('n', '<leader>pl', '<cmd>Lazy<cr>', { desc = 'Lazy' })
+-- P plugins
+vim.keymap.set('n', '<leader>Ph', '<cmd>checkhealth<cr>', { desc = 'Check health' })
+vim.keymap.set('n', '<leader>Pm', '<cmd>Mason<cr>', { desc = 'Mason' })
+vim.keymap.set('n', '<leader>Pl', '<cmd>Lazy<cr>', { desc = 'Lazy' })
 
 -- q Quit
 vim.keymap.set('n', '<leader>qw', '<cmd>q<cr>', { desc = 'Close window' })

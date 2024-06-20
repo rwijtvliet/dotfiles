@@ -6,6 +6,8 @@ return {
 
 	color_scheme = "Gruvbox Dark (Gogh)",
 	font = wezterm.font("JetBrains Mono"),
+	underline_thickness = 3,
+	underline_position = -4,
 	use_fancy_tab_bar = false,
 	hide_tab_bar_if_only_one_tab = true,
 	default_prog = { "/bin/bash", "-i" },

@@ -1,54 +1,4 @@
 return {
-  -- color themes
-  { -- You can easily change to a different colorscheme.
-    -- Change the name of the colorscheme plugin below, and then
-    -- change the command in the config to whatever the name of that colorscheme is.
-    --
-    -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
-    'folke/tokyonight.nvim',
-    priority = 1000, -- Make sure to load this before all the other start plugins.
-  },
-  {
-    'ellisonleao/gruvbox.nvim',
-    name = 'gruvbox',
-    event = 'UIEnter',
-    opts = {
-      contrast = 'hard',
-      dim_inactive = true,
-      italic = {
-        strings = false,
-        emphasis = true,
-        comments = true,
-        operators = false,
-        folds = true,
-      },
-    },
-  },
-  {
-    'catppuccin/nvim',
-    name = 'catppuccin',
-    event = 'UIEnter',
-    lazy = true,
-    opts = {
-      dim_inactive = { enabled = true, percentage = 0.25 },
-    },
-  },
-  { 'bluz71/vim-nightfly-colors' },
-  { 'NLKNguyen/papercolor-theme' },
-  { 'rebelot/kanagawa.nvim' },
-  { 'navarasu/onedark.nvim' },
-  {
-    'EdenEast/nightfox.nvim',
-    init = function()
-      -- Load the colorscheme here.
-      vim.cmd.colorscheme 'nightfox'
-
-      -- You can configure highlights by doing something like:
-      vim.cmd.hi 'Comment gui=none'
-    end,
-    opts = { options = { dim_inactive = true } },
-  },
-
   -- notification styling
   {
     'rcarriga/nvim-notify',
@@ -308,8 +258,6 @@ return {
       -- create the highlight groups in the highlight setup hook, so they are reset
       -- every time the colorscheme changes
       hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
-        -- 0 1 2 3 4 5 6 7 8 9 a b c d e
-        -- 0   1   2   3   4   5   6   7
         vim.api.nvim_set_hl(0, 'RainbowRed', { fg = '#703C35' })
         vim.api.nvim_set_hl(0, 'RainbowYellow', { fg = '#75603B' })
         vim.api.nvim_set_hl(0, 'RainbowBlue', { fg = '#315F7F' })
@@ -324,5 +272,14 @@ return {
         exclude = { filetypes = { 'dashboard' } },
       }
     end,
+  },
+
+  -- only highlight cursor in active window
+  {
+    'tummetott/reticle.nvim',
+    event = 'VeryLazy', -- optionally lazy load the plugin
+    opts = {
+      -- add options here if you wish to override the default settings
+    },
   },
 }

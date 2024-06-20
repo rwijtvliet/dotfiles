@@ -103,8 +103,9 @@ CTL+PGUP/PGDN on macos
  * * Alt-TAB (linux/wi) vs GUI-TAB (mocas)
  */
 
+#include <stdint.h>
 #include QMK_KEYBOARD_H
-#include "version.h"
+#include <version.h>
 
 // enums
 
@@ -393,8 +394,8 @@ enum colors {
 
 // System.
 #define LAYER_SYSTEM \
-  kcSatUp   ,kcValUp   ,_______   ,_______   ,QK_BOOT   ,                      KC_MPLY   ,KC_MPRV   ,KC_MNXT   ,_______   ,KC_BRIU   ,\
-  kcSatDn   ,kcValDn   ,_______   ,_______   ,fEE_CLR   ,                      KC_MUTE   ,KC_VOLD   ,KC_VOLU   ,_______   ,KC_BRID   ,\
+  kcValUp   ,kcSatUp   ,_______   ,_______   ,QK_BOOT   ,                      KC_MPLY   ,KC_MPRV   ,KC_MNXT   ,_______   ,KC_BRIU   ,\
+  kcValDn   ,kcSatDn   ,_______   ,_______   ,fEE_CLR   ,                      KC_MUTE   ,KC_VOLD   ,KC_VOLU   ,_______   ,KC_BRID   ,\
   kcLINUX   ,kcWINDO   ,kcMACOS   ,___f___   ,pGAME     ,_______   ,_______   ,_______   ,___f___   ,_______   ,KC_LCAP   ,KC_INS    ,\
   XXXXXXX   ,                      _______   ,_______   ,_______   ,_______   ,XXXXXXX   ,XXXXXXX   ,                      XXXXXXX
 #define LIGHTS_SYSTEM \

@@ -12,9 +12,9 @@ return {
       vim.g.mkdp_combine_preview = 1 -- same window for all markdow
     end,
     keys = {
-      { '<leader>ms', '<cmd>MarkdownPreview<cr>', desc = 'Start preview' },
-      { '<leader>mc', '<cmd>MarkdownPreviewStop<cr>', desc = 'Close preview' },
-      { '<leader>mt', '<cmd>MarkdownPreviewToggle<cr>', desc = 'Toggle preview' },
+      { '<leader>Ms', '<cmd>MarkdownPreview<cr>', desc = 'Start preview' },
+      { '<leader>Mc', '<cmd>MarkdownPreviewStop<cr>', desc = 'Close preview' },
+      { '<leader>Mt', '<cmd>MarkdownPreviewToggle<cr>', desc = 'Toggle preview' },
     },
   },
 }

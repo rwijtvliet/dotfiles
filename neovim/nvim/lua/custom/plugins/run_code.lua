@@ -28,7 +28,6 @@ return {
       },
     },
     config = function()
-      require('which-key').register { ['<leader>R'] = { name = ' 󰜎 Run code (molten)', _ = 'which_key_ignore' } }
       vim.g.molten_output_win_max_height = 12
       vim.g.molten_image_provider = 'wezterm'
       vim.g.molten_auto_open_output = false
@@ -177,6 +176,13 @@ return {
       vim.keymap.set('n', '<leader>Jt', '<cmd>call jukit#cells#jump_to_previous_cell()<cr>', { desc = 'Prev cell' })
       vim.keymap.set('n', '<leader>Ja', '<cmd>call jukit#splits#output()<cr>', { desc = 'create split for output' })
       vim.keymap.set('v', '<leader>J', ':<C-U>call jukit#send#selection()<cr>', { desc = 'Jukit run selection' })
+    end,
+  },
+  {
+    'jupyter-vim/jupyter-vim',
+    config = function()
+      if vim.g.vim_virtualenv_path then
+      end
     end,
   },
   --   {

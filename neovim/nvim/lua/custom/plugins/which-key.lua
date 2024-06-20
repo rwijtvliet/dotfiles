@@ -45,11 +45,14 @@ return {
 
         ['<leader>l'] = { name = '  Lsp and code', _ = 'which_key_ignore' },
 
-        ['<leader>m'] = { name = '  Markdown', _ = 'which_key_ignore' },
+        ['<leader>m'] = { name = '  Terminal', _ = 'which_key_ignore' },
 
-        ['<leader>p'] = { name = '  Plugins', _ = 'which_key_ignore' },
+        ['<leader>M'] = { name = '  Markdown', _ = 'which_key_ignore' },
+
+        ['<leader>P'] = { name = '  Plugins', _ = 'which_key_ignore' },
 
         ['<leader>r'] = { name = ' 󰜎 Run code', _ = 'which_key_ignore' },
+        ['<leader>R'] = { name = ' 󰜎 Run code (molten)', _ = 'which_key_ignore' },
 
         ['<leader>s'] = { name = '  Search', _ = 'which_key_ignore' },
 
@@ -58,8 +61,6 @@ return {
         ['<leader>t'] = { name = '  Test', _ = 'which_key_ignore' },
         ['<leader>tf'] = { name = '  File', _ = 'which_key_ignore' },
         ['<leader>tt'] = { name = '  Toggle', _ = 'which_key_ignore' },
-
-        ['<leader>T'] = { name = '  Terminal', _ = 'which_key_ignore' },
 
         ['<leader>u'] = { name = ' 󰉼 UI/UX', _ = 'which_key_ignore' },
 
