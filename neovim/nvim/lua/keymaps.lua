@@ -55,6 +55,8 @@
 -- *  [g git]
 -- *   h home
 -- *  [l lsp and code]
+-- *  [m terminal]
+-- *  [M markdown]
 -- *   o open line below stay in normal mode
 -- *   O open line above stay in normal mode
 -- *  [P plugins]
@@ -62,7 +64,6 @@
 -- *   Q quit neovim
 -- *  [s search/find]
 -- *  [S Session]
--- *  [T terminal]
 -- *  [t test]
 -- *  [u user-interface]
 -- *  [w window]
@@ -177,7 +178,7 @@
 --
 -- *     n navigate
 --
---    [T terminal]
+--    [m terminal]
 --       f in floating window
 --       | in vertical split
 --       \ in horizontal split
@@ -385,6 +386,7 @@ vim.keymap.set('n', '<leader>ww', '<C-w>p', { desc = 'Go to other window' })
 vim.keymap.set('n', '<leader>Ph', '<cmd>checkhealth<cr>', { desc = 'Check health' })
 vim.keymap.set('n', '<leader>Pm', '<cmd>Mason<cr>', { desc = 'Mason' })
 vim.keymap.set('n', '<leader>Pl', '<cmd>Lazy<cr>', { desc = 'Lazy' })
+vim.keymap.set('n', '<leader>Pv', '<cmd>term cd $HOME/.dotfiles/neovim && poetry install<Cr>', { desc = 'Update neovim virtualenv' })
 
 -- q Quit
 vim.keymap.set('n', '<leader>qw', '<cmd>q<cr>', { desc = 'Close window' })
@@ -452,10 +454,7 @@ vim.keymap.set('n', '<leader>xq', vim.diagnostic.setloclist, { desc = 'Open diag
 -- NOTE: This won't work in all terminal emulators/tmux/etc. Try your own mapping
 -- or just use <C-\><C-n> to exit terminal mode
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
-
--- Keybinds to make split navigation easier.
---  Use CTRL+<hjkl> to switch between windows
---
+vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' }) -- try if there is a disadvantage when setting SINGLE esc to exit terminal mode
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`

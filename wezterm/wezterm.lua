@@ -18,6 +18,8 @@ return {
 	cursor_blink_rate = 1,
 	force_reverse_video_cursor = true,
 
+	enable_kitty_graphics = true,
+
 	-- vim motions
 	keys = {
 		{ key = "Escape", mods = "CTRL", action = wezterm.action.ActivateCopyMode },

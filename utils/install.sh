@@ -4,16 +4,14 @@ source ../shared.sh
 
 case "$OS" in
     "linux" )
-        sudo apt install npm snapd
+        sudo apt install npm snapd fzf
 
         sudo apt update
         sudo apt upgrade
         ;;
 
     "windows" )
-        scoop install wget
-        scoop install npm
-        scoop install nodejs
+        scoop install wget npm nodejs fzf
 
         scoop update *
         ;;
@@ -26,7 +24,7 @@ case "$OS" in
         brew install java
         brew install openjdk
         todo "installed java - but probably won't work anyway. "
-        brew install npm wget nodejs rg fd
+        brew install npm wget nodejs rg fd fzf
         ;;
 
     * )

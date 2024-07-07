@@ -26,7 +26,7 @@ case "$OS" in
 	poetry install
 	
 	# add user config
-	info "adding user configs"
+	info "Adding user configs"
 	link_public_resource "./nvim" "$HOME/.config/nvim"
 	link_public_resource "./alternative_configs/lazyvim" "$HOME/.config/nvim-lazyvim"
 	link_public_resource "./alternative_configs/astronvim" "$HOME/.config/nvim-astronvim"
@@ -48,10 +48,10 @@ case "$OS" in
 	poetry install
 
 	# add user config
-	info "adding user configs"
+	info "Adding user configs"
 	link_public_resource "./nvim" "$USERPROFILE/AppData/Local/nvim"
 	link_public_resource "./alternative_configs/lazyvim" "$USERPROFILE/AppData/Local/nvim-lazyvim"
-	link_public_resource "./alternative_configs/astronvim" "$HOME/.config/nvim-astronvim"
+	link_public_resource "./alternative_configs/astronvim" "$USERPROFILE/AppData/Local/nvim-astronvim"
 	;;
 
 "macos")

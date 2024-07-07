@@ -3,9 +3,9 @@ return {
     'GCBallesteros/NotebookNavigator.nvim',
     dependencies = {
       'echasnovski/mini.comment',
-      -- 'Vigemus/iron.nvim', -- repl provider
+      'Vigemus/iron.nvim', -- repl provider
       -- "akinsho/toggleterm.nvim", -- alternative repl provider
-      'benlubas/molten-nvim', -- alternative repl provider
+      -- 'benlubas/molten-nvim', -- alternative repl provider
       --
       -- Menu to navigate through notebook.
       {

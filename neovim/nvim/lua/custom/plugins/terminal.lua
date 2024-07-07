@@ -6,7 +6,7 @@ return {
       vim.keymap.set('n', '<leader>mh', '<cmd>ToggleTerm size=10 direction=horizontal<cr>', { desc = 'ToggleTerm horizontal split' })
       vim.keymap.set('n', '<leader>mv', '<cmd>ToggleTerm size=80 direction=vertical<cr>', { desc = 'ToggleTerm vertical split' })
       vim.keymap.set('n', '<leader>mt', '<cmd>ToggleTerm direction=tab<cr>', { desc = 'ToggleTerm in tab' })
-      -- vim.keymap.set('n', '<F12>', '<Cmd>execute v:count . "ToggleTerm"<CR>', { desc = 'Toggle terminal' })
+      vim.keymap.set('t', '<F12>', '<Cmd>execute v:count . "ToggleTerm"<CR>', { desc = 'Toggle terminal' })
       -- vim.keymap.set('i', '<F12>', '<Cmd>execute v:count . "ToggleTerm"<CR>', { desc = 'Toggle terminal' })
 
       require('toggleterm').setup {

@@ -1,3 +1,13 @@
+local run_if_markdown = function(command)
+  local f = function()
+    if vim.bo.filetype ~= 'markdown' then
+      vim.notify('This only works for markdown files', vim.log.levels.WARN)
+    else
+      vim.cmd(command)
+    end
+  end
+  return f
+end
 return {
   {
     'iamcco/markdown-preview.nvim',
@@ -12,9 +22,10 @@ return {
       vim.g.mkdp_combine_preview = 1 -- same window for all markdow
     end,
     keys = {
-      { '<leader>Ms', '<cmd>MarkdownPreview<cr>', desc = 'Start preview' },
-      { '<leader>Mc', '<cmd>MarkdownPreviewStop<cr>', desc = 'Close preview' },
-      { '<leader>Mt', '<cmd>MarkdownPreviewToggle<cr>', desc = 'Toggle preview' },
+      { '<leader>Ms', run_if_markdown 'MarkdownPreview', desc = 'Start preview' },
+      { '<leader>Mc', run_if_markdown 'MarkdownPreviewStop', desc = 'Close preview' },
+      { '<leader>Mt', run_if_markdown 'MarkdownPreviewToggle', desc = 'Toggle preview' },
+      { '<leader>Mp', run_if_markdown '! $(cd $(dirname "%") && pandoc $(basename "%") -o $(basename "%").pdf)', desc = 'Export as pdf (pandoc)' },
     },
   },
 }

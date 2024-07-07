@@ -51,8 +51,10 @@ return {
 
         ['<leader>P'] = { name = '  Plugins', _ = 'which_key_ignore' },
 
-        ['<leader>r'] = { name = ' 󰜎 Run code', _ = 'which_key_ignore' },
-        ['<leader>R'] = { name = ' 󰜎 Run code (molten)', _ = 'which_key_ignore' },
+        ['<leader>J'] = { name = ' 󰜎 Run code (jukit)', _ = 'which_key_ignore' },
+        -- ['<leader>k'] = { name = ' 󰜎 Run code (jupynium)', _ = 'which_key_ignore' },
+        ['<leader>r'] = { name = ' 󰜎 Run code (iron)', _ = 'which_key_ignore' },
+        -- ['<leader>R'] = { name = ' 󰜎 Run code (molten)', _ = 'which_key_ignore' },
 
         ['<leader>s'] = { name = '  Search', _ = 'which_key_ignore' },
 

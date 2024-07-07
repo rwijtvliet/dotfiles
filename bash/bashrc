@@ -143,5 +143,8 @@ PROMPT_COMMAND='echo -ne "\033]0;${PWD}\007"'
 # use starship as prompt
 eval "$(starship init bash)"
 
+# Set up fzf key bindings and fuzzy completion
+eval "$(fzf --bash)" 
+
 # message so I know it worked
 echo "successfully loaded Ruud Wijtvliet user profile"

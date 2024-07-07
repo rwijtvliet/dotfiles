@@ -65,7 +65,7 @@ vim.opt.scrolloff = 10
 vim.opt.termguicolors = true
 
 -- Ensure python is available
-local function get_nvim_python()
+local function get_nvim_venv_bin()
   local function assert_exists(path)
     if vim.loop.fs_stat(path) == nil then
       error(
@@ -82,7 +82,7 @@ local function get_nvim_python()
   path = path .. '/.dotfiles/neovim/.venv/'
   assert_exists(path)
 
-  path = path .. '/bin/python'
+  path = path .. '/bin/'
   assert_exists(path)
 
   return path
@@ -113,6 +113,6 @@ end
 --     end
 --   end
 -- end
-vim.g.python3_host_prog = get_nvim_python()
+vim.g.python3_host_prog = get_nvim_venv_bin() .. '/python'
 
 -- vim: ts=2 sts=2 sw=2 et
