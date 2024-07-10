@@ -299,6 +299,9 @@ return {
         end
         launch_jupyter_qtconsole_and_connect()
       end, { desc = 'Start+connect jupyter qtconsole' })
+      vim.keymap.set('n', '<leader>jam', function()
+        vim.cmd [[ JupyterSendCode ( "import matplotlib; matplotlib.use( 'module://matplotlib-backend-sixel')" ) ]]
+      end, { desc = 'Prepare for matplotlib' })
 
       vim.keymap.set('n', '<leader>jf', '<Cmd>JupyterRunFile<Cr>', { desc = 'Run file' })
       vim.keymap.set('n', '<leader>jl', '<Cmd>JupyterSendCount<Cr>', { desc = 'Run line' })
