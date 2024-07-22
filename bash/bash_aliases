@@ -11,6 +11,16 @@ alias ll='ls -alF --color'
 alias la='ls -alF --color'
 alias l='ls -CF --color'
 
+# Eza as ls-replacement.
+# . most-common use
+alias l='eza -F --group-directories-first --icons=always --color=always'
+# . second-most-common use
+alias la='eza -alF --group-directories-first --icons=always --color=always'
+# . split: non-hidden directories; non-hidden files; hidden files&directories
+alias ld='eza -lDF --icons=always --color=always'
+alias lf='eza -lfF --icons=always --color=always'
+alias lh='eza -ldF .* --group-directories-first --icons=always --color=always'
+
 # git
 alias ga='echo "git add ." && git add .'
 alias gc='echo "git commit -m $1" && git commit -m $1'
