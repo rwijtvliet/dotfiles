@@ -10,7 +10,7 @@ return {
 	underline_position = -4,
 	use_fancy_tab_bar = false,
 	hide_tab_bar_if_only_one_tab = true,
-	default_prog = { "/bin/bash", "-i" },
+	default_prog = { "/bin/zsh", "-i" },
 
 	default_cursor_style = "SteadyBar",
 	cursor_blink_ease_in = "Constant",

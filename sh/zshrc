@@ -9,10 +9,6 @@ export PATH="/opt/homebrew/bin/:$PATH"
 
 # Utilities.
 
-source /opt/homebrew/share/powerlevel10k/powerlevel9k.zsh-theme
-# (to customize prompt, run `p10k configure` or edit ~/.p10k.zsh.)
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
 source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
@@ -20,10 +16,6 @@ source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 eval "$(zoxide init zsh)"
 
 # Alias definitions.
-# You may want to put all your additions into a separate file like
-# ~/.bash_aliases, instead of adding them here directly.
-# See /usr/share/doc/bash-doc/examples in the bash-doc package.
-
 if [ -f ~/.sh_aliases ] || [ -L ~/.sh_aliases ]; then
 	. ~/.sh_aliases
 fi
@@ -38,5 +30,15 @@ if [ -f ~/.sh_secrets ] || [ -L ~/.sh_secrets ]; then
 	. ~/.sh_secrets
 fi
 
-# message so I know it worked
+
+# Prompt style.
+
+source /opt/homebrew/share/powerlevel10k/powerlevel9k.zsh-theme
+# (to customize prompt, run `p10k configure` or edit ~/.p10k.zsh.)
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+
+# Message so I know it worked
+# (disabled because p10k is complaining)
 # echo "successfully loaded Ruud Wijtvliet zsh user profile"
+

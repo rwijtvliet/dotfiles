@@ -18,4 +18,4 @@ alias pip=pip3
 # . on macos
 alias wm='cd ~/.dotfiles/windowmanager/macos && nvim sketchybar/sketchybarrc skhd/skhdrc yabai/yabairc'
 # . load completions
-source /Users/ruud.wijtvliet/.bash_completions/yabpy.sh
+# source /Users/ruud.wijtvliet/.bash_completions/yabpy.sh
