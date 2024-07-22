@@ -1,6 +1,5 @@
 # Additional basic apps that ensure we also have the private information available
-bash
+sh
 git
 github
 syncthing
-zsh

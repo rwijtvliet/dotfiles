@@ -89,18 +89,18 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 # ~/.bash_aliases, instead of adding them here directly.
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
 
-if [ -f ~/.bash_aliases ] || [ -L ~/.bash_aliases ]; then
-	. ~/.bash_aliases
+if [ -f ~/.sh_aliases ] || [ -L ~/.sh_aliases ]; then
+	. ~/.sh_aliases
 fi
 
 # Aliases, adding to PATH, etc., that only need to be done on this specific OS.
-if [ -f ~/.bash_osspecific ] || [ -L ~/.bash_osspecific ]; then
-	. ~/.bash_osspecific
+if [ -f ~/.sh_osspecific ] || [ -L ~/.sh_osspecific ]; then
+	. ~/.sh_osspecific
 fi
 
 # Non-public exports, aliases, etc.
-if [ -f ~/.bash_secrets ] || [ -L ~/.bash_secrets ]; then
-	. ~/.bash_secrets
+if [ -f ~/.sh_secrets ] || [ -L ~/.sh_secrets ]; then
+	. ~/.sh_secrets
 fi
 
 # Setting locale.
@@ -138,6 +138,8 @@ export NVM_DIR="$HOME/.nvm"
 
 # put cargo on path
 export PATH="~/.cargo/bin:$PATH"
+
+export PATH="/opt/homebrew/bin:$PATH" 
 
 PROMPT_COMMAND='echo -ne "\033]0;${PWD}\007"'
 # use starship as prompt

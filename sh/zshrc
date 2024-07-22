@@ -17,29 +17,26 @@ source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-alias ls="eza --icons=always"
-
 eval "$(zoxide init zsh)"
-alias cd=z
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
 # ~/.bash_aliases, instead of adding them here directly.
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
 
-if [ -f ~/.bash_aliases ] || [ -L ~/.bash_aliases ]; then
-	. ~/.bash_aliases
+if [ -f ~/.sh_aliases ] || [ -L ~/.sh_aliases ]; then
+	. ~/.sh_aliases
 fi
 
 # Aliases, adding to PATH, etc., that only need to be done on this specific OS.
-if [ -f ~/.bash_osspecific ] || [ -L ~/.bash_osspecific ]; then
-	. ~/.bash_osspecific
+if [ -f ~/.sh_osspecific ] || [ -L ~/.sh_osspecific ]; then
+	. ~/.sh_osspecific
 fi
 
 # Non-public exports, aliases, etc.
-if [ -f ~/.bash_secrets ] || [ -L ~/.bash_secrets ]; then
-	. ~/.bash_secrets
+if [ -f ~/.sh_secrets ] || [ -L ~/.sh_secrets ]; then
+	. ~/.sh_secrets
 fi
 
 # message so I know it worked
-echo "successfully loaded Ruud Wijtvliet zsh user profile"
+# echo "successfully loaded Ruud Wijtvliet zsh user profile"
