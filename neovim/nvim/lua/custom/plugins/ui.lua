@@ -200,7 +200,7 @@ return {
           always_divide_middle = false,
           globalstatus = false,
           refresh = {
-            statusline = 1000,
+            statusline = 500,
             tabline = 1000,
             winbar = 1000,
           },
@@ -209,7 +209,13 @@ return {
           lualine_a = { 'mode' },
           lualine_b = { 'branch', 'diff', 'diagnostics', 'trouble' },
           lualine_c = { 'filename' },
-          lualine_x = { 'encoding', 'filesize', 'filetype', 'trouble' },
+          lualine_x = {
+            'encoding',
+            'filesize',
+            'filetype',
+            'trouble',
+            { require('noice').api.statusline.mode.get, cond = require('noice').api.statusline.mode.has, color = { fg = '#ff9e64' } }, -- to show @recording
+          },
           lualine_y = { 'searchcount' },
           lualine_z = { 'location', 'progress' },
         },
@@ -290,7 +296,7 @@ return {
       cmdline = {
         enabled = true,
         view = 'cmdline_popup', -- Use a popup window for the command line
-        opts = { position = { row = '80%' }, size = { width = '60%' } },
+        opts = { position = { row = '80%' }, size = { width = '80%' } },
       },
     },
   },
