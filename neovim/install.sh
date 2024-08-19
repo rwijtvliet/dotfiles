@@ -23,6 +23,7 @@ case "$OS" in
 
 	# virtual environment specifically for neovim plugins, in this folder
 	info "Creating python environment for neovim"
+	sudo apt install python3.11
 	poetry install
 	
 	# add user config

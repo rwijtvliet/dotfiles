@@ -90,17 +90,17 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
 
 if [ -f ~/.sh_aliases ] || [ -L ~/.sh_aliases ]; then
-	. ~/.sh_aliases
+	. ~/.shell_aliases
 fi
 
 # Aliases, adding to PATH, etc., that only need to be done on this specific OS.
 if [ -f ~/.sh_osspecific ] || [ -L ~/.sh_osspecific ]; then
-	. ~/.sh_osspecific
+	. ~/.shell_osspecific
 fi
 
 # Non-public exports, aliases, etc.
 if [ -f ~/.sh_secrets ] || [ -L ~/.sh_secrets ]; then
-	. ~/.sh_secrets
+	. ~/.shell_secrets
 fi
 
 # Setting locale.
@@ -142,8 +142,12 @@ export PATH="~/.cargo/bin:$PATH"
 export PATH="/opt/homebrew/bin:$PATH" 
 
 PROMPT_COMMAND='echo -ne "\033]0;${PWD}\007"'
+
 # use starship as prompt
 eval "$(starship init bash)"
+
+# setup zoxide
+eval "$(zoxide init bash)"
 
 # Set up fzf key bindings and fuzzy completion
 eval "$(fzf --bash)" 

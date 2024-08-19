@@ -4,7 +4,7 @@ source ../shared.sh
 
 case "$OS" in
     "linux" )
-        sudo apt install npm snapd fzf
+        sudo apt install npm snapd fzf rg fd
 
         sudo apt update
         sudo apt upgrade

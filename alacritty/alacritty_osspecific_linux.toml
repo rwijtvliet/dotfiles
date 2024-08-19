@@ -1,4 +1,6 @@
-import = ["~/.config/alacritty/alacritty_common.toml"]
+import = [
+  "/usr/local/lib/node_modules/alacritty-themes/themes/3024.dark.toml"
+]
 
 [colors.bright]
 black = "#928374"
@@ -31,9 +33,17 @@ lines = 40
 [font]
 size = 10
 
-[keyboard]
-bindings = [
-  { key = "V", mods = "Control|Shift", action = "Paste" },
-  { key = "C", mods = "Control|Shift", action = "Copy" },
-  { key = "W", mods = "Command", action = "None" },        # Prevent accidentally closing 
-]
+[[keyboard.bindings]]
+key = "V"
+mods = "Control|Shift"
+action = "Paste"
+
+[[keyboard.bindings]]
+key = "C"
+mods = "Control|Shift"
+action = "Copy"
+
+[[keyboard.bindings]]
+key = "W"
+mods = "Command"
+action = "None"

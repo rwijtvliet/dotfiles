@@ -1,44 +1,46 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+## Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-export PATH="/opt/homebrew/bin/:$PATH"
-
 # Utilities.
 
-source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+# source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+#
+# source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+export ZSH="$HOME/.oh-my-zsh"
+ZSH_THEME="powerlevel10k/powerlevel10k"
+# plugins=(...)
+source "$ZSH/oh-my-zsh.sh"
+
 
 eval "$(zoxide init zsh)"
 
 # Alias definitions.
-if [ -f ~/.sh_aliases ] || [ -L ~/.sh_aliases ]; then
-	. ~/.sh_aliases
+if [ -f ~/.shell_aliases ] || [ -L ~/.shell_aliases ]; then
+	. ~/.shell_aliases
 fi
 
 # Aliases, adding to PATH, etc., that only need to be done on this specific OS.
-if [ -f ~/.sh_osspecific ] || [ -L ~/.sh_osspecific ]; then
-	. ~/.sh_osspecific
+if [ -f ~/.shell_osspecific ] || [ -L ~/.shell_osspecific ]; then
+	. ~/.shell_osspecific
 fi
 
 # Non-public exports, aliases, etc.
-if [ -f ~/.sh_secrets ] || [ -L ~/.sh_secrets ]; then
-	. ~/.sh_secrets
+if [ -f ~/.shell_secrets ] || [ -L ~/.shell_secrets ]; then
+	. ~/.shell_secrets
 fi
 
 
 # Prompt style.
 
-source /opt/homebrew/share/powerlevel10k/powerlevel9k.zsh-theme
 # (to customize prompt, run `p10k configure` or edit ~/.p10k.zsh.)
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 
 # Message so I know it worked
 # (disabled because p10k is complaining)
-# echo "successfully loaded Ruud Wijtvliet zsh user profile"
-
+# echo "successfully loaded Ruud Wijtvliet zsh user profile" Created by newuser for 5.8.1

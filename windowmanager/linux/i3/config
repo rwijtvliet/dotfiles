@@ -222,8 +222,8 @@ bindsym $mod+F4 exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do
 # Non-window-management shortcuts
 
 # terminal
-bindsym $mod+Return exec i3-sensible-terminal
-
+# bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec flatpak run org.wezfurlong.wezterm
 # screenshot 
 # . to clipboard
 # TODO: this is not to clipboard
