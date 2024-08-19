@@ -7,3 +7,5 @@ alias wm='cd ~/.dotfiles/windowmanager/linux && nvim i3/config polybar/config.in
 
 # opening apps
 alias wezterm='flatpak run org.wezfurlong.wezterm'
+
+export SUDO_EDITOR='/home/ruud/.local/bin/nvim'

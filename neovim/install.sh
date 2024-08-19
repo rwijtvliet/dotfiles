@@ -17,6 +17,11 @@ case "$OS" in
 		curl -Lo "$HOME/.local/bin/nvim" https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
 		chmod u+x "$HOME/.local/bin/nvim"
 	)
+	sudo $( #run in subshell to not permanently change to that folder
+		mkdir -p "$HOME/.local/bin"
+		curl -Lo "$HOME/.local/bin/nvim" https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
+		chmod u+x "$HOME/.local/bin/nvim"
+	)
 	#link_public_resource "$HOME/.local/bin/nvim" "nvim.appimage"
 	# (alternative: install from apt, but often outdated)
 	# sudo apt install neovim
