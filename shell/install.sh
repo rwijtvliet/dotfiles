@@ -16,26 +16,25 @@ case "$OS" in
 
     info "Installing zsh"
     sudo apt install zsh
+    # oh my zsh
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
     info "Linking config"
     link_osunspecific_files
     link_public_resource "./shell_osspecific_linux" "$HOME/.shell_osspecific"
     sudo chsh -s $(which zsh) $(whoami)  #make default
 
-    info "Installing sh utilities"
-    # oh my zsh
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-    # powerlevel10k
-    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+    info "Installing shell utilities"
     # eza
     sudo apt install gpg
-sudo mkdir -p /etc/apt/keyrings
-wget -qO- https://raw.githubusercontent.com/eza-community/eza/main/deb.asc | sudo gpg --dearmor -o /etc/apt/keyrings/gierens.gpg
-echo "deb [signed-by=/etc/apt/keyrings/gierens.gpg] http://deb.gierens.de stable main" | sudo tee /etc/apt/sources.list.d/gierens.list
-sudo chmod 644 /etc/apt/keyrings/gierens.gpg /etc/apt/sources.list.d/gierens.list
-sudo apt update
-sudo apt install -y eza
-    sudo apt install zsh-autosuggestions zsh-syntax-highlighting zoxide
+    sudo mkdir -p /etc/apt/keyrings
+    wget -qO- https://raw.githubusercontent.com/eza-community/eza/main/deb.asc | sudo gpg --dearmor -o /etc/apt/keyrings/gierens.gpg
+    echo "deb [signed-by=/etc/apt/keyrings/gierens.gpg] http://deb.gierens.de stable main" | sudo tee /etc/apt/sources.list.d/gierens.list
+    sudo chmod 644 /etc/apt/keyrings/gierens.gpg /etc/apt/sources.list.d/gierens.list
+    sudo apt update
+    sudo apt install -y eza
+    # zoxide
+    sudo apt install -y zoxide
     ;;
 
   "windows" )
@@ -58,7 +57,7 @@ sudo apt install -y eza
     link_osunspecific_files
     link_public_resource "./shell_osspecific_macos" "$HOME/.shell_osspecific"
 
-    info "Installing sh utilities"
+    info "Installing shell utilities"
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
     brew install powerlevel10k zsh-autosuggestions zsh-syntax-highlighting eza zoxide
     ;;
