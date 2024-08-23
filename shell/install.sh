@@ -5,6 +5,7 @@ source ../shared.sh
 link_osunspecific_files() {
   link_public_resource "./bashrc" "$HOME/.bashrc"
   link_public_resource "./zshrc" "$HOME/.zshrc"
+  link_public_resource "./p10k.zsh" "$HOME/.p10k.zsh"
   link_public_resource "./shell_aliases" "$HOME/.shell_aliases"
   link_secret_resource "shell_secrets" "$HOME/.shell_secrets"
 }
