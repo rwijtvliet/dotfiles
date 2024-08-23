@@ -1,5 +1,5 @@
 import = [
-  "/usr/local/lib/node_modules/alacritty-themes/themes/3024.dark.toml"
+  "/usr/local/lib/node_modules/alacritty-themes/themes/Alabaster.toml"
 ]
 
 [colors.bright]
