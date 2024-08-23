@@ -1,5 +1,3 @@
 # Install most basic apps like package managers and ensure GNU version of bash commands is available (necessary to run the functions used elsewhere, such as link_public_resource)
-scoop
-choco
-homebrew
+packagemanager
 utils
