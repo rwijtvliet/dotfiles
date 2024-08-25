@@ -36,6 +36,8 @@ case "$OS" in
     sudo apt install -y eza
     # zoxide
     sudo apt install -y zoxide
+    # git repos
+    git submodule update --init
     ;;
 
   "windows" )
