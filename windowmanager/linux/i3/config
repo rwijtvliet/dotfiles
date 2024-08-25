@@ -28,8 +28,8 @@ exec --no-startup-id nm-applet
 
 
 # TODO: test if this works. Error message in bottom right should be gone.
-exec sudo /usr/lib/systemd/systemd-networkd & 
-
+# exec sudo /usr/lib/systemd/systemd-networkd & 
+exec --no-startup-id sudo systemctl start systemd-networkd.service
 
 # Use pactl to adjust volume in PulseAudio.
 # set $refresh_i3status killall -SIGUSR1 i3status
