@@ -203,7 +203,7 @@ bindsym $mod+Shift+v split v
 # . inner gaps for all windows: space between two adjacent windows (or split containers).
 gaps inner 10
 # . outer gaps for all windows: space along the screen edges.
-gaps outer 10
+gaps outer 0
 # . inverse_outer only enables outer gaps when there is exactly one window or split container on the workspace.
 smart_gaps inverse_outer
 # . toggle on the fly
@@ -248,6 +248,10 @@ bindsym $mod+F5 exec i3lock
 # F1=dvorak, F2=us
 bindsym $mod+F1 exec setxkbmap dvorak
 bindsym $mod+F2 exec setxkbmap us
+
+# change monitor setup
+bindsym $mod+F6 exec $HOME/.dotfiles/windowmanager/linux/i3/singe_monitor.sh
+bindsym $mod+F7 exec $HOME/.dotfiles/windowmanager/linux/i3/dual_monitor.sh
 
 
 # --- Apps

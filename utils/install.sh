@@ -4,7 +4,7 @@ source ../shared.sh
 
 case "$OS" in
     "linux" )
-        sudo apt install npm snapd fzf ripgrep 
+        sudo apt install npm snapd fzf ripgrep cifs-utils
 
         sudo apt update
         sudo apt upgrade
