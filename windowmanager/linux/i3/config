@@ -267,7 +267,7 @@ assign [class="Dolphin"] $ws1
 # Start apps automatically
 
 # apps; only run on machine start-up
-exec spotify & 
+# exec spotify & 
 exec firefox & 
 exec dolphin & 
 
