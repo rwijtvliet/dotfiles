@@ -89,9 +89,11 @@ set $ws9 "9 󰎈"
 
 
 # --- Unified shortcuts
+# decision: never use tabbed and never use stacking. Only use tiling and floating.
 
-
-# Focus
+#########
+# Focus #
+#########
 
 # window
 bindsym $mod+h      focus left
@@ -118,18 +120,15 @@ bindsym $mod+9 workspace number $ws9
 bindsym $mod+g output left 
 bindsym $mod+l output right 
 
-# focus child window/container
-bindsym $mod+a focus child
-# focus parent container
-bindsym $mod+Shift+a focus parent
-
 # toggle focus between tiling / floating
 bindsym $mod+Shift+b focus mode_toggle
 
 
-# Move
+########
+# Move #
+########
 
-# window/container (inside workspace) 
+# window/container inside workspace 
 bindsym $mod+Shift+h     move left
 bindsym $mod+Shift+t     move up
 bindsym $mod+Shift+n     move down
@@ -139,7 +138,7 @@ bindsym $mod+Shift+s     move right
 # bindsym $mod+Shift+Down  move down
 # bindsym $mod+Shift+Right move right
 
-# (window/container) to workspace
+# window/container to workspace
 bindsym $mod+Shift+1 move container to workspace number $ws1; workspace number $ws1
 bindsym $mod+Shift+2 move container to workspace number $ws2; workspace number $ws2
 bindsym $mod+Shift+3 move container to workspace number $ws3; workspace number $ws3
@@ -150,17 +149,21 @@ bindsym $mod+Shift+7 move container to workspace number $ws7; workspace number $
 bindsym $mod+Shift+8 move container to workspace number $ws8; workspace number $ws8
 bindsym $mod+Shift+9 move container to workspace number $ws9; workspace number $ws9
 
-# (workspace) to monitor
+# workspace to monitor
 bindsym $mod+Shift+g move workspace to output left 
 bindsym $mod+Shift+l move workspace to output right
 
 
-# Close
+#########
+# Close #
+#########
 
 bindsym $mod+w kill
 
 
-# Size
+########
+# Size #
+########
 
 # width
 bindsym $mod+bracketleft resize shrink width 10 px or 10 ppt
@@ -178,7 +181,9 @@ bindsym $mod+Down resize grow width 10 px or 10 ppt
 # TODO: (impossible on i3 without scripting)
 
 
-# Layout 
+##########
+# Layout #
+##########
 
 # toggle float/tiling
 bindsym $mod+b floating toggle
@@ -186,18 +191,17 @@ bindsym $mod+b floating toggle
 # toggle maximize
 bindsym $mod+m fullscreen toggle
 
-# split 
-bindsym $mod+z layout toggle split
-# stack
-bindsym $mod+Shift+z layout stacking
+# toggle minimize
+# TODO: 
+
 # where to position next window
 bindsym $mod+v split h
 bindsym $mod+Shift+v split v
-# decision: never use tabbed; just use stacking (= almost identical)
-# bindsym $mod+comma layout tabbed
 
 
-# Appearance
+##############
+# Appearance #
+##############
 
 # gaps
 # . inner gaps for all windows: space between two adjacent windows (or split containers).
@@ -210,16 +214,25 @@ smart_gaps inverse_outer
 bindsym $mod+j gaps inner current toggle 10
 
 
-# i3 management
+##################
+# Window manager #
+##################
 
-# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+# restart (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+F3 restart
 
-# exit i3 (logs you out of your X session)
+# exit (logs you out of your X session)
 bindsym $mod+F4 exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
 
-# Non-window-management shortcuts
+########
+# Apps #
+########
+
+# cycle apps 
+bindsym Mod1+Tab exec rofi -show combi
+# launch apps
+bindsym Control+Escape exec rofi -show run
 
 # terminal
 bindsym $mod+Shift+Return exec i3-sensible-terminal
@@ -230,7 +243,6 @@ bindsym $mod+Return exec flatpak run org.wezfurlong.wezterm
 # TODO: this is not to clipboard
 bindsym --release $mod+y exec --no-startup-id import /tmp/latest-screenshot.png 
 # && cat /tmp/latest-screenshot.png | xclip -selection clipboard -target image/png -i
-
 # . to editor
 # TODO
 
@@ -240,6 +252,10 @@ mode "launch" {
         # These bindings trigger as soon as you enter this mode
         bindsym f exec firefox; mode "default"
 }
+
+###################################
+# Non-window-management shortcuts #
+###################################
 
 # lock the machine
 bindsym $mod+F5 exec i3lock
@@ -254,15 +270,15 @@ bindsym $mod+F6 exec $HOME/.dotfiles/windowmanager/linux/i3/singe_monitor.sh
 bindsym $mod+F7 exec $HOME/.dotfiles/windowmanager/linux/i3/dual_monitor.sh
 
 
-# --- Apps
-
+#########################
+# RULES (NOT SHORTCUTS) #
+#########################
 
 # Force windows to spaces (use `xprop` to find class)
 
-assign [class="Spotify"] $ws9
-assign [class="Firefox"] $ws2
-assign [class="Dolphin"] $ws1
-
+assign [class="spotify"] $ws9
+assign [class="firefox"] $ws2
+assign [class="dolphin"] $ws1
 
 # Start apps automatically
 
@@ -274,9 +290,3 @@ exec dolphin &
 # polybar; run every time i3 config is reloaded
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
-
-# Other stuff
-
-# window manager
-bindsym Mod1+Tab exec rofi -show combi
-bindsym Control+Escape exec rofi -show run
