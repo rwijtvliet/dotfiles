@@ -42,7 +42,8 @@ case "$OS" in
                 ;;
 
             "windows" )
-                fail
+                link_public_resource "./windows/glazewm/config.yaml" "$USERPROFILE/.glzr/glazewm/config.yaml"
+                todo "install glazewm with installer"
                 ;;
 
             "macos" )
