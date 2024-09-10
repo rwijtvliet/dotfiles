@@ -139,8 +139,6 @@ export NVM_DIR="$HOME/.nvm"
 # put cargo on path
 export PATH="~/.cargo/bin:$PATH"
 
-export PATH="/opt/homebrew/bin:$PATH" 
-
 PROMPT_COMMAND='echo -ne "\033]0;${PWD}\007"'
 
 # use starship as prompt
