@@ -89,17 +89,17 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 # ~/.bash_aliases, instead of adding them here directly.
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
 
-if [ -f ~/.sh_aliases ] || [ -L ~/.sh_aliases ]; then
+if [ -f ~/.shell_aliases ] || [ -L ~/.shell_aliases ]; then
 	. ~/.shell_aliases
 fi
 
 # Aliases, adding to PATH, etc., that only need to be done on this specific OS.
-if [ -f ~/.sh_osspecific ] || [ -L ~/.sh_osspecific ]; then
+if [ -f ~/.shell_osspecific ] || [ -L ~/.shell_osspecific ]; then
 	. ~/.shell_osspecific
 fi
 
 # Non-public exports, aliases, etc.
-if [ -f ~/.sh_secrets ] || [ -L ~/.sh_secrets ]; then
+if [ -f ~/.shell_secrets ] || [ -L ~/.shell_secrets ]; then
 	. ~/.shell_secrets
 fi
 
