@@ -62,7 +62,8 @@ download_fonts () {
   for font in "${fonts[@]}"; do
       zipfile="${font}.zip"
       download_url="https://github.com/ryanoasis/nerd-fonts/releases/download/$version/$zipfile"
-      if ! wget -q "$download_url"; then
+      download_url="https://github.com/ryanoasis/nerd-fonts/releases/latest/download/$zipfile"
+      if ! curl -q "$download_url"; then
         fail "Could not download font archive $download_url (file not found?)"
       else
       	filesize=$(numfmt --to=iec-i --suffix=B --format="%.0f" $(stat --printf="%s" "$zipfile"))
