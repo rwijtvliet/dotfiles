@@ -32,6 +32,14 @@ Each folder contains an `install.sh` script, which installs the necessary softwa
 
 In the root, there is a `shared.sh` file, which contains some functionality used in the individual `install.sh` files. This file is also not called directly by the user.
 
+## Installation
+
+The repository must live in the `.dotfiles/` folder, directly under the user's home folder. 
+
+The best way to get the files there is by cloning the repository, so that any changes can be commited and push back to github. Cloning can be done using `git`, if it's already installed on the system, using `git clone https://github.com/rwijtvliet/dotfiles.git ~/.dotfiles`. 
+
+Alternatively, if `git` is not yet installed, the repository can be manually downloaded and copied to the `.dotfiles/` folder, and the clone command can be ran after `git` has been installed (git installation is done by this repository).
+
 ## Usage
 
 In the root, there is an `install` script, which is the only file you need to run.

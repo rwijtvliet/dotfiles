@@ -10,17 +10,24 @@ case "$OS" in
         flatpak run org.wezfurlong.wezterm
 	# config
 	info "Linking config file"
-	link_public_resource "./wezterm.lua" "$HOME/.wezterm.lua"
+	mkdir -p "$HOME/.config/wezterm/"
+	link_public_resource "./wezterm.lua" "$HOME/.config/wezterm/wezterm.lua"
+	link_public_resource "./wezterm_general.lua" "$HOME/.config/wezterm/wezterm_general.lua"
+	link_public_resource "./wezterm_osspecific_linux.lua" "$HOME/.config/wezterm/wezterm_osspecific.lua"
 	;;
 
 "windows")
 	# install
 	info "Installing app"
-	scoop bucket add extras
-	scoop install wezterm 
+	# scoop bucket add extras
+	# scoop install wezterm 
+        winget install wez.wezterm #use winget instead of scoop, because winget is allowed on company laptop
 	# config
 	info "Linking config file"
-	link_public_resource "./wezterm.lua" "$APPDATA/.wezterm.lua" # ... or $HOME ?
+	mkdir -p "$HOME/.config/wezterm/"
+	link_public_resource "./wezterm.lua" "$HOME/.config/wezterm/wezterm.lua" # ... or $APPDATA ?
+	link_public_resource "./wezterm_general.lua" "$HOME/.config/wezterm/wezterm_general.lua"
+	link_public_resource "./wezterm_osspecific_windows.lua" "$HOME/.config/wezterm/wezterm_osspecific.lua"
 	;;
 
 "macos")
@@ -29,7 +36,10 @@ case "$OS" in
         brew install --cask wezterm
 	# config
 	info "Linking config file"
-	link_public_resource "./wezterm.lua" "$HOME/.wezterm.lua"
+	mkdir -p "$HOME/.config/wezterm/"
+	link_public_resource "./wezterm.lua" "$HOME/.config/wezterm/wezterm.lua"
+	link_public_resource "./wezterm_general.lua" "$HOME/.config/wezterm/wezterm_general.lua"
+	link_public_resource "./wezterm_osspecific_macos.lua" "$HOME/.config/wezterm/wezterm_osspecific.lua"
 	;;
 
 *) ;;

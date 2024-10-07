@@ -55,8 +55,10 @@ case "$OS" in
         ;;
 
     "windows" )
-        link_public_resource "./windows/glazewm/config.yaml" "$USERPROFILE/.glzr/glazewm/config.yaml"
-        todo "install glazewm with installer"
+        link_public_resource "./windows/komorebi.json" "$USERPROFILE/komorebi.json"
+        link_public_resource "./windows/zebar/config.yaml" "$USERPROFILE/.glzr/zebar/config.yaml"
+        winget install LGUG2Z.komorebi AutoHotKey.AutoHotKey
+        todo "ensure komorebi, autohotkey script, and zebar/start.bat are ran on startup (windows+r: 'shell:startup')"
         ;;
 
     "macos" )

@@ -45,9 +45,9 @@ case "$OS" in
 
 	# install nvim
 	info "Installing app"
-	scoop bucket add main
-	scoop install gcc
-	scoop install neovim
+	# scoop bucket add main
+	# scoop install gcc
+	winget install neovim # use winget instead of scoop because of company policy.
 	
 	# virtual environment specifically for neovim plugins, in this folder
 	info "Creating python environment for neovim"

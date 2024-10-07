@@ -1,9 +1,15 @@
 
+# python stuff
+alias pf='cd ~/syncAll/Code/python/portfolyo && poetry shell'
+
+# neovim stuff
 alias nvconf='cd ~/.config/nvim/lua/ && nvim ~/.config/nvim/lua/ '
+alias cdswap='cd ~/.local/state/nvim/swap'
+alias rmswap='rm ~/.local/state/nvim/swap/*'
 
 # window manager stuff
-# . on linux
 alias wm='cd ~/.dotfiles/windowmanager/linux && nvim i3/config polybar/config.ini rofi/config.rasi'
+alias shortcuts='echo "opening excel file with windowmanager shortcuts" && open ~/.dotfiles/windowmanager/shortcuts.xlsx'
 
 # opening apps
 alias wezterm='flatpak run org.wezfurlong.wezterm'

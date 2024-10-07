@@ -129,6 +129,7 @@ keybindings:
   #########
 
   # window
+  # hotkey + htns
   - commands: ["focus --direction left"]
     bindings: ["alt+lwin+h"]
   - commands: ["focus --direction right"]
@@ -139,6 +140,7 @@ keybindings:
     bindings: ["alt+lwin+n"]
 
   # workspace
+  # hotkey + 1..9
   - commands: ["focus --workspace 1"]
     bindings: ["alt+lwin+1"]
   - commands: ["focus --workspace 2"]
@@ -159,6 +161,7 @@ keybindings:
     bindings: ["alt+lwin+9"]
 
   # monitor
+  # hotkey + gcrl
   - commands: ["focus left_monitor"]
     bindings: ["alt+lwin+g"]
   - commands: ["focus right_monitor"]
@@ -170,6 +173,7 @@ keybindings:
   # --> n/a
 
   # toggle focus between tiling / floating
+  # hotkey + shift + b
   - commands: ["wm-cycle-focus"]
     bindings: ["alt+lwin+shift+b"]
 
@@ -178,6 +182,7 @@ keybindings:
   ########
 
   # window/container inside workspace
+  # hotkey + shift + htns
   - commands: ["move --direction left"]
     bindings: ["alt+lwin+shift+h"]
   - commands: ["move --direction right"]
@@ -188,6 +193,7 @@ keybindings:
     bindings: ["alt+lwin+shift+n"]
 
   # window/container to workspace
+  # hotkey + shift + 1..9
   - commands: ["move --workspace 1", "focus --workspace 1"]
     bindings: ["alt+lwin+shift+1"]
   - commands: ["move --workspace 2", "focus --workspace 2"]
@@ -208,6 +214,7 @@ keybindings:
     bindings: ["alt+lwin+shift+9"]
 
   # workspace to monitor
+  # hotkey + shift + gcl
   - commands: ["move-workspace --direction left"]
     bindings: ["alt+lwin+shift+g"]
   - commands: ["move-workspace --direction right"]
@@ -225,16 +232,19 @@ keybindings:
   ########
 
   # width
+  # hotkey + left/right, hotkey + []
   - commands: ["resize --width -2%"]
     bindings: ["alt+lwin+left", "alt+lwin+oem_close_brackets"]
   - commands: ["resize --width +2%"]
     bindings: ["alt+lwin+right", "alt+lwin+oem_open_brackets"]
   # height
+  # hotkey + up/down, hotkey + {}
   - commands: ["resize --height +2%"]
     bindings: ["alt+lwin+down", "alt+lwin+shift+oem_close_brackets"]
   - commands: ["resize --height -2%"]
     bindings: ["alt+lwin+up", "alt+lwin+shift+oem_open_brackets"]
   # balance
+  # hotkey + =
   # TODO:
 
   ##########
@@ -242,12 +252,14 @@ keybindings:
   ##########
 
   # toggle float/tiling
+  # hotkey + b
   - commands: ["toggle-floating --centered"]
     bindings: ["alt+lwin+b"]
   - commands: ["toggle-tiling"]
     bindings: ["alt+lwin+shift+m"] #TODO: toggle floating/tiling or force tiling?
 
   # toggle maximize
+  # hotkey + m
   - commands: ["toggle-fullscreen"]
     bindings: ["alt+lwin+m"]
 
@@ -256,6 +268,7 @@ keybindings:
   #   bindings: ["alt+lwin+shift+m"]
 
   # where to position next window
+  # hotkey + v
   - commands: ["toggle-tiling-direction"]
     bindings: ["alt+lwin+v"]
 
@@ -264,10 +277,12 @@ keybindings:
   ##################
 
   # restart
+  # hotkey + f3
   - commands: ["wm-reload-config", "wm-redraw"]
     bindings: ["alt+lwin+f3"]
 
   # exit
+  # hotkey + f4
   - commands: ["wm-exit"]
     bindings: ["alt+lwin+f4"]
 
@@ -281,19 +296,22 @@ keybindings:
   # TODO: do
 
   # terminal
-  - commands: ["shell-exec cmd"]
+  # hotkey + (shift +) enter
+  - commands: ["exec notify-send 'bla'", "shell-exec cmd"]
     bindings: ["alt+lwin+shift+enter"]
-  - commands: ["shell-exec wezterm"]
+  - commands: ["exec notify-send 'bla'", "shell-exec wezterm"]
     bindings: ["alt+lwin+enter"]
 
   # screenshot
   # . to clipboard
+  # hotkey + y
   - commands: ["shell-exec snippingtool"]
     bindings: ["alt+lwin+y"]
   # . to editor
   # TODO:
 
   # various other apps under new namespace
+  # hotkey + p
   - commands: ["wm-enable-binding-mode --name launchprogram"]
     bindings: ["alt+lwin+p"]
 
@@ -302,11 +320,12 @@ keybindings:
   ###################################
 
   # lock the machine
+  # hotkey + f5
   - commands: ["exec rundll32.exe user32.dll,LockWorkStation"]
     bindings: ["alt+lwin+f5"]
 
   # change keyboard layout (must be keys that are same on all layouts)
-  # F1=dvorak, F2=us
+  # hotkey + f1 for dvorak, hotkey + f2 for us
   - commands:
       [
         'exec powershell -Command "Set-WinUserLanguageList en-US -Force; Set-WinDefaultInputMethodOverride -InputTip ''0409:00010409''"',
