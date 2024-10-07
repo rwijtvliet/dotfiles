@@ -287,6 +287,11 @@ assign [class="dolphin"] $ws1
 exec firefox & 
 exec dolphin & 
 
+# Some apps must be floating
+for_window [class="pavucontrol"] floating enable, move position mouse, move down 30, move left 30, sticky enable
+for_window [class="blueman-manager"] floating enable, move position mouse, move down 30, move left 30, sticky enable
+
 # polybar; run every time i3 config is reloaded
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+
 

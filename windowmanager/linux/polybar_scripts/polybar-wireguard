@@ -18,7 +18,7 @@ disconnect() {
 }
 
 connected_interfaces() {
-    echo $(networkctl | grep wireguard | cut -d " " -f4)
+    networkctl | grep wireguard | cut -d " " -f4
 }
 
 toggle() {

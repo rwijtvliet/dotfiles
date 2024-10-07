@@ -3,6 +3,7 @@ launcher
 windowmanager
 encryption
 wireguard
+openvpn
 locale
 tweaks
 ubuntuextras
