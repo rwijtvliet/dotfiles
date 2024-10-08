@@ -25,10 +25,13 @@ case "$OS" in
             systemctl --user enable spotify-listener
         )
 
+        # correct network manager
         sudo systemctl disable NetworkManager
         sudo systemctl enable systemd-networkd
+        # control using function keys
         sudo apt install i3 playerctl brightnessctl
-        sudo snap install pulseaudio
+        sudo snap install pulseaudio pavucontrol
+        # status bar
         sudo apt install polybar rofi
         sudo usermod -aG video "$USER"
         todo "To enable natural scrolling and the possibility to 'tap' (instead of press), add the following lines to the correct section in /usr/share/X11/xorg.conf.d/40-libinput.conf (you need admin priviliges):"
