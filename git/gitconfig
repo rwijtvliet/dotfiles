@@ -34,3 +34,5 @@
 	# helper = keychain
 [init]
         defaultBranch = main
+[gui]
+	recentrepo = C:/Users/cgd55/python/PortfolioManagement

@@ -28,7 +28,6 @@ alias gl='echo "git pull" && git pull'
 alias at='alacritty-themes'
 alias myip='curl ipinfo.io/ip'
 alias bashconf='nvim ~/.bashrc'
-alias python=python3
 alias vim=nvim
 alias prnm='poetry run nvim main.py'
 

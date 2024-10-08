@@ -12,8 +12,6 @@ local function merge_tables(...)
   return merged
 end
 
-local config = {}
-merge_tables(config, require('wezterm_general'))
-merge_tables(config, require('wezterm_osspecific'))
-
-return config
+general_config = require('wezterm_general')
+specific_config = require('wezterm_osspecific')
+return merge_tables({}, general_config, specific_config)

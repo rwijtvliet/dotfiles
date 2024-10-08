@@ -223,11 +223,11 @@ link_or_copy () {
     fi
 
     if [ "$skip" != "true" ]; then  # "false" or empty
-        sudo mkdir -p "$(dirname "$dst")"
+        mkdir -p "$(dirname "$dst")"
         if [ "$what" == "link" ]; then
-            result=$(sudo ln -s "$src" "$dst")
+            result=$(ln -s "$src" "$dst")
         else
-            result=$(sudo cp -r "$src" "$dst")
+            result=$(cp -r "$src" "$dst")
         fi
         if [[ $result -eq 0 ]]; then
             success "created $what [$src] -> [$dst]"

@@ -10,14 +10,14 @@ window/bar:
   # Width of the window in physical pixels.
   width: '{{ self.args.MONITOR_WIDTH }}'
   # Height of the window in physical pixels.
-  height: '35'
+  height: '28'
   # X-position of the window in physical pixels.
   position_x: '{{ self.args.MONITOR_X }}'
   # Y-position of the window in physical pixels.
-  position_y: '{{ self.args.MONITOR_Y + self.args.MONITOR_HEIGHT - 35 }}'
+  position_y: '{{ self.args.MONITOR_Y + self.args.MONITOR_HEIGHT - 28 }}'
   # Whether to show the window above/below all others.
   # Allowed values: 'always_on_top', 'always_on_bottom', 'normal'.
-  z_order: 'always_on_top'
+  z_order: 'always_on_bottom'
   # Whether the window should be shown in the taskbar.
   shown_in_taskbar: false
   # Whether the window should have resize handles.
@@ -38,9 +38,10 @@ window/bar:
     color: rgb(255 255 255 / 90%);
     font-family: ui-monospace, monospace, NerdFontsSymbols Nerd Font;
     font-size: 12px;
-    padding: 2px 10px;
-    border-top: 1px solid rgb(255 255 255 / 5%);
-    background: #333;
+    padding: 2px 4px;
+    # border-top: 1px solid rgb(255 255 255 / 5%);
+    background: #444;
+    # background: none;
 
     i {
       color: rgb(115 130 175 / 95%);
@@ -58,15 +59,13 @@ window/bar:
         align-items: center;
 
         .workspace {
-          background: rgba(255, 255, 255, 0.0);
+          background: #444d;
           margin-right: 4px;
           width: 40px;
-          height: 30px;
-          color: #dddddd;
+          height: 20px;
+          color: #ddd;
           border: none;
-          border-radius: 2px;
         }
-
         .workspace.visible {
           background: rgba(255, 255, 55, 0.2);
         }
@@ -77,7 +76,7 @@ window/bar:
       providers: ['komorebi']
       template: |
         @for (workspace of komorebi.currentWorkspaces) {
-          <button class="workspace {{ workspace === komorebi.focusedWorkspace && 'focused' }} {{ workspace === komorebi.displayedWorkspace && 'visible' }}">
+          <button class="workspace {{ workspace === komorebi.displayedWorkspace && 'visible' || '' }} {{ workspace === komorebi.focusedWorkspace && 'focused' || '' }}">
             {{ {"1file": "1 ", "2www": "2 ", 
           "3office": "3 ", 
           "4term": "4 ", 
@@ -103,6 +102,7 @@ window/bar:
     styles: |
       justify-self: end;
       display: flex;
+      margin-right: 4px;
 
       .template {
         margin-left: 20px;
