@@ -11,13 +11,8 @@ case "$OS" in
 	# install nvim
 	info "Installing app"
 	sudo apt install ripgrep
-	sudo npm install -g neovim tree-sitter-cli
+        sudo npm install -g  neovim tree-sitter-cli
 	$( #run in subshell to not permanently change to that folder
-		mkdir -p "$HOME/.local/bin"
-		curl -Lo "$HOME/.local/bin/nvim" https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
-		chmod u+x "$HOME/.local/bin/nvim"
-	)
-	sudo $( #run in subshell to not permanently change to that folder
 		mkdir -p "$HOME/.local/bin"
 		curl -Lo "$HOME/.local/bin/nvim" https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
 		chmod u+x "$HOME/.local/bin/nvim"
