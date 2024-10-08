@@ -15,6 +15,7 @@ return {
   { -- Useful plugin to show you pending keybinds.
     'folke/which-key.nvim',
     event = 'VimEnter', -- Sets the loading event to 'VimEnter'
+    dependencies = { 'echasnovski/mini.icons' },
     config = function() -- This is the function that runs, AFTER loading
       require('which-key').setup {
         icons = {
@@ -29,54 +30,55 @@ return {
           winblend = 0,
         },
       }
-      require('which-key').register {
-        ['<leader>b'] = { name = '  Buffer (and tab)', _ = 'which_key_ignore' },
-        ['<leader>bc'] = { name = '  Close', _ = 'which_key_ignore' },
+      require('which-key').add {
+        { '<leader>b', group = '  Buffer (and tab)' },
+        { '<leader>bc', group = '  Close' },
 
-        ['<leader>d'] = { name = '  Debug', _ = 'which_key_ignore' },
+        { '<leader>d', group = '  Debug' },
 
-        ['<leader>f'] = { name = '  File', _ = 'which_key_ignore' },
+        { '<leader>f', group = 'File', icon = '' },
 
-        ['<leader>g'] = { name = ' 󰊢 Git', _ = 'which_key_ignore' },
-        ['<leader>ga'] = { name = '  Add (stage)', _ = 'which_key_ignore' },
-        ['<leader>gu'] = { name = '  Unstage', _ = 'which_key_ignore' },
-        ['<leader>gD'] = { name = '  Diff', _ = 'which_key_ignore' },
-        ['<leader>gt'] = { name = '  Toggle', _ = 'which_key_ignore' },
+        { '<leader>g', group = ' Git' },
+        { '<leader>ga', group = ' Add (stage)', icon = '' },
+        { '<leader>gu', group = ' Unstage', icon = '' },
+        { '<leader>gD', group = ' Diff', icon = '' },
+        { '<leader>gt', group = ' Toggle', icon = '' },
+        { '<leader>gr', group = ' Reset' },
 
-        ['<leader>l'] = { name = '  Lsp and code', _ = 'which_key_ignore' },
+        { '<leader>l', group = '  Lsp and code' },
 
-        ['<leader>m'] = { name = '  Terminal', _ = 'which_key_ignore' },
+        { '<leader>m', group = '  Terminal' },
 
-        ['<leader>M'] = { name = '  Markdown', _ = 'which_key_ignore' },
+        { '<leader>M', group = '  Markdown' },
 
-        ['<leader>P'] = { name = '  Plugins', _ = 'which_key_ignore' },
+        { '<leader>P', group = '  Plugins' },
 
-        ['<leader>J'] = { name = ' 󰜎 Run code (jukit)', _ = 'which_key_ignore' },
-        -- ['<leader>k'] = { name = ' 󰜎 Run code (jupynium)', _ = 'which_key_ignore' },
-        ['<leader>r'] = { name = ' 󰜎 Run code (iron)', _ = 'which_key_ignore' },
-        -- ['<leader>R'] = { name = ' 󰜎 Run code (molten)', _ = 'which_key_ignore' },
+        { '<leader>J', group = ' Run code (jukit)', icon = '󰜎' },
+        -- { '<leader>k',  group = ' Run code (jupynium)', icon = '󰜎' },
+        { '<leader>r', group = ' Run code (iron)', icon = '󰜎' },
+        -- { '<leader>R',  group = ' Run code (molten)', icon = '󰜎' },
 
-        ['<leader>s'] = { name = '  Search', _ = 'which_key_ignore' },
+        { '<leader>s', group = '  Search' },
 
-        ['<leader>S'] = { name = ' 󰖲 Restore session', _ = 'which_key_ignore' },
+        { '<leader>S', group = ' 󰖲 Restore session' },
 
-        ['<leader>t'] = { name = '  Test', _ = 'which_key_ignore' },
-        ['<leader>tf'] = { name = '  File', _ = 'which_key_ignore' },
-        ['<leader>tt'] = { name = '  Toggle', _ = 'which_key_ignore' },
+        { '<leader>t', group = '  Test' },
+        { '<leader>tf', group = '  File' },
+        { '<leader>tt', group = '  Toggle' },
 
-        ['<leader>u'] = { name = ' 󰉼 UI/UX', _ = 'which_key_ignore' },
+        { '<leader>u', group = ' 󰉼 UI/UX' },
 
-        ['<leader>w'] = { name = '  Window', _ = 'which_key_ignore' },
-        ['<leader>wm'] = { name = ' 󰆾 Move window (swap)', _ = 'which_key_ignore' },
+        { '<leader>w', group = '  Window' },
+        { '<leader>wm', group = ' 󰆾 Move window (swap)' },
 
-        ['<leader>q'] = { name = '  Quit / close', _ = 'which_key_ignore' },
+        { '<leader>q', group = '  Quit / close' },
 
-        ['<leader>x'] = { name = '  Diagnostics', _ = 'which_key_ignore' },
+        { '<leader>x', group = '  Diagnostics' },
       }
       -- visual mode
-      require('which-key').register({
-        ['<leader>g'] = { name = ' 󰊢 Git', _ = 'which_key_ignore' },
-        ['<leader>s'] = { name = ' 󰹑 Screenshot', _ = 'which_key_ignore' },
+      require('which-key').add({
+        { '<leader>g', group = ' 󰊢 Git' },
+        { '<leader>s', group = ' 󰹑 Screenshot' },
       }, { mode = 'v' })
     end,
   },
