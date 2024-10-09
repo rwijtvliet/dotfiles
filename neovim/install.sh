@@ -10,13 +10,13 @@ case "$OS" in
 
 	# install nvim
 	info "Installing app"
+	# . some utilities
 	sudo apt install ripgrep
-        sudo npm install -g  neovim tree-sitter-cli
-	$( #run in subshell to not permanently change to that folder
-		mkdir -p "$HOME/.local/bin"
-		curl -Lo "$HOME/.local/bin/nvim" https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
-		chmod u+x "$HOME/.local/bin/nvim"
-	)
+	sudo npm install -g  neovim tree-sitter-cli
+	# . app itself
+	mkdir -p "$HOME/.local/bin"
+	curl -Lo "$HOME/.local/bin/nvim" https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
+	chmod u+x "$HOME/.local/bin/nvim"
 	#link_public_resource "$HOME/.local/bin/nvim" "nvim.appimage"
 	# (alternative: install from apt, but often outdated)
 	# sudo apt install neovim
@@ -47,6 +47,11 @@ case "$OS" in
 	# virtual environment specifically for neovim plugins, in this folder
 	info "Creating python environment for neovim"
 	poetry install
+	# on windows, there is no bin folder, but rather a scripts folder
+	(
+		cd "$USERPROFILE/.dotfiles/neovim/.venv/"
+		ln -s Scripts bin
+	)
 
 	# add user config
 	info "Adding user configs"
