@@ -41,7 +41,8 @@ skip () {
 
 try () {
     result=$($1)
-    if $result ; then
+    status=$?
+    if [ $status -eq 0 ]; then
         success "$1"
     else
         fail "$1 - output:"
@@ -218,7 +219,7 @@ link_or_copy () {
         fi
 
         if [ "$skip" == "true" ]; then
-            success "skipped [$what]ing [$src] -> [$dst] $skipwhy"
+            success "skipped ${what}ing [$src] -> [$dst] $skipwhy"
         fi
     fi
 

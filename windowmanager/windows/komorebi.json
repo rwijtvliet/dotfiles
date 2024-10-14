@@ -62,13 +62,7 @@
         },
         {
           "name": "4term",
-          "layout": "BSP",
-          "initial_workspace_rules": [
-            {
-              "kind": "exe",
-              "id": "wezterm-gui.exe"
-            }
-          ]
+          "layout": "BSP"
         },
         {
           "name": "5code",
@@ -106,8 +100,9 @@
         },
         {
           "name": "9media",
-          "layout": "BSP"
-        },
+          "layout": "BSP",
+          "initial_workspace_rules": [{ "kind": "exe", "id": "ONENOTE.EXE" }]
+        }
       ]
     }
   ]

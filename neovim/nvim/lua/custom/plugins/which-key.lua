@@ -31,10 +31,10 @@ return {
         },
       }
       require('which-key').add {
-        { '<leader>b', group = '  Buffer (and tab)' },
-        { '<leader>bc', group = '  Close' },
+        { '<leader>b', group = ' Buffer (and tab)' , icon = ''},
+        { '<leader>bc', group = ' Close', icon = '' },
 
-        { '<leader>d', group = '  Debug' },
+        { '<leader>d', group = ' Debug', icon = '' },
 
         { '<leader>f', group = 'File', icon = '' },
 
@@ -45,13 +45,13 @@ return {
         { '<leader>gt', group = ' Toggle', icon = '' },
         { '<leader>gr', group = ' Reset' },
 
-        { '<leader>l', group = '  Lsp and code' },
+        { '<leader>l', group = ' Lsp and code', icon = '' },
 
-        { '<leader>m', group = '  Terminal' },
+        { '<leader>m', group = ' Terminal', icon = '' },
 
-        { '<leader>M', group = '  Markdown' },
+        { '<leader>M', group = ' Markdown', icon = '' },
 
-        { '<leader>P', group = '  Plugins' },
+        { '<leader>P', group = ' Plugins', icon = '' },
 
         { '<leader>J', group = ' Run code (jukit)', icon = '󰜎' },
         -- { '<leader>k',  group = ' Run code (jupynium)', icon = '󰜎' },
@@ -62,14 +62,14 @@ return {
 
         { '<leader>S', group = ' 󰖲 Restore session' },
 
-        { '<leader>t', group = '  Test' },
-        { '<leader>tf', group = '  File' },
-        { '<leader>tt', group = '  Toggle' },
+        { '<leader>t', group = ' Test', icon = '' },
+        { '<leader>tf', group = ' File', icon = '' },
+        { '<leader>tt', group = ' Toggle', icon = '' },
 
-        { '<leader>u', group = ' 󰉼 UI/UX' },
+        { '<leader>u', group = ' UI/UX' },
 
-        { '<leader>w', group = '  Window' },
-        { '<leader>wm', group = ' 󰆾 Move window (swap)' },
+        { '<leader>w', group = ' Window' },
+        { '<leader>wm', group = ' Move window (swap)', icon = '󰆾' },
 
         { '<leader>q', group = '  Quit / close' },
 
@@ -77,8 +77,8 @@ return {
       }
       -- visual mode
       require('which-key').add({
-        { '<leader>g', group = ' 󰊢 Git' },
-        { '<leader>s', group = ' 󰹑 Screenshot' },
+        { '<leader>g', group = ' Git' },
+        { '<leader>s', group = ' Screenshot', icon = '󰹑' },
       }, { mode = 'v' })
     end,
   },

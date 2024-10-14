@@ -55,9 +55,12 @@ case "$OS" in
         ;;
 
     "windows" )
+        winget install LGUG2Z.komorebi
+	winget install AutoHotKey.AutoHotKey
+        todo "Manually install zebar from github"
         link_public_resource "./windows/komorebi.json" "$USERPROFILE/komorebi.json"
+        mkdir -p "$HOME/.glzr/zebar"
         link_public_resource "./windows/zebar/config.yaml" "$USERPROFILE/.glzr/zebar/config.yaml"
-        winget install LGUG2Z.komorebi AutoHotKey.AutoHotKey
         todo "ensure komorebi, autohotkey script, and zebar/start.bat are ran on startup (windows+r: 'shell:startup')"
         ;;
 
