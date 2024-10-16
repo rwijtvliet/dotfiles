@@ -149,7 +149,7 @@ Komorebic(cmd) {
 ; # screenshot
 ; # . to clipboard
 ; # hotkey + y
-#!y::Run "snippingtool"
+#!y::Send '#+s'
 ; # . to editor
 ; # TODO:
 ;

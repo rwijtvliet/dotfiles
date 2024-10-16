@@ -281,8 +281,8 @@ return {
       end
       vim.g.jupyter_mapkeys = 0 -- don't use defaults
 
-      require('which-key').add { '<leader>j', group = ' Run code (jupyter-nvim)', icon = '󰜎' }
-      require('which-key').add { '<leader>ja', group = ' Prepare console', icon = '󱘖' }
+      require('which-key').add { '<leader>j', group = 'Run code (jupyter-nvim)', icon = '󰜎' }
+      require('which-key').add { '<leader>ja', group = 'Prepare console', icon = '󱘖' }
       vim.keymap.set('n', '<leader>jac', '<Cmd>JupyterConnect<Cr>', { desc = 'Connect to existing' })
       vim.keymap.set('n', '<leader>jad', '<Cmd>JupyterDisconnect<Cr>', { desc = 'Disconnect' })
       vim.keymap.set('n', '<leader>jaa', function()

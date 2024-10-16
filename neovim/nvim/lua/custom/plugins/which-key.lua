@@ -31,55 +31,55 @@ return {
         },
       }
       require('which-key').add {
-        { '<leader>b', group = ' Buffer (and tab)' , icon = ''},
-        { '<leader>bc', group = ' Close', icon = '' },
+        { '<leader>b', group = 'Buffer (and tab)' , icon = ''},
+        { '<leader>bc', group = 'Close', icon = '' },
 
-        { '<leader>d', group = ' Debug', icon = '' },
+        { '<leader>d', group = 'Debug', icon = '' },
 
         { '<leader>f', group = 'File', icon = '' },
 
-        { '<leader>g', group = ' Git' },
-        { '<leader>ga', group = ' Add (stage)', icon = '' },
-        { '<leader>gu', group = ' Unstage', icon = '' },
-        { '<leader>gD', group = ' Diff', icon = '' },
-        { '<leader>gt', group = ' Toggle', icon = '' },
-        { '<leader>gr', group = ' Reset' },
+        { '<leader>g', group = 'Git' },
+        { '<leader>ga', group = 'Add (stage)', icon = '' },
+        { '<leader>gu', group = 'Unstage', icon = '' },
+        { '<leader>gD', group = 'Diff', icon = '' },
+        { '<leader>gt', group = 'Toggle', icon = '' },
+        { '<leader>gr', group = 'Reset' },
 
-        { '<leader>l', group = ' Lsp and code', icon = '' },
+        { '<leader>l', group = 'Lsp and code', icon = '' },
 
-        { '<leader>m', group = ' Terminal', icon = '' },
+        { '<leader>m', group = 'Terminal', icon = '' },
 
-        { '<leader>M', group = ' Markdown', icon = '' },
+        { '<leader>M', group = 'Markdown', icon = '' },
 
-        { '<leader>P', group = ' Plugins', icon = '' },
+        { '<leader>P', group = 'Plugins', icon = '' },
 
-        { '<leader>J', group = ' Run code (jukit)', icon = '󰜎' },
+        { '<leader>J', group = 'Run code (jukit)', icon = '󰜎' },
         -- { '<leader>k',  group = ' Run code (jupynium)', icon = '󰜎' },
-        { '<leader>r', group = ' Run code (iron)', icon = '󰜎' },
+        { '<leader>r', group = 'Run code (iron)', icon = '󰜎' },
         -- { '<leader>R',  group = ' Run code (molten)', icon = '󰜎' },
 
-        { '<leader>s', group = '  Search' },
+        { '<leader>s', group = 'Search' },
 
-        { '<leader>S', group = ' 󰖲 Restore session' },
+        { '<leader>S', group = 'Restore session' , icon = '󰖲'},
 
-        { '<leader>t', group = ' Test', icon = '' },
-        { '<leader>tf', group = ' File', icon = '' },
-        { '<leader>tt', group = ' Toggle', icon = '' },
+        { '<leader>t', group = 'Test', icon = '' },
+        { '<leader>tf', group = 'File', icon = '' },
+        { '<leader>tt', group = 'Toggle', icon = '' },
 
-        { '<leader>u', group = ' UI/UX' },
+        { '<leader>u', group = 'UI/UX' },
 
-        { '<leader>w', group = ' Window' },
-        { '<leader>wm', group = ' Move window (swap)', icon = '󰆾' },
+        { '<leader>w', group = 'Window' },
+        { '<leader>wm', group = 'Move window (swap)', icon = '󰆾' },
 
-        { '<leader>q', group = '  Quit / close' },
+        { '<leader>q', group = 'Quit / close' },
 
-        { '<leader>x', group = '  Diagnostics' },
+        { '<leader>x', group = 'Diagnostics' },
+	
+        -- visual mode
+	
+        { '<leader>g', group = 'Git', mode = 'v' },
+        { '<leader>s', group = 'Screenshot', icon = '󰹑', mode='v' },
       }
-      -- visual mode
-      require('which-key').add({
-        { '<leader>g', group = ' Git' },
-        { '<leader>s', group = ' Screenshot', icon = '󰹑' },
-      }, { mode = 'v' })
     end,
   },
 }
