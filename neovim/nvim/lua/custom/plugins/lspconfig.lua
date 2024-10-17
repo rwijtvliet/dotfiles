@@ -187,7 +187,7 @@ return {
         --python
         'pyright',
         'debugpy',
-        'flake8',
+        'ruff',
         'black',
         --c
         'clangd',

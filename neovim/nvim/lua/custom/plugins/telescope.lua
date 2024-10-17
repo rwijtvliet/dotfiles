@@ -157,10 +157,10 @@ return {
       vim.keymap.set('n', '<leader>sb', builtin.builtin, { desc = 'Select telescope builtin' })
       vim.keymap.set('n', '<leader>sc', builtin.commands, { desc = 'Commands' })
       vim.keymap.set('n', '<leader>sd', function()
-        builtin.find_files { cwd = '~/.dotfiles/' }
+        builtin.find_files { cwd = vim.fn.expand '~/.dotfiles/' }
       end, { desc = 'Personal dotfiles' })
       vim.keymap.set('n', '<leader>sD', function()
-        builtin.live_grep { prompt_title = 'Live grep in dotfiles', cwd = '~/.dotfiles/' }
+        builtin.live_grep { prompt_title = 'Live grep in dotfiles', cwd = vim.fn.expand '~/.dotfiles/' }
       end, { desc = 'Personal dotfiles (grep)' })
       vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = 'Help' })
       vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = 'Keymaps' })

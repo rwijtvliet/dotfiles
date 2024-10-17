@@ -58,7 +58,7 @@ return {
     },
     opts = {
       mac_window_bar = false,
-      save_path = '~/Pictures',
+      save_path = vim.fn.expand '~/Pictures',
       has_breadcrumbs = true,
       bg_theme = 'sea',
       watermark = '',
