@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+set -exuo pipefail
+
+echo "Create venv and install all dependencies into it, using pip, because your company has its own package index (pypi-mirror) and poetry does not repect the settings set in pip.conf. (https://github.com/python-poetry/poetry/issues/5958)"
+
+# create
+python -m venv ./.venv/
+
+# activate
+# TODO: check if windows (= .venv/Scripts/activate) or unix (= .venv/bin/activate)
+if [ -d "./.venv/Scripts/" ]; then
+    # we are on windows
+    source ./.venv/Scripts/activate
+elif [ -d "./.venv/bin/" ]; then
+    # we are on unix
+    source ./.venv/bin/activate
+else
+    echo "Cannot find .venv/Scripts and cannot find .venv/bin/, so it seems we are not on either"
+    exit 1
+fi
+
+# install
+# NB: $@ keeps all command line arguments
+poetry export -f requirements.txt --without-hashes --without-urls $@ > requirements_temp.txt 
+pip install -r requirements_temp.txt
+rm ./requirements_temp.txt
+
+

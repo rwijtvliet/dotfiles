@@ -6,3 +6,5 @@ alias bv='cd ~/Ruud/python/belvys/ && poetry shell'
 
 # ensure symlinks can be created.
 export MSYS=winsymlinks:nativestrict 
+
+export PATH="$PATH:$HOME/.dotfiles/shell/my_scripts/"

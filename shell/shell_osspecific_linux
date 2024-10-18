@@ -14,4 +14,7 @@ alias shortcuts='echo "opening excel file with windowmanager shortcuts" && open 
 # opening apps
 alias wezterm='flatpak run org.wezfurlong.wezterm'
 
-export SUDO_EDITOR='/home/ruud/.local/bin/nvim'
+export SUDO_EDITOR='$HOME/.local/bin/nvim'
+
+# finding my scripts in path
+export PATH="$PATH:$HOME/.dotfiles/shell/my_scripts/"

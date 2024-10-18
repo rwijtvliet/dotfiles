@@ -80,13 +80,7 @@
         },
         {
           "name": "7chat",
-          "layout": "BSP",
-          "initial_workspace_rules": [
-            {
-              "kind": "exe",
-              "id": "ms-teams.exe"
-            }
-          ]
+          "layout": "BSP"
         },
         {
           "name": "8email",
