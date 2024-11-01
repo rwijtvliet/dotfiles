@@ -166,17 +166,17 @@ bindsym $mod+w kill
 ########
 
 # width
-bindsym $mod+bracketleft resize shrink width 10 px or 10 ppt
-bindsym $mod+bracketright resize grow width 10 px or 10 ppt
-bindsym $mod+Left resize shrink width 10 px or 10 ppt
-bindsym $mod+Right resize grow width 10 px or 10 ppt
+bindsym $mod+bracketleft resize shrink width 5 px or 5 ppt
+bindsym $mod+bracketright resize grow width 5 px or 5 ppt
+bindsym $mod+Left resize shrink width 5 px or 5 ppt
+bindsym $mod+Right resize grow width 5 px or 5 ppt
 # height
-bindsym $mod+Shift+bracketleft resize shrink height 10 px or 10 ppt
-bindsym $mod+Shift+bracketright resize grow height 10 px or 10 ppt
-bindsym $mod+braceleft resize shrink height 10 px or 10 ppt
-bindsym $mod+braceright resize grow height 10 px or 10 ppt
-bindsym $mod+Up resize shrink width 10 px or 10 ppt
-bindsym $mod+Down resize grow width 10 px or 10 ppt
+bindsym $mod+Shift+bracketleft resize shrink height 5 px or 5 ppt
+bindsym $mod+Shift+bracketright resize grow height 5 px or 5 ppt
+bindsym $mod+braceleft resize shrink height 5 px or 5 ppt
+bindsym $mod+braceright resize grow height 5 px or 5 ppt
+bindsym $mod+Up resize shrink width 5 px or 5 ppt
+bindsym $mod+Down resize grow width 5 px or 5 ppt
 # balance
 # TODO: (impossible on i3 without scripting)
 
