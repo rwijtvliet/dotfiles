@@ -127,7 +127,7 @@ return {
 
       -- Section 2: Search for a file / in all files
       vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Find files' })
-      vim.keymap.set('n', '<leader>fg', function()
+      vim.keymap.set('n', '<leader>fF', function()
         builtin.live_grep { prompt_title = 'Live grep in files' }
       end, { desc = 'Find files (grep)' })
       vim.keymap.set('n', '<leader>fo', builtin.oldfiles, { desc = 'Find old (recent) file' })

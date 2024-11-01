@@ -6,15 +6,15 @@ return {
                                    ▁      
    ▁▁▁▁▁▁▁▁▁▁                  ▁▁ / ▌     
    \▁▁▁▁▁▁   \▁▁ ▁▁ ▁▁ ▁▁  ▁▁▁┃ ▁▌\▞▁▁▁▁▁ 
-    ┃       ▁▞  ▌  \  ▌  \/  ▂▂  ▌/  ▂▂▂▞ 
-    ┃    ▌   \  ▌  ▞  ▌  ▞  ▞▁/  ▌\▁▁▁  \ 
-    ┃▂▂▂▂▌▂  ▞▂▂▂▂▞\▂▂▂▂▞\▂▂▂▂  ▞▂▂▂▂▂  ▞ 
+    │       ▁▞  ▌  \  ▌  \/  ▂▂  ▌/  ▂▂▂▞ 
+    │    ▌   \  ▌  ▞  ▌  ▞  ▞▁/  ▌\▁▁▁  \ 
+    │▂▂▂▂▌▂  ▞▂▂▂▂▞\▂▂▂▂▞\▂▂▂▂  ▞▂▂▂▂▂  ▞ 
            \▞                 \▞      \▞  
                               ▁▁          
    ▁▁▁▁▁   ▁▁▁▁  ▁▁▁▁▁▁▁▁  ▁▁┃▁▁▌ ▁▁▁▁▁▁  
   /     \▁/ ▂▂ \/  ▂▂ \  \/  ▖  ▌/ ▁  ▁ \ 
-  ┃   ▌  \  ▁▁▁▞  ▞▁/  ▌    ▞┃  ▌  ▌  ▌  \
-  ┃▂▂▂▌  ▞\▂▂▂  ▌▂▂▂▂▂▞ \▂▂▞ ┃▂▂▌▂▂▌▂▂▌  ▞
+  │   ▌  \  ▁▁▁▞  ▞▁/  ▌    ▞┃  ▌  ▌  ▌  \
+  │▂▂▂▌  ▞\▂▂▂  ▌▂▂▂▂▂▞ \▂▂▞ ┃▂▂▌▂▂▌▂▂▌  ▞
        \▞     \▞                       \▞ 
   ]]
     logo = string.rep('\n', 8) .. logo .. '\n\n'
@@ -27,7 +27,7 @@ return {
       --stylua: ignore start
       { desc = "New file",             icon = "", key = "SPC f n", action = false },
       { desc = "Find file",            icon = "", key = "SPC f f", action = false },
-      { desc = "Find file (grep)",     icon = "", key = "SPC f g", action = false },
+      { desc = "Find file (grep)",     icon = "", key = "SPC f F", action = false },
       { desc = "Recent files",         icon = "", key = "SPC f o", action = false },
       { desc = "Restore last session", icon = "", key = "SPC S l", action = false },
       { desc = "Personal dotfiles",    icon = "", key = "SPC s d", action = false },

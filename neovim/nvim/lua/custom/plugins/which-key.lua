@@ -31,7 +31,7 @@ return {
         },
       }
       require('which-key').add {
-        { '<leader>b', group = 'Buffer (and tab)' , icon = ''},
+        { '<leader>b', group = 'Buffer (and tab)', icon = '' },
         { '<leader>bc', group = 'Close', icon = '' },
 
         { '<leader>d', group = 'Debug', icon = '' },
@@ -60,10 +60,13 @@ return {
 
         { '<leader>s', group = 'Search' },
 
-        { '<leader>S', group = 'Restore session' , icon = '󰖲'},
+        { '<leader>S', group = 'Restore session', icon = '󰖲' },
 
         { '<leader>t', group = 'Test', icon = '' },
-        { '<leader>tf', group = 'File', icon = '' },
+        { '<leader>ta', group = 'Attach', icon = '󰁦' },
+        { '<leader>td', group = 'Debug' },
+        { '<leader>tr', group = 'Run', icon = '󰜎' },
+        { '<leader>ts', group = 'Stop', icon = '' },
         { '<leader>tt', group = 'Toggle', icon = '' },
 
         { '<leader>u', group = 'UI/UX' },
@@ -74,11 +77,11 @@ return {
         { '<leader>q', group = 'Quit / close' },
 
         { '<leader>x', group = 'Diagnostics' },
-	
+
         -- visual mode
-	
+
         { '<leader>g', group = 'Git', mode = 'v' },
-        { '<leader>s', group = 'Screenshot', icon = '󰹑', mode='v' },
+        { '<leader>s', group = 'Screenshot', icon = '󰹑', mode = 'v' },
       }
     end,
   },

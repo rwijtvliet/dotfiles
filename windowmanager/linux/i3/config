@@ -294,4 +294,6 @@ for_window [class="blueman-manager"] floating enable, move position mouse, move 
 # polybar; run every time i3 config is reloaded
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
+# start with dvorak on startup.
+exec setxkbmap dvorak
 
