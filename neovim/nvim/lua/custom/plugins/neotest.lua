@@ -66,21 +66,21 @@ return {
   -- stylua: ignore end
   keys = {
     -- stylua: ignore start
-    { '<leader>tan', function() require('neotest').run.attach() end,                                     desc = 'Neotest: attach to nearest' },
-    { '<leader>tdn', function() require('neotest').run.run { strategy = 'dap' } end,                     desc = 'Neotest: debug nearest' },
-    { '<leader>trn', function() require('neotest').run.run() end,                                        desc = 'Neotest: run nearest' },
-    { '<leader>tsn', function() require('neotest').run.stop() end,                                       desc = 'Neotest: stop nearest' },
+    { '<leader>tan', function() require('neotest').run.attach() end,                                    desc = 'Neotest: attach to nearest' },
+    { '<leader>tdn', function() require('neotest').run.run { strategy = 'dap' } end,                    desc = 'Neotest: debug nearest' },
+    { '<leader>trn', function() require('neotest').run.run() end,                                       desc = 'Neotest: run nearest' },
+    { '<leader>tsn', function() require('neotest').run.stop() end,                                      desc = 'Neotest: stop nearest' },
 
     { '<leader>taf', function() require('neotest').run.attach { vim.fn.expand '%' } end,                desc = 'Neotest: attach to file' },
     { '<leader>tdf', function() require('neotest').run.run { vim.fn.expand '%', strategy = 'dap' } end, desc = 'Neotest: debug file' },
     { '<leader>trf', function() require('neotest').run.run { vim.fn.expand '%' } end,                   desc = 'Neotest: run file' },
     { '<leader>tsf', function() require('neotest').run.stop { vim.fn.expand '%' } end,                  desc = 'Neotest: stop file' },
 
-    { '<leader>trl', function() require('neotest').run.run_last() end,                                   desc = 'Neotest: run last' },
-    { '<leader>tdl', function() require('neotest').run.run_last { strategy = 'dap' } end,                desc = 'Neotest: debug last' },
+    { '<leader>trl', function() require('neotest').run.run_last() end,                                  desc = 'Neotest: run last' },
+    { '<leader>tdl', function() require('neotest').run.run_last { strategy = 'dap' } end,               desc = 'Neotest: debug last' },
     -- toggle
-    { '<leader>tto', function() require('neotest').output_panel.toggle() end,                           desc = 'Neotest: toggle output panel' },
-    { '<leader>ttu', function() require('neotest').summary.toggle() end,                                desc = 'Neotest: toggle summary' },
+    { '<leader>to', function() require('neotest').output_panel.toggle() end,                            desc = 'Neotest: toggle output panel' },
+    { '<leader>tu', function() require('neotest').summary.toggle() end,                                 desc = 'Neotest: toggle summary' },
     -- next/prev
     { '[f', function() require('neotest').jump.prev { status = 'failed' } end,                          desc = 'Prev failed test' },
     { ']f', function() require('neotest').jump.next { status = 'failed' } end,                          desc = 'Next failed test' },

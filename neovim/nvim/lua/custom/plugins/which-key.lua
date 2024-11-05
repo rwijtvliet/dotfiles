@@ -67,7 +67,6 @@ return {
         { '<leader>td', group = 'Debug' },
         { '<leader>tr', group = 'Run', icon = '󰜎' },
         { '<leader>ts', group = 'Stop', icon = '' },
-        { '<leader>tt', group = 'Toggle', icon = '' },
 
         { '<leader>u', group = 'UI/UX' },
 

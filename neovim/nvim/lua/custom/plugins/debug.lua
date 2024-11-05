@@ -79,6 +79,14 @@ return {
           disconnect = '',
         },
       },
+      mappings = {
+        toggle = 'k',
+        open = '<cr>',
+        remove = 'd',
+        edit = 'c',
+        repl = 'r',
+        expand = '<o>',
+      },
     }
 
     dap.listeners.after.event_initialized['dapui_config'] = dapui.open
