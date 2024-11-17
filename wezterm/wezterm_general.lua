@@ -21,7 +21,7 @@ return {
 
 	-- vim motions
 	keys = {
-		{ key = "Escape", mods = "CTRL", action = wezterm.action.ActivateCopyMode },
+		{ key = "Escape", mods = "CTRL|SHIFT", action = wezterm.action.ActivateCopyMode },
 	},
 	key_tables = {
 		copy_mode = {
