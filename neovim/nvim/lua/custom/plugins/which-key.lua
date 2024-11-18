@@ -30,15 +30,23 @@ return {
           winblend = 0,
         },
       }
+
+      -- highlight group aliases
+      local hlbufwind = 'markdownH1' -- buffers and windows
+      local hlsource = 'markdownH2' -- source control
+      local hlquality = 'markdownH3' -- testing and debugging
+      local hlrun = 'markdownH4' -- running code
+      local hlnvim = 'markdownH5' -- neovim config: packages, UI, etc.
+
       require('which-key').add {
-        { '<leader>b', group = 'Buffer (and tab)' , icon = ''},
+        { '<leader>b', group = 'Buffer (and tab)', icon = { icon = '', hl = hlbufwind } },
         { '<leader>bc', group = 'Close', icon = '' },
 
-        { '<leader>d', group = 'Debug', icon = '' },
+        { '<leader>d', group = 'Debug', icon = { icon = '', hl = hlquality } },
 
-        { '<leader>f', group = 'File', icon = '' },
+        { '<leader>f', group = 'File', icon = { icon = '', hl = hlbufwind } },
 
-        { '<leader>g', group = 'Git' },
+        { '<leader>g', group = 'Git', icon = { hl = hlsource } },
         { '<leader>ga', group = 'Add (stage)', icon = '' },
         { '<leader>gu', group = 'Unstage', icon = '' },
         { '<leader>gD', group = 'Diff', icon = '' },
@@ -47,38 +55,40 @@ return {
 
         { '<leader>l', group = 'Lsp and code', icon = '' },
 
-        { '<leader>m', group = 'Terminal', icon = '' },
+        { '<leader>m', group = 'Terminal', icon = { icon = '', hl = hlrun } },
 
         { '<leader>M', group = 'Markdown', icon = '' },
 
-        { '<leader>P', group = 'Plugins', icon = '' },
+        { '<leader>P', group = 'Plugins', icon = { icon = '', hl = hlnvim } },
 
-        { '<leader>J', group = 'Run code (jukit)', icon = '󰜎' },
+        { '<leader>J', group = 'Run code (jukit)', icon = { icon = '󰜎', hl = hlrun } },
         -- { '<leader>k',  group = ' Run code (jupynium)', icon = '󰜎' },
-        { '<leader>r', group = 'Run code (iron)', icon = '󰜎' },
+        { '<leader>r', group = 'Run code (iron)', icon = { icon = '󰜎', hl = hlrun } },
         -- { '<leader>R',  group = ' Run code (molten)', icon = '󰜎' },
 
         { '<leader>s', group = 'Search' },
 
-        { '<leader>S', group = 'Restore session' , icon = '󰖲'},
+        { '<leader>S', group = 'Restore session', icon = { icon = '󰖲', hl = hlbufwind } },
 
-        { '<leader>t', group = 'Test', icon = '' },
-        { '<leader>tf', group = 'File', icon = '' },
-        { '<leader>tt', group = 'Toggle', icon = '' },
+        { '<leader>t', group = 'Test', icon = { icon = '', hl = hlquality } },
+        { '<leader>ta', group = 'Attach', icon = '󰁦' },
+        { '<leader>td', group = 'Debug' },
+        { '<leader>tr', group = 'Run', icon = '󰜎' },
+        { '<leader>ts', group = 'Stop', icon = '' },
 
-        { '<leader>u', group = 'UI/UX' },
+        { '<leader>u', group = 'UI/UX', icon = { icon = '󰙵', hl = hlnvim } },
 
-        { '<leader>w', group = 'Window' },
+        { '<leader>w', group = 'Window', icon = { hl = hlbufwind } },
         { '<leader>wm', group = 'Move window (swap)', icon = '󰆾' },
 
-        { '<leader>q', group = 'Quit / close' },
+        { '<leader>q', group = 'Quit / close', icon = { hl = hlbufwind } },
 
-        { '<leader>x', group = 'Diagnostics' },
-	
+        { '<leader>x', group = 'Diagnostics', icon = { hl = hlquality } },
+
         -- visual mode
-	
-        { '<leader>g', group = 'Git', mode = 'v' },
-        { '<leader>s', group = 'Screenshot', icon = '󰹑', mode='v' },
+
+        { '<leader>g', mode = 'v', group = 'Git', icon = { hl = hlquality } },
+        { '<leader>s', mode = 'v', group = 'Screenshot', icon = { icon = '󰹑', hl = hlquality } },
       }
     end,
   },

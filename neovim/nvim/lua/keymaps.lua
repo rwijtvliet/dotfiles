@@ -105,7 +105,7 @@
 -- *  [f file]
 -- *     n new file
 -- *     f find file by filename
--- *     g grep in files
+-- *     F grep in files
 -- *     o old (recent) files
 -- *     w find word in files
 -- *     y filepath

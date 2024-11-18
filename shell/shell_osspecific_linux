@@ -18,3 +18,8 @@ export SUDO_EDITOR='$HOME/.local/bin/nvim'
 
 # finding my scripts in path
 export PATH="$PATH:$HOME/.dotfiles/shell/my_scripts/"
+
+# wallpaper
+alias w='variety -n'
+alias wp='variety -p'
+
