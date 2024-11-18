@@ -2,12 +2,15 @@
 
 source ../shared.sh
 
-info "Linking git config"
-link_public_resource "./gitconfig" "$HOME/.gitconfig"
-link_secret_resource "gitconfig_secrets" "$HOME/.gitconfig_secrets"
-
 case "$OS" in
   "linux" )
+    # git itself
+    info "Linking git config"
+    link_public_resource "./gitconfig" "$HOME/.gitconfig"
+    link_public_resource "./gitconfig_osspecific_linux" "$HOME/.gitconfig_osspecific"
+    link_secret_resource "gitconfig_secrets" "$HOME/.gitconfig_secrets"
+
+    # lazygit
     info "Installing lazygit (also needed for neovim)"
     ( # subshell because we change folder
         LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
@@ -22,6 +25,13 @@ case "$OS" in
     ;;
 
   "windows" )
+    # git itself
+    info "Linking git config"
+    link_public_resource "./gitconfig" "$HOME/.gitconfig"
+    link_public_resource "./gitconfig_osspecific_windows" "$HOME/.gitconfig_osspecific"
+    link_secret_resource "gitconfig_secrets" "$HOME/.gitconfig_secrets"
+
+    # lazygit
     info "Installing lazygit (also needed for neovim)"
     choco install lazygit
     info "Linking lazygit config"
@@ -29,6 +39,13 @@ case "$OS" in
     ;;
 
   "macos" )
+    # git itself
+    info "Linking git config"
+    link_public_resource "./gitconfig" "$HOME/.gitconfig"
+    link_public_resource "./gitconfig_osspecific_macos" "$HOME/.gitconfig_osspecific"
+    link_secret_resource "gitconfig_secrets" "$HOME/.gitconfig_secrets"
+
+    # lazygit
     info "Installing lazygit (also needed for neovim)"
     brew install lazygit
     info "Linking lazygit config"
