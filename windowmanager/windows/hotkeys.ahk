@@ -123,14 +123,13 @@ Komorebic(cmd) {
   MsgBox("Restarting komorebi")
   Komorebic("stop")
   Komorebic("start")
-  Komorebic("retile")
   Reload
 }
 ; # exit
 ; # hotkey + f4
 #!F4::{
-  MsgBox("Stopping komorebi") 
   Komorebic("stop")
+  MsgBox("Komorebi stopped") 
 }
 ;
 ; ########
