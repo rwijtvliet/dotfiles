@@ -36,7 +36,11 @@ In the root, there is a `shared.sh` file, which contains some functionality used
 
 The repository must live in the `.dotfiles/` folder, directly under the user's home folder. 
 
-The best way to get the files there is by cloning the repository, so that any changes can be commited and push back to github. Cloning can be done using `git`, if it's already installed on the system, using `git clone https://github.com/rwijtvliet/dotfiles.git ~/.dotfiles`. 
+The best way to get the files there is by cloning the repository, so that any changes can be commited and push back to github. Cloning can be done using `git`, if it's already installed on the system, using 
+
+```bash
+git clone https://github.com/rwijtvliet/dotfiles.git ~/.dotfiles
+``` 
 
 Alternatively, if `git` is not yet installed, the repository can be manually downloaded and copied to the `.dotfiles/` folder, and the clone command can be ran after `git` has been installed (git installation is done by this repository).
 
@@ -52,7 +56,11 @@ In the root, there is an `install` script, which is the only file you need to ru
 
 The script takes one or more app (=folder) names as arguments, and also allows for the usage of text files; see `./install -h` for help.
 
-NB: the individual app's `install.sh` files are not meant to be called directly. To install the `app_folder1`, we don't run `./app_folder1/install.sh`, but rather `./install app_folder1`.
+NB: the individual app's `install.sh` files are not meant to be called directly. To install the `app_folder1`, we don't run `./app_folder1/install.sh`, but rather 
+
+```bash
+./install app_folder1
+```
 
 ### Secrets
 
@@ -79,7 +87,11 @@ Of course, instead of copying the resource into this folder, the user can also c
 
 When adding an application, copy the `.template` folder, an example install file can be found inside.
 
-Also add the foldername to `part1` or `part2` or (...), so that it is installed when running `./install.sh -r part1`.
+Also add the foldername to `part1` or `part2` or (...), so that it is installed when running 
+
+```bash
+./install -r part1
+```
 
 ## Details / conventions
 
