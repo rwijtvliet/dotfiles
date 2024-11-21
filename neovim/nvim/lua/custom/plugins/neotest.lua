@@ -78,8 +78,10 @@ return {
 
     { '<leader>trl', function() require('neotest').run.run_last() end,                                  desc = 'Neotest: run last' },
     { '<leader>tdl', function() require('neotest').run.run_last { strategy = 'dap' } end,               desc = 'Neotest: debug last' },
-    -- toggle
-    { '<leader>to', function() require('neotest').output_panel.toggle() end,                            desc = 'Neotest: toggle output panel' },
+    -- Output
+    { '<leader>tot', function() require('neotest').output_panel.toggle() end,                            desc = 'Neotest: toggle output panel' },
+    { '<leader>toc', function() require('neotest').output_panel.clear() end,                            desc = 'Neotest: clear output panel' },
+    -- Summary
     { '<leader>tu', function() require('neotest').summary.toggle() end,                                 desc = 'Neotest: toggle summary' },
     -- next/prev
     { '[f', function() require('neotest').jump.prev { status = 'failed' } end,                          desc = 'Prev failed test' },

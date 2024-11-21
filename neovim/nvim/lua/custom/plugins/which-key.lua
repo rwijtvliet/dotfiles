@@ -32,11 +32,12 @@ return {
       }
 
       -- highlight group aliases
-      local hlbufwind = 'markdownH1' -- buffers and windows
+      local hlbufwind = 'WhichKeyIconYellow' -- buffers and windows
       local hlsource = 'markdownH2' -- source control
       local hlquality = 'markdownH3' -- testing and debugging
       local hlrun = 'markdownH4' -- running code
       local hlnvim = 'markdownH5' -- neovim config: packages, UI, etc.
+      local warn = 'WhichKeyIconRed'
 
       require('which-key').add {
         { '<leader>b', group = 'Buffer (and tab)', icon = { icon = '', hl = hlbufwind } },
@@ -75,15 +76,16 @@ return {
         { '<leader>td', group = 'Debug' },
         { '<leader>tr', group = 'Run', icon = '󰜎' },
         { '<leader>ts', group = 'Stop', icon = '' },
+        { '<leader>to', group = 'Output panel', icon = '' },
 
         { '<leader>u', group = 'UI/UX', icon = { icon = '󰙵', hl = hlnvim } },
 
-        { '<leader>w', group = 'Window', icon = { hl = hlbufwind } },
+        { '<leader>w', group = 'Window', icon = { icon = '', hl = hlbufwind } },
         { '<leader>wm', group = 'Move window (swap)', icon = '󰆾' },
 
-        { '<leader>q', group = 'Quit / close', icon = { hl = hlbufwind } },
+        { '<leader>q', group = 'Quit / close', icon = { icon = '󰈆 ', hl = hlbufwind } },
 
-        { '<leader>x', group = 'Diagnostics', icon = { hl = hlquality } },
+        { '<leader>x', group = 'Diagnostics', icon = { icon = '󱖫', hl = hlquality } },
 
         -- visual mode
 
