@@ -11,7 +11,7 @@ case "$OS" in
         ;;
 
     "windows" )
-        scoop install wget npm nodejs fzf
+        scoop install wget nodejs fzf
 
         scoop update *
         ;;

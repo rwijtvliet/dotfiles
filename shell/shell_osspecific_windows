@@ -1,8 +1,15 @@
 
+# python stuff
+alias pf='cd ~/python/portfolyo/ && poetry shell'
+
+# neovim stuff
 alias nvconf='cd ~/.config/nvim/lua/ && nvim ~/.config/nvim/lua/ '
-alias pf='cd ~/Ruud/python/portfolyo/ && poetry shell'
-alias lb='cd ~/Ruud/python/lichtblyck/ && poetry shell'
-alias bv='cd ~/Ruud/python/belvys/ && poetry shell' 
+alias cdswap='cd ~/.local/state/nvim/swap'
+alias rmswap='rm ~/.local/state/nvim/swap/*'
+
+# window manager stuff
+alias wm='cd ~/.dotfiles/windowmanager/windows && nvim hotkeys.ahk komorebi.json'
+alias shortcuts='echo "opening excel file with windowmanager shortcuts" && open ~/.dotfiles/windowmanager/shortcuts.xlsx'
 
 # ensure symlinks can be created.
 export MSYS=winsymlinks:nativestrict 

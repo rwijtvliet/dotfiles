@@ -1,16 +1,16 @@
 
 # python stuff
-alias pf='cd ~/python/portfolyo && poetry shell'
+alias pf='cd ~/python/portfolyo/ && poetry shell'
 alias sc='cd ~/python/scripts'
 
 # neovim stuff
 alias nvconf='cd ~/.config/nvim/lua/ && nvim ~/.config/nvim/lua/ '
-alias yaconf='nvim ~/.dotfiles/yabai/yabairc.symlink ~/.dotfiles/yabai/skhdrc.symlink'
 alias cdswap='cd ~/.local/state/nvim/swap'
 alias rmswap='rm ~/.local/state/nvim/swap/*'
 
 # window manager stuff
 alias wm='cd ~/.dotfiles/windowmanager/macos && nvim sketchybar/sketchybarrc skhd/skhdrc yabai/yabairc'
+alias yaconf='nvim ~/.dotfiles/yabai/yabairc.symlink ~/.dotfiles/yabai/skhdrc.symlink'
 # source /Users/ruud.wijtvliet/.bash_completions/yabpy.sh
 alias shortcuts='echo "opening excel file with windowmanager shortcuts" && open ~/.dotfiles/windowmanager/shortcuts.xlsx'
 

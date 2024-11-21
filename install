@@ -119,8 +119,7 @@ install_from_file () {
   echo ''
   
   apps=""
-  while read line
-  do
+  while read line; do
     [[ $line =~ ^#.* ]] && continue
     apps+=" $line"
   done <<< $(cat "$1")
@@ -132,9 +131,12 @@ install_apps () {
   folderpaths=()
   for foldername in "$@"; do
     folderpath="$DOTFILES_ROOT/$foldername"
-    installer="$folderpath/install.sh"
-    if [ ! -f "$installer" ]; then
-      fail "$installer does not exist"
+    installer="$folderpath"/install.sh
+    installerpath="$(realpath $installer)"
+    echo $installerpath
+
+    if [ ! -f "$installerpath" ]; then
+      fail "$installerpath does not exist"
       exit 1
     else
       folderpaths+=("$folderpath")

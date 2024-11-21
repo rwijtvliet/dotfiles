@@ -41,9 +41,26 @@ case "$OS" in
     ;;
 
   "windows" )
+    info "Installing bash"
+    info "already installed via git bash"
+
+    info "Installing zsh"
+    todo "zsh can be installed/included on git bash - this must be done manually."
+    # oh my zsh
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
     info "Linking config"
     link_osunspecific_files
     link_public_resource "./shell_osspecific_windows" "$HOME/.shell_osspecific"
+    
+    info "Installing shell utilities"
+    # eza
+    scoop install gpg
+    scoop install eza
+    # zoxide
+    scoop install zoxide
+    # git repos
+    git submodule update --init
     ;;
 
   "macos" )

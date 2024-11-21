@@ -55,8 +55,7 @@ case "$OS" in
         ;;
 
     "windows" )
-        winget install LGUG2Z.komorebi
-	winget install AutoHotKey.AutoHotKey
+        scoop install komorebi whkd autohotkey
         todo "Manually install zebar from github"
         link_public_resource "./windows/komorebi.json" "$USERPROFILE/komorebi.json"
         mkdir -p "$HOME/.glzr/zebar"

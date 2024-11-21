@@ -91,9 +91,8 @@ case "$OS" in
     ;;
 
   "windows" )
-    download_fonts 
-    
-    todo "Fonts must still be installed manually. The can be found in $HOME/fonts"
+    scoop bucket add nerd-fonts
+    scoop install Hack-NF    
     ;;
 
 	"macos" )

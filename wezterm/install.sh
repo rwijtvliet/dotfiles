@@ -19,9 +19,8 @@ case "$OS" in
 "windows")
 	# install
 	info "Installing app"
-	# scoop bucket add extras
-	# scoop install wezterm 
-        winget install wez.wezterm #use winget instead of scoop, because winget is allowed on company laptop
+	scoop bucket add extras
+	scoop install wezterm 
 	# config
 	info "Linking config file"
 	mkdir -p "$HOME/.config/wezterm/"
