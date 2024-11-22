@@ -243,7 +243,7 @@ link_or_copy () {
 OS_long="$(uname -a)"
 if [[ "${OS_long,,}" == *"gnu/linux"* ]]; then
     OS="linux"
-elif [[ "${OS_long,,}" == *"mingw"* ]]; then
+elif [[ "${OS_long,,}" == *"mingw"* ]] || [[ "${OS_long,,}" == *"msys"* ]]; then
     OS="windows"
 elif [[ "${OS_long,,}" == *"darwin"* ]]; then
     OS="macos"

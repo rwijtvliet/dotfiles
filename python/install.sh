@@ -10,9 +10,8 @@ case "$OS" in
     ;;
 
   "windows" )
-    # raise error to alert user that this script is missing
-    fail "to-do"
-    exit 1
+    scoop install python
+    pip install poetry
     ;;
 
   "macos" )

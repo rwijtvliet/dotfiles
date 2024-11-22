@@ -11,7 +11,7 @@ case "$OS" in
 
     # Scoop
     powershell "iwr -useb get.scoop.sh | iex"
-    powershell "Set-ExecutionPolicy RemoteSigned -scope CurrentUser" 
+    powershell "Set-ExecutionPolicy RemoteSigned -Scope CurrentUser" 
     scoop update
 
     # Choco

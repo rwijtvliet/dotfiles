@@ -1,6 +1,6 @@
 
 # python stuff
-alias pf='cd ~/syncAll/Code/python/portfolyo && poetry shell'
+alias pf='cd ~/syncAll/Code/python/portfolyo/ && poetry shell'
 
 # neovim stuff
 alias nvconf='cd ~/.config/nvim/lua/ && nvim ~/.config/nvim/lua/ '

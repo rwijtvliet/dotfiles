@@ -42,6 +42,7 @@ case "$OS" in
     # create symlink to configuration
     info "Linking config"
     link_secret_resource "espanso" "$APPDATA/espanso"
+    link_secret_resource "espanso" "$HOME/scoop/persist/espanso/.espanso"
     ;;
 
   "macos" )
