@@ -62,7 +62,10 @@
         },
         {
           "name": "4term",
-          "layout": "BSP"
+          "layout": "BSP",
+          "initial_workspace_rules": [
+            { "kind": "exe", "id": "wezterm-gui.exe" }
+          ]
         },
         {
           "name": "5code",
@@ -70,7 +73,7 @@
           "initial_workspace_rules": [
             {
               "kind": "exe",
-              "id": "code.exe"
+              "id": "Code.exe"
             }
           ]
         },

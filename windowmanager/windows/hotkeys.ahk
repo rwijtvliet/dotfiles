@@ -44,7 +44,7 @@ Komorebic(cmd) {
 ;
 ; # toggle focus between tiling / floating
 ; # hotkey + shift + b
-;
+
 ; ########
 ; # Move #
 ; ########
