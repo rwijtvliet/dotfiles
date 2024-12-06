@@ -71,7 +71,7 @@ link_secret_resource() {
     local dst_path="$(realpath -s $2)"
 
     if [ -z $dst_path ]; then
-        dst_path="$(sudo realpath -s $2)"
+        dst_path="$(realpath -s $2)"
     fi
 
     # Create link.

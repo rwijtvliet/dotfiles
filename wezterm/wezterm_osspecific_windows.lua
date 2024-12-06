@@ -8,4 +8,15 @@ return {
 
 	-- WSL
 	-- default_domain = 'WSL:Ubuntu-24.04',
+    launch_menu = {
+        {
+            label = "Bash",
+        args = { "C:/Program Files/Git/bin/bash.exe","--login", "-i" }, -- git bash
+            -- args = { "C:\\Program Files\\Git\\bin\\bash.exe" },
+        },
+        {
+            label = "WSL",
+            args = { "wsl.exe" },
+        },
+    },
 }
