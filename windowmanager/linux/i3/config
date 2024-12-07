@@ -240,11 +240,11 @@ bindsym $mod+Return exec flatpak run org.wezfurlong.wezterm
 
 # screenshot 
 # . to clipboard
-# TODO: this is not to clipboard
-bindsym --release $mod+y exec --no-startup-id import /tmp/latest-screenshot.png 
+bindsym --release $mod+y exec flameshot gui
+# . to editor = same
+bindsym --release $mod+Shift+y exec flameshot gui
+# bindsym --release $mod+y exec --no-startup-id import /tmp/latest-screenshot.png 
 # && cat /tmp/latest-screenshot.png | xclip -selection clipboard -target image/png -i
-# . to editor
-# TODO
 
 # various other apps under new namespace
 bindsym $mod+p mode "launch"
@@ -257,13 +257,13 @@ mode "launch" {
 # Non-window-management shortcuts #
 ###################################
 
-# lock the machine
-bindsym $mod+F5 exec i3lock
-
 # change keyboard layout (must be keys that are same on all layouts)
 # F1=dvorak, F2=us
 bindsym $mod+F1 exec setxkbmap dvorak
 bindsym $mod+F2 exec setxkbmap us
+
+# lock the machine
+bindsym $mod+F5 exec i3lock
 
 # change monitor setup
 bindsym $mod+F6 exec $HOME/.dotfiles/windowmanager/linux/i3/singe_monitor.sh
