@@ -146,4 +146,4 @@ eval "$(zoxide init bash)"
 eval "$(fzf --bash)" 
 
 # message so I know it worked
-echo "successfully loaded Ruud Wijtvliet bash user profile"
+# echo "successfully loaded Ruud Wijtvliet bash user profile"
