@@ -12,7 +12,6 @@ alias wm='cd ~/.dotfiles/windowmanager/linux && nvim i3/config polybar/config.in
 alias shortcuts='echo "opening excel file with windowmanager shortcuts" && open ~/.dotfiles/windowmanager/shortcuts.xlsx'
 
 # opening apps
-alias wezterm='flatpak run org.wezfurlong.wezterm'
 
 # wallpaper
 alias w='variety -n'

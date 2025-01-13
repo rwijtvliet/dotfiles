@@ -19,6 +19,18 @@ return {
 
 	enable_kitty_graphics = true,
 
+	skip_close_confirmation_for_processes_named = {
+		"flatpak-spawn",
+		"bash",
+		"sh",
+		"zsh",
+		"fish",
+		"nu",
+		"cmd.exe",
+		"pwsh.exe",
+		"tmux",
+	},
+
 	-- vim motions
 	keys = {
 		{ key = "Escape", mods = "CTRL|SHIFT", action = wezterm.action.ActivateCopyMode },
