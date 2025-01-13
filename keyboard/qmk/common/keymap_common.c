@@ -442,6 +442,7 @@ void set_current_os_from_keycode(uint16_t keycode) {
   case kcLINUX:
     current_os = LINUX;
     keymap_config.swap_rctl_rgui = false;
+    tap_code16(ALT(GUI(KC_F2))); // send alt-gui-f2 to set to us layout.
     break;
   case kcWINDO:
     current_os = WINDOWS;
@@ -450,10 +451,9 @@ void set_current_os_from_keycode(uint16_t keycode) {
   case kcMACOS:
     current_os = MACOS;
     keymap_config.swap_rctl_rgui = true;
+    tap_code16(ALT(GUI(KC_F2))); // send alt-gui-f2 to set to us layout.
     break;
   }
-  // send alt-gui-f2 to set to us layout.
-  tap_code16(ALT(GUI(KC_F2)));
   custom_led_indicators(current_os);
 }
 void linwinmac(uint16_t linuxcode, uint16_t windowscode, uint16_t macoscode,
