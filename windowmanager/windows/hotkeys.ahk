@@ -36,6 +36,7 @@ Komorebic(cmd) {
 ; # monitor
 ; # hotkey + gcrl
 #!g::Komorebic("focus-monitor left")
+#!l::Komorebic("focus-monitor right")
 ;
 ; # focus child window/container
 ; # --> n/a
@@ -69,8 +70,9 @@ Komorebic(cmd) {
 #!+9::Komorebic("move-to-named-workspace 9media")
 ;
 ; # workspace to monitor
-; # hotkey + shift + gcl
-#!+g::Komorebic("move-workspace-to-monitor")
+; # hotkey + shift + gl
+#!+g::Komorebic("cycle-move-workspace-to-monitor previous")
+#!+l::Komorebic("cycle-move-workspace-to-monitor next")
 ;
 ; #########
 ; # Close #

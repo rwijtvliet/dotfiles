@@ -9,7 +9,7 @@ alias rmswap='rm ~/.local/state/nvim/swap/*'
 
 # window manager stuff
 alias wm='cd ~/.dotfiles/windowmanager/windows && nvim hotkeys.ahk komorebi.json'
-alias shortcuts='echo "opening excel file with windowmanager shortcuts" && open ~/.dotfiles/windowmanager/shortcuts.xlsx'
+alias shortcuts='echo "opening excel file with windowmanager shortcuts" && start ~/.dotfiles/windowmanager/shortcuts.xlsx'
 
 # ensure symlinks can be created.
 export MSYS=winsymlinks:nativestrict 
