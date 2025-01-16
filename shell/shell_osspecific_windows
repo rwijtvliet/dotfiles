@@ -14,4 +14,6 @@ alias shortcuts='echo "opening excel file with windowmanager shortcuts" && start
 # ensure symlinks can be created.
 export MSYS=winsymlinks:nativestrict 
 
+# PATH
+export PATH="$PATH:/c/msys64/usr/bin/"
 export PATH="$PATH:$HOME/.dotfiles/shell/my_scripts/"
