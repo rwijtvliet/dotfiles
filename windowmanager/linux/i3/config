@@ -247,11 +247,17 @@ bindsym --release $mod+Shift+y exec flameshot gui
 # && cat /tmp/latest-screenshot.png | xclip -selection clipboard -target image/png -i
 
 # various other apps under new namespace
-bindsym $mod+p mode "launch"
-mode "launch" {
-        # These bindings trigger as soon as you enter this mode
-        bindsym f exec firefox; mode "default"
-}
+# bindsym $mod+p exec --no-startup-id notify-send "Entered launch mode"; mode "launch"
+# mode "launch" {
+#         # These bindings trigger as soon as you enter this mode
+#         bindsym g exec dolphin; mode "default"
+#         bindsym c exec firefox; mode "default"
+#         bindsym v exec p3x-onenote; mode "default"
+#         
+#         # Exit on escape
+#         bindsym --release Escape mode "default"
+#         
+# }
 
 ###################################
 # Non-window-management shortcuts #
