@@ -117,8 +117,8 @@ bindsym $mod+8 workspace number $ws8
 bindsym $mod+9 workspace number $ws9
 
 # monitor
-bindsym $mod+g output left 
-bindsym $mod+l output right 
+bindsym $mod+g focus output left 
+bindsym $mod+l focus output right 
 
 # toggle focus between tiling / floating
 bindsym $mod+Shift+b focus mode_toggle
@@ -236,7 +236,7 @@ bindsym Control+Escape exec rofi -show run
 
 # terminal
 bindsym $mod+Shift+Return exec i3-sensible-terminal
-bindsym $mod+Return exec flatpak run org.wezfurlong.wezterm
+bindsym $mod+Return exec wezterm
 
 # screenshot 
 # . to clipboard
