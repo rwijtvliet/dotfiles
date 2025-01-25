@@ -13,3 +13,6 @@
 [submodule "shell/zsh_custom/themes/powerlevel10k"]
 	path = shell/zsh_custom/themes/powerlevel10k
 	url = https://github.com/romkatv/powerlevel10k.git
+[submodule "windowmanager/windows/komorebi-application-specific-configuration"]
+	path = windowmanager/windows/komorebi-application-specific-configuration
+	url = https://github.com/LGUG2Z/komorebi-application-specific-configuration/

@@ -13,8 +13,12 @@ alias shortcuts='echo "opening excel file with windowmanager shortcuts" && open 
 
 # opening apps
 
+export SUDO_EDITOR='$HOME/.local/bin/nvim'
+
+# finding my scripts in path
+export PATH="$PATH:$HOME/.dotfiles/shell/my_scripts/"
+
 # wallpaper
 alias w='variety -n'
 alias wp='variety -p'
 
-export SUDO_EDITOR='/home/ruud/.local/bin/nvim'

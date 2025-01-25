@@ -1,6 +1,6 @@
 {
   "$schema": "https://raw.githubusercontent.com/LGUG2Z/komorebi/v0.1.28/schema.json",
-  "app_specific_configuration_path": "$Env:USERPROFILE/applications.yaml",
+  "app_specific_configuration_path": "$Env:USERPROFILE/.dotfiles/windowmanager/windows/komorebi-application-specific-configuration/applications.json",
   "window_hiding_behaviour": "Cloak",
   "cross_monitor_move_behaviour": "Insert",
   "default_workspace_padding": 6,
@@ -26,7 +26,7 @@
     }
   },
   "mouse_follows_focus": false,
-  "float_rules": [
+  "ignore_rules": [
     {
       "kind": "Exe",
       "id": "Zebar.exe",
@@ -62,7 +62,10 @@
         },
         {
           "name": "4term",
-          "layout": "BSP"
+          "layout": "BSP",
+          "initial_workspace_rules": [
+            { "kind": "exe", "id": "wezterm-gui.exe" }
+          ]
         },
         {
           "name": "5code",
@@ -70,7 +73,7 @@
           "initial_workspace_rules": [
             {
               "kind": "exe",
-              "id": "code.exe"
+              "id": "Code.exe"
             }
           ]
         },
@@ -80,13 +83,7 @@
         },
         {
           "name": "7chat",
-          "layout": "BSP",
-          "initial_workspace_rules": [
-            {
-              "kind": "exe",
-              "id": "ms-teams.exe"
-            }
-          ]
+          "layout": "BSP"
         },
         {
           "name": "8email",
