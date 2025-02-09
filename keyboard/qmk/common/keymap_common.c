@@ -420,7 +420,7 @@ enum colors {
 
 // Global variables.
 
-enum supported_os current_os;
+enum supported_os current_os; 
 int hsv_saturation;
 int hsv_value;
 
@@ -442,7 +442,6 @@ void set_current_os_from_keycode(uint16_t keycode) {
   case kcLINUX:
     current_os = LINUX;
     keymap_config.swap_rctl_rgui = false;
-    tap_code16(ALT(GUI(KC_F2))); // send alt-gui-f2 to set to us layout.
     break;
   case kcWINDO:
     current_os = WINDOWS;
@@ -451,9 +450,17 @@ void set_current_os_from_keycode(uint16_t keycode) {
   case kcMACOS:
     current_os = MACOS;
     keymap_config.swap_rctl_rgui = true;
-    tap_code16(ALT(GUI(KC_F2))); // send alt-gui-f2 to set to us layout.
     break;
   }
+  
+  // Send ALT-GUI-F2 to set us layout.
+  register_code(KC_LALT);
+  register_code(KC_LGUI);
+  tap_code(KC_F2);
+  unregister_code(KC_LGUI);
+  unregister_code(KC_LALT);
+
+  // Set LEDs to indicate the OS that the keyboard is set to.
   custom_led_indicators(current_os);
 }
 void linwinmac(uint16_t linuxcode, uint16_t windowscode, uint16_t macoscode,
@@ -655,7 +662,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 }
 
 void keyboard_post_init_user(void) {
-  set_current_os_from_keycode(kcMACOS);
+  set_current_os_from_keycode(kcWINDOWS); // set on keyboard boot
   hsv_saturation = 220;
   hsv_value = 128;
   custom_post_init();
