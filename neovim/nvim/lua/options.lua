@@ -78,16 +78,18 @@ local function get_nvim_venv_bin()
     end
   end
 
-  local path = os.getenv 'HOME'
+  local path = os.getenv 'HOME' .. '/.dotfiles/neovim/.venv/'
   assert_exists(path)
 
-  path = path .. '/.dotfiles/neovim/.venv/'
-  assert_exists(path)
-
-  path = path .. '/bin/'
-  assert_exists(path)
-
-  return path
+  winpath = path .. '/Scripts/python.exe'
+  if pcall(assert_exists, winpath) then
+    return winpath
+  end
+  unixpath = path .. '/bin/python'
+  if pcall(assert_exists, unixpath) then
+    return winpath
+  end
+  error('Could not find python binary in ' .. path .. '.')
 end
 
 -- local function get_base_python()
@@ -115,8 +117,7 @@ end
 --     end
 --   end
 -- end
-vim.g.python3_host_prog = get_nvim_venv_bin() .. '/python'
------------------------------
+vim.g.python3_host_prog = get_nvim_venv_bin() --.. '/python'
 
 ---------------------------------------------------------------------
 -- Set colored column for python files according to the black config.
