@@ -81,13 +81,13 @@ local function get_nvim_venv_bin()
   local path = os.getenv 'HOME' .. '/.dotfiles/neovim/.venv/'
   assert_exists(path)
 
-  winpath = path .. '/Scripts/python.exe'
+  local winpath = path .. '/Scripts/python.exe'
   if pcall(assert_exists, winpath) then
     return winpath
   end
-  unixpath = path .. '/bin/python'
+  local unixpath = path .. '/bin/python'
   if pcall(assert_exists, unixpath) then
-    return winpath
+    return unixpath
   end
   error('Could not find python binary in ' .. path .. '.')
 end
