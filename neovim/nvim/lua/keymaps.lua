@@ -315,8 +315,15 @@ vim.keymap.set('n', '<A-n>', '<cmd>m .+1<cr>==', { desc = 'Move line down' })
 vim.keymap.set('n', '<A-t>', '<cmd>m .-2<cr>==', { desc = 'Move line up' })
 vim.keymap.set('i', '<A-n>', '<esc><cmd>m .+1<cr>==gi', { desc = 'Move line down' })
 vim.keymap.set('i', '<A-t>', '<esc><cmd>m .-2<cr>==gi', { desc = 'Move line up' })
-vim.keymap.set('v', '<A-n>', ":m '>+1<cr>gv=gv", { desc = 'Move line down' })
-vim.keymap.set('v', '<A-t>', ":m '<-2<cr>gv=gv", { desc = 'Move line up' })
+vim.keymap.set('v', '<A-n>', ":m '>+1<cr>gv=gv", { desc = 'Move lines down' })
+vim.keymap.set('v', '<A-t>', ":m '<-2<cr>gv=gv", { desc = 'Move lines up' })
+
+-- Move and copy lines
+vim.keymap.set('n', '<A-N>', 'mzyyP`z', { desc = 'Copy line down' })
+vim.keymap.set('n', '<A-T>', 'mzyyp`z', { desc = 'Copy line up' })
+vim.keymap.set('i', '<A-N>', '<esc>mzyyP`zi', { desc = 'Copy line down' })
+vim.keymap.set('i', '<A-T>', '<esc>mzyyp`zi', { desc = 'Copy line up' })
+-- TODO: copy lines down/up in visual mode
 
 -- Add empty line
 vim.keymap.set('n', '<leader>o', 'o<Up><Esc>', { desc = 'Add empty line after' })
