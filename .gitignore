@@ -2,4 +2,4 @@
 /nerdfonts/tmp/
 /secrets/*
 !/secrets/todo.md
-
+.venv/
