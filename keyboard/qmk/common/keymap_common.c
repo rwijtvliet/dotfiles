@@ -1,4 +1,4 @@
-// good tutorial:
+
 // https://precondition.github.io/home-row-mods
 
 /*
@@ -457,6 +457,7 @@ void set_current_os_from_keycode(uint16_t keycode) {
   register_code(KC_LALT);
   register_code(KC_LGUI);
   tap_code(KC_F2);
+  wait_ms(10);
   unregister_code(KC_LGUI);
   unregister_code(KC_LALT);
 
@@ -662,7 +663,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 }
 
 void keyboard_post_init_user(void) {
-  set_current_os_from_keycode(kcWINDOWS); // set on keyboard boot
+  set_current_os_from_keycode(kcWINDO); // set on keyboard boot
   hsv_saturation = 220;
   hsv_value = 128;
   custom_post_init();

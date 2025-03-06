@@ -64,7 +64,9 @@ vim.opt.scrolloff = 10
 
 vim.opt.termguicolors = true
 
+-----------------------------
 -- Ensure python is available
+-----------------------------
 local function get_nvim_venv_bin()
   local function assert_exists(path)
     if vim.loop.fs_stat(path) == nil then
@@ -79,13 +81,13 @@ local function get_nvim_venv_bin()
   local path = os.getenv 'HOME' .. '/.dotfiles/neovim/.venv/'
   assert_exists(path)
 
-  winpath = path .. '/Scripts/python.exe'
+  local winpath = path .. '/Scripts/python.exe'
   if pcall(assert_exists, winpath) then
     return winpath
   end
-  unixpath = path .. '/bin/python'
+  local unixpath = path .. '/bin/python'
   if pcall(assert_exists, unixpath) then
-    return winpath
+    return unixpath
   end
   error('Could not find python binary in ' .. path .. '.')
 end
@@ -115,6 +117,35 @@ end
 --     end
 --   end
 -- end
-vim.g.python3_host_prog = get_nvim_venv_bin()
+vim.g.python3_host_prog = get_nvim_venv_bin() --.. '/python'
 
+---------------------------------------------------------------------
+-- Set colored column for python files according to the black config.
+---------------------------------------------------------------------
+local linelengths_cache
+local function get_linelengths()
+  -- Fetch if cache empty.
+  if not linelengths_cache then
+    linelengths_cache = (io.popen('black --check --verbose . 2>&1 | grep -m 1 "line_length" | awk \'{print $NF}\''):read '*a'):match '%S+'
+  end
+  -- If fetching didn't work: use defaults.
+  if not linelengths_cache then
+    local intermediate_result = io.popen 'black --check --verbose . 2>&1 | grep -m 1 "line_length" | awk \'{print $NF}\''
+    error('Error when reading linelength...' .. intermediate_result)
+    linelengths_cache = '80,88,100'
+  end
+  return linelengths_cache
+end
+
+local function set_colorcolumn()
+  vim.opt.colorcolumn = get_linelengths()
+end
+
+vim.api.nvim_create_autocmd('BufReadPost', {
+  pattern = '*.py',
+  callback = set_colorcolumn,
+})
+---------------------------------------------------------------------
+
+--
 -- vim: ts=2 sts=2 sw=2 et
