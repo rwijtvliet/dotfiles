@@ -36,6 +36,8 @@ Komorebic(cmd) {
 ; # monitor
 ; # hotkey + gcrl
 #!g::Komorebic("focus-monitor left")
+#!c::Komorebic("focus-monitor up")
+#!r::Komorebic("focus-monitor down")
 #!l::Komorebic("focus-monitor right")
 ;
 ; # focus child window/container
