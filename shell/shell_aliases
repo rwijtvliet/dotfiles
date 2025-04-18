@@ -30,6 +30,7 @@ alias myip='curl ipinfo.io/ip'
 alias bashconf='nvim ~/.bashrc'
 alias vim=nvim
 alias prnm='poetry run nvim main.py'
+alias ps='poetry shell'
 
 # keyboard compilation and flashing
 alias qm='cd ~/.dotfiles/keyboard/ && nvim qmk/common/keymap_common.c qmk/ergodox_ez_glow/ergodox.c qmk/keyboardio_atreus/atreus.c qmk/zsa_voyager/voyager.c'

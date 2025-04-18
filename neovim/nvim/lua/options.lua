@@ -126,11 +126,17 @@ local linelengths_cache
 local function get_linelengths()
   -- Fetch if cache empty.
   if not linelengths_cache then
-    linelengths_cache = (io.popen('black --check --verbose . 2>&1 | grep -m 1 "line_length" | awk \'{print $NF}\''):read '*a'):match '%S+'
+    linelengths_cache = (io.popen(
+      'while [ ! -f pyproject.toml ] && [ "$PWD" != "/" ]; do cd ..; done; [ -f pyproject.toml ] && grep -m1 "^line-length" pyproject.toml | cut -d \'=\' -f2 | tr -d \' \''
+    )
+      :read '*a'):match '%S+'
+    -- linelengths_cache = (io.popen('black --check --verbose . 2>&1 | grep -m 1 "line_length" | awk \'{print $NF}\''):read '*a'):match '%S+'
   end
   -- If fetching didn't work: use defaults.
   if not linelengths_cache then
-    local intermediate_result = io.popen 'black --check --verbose . 2>&1 | grep -m 1 "line_length" | awk \'{print $NF}\''
+    local intermediate_result =
+      io.popen 'while [ ! -f pyproject.toml ] && [ "$PWD" != "/" ]; do cd ..; done; [ -f pyproject.toml ] && grep -m1 "^line-length" pyproject.toml | cut -d \'=\' -f2 | tr -d \' \''
+    -- io.popen 'while [ ! -f pyproject.toml ] && [ "$PWD" != "/" ]; do cd ..; done; [ -f pyproject.toml ] && grep -m1 "^line-length" pyproject.toml | cut -d \'=\' -f2 | tr -d \' \''
     error('Error when reading linelength...' .. intermediate_result)
     linelengths_cache = '80,88,100'
   end
