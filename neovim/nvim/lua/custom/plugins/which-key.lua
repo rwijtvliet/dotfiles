@@ -76,7 +76,6 @@ return {
         { '<leader>td', group = 'Debug' },
         { '<leader>tr', group = 'Run', icon = '󰜎' },
         { '<leader>ts', group = 'Stop', icon = '' },
-        { '<leader>to', group = 'Output panel', icon = '' },
 
         { '<leader>u', group = 'UI/UX', icon = { icon = '󰙵', hl = hlnvim } },
 

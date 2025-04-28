@@ -273,7 +273,7 @@ return {
         vim.api.nvim_set_hl(0, 'RainbowCyan', { fg = '#265662' })
       end)
       require('ibl').setup {
-        scope = { char = '▋' },
+        scope = { char = '🬃' },
         indent = { char = '▏', highlight = highlight },
         exclude = { filetypes = { 'dashboard' } },
       }

@@ -134,10 +134,10 @@ local function get_linelengths()
   end
   -- If fetching didn't work: use defaults.
   if not linelengths_cache then
-    local intermediate_result =
-      io.popen 'while [ ! -f pyproject.toml ] && [ "$PWD" != "/" ]; do cd ..; done; [ -f pyproject.toml ] && grep -m1 "^line-length" pyproject.toml | cut -d \'=\' -f2 | tr -d \' \''
-    -- io.popen 'while [ ! -f pyproject.toml ] && [ "$PWD" != "/" ]; do cd ..; done; [ -f pyproject.toml ] && grep -m1 "^line-length" pyproject.toml | cut -d \'=\' -f2 | tr -d \' \''
-    error('Error when reading linelength...' .. intermediate_result)
+    -- local intermediate_result =
+    --   io.popen 'while [ ! -f pyproject.toml ] && [ "$PWD" != "/" ]; do cd ..; done; [ -f pyproject.toml ] && grep -m1 "^line-length" pyproject.toml | cut -d \'=\' -f2 | tr -d \' \''
+    -- -- io.popen 'while [ ! -f pyproject.toml ] && [ "$PWD" != "/" ]; do cd ..; done; [ -f pyproject.toml ] && grep -m1 "^line-length" pyproject.toml | cut -d \'=\' -f2 | tr -d \' \''
+    -- error('Error when reading linelength...' .. intermediate_result)
     linelengths_cache = '80,88,100'
   end
   return linelengths_cache
