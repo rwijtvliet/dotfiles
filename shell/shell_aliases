@@ -28,7 +28,6 @@ alias gl='echo "git pull" && git pull'
 alias at='alacritty-themes'
 alias myip='curl ipinfo.io/ip'
 alias bashconf='nvim ~/.bashrc'
-alias vim=nvim
 alias prnm='poetry run nvim main.py'
 alias ps='poetry shell'
 
@@ -47,6 +46,8 @@ alias qmv='qmcv && qmfv'
 # nvim stuff
 alias cdswap='cd ~/.local/state/nvim/swap'
 alias rmswap='rm ~/.local/state/nvim/swap/*'
+alias vim=nvim
+alias nvim=$HOME/.local/bin/nvim.appimage
 alias nvima='NVIM_APPNAME="nvim-astronvim" nvim'
 alias nviml='NVIM_APPNAME="nvim-lazyvim" nvim'
 

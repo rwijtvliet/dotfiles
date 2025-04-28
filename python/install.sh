@@ -4,8 +4,10 @@ source ../shared.sh
 
 case "$OS" in
   "linux" )
-    info "Installing app" 
-    sudo apt install python3 python3-pip python-is-python3
+    info "Installing app"
+    echo "deb https://ppa.launchpadcontent.net/deadsnakes/ppa/ubuntu/ jammy main" | sudo tee /etc/apt/sources.list.d/deadsnakes-ubuntu-ppa-lunar.list
+    sudo apt update
+    sudo apt install python3 python3-pip python-is-python3 python3.12
     pip3 install poetry
     ;;
 

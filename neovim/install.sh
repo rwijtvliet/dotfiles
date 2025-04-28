@@ -5,6 +5,7 @@ source ../shared.sh
 case "$OS" in
 "linux")
 	info "Removing old installation"
+	rm "$HOME/.local/bin/nvim.appimage"
 	rm -rf "$HOME/.local/share/nvim"
 	rm -rf "$HOME/.config/nvim"
 
@@ -12,11 +13,11 @@ case "$OS" in
 	info "Installing app"
 	# . some utilities
 	sudo apt install ripgrep
-	sudo npm install -g  neovim tree-sitter-cli
+	sudo npm install -g neovim tree-sitter-cli
 	# . app itself
 	mkdir -p "$HOME/.local/bin"
-	curl -Lo "$HOME/.local/bin/nvim" https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
-	chmod u+x "$HOME/.local/bin/nvim"
+	curl -Lo "$HOME/.local/bin/nvim.appimage" "https://github.com/neovim/neovim/releases/download/stable/nvim-linux-x86_64.appimage"
+	chmod u+x "$HOME/.local/bin/nvim.appimage"
 	#link_public_resource "$HOME/.local/bin/nvim" "nvim.appimage"
 	# (alternative: install from apt, but often outdated)
 	# sudo apt install neovim
