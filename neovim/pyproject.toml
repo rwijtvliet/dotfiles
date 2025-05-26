@@ -5,6 +5,7 @@ name = "neovim_env"
 version = "0.1.0"
 description = "Python environment for neovim"
 authors = ["Ruud Wijtvliet <rwijtvliet@gmail.com>"]
+package-mode = false
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
