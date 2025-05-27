@@ -79,8 +79,8 @@ return {
     { '<leader>trl', function() require('neotest').run.run_last() end,                                  desc = 'Neotest: run last' },
     { '<leader>tdl', function() require('neotest').run.run_last { strategy = 'dap' } end,               desc = 'Neotest: debug last' },
     -- Output
-    { '<leader>tot', function() require('neotest').output_panel.toggle() end,                            desc = 'Neotest: toggle output panel' },
-    { '<leader>toc', function() require('neotest').output_panel.clear() end,                            desc = 'Neotest: clear output panel' },
+    { '<leader>to', function() require('neotest').output_panel.toggle() end,                            desc = 'Neotest: toggle output panel' },
+    { '<leader>tc', function() require('neotest').output_panel.clear() end,                             desc = 'Neotest: clear output panel' },
     -- Summary
     { '<leader>tu', function() require('neotest').summary.toggle() end,                                 desc = 'Neotest: toggle summary' },
     -- next/prev

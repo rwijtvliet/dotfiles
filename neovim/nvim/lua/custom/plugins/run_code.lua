@@ -138,9 +138,9 @@ return {
       vim.keymap.set('n', '<leader>rr', function()
         iron.repl_for(vim.bo.filetype)
       end, { desc = 'REPL: start/toggle/hide (from code buffer)' })
-      vim.keymap.set('n', '<leader>rf', function()
+      vim.keymap.set('n', '<leader>ro', function()
         iron.focus_on(vim.bo.filetype)
-      end, { desc = 'REPL: focus on repl (from code buffer)' })
+      end, { desc = 'REPL: f(o)cus on repl (from code buffer)' })
       vim.keymap.set('n', '<leader>rC', function()
         iron.close_repl(vim.bo.filetype)
       end, { desc = 'REPL: close (from code buffer)' })
@@ -148,7 +148,7 @@ return {
       vim.keymap.set('n', '<leader>rl', iron.send_line, { desc = 'Run line' })
       vim.keymap.set('n', '<leader>rp', iron.send_paragraph, { desc = 'Run paragraph' })
       vim.keymap.set('n', '<leader>rc', iron.send_until_cursor, { desc = 'Run until cursor' })
-      vim.keymap.set('n', '<leader>rb', iron.send_file, { desc = 'Run buffer' })
+      vim.keymap.set('n', '<leader>rf', iron.send_file, { desc = 'Run file' })
 
       ---- from inside REPL only
       vim.keymap.set('n', '<leader>rR', iron.repl_restart, { desc = 'REPL: restart (from inside REPL)' })

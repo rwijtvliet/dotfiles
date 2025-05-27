@@ -147,7 +147,7 @@ Komorebic(cmd) {
 ;
 ; # terminal
 ; # hotkey + (shift +) enter
-#!Enter::Run("WezTerm",,"Hide")
+#!Enter::Run("wsl wezterm",,"Hide")
 ;
 ; # screenshot
 ; # . to clipboard
