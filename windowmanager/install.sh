@@ -57,7 +57,8 @@ case "$OS" in
     "windows" )
         scoop install komorebi whkd autohotkey
         todo "Manually install zebar from github"
-        link_public_resource "./windows/komorebi.json" "$USERPROFILE/komorebi.json"
+        info "Setting environment variable"
+        powershell.exe -Command 'setx KOMOREBI_CONFIG_HOME "C:\Users\cgd55\.dotfiles\windowmanager\windows\"'
         mkdir -p "$HOME/.glzr/zebar"
         link_public_resource "./windows/zebar/config.yaml" "$USERPROFILE/.glzr/zebar/config.yaml"
         todo "ensure komorebi, autohotkey script, and zebar/start.bat are ran on startup (windows+r: 'shell:startup')"
