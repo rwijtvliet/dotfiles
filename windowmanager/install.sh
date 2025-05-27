@@ -55,6 +55,7 @@ case "$OS" in
         ;;
 
     "windows" )
+        scoop bucket add extras
         scoop install komorebi whkd autohotkey
         todo "Manually install zebar from github"
         link_public_resource "./windows/komorebi.json" "$USERPROFILE/komorebi.json"
