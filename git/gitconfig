@@ -37,10 +37,5 @@
         defaultBranch = main
 [gui]
 	recentrepo = C:/Users/cgd55/python/PortfolioManagement
-<<<<<<< HEAD
-=======
 [credential "helperselector"]
 	selected = manager
-[http]
-	sslBackend = gnutls
->>>>>>> 850065d19ce61c564e56e9ef29c38e115a1660f0
