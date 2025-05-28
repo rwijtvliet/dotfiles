@@ -3,8 +3,8 @@
   "app_specific_configuration_path": "$Env:USERPROFILE/.dotfiles/windowmanager/windows/komorebi-application-specific-configuration/applications.json",
   "window_hiding_behaviour": "Cloak",
   "cross_monitor_move_behaviour": "Insert",
-  "default_workspace_padding": 6,
-  "default_container_padding": 10,
+  "default_workspace_padding": 4,
+  "default_container_padding": 7,
   "border": true,
   "border_width": 8,
   "border_offset": -1,
@@ -14,7 +14,7 @@
     "monocle": "#ff3399",
     "unfocused": "#808080"
   },
-  "global_work_area_offset": { "top": 0, "right": 0, "bottom": 28, "left": 0 },
+  "global_work_area_offset": { "top": 0, "right": 0, "bottom": 0, "left": 0 },
   "stackbar": {
     "height": 40,
     "mode": "OnStack",
