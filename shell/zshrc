@@ -36,6 +36,15 @@ if [ -f ~/.shell_secrets ] || [ -L ~/.shell_secrets ]; then
 	. ~/.shell_secrets
 fi
 
+# Keybindings.
+autoload -Uz up-line-or-search
+autoload -Uz down-line-or-search
+
+bindkey '^P' up-line-or-search     # Ctrl-P
+bindkey '^N' down-line-or-search   # Ctrl-N
+bindkey '^Y' accept-line           # Ctrl-Y
+
+
 
 # Prompt style.
 
