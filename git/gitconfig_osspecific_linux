@@ -1,2 +1,2 @@
 [http]
-	sslBackend = gnuutil
+	sslBackend = gnutls
