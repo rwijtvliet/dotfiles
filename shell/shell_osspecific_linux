@@ -3,6 +3,7 @@
 alias pf='cd ~/syncAll/Code/python/portfolyo/ && poetry shell'
 
 # neovim stuff
+alias nvim=$HOME/.local/bin/nvim.appimage
 alias nvconf='cd ~/.config/nvim/lua/ && nvim ~/.config/nvim/lua/ '
 alias cdswap='cd ~/.local/state/nvim/swap'
 alias rmswap='rm ~/.local/state/nvim/swap/*'
