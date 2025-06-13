@@ -43,6 +43,7 @@ case "$OS" in
     info "Linking config"
     link_secret_resource "espanso" "$APPDATA/espanso"
     link_secret_resource "espanso" "$HOME/scoop/persist/espanso/.espanso"
+    todo "Start espanso with `espansod start`. If it is not working, check if it's using the correct path with `espansod path`. If it is, then it might be an issue with windows symlinks not working. Last time I installed it, I had to make a copy, which sucks for keeping things in sync, but hey, it's windows, what can you do?"
     ;;
 
   "macos" )
