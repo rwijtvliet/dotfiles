@@ -49,12 +49,7 @@
         {
           "name": "2www",
           "layout": "BSP",
-          "initial_workspace_rules": [
-            {
-              "kind": "exe",
-              "id": "msedge.exe"
-            }
-          ]
+          "initial_workspace_rules": []
         },
         {
           "name": "3office",
@@ -63,19 +58,12 @@
         {
           "name": "4term",
           "layout": "BSP",
-          "initial_workspace_rules": [
-            { "kind": "exe", "id": "wezterm-gui.exe" }
-          ]
+          "initial_workspace_rules": []
         },
         {
           "name": "5code",
           "layout": "BSP",
-          "initial_workspace_rules": [
-            {
-              "kind": "exe",
-              "id": "Code.exe"
-            }
-          ]
+          "initial_workspace_rules": []
         },
         {
           "name": "6xtra",
