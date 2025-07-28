@@ -39,3 +39,10 @@
 	recentrepo = C:/Users/cgd55/python/PortfolioManagement
 [credential "helperselector"]
 	selected = manager
+[http]
+	lowSpeedTime = 5
+	lowSpeedLimit = 1
+	connectTimeout = 5
+	proxy = http://cgd55:Ammm1mmm2mmm3mmm@webproxy-de.corp.vattenfall.com:8080
+[https]
+	proxy = http://cgd55:Ammm1mmm2mmm3mmm@webproxy-de.corp.vattenfall.com:8080

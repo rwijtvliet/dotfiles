@@ -1,35 +1,35 @@
-# general
-
-[tool.poetry]
+[project]
 name = "neovim_env"
 version = "0.1.0"
 description = "Python environment for neovim"
-authors = ["Ruud Wijtvliet <rwijtvliet@gmail.com>"]
-package-mode = false
+authors = [{ name = "Ruud Wijtvliet", email = "rwijtvliet@gmail.com" }]
+requires-python = ">=3.11"
+
+dependencies = [
+    "cairosvg>=2.7.1",
+    "pnglatex>=1.1",
+    "plotly>=5.22.0",
+    "qtconsole>=5.5.2",
+    "neovim>=0.3.1",
+    "pyzmq>=26.0.3",
+    "jupyter>=1.0.0",
+    "ipython>=8.25.0",
+    "matplotlib-backend-kitty>=2.1.2",
+    "matplotlib-backend-sixel>=0.1.0",
+    "pynvim>=0.5.0",
+    "jupyter-client>=8.6.2",
+    "pyperclip>=1.9.0",
+    "pillow>=10.3.0",
+    "beautifulsoup4>=4.12.3",
+    "numpy>=2.0.0",
+    "nbconvert>=6.4.4"
+]
+
+[project.optional-dependencies]
+dev = [ "ruff", "pytest", "black", "mypy",]
+jupyter = [ "notebook", "jupyterlab", "ipywidgets",]
 
 [build-system]
-requires = ["poetry-core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"
-
-# dependencies
-
-[tool.poetry.dependencies]
-python = "^3.11"
-cairosvg = "^2.7.1"
-pnglatex = "^1.1"
-plotly = "^5.22.0"
-qtconsole = "^5.5.2"
-neovim = "^0.3.1"
-pyzmq = "^26.0.3"
-jupyter = "^1.0.0"
-ipython = "^8.25.0"
-matplotlib-backend-kitty = "^2.1.2"
-matplotlib-backend-sixel = "^0.1.0"
-pynvim = "^0.5.0"
-jupyter-client = "^8.6.2"
-pyperclip = "^1.9.0"
-pillow = "^10.3.0"
-beautifulsoup4 = "^4.12.3"
-numpy = "^2.0.0"
-nbconvert = "^6.4.4"
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
 
