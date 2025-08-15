@@ -172,3 +172,12 @@ Komorebic(cmd) {
 ; # hotkey + f1 for dvorak, hotkey + f2 for us
 #!F1::Send '!+1'  
 #!F2::Send '!+2'
+
+#!F11::RunWait('"C:\Program Files\Git\usr\bin\bash.exe" -c "source /c/users/cgd55/.shell_secrets && vpn off"', , "Hide")
+#!F12::RunWait('"C:\Program Files\Git\usr\bin\bash.exe" -c "source /c/users/cgd55/.shell_secrets && vpn on"', , "Hide")
+
+
+; #############################
+; # Debugging: show modifiers #
+; #############################
+Run(A_ScriptDir "\modifiers_in_tray.ahk")
