@@ -1,2 +1,11 @@
+# Settings that are true for all repos on the WSL volumen go here:
+[core]
+	autocrlf = true
+
+# Then include the Windtows git config
+[includeIf "gitdir:/mnt/c/"]
+    path = /mnt/c/Users/cgd55/.gitconfig_osspecific
+
+# Then reset the ssl backend and editor which aren't available on Linux
 [http]
-	sslBackend = gnutls
+	sslbackend = gnutls

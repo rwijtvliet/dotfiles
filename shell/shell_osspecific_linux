@@ -1,4 +1,3 @@
-
 # python stuff
 alias pf='cd ~/syncAll/Code/python/portfolyo/ && poetry shell'
 
@@ -24,3 +23,7 @@ export PATH="$PATH:/mnt/c/Users/cgd55/scoop/shims"
 alias w='variety -n'
 alias wp='variety -p'
 
+# for wsl 
+export wh='/mnt/c/users/cgd55'
+export LIBGL_ALWAYS_INDIRECT=1
+export DISPLAY=:0

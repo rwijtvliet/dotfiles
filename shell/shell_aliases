@@ -23,6 +23,7 @@ alias gc='echo "git commit -m $1" && git commit -m $1'
 alias gs='echo "git status" && git status'
 alias gp='echo "git push" && git push'
 alias gl='echo "git pull" && git pull'
+alias gl='echo "git pull" && git pull'
 
 # starting apps
 alias myip='curl ipinfo.io/ip'
@@ -50,5 +51,3 @@ alias nviml='NVIM_APPNAME="nvim-lazyvim" nvim'
 
 # dotfiles
 alias dotf='cd ~/.dotfiles'
-
-alias wh='cd /mnt/c/users/cgd55'
