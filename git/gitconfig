@@ -39,3 +39,6 @@
 	recentrepo = C:/Users/cgd55/python/PortfolioManagement
 [credential "helperselector"]
 	selected = manager
+[http]
+	lowSpeedTime = 5
+	lowSpeedLimit = 1
