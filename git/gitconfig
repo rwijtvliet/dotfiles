@@ -44,8 +44,5 @@
 	lowSpeedTime = 5
 	lowSpeedLimit = 1
 	connectTimeout = 5
-	proxy = http://cgd55:Ammm1mmm2mmm3mmm@webproxy-de.corp.vattenfall.com:8080
 [lfs]
 	cache = false
-[https]
-	proxy = http://cgd55:Ammm1mmm2mmm3mmm@webproxy-de.corp.vattenfall.com:8080
