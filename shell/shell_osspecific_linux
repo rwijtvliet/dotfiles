@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 # python stuff
 alias pf='cd ~/syncAll/Code/python/portfolyo/ && poetry shell'
@@ -28,3 +29,31 @@ alias wp='variety -p'
 export wh='/mnt/c/users/cgd55'
 export LIBGL_ALWAYS_INDIRECT=1
 export DISPLAY=:0
+=======
+
+# python stuff
+alias pf='cd ~/syncAll/Code/python/portfolyo/ && poetry shell'
+
+# neovim stuff
+alias nvim=$HOME/.local/bin/nvim.appimage
+alias nvconf='cd ~/.config/nvim/lua/ && nvim ~/.config/nvim/lua/ '
+alias cdswap='cd ~/.local/state/nvim/swap'
+alias rmswap='rm ~/.local/state/nvim/swap/*'
+
+# window manager stuff
+alias wm='cd ~/.dotfiles/windowmanager/linux && nvim i3/config polybar/config.ini rofi/config.rasi'
+alias shortcuts='echo "opening excel file with windowmanager shortcuts" && open ~/.dotfiles/windowmanager/shortcuts.xlsx'
+
+# opening apps
+
+export SUDO_EDITOR='$HOME/.local/bin/nvim'
+
+# finding my scripts in path
+export PATH="$PATH:$HOME/.dotfiles/shell/my_scripts/"
+export PATH="$PATH:/mnt/c/Users/cgd55/scoop/shims"
+
+# wallpaper
+alias w='variety -n'
+alias wp='variety -p'
+
+>>>>>>> refs/remotes/origin/main
