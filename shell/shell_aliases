@@ -1,3 +1,5 @@
+# Aliases and other things that are not operating-system dependent.
+
 # navigation
 alias ..='cd ..'
 alias ...='cd ../..'
@@ -25,7 +27,6 @@ alias gp='echo "git push" && git push'
 alias gl='echo "git pull" && git pull'
 
 # starting apps
-alias at='alacritty-themes'
 alias myip='curl ipinfo.io/ip'
 alias bashconf='nvim ~/.bashrc'
 alias prnm='poetry run nvim main.py'
@@ -53,3 +54,9 @@ alias nviml='NVIM_APPNAME="nvim-lazyvim" nvim'
 
 # dotfiles
 alias dotf='cd ~/.dotfiles'
+
+# showing images
+alias icat='wezterm imgcat'
+
+# 
+export PATH="$PATH:$HOME/.dotfiles/shell/my_scripts/"

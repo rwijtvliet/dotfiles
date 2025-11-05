@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+if [ "$#" -lt 1 ]; then
+  echo "Tool to import one or several folders as 1 album into the beet library"
+  echo "Usage: $0 folder1 [folder2 ... folderN]"
+  exit 1
+fi
+
+merged_folder="_merged_import_$(date +%s)"
+mkdir -p "$merged_folder"
+
+echo "Merging files from folders into '$merged_folder'..."
+
+for dir in "$@"; do
+  if [ -d "$dir" ]; then
+    echo "Moving files recursively from '$dir'..."
+    mv "$dir"/* "$merged_folder"/
+    echo "$dir" >> "$merged_folder"/sources.txt
+    rm -rf "$dir"
+  else
+    echo "Warning: '$dir' is not a directory, skipping."
+  fi
+done
+
+echo "Starting beet import from '$merged_folder'..."
+beet -v import "$merged_folder"
+play -nq -t alsa synth 0.1 sine 1000
+# echo "Cleaning up merged folder..."
+# rm -rf "$merged_folder"
+

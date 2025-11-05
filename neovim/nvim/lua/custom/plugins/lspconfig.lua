@@ -143,7 +143,21 @@ return {
       local servers = {
         clangd = {},
         -- gopls = {},
-        pyright = {},
+        pyright = {
+          settings = {
+            python = {
+              analysis = {
+                autoSearchPaths = true,
+                useLibraryCodeForTypes = true,
+                autoImportCompletions = true,
+                diagnosticMode = 'openFilesOnly',
+                extraPaths = { '.' },
+              },
+            },
+          },
+        },
+        ruff = {},
+        -- pyright = {},
         -- rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
@@ -176,10 +190,10 @@ return {
       --    :Mason
       --
       --  You can press `g?` for help in this menu.
-      require('mason').setup({
-	 --  github = {
-  -- } 
-      })
+      require('mason').setup {
+        --  github = {
+        -- }
+      }
 
       -- You can add other tools here that you want Mason to install
       -- for you, so that they are available from within Neovim.
@@ -188,7 +202,8 @@ return {
         --lua
         'stylua',
         --python
-        'pyright',
+        -- 'pyright',
+        'mypy',
         'debugpy',
         'ruff',
         'black',
