@@ -36,11 +36,26 @@ if [ -f ~/.shell_secrets ] || [ -L ~/.shell_secrets ]; then
 	. ~/.shell_secrets
 fi
 
+# Keybindings.
+autoload -Uz up-line-or-search
+autoload -Uz down-line-or-search
+
+bindkey '^P' up-line-or-search     # Ctrl-P
+bindkey '^N' down-line-or-search   # Ctrl-N
+bindkey '^Y' accept-line           # Ctrl-Y
+
+
 
 # Prompt style.
 
 # (to customize prompt, run `p10k configure` or edit ~/.p10k.zsh.)
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+
+# For windows machines: ensure scoop called on powershell x86
+scoop() {
+    "/c/Windows/SysWOW64/WindowsPowerShell/v1.0/powershell.exe" -NoProfile -ExecutionPolicy RemoteSigned -Command scoop "$@"
+}
 
 
 # Message so I know it worked

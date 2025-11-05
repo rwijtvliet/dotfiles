@@ -1,7 +1,7 @@
 # ~/.bashrc: executed by bash(1) for non-login shells.
+#
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
-
 # If not running interactively, don't do anything
 case $- in
 *i*) ;;
@@ -144,6 +144,12 @@ eval "$(zoxide init bash)"
 
 # Set up fzf key bindings and fuzzy completion
 eval "$(fzf --bash)" 
+
+# For windows machines: execute scoop from powershell x86
+scoop() {
+    "/c/Windows/SysWOW64/WindowsPowerShell/v1.0/powershell.exe" -NoProfile -ExecutionPolicy RemoteSigned -Command scoop "$@"
+}
+export -f scoop
 
 # message so I know it worked
 # echo "successfully loaded Ruud Wijtvliet bash user profile"

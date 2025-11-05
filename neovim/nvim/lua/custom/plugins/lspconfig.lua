@@ -1,3 +1,5 @@
+local is_windows = vim.loop.os_uname().sysname:find 'Windows' ~= nil
+
 return {
   { -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
@@ -191,6 +193,7 @@ return {
       --
       --  You can press `g?` for help in this menu.
       require('mason').setup {
+        automatic_installation = not is_windows,
         --  github = {
         -- }
       }
@@ -221,8 +224,16 @@ return {
         'prettier',
         'prettierd',
       })
-      require('mason-tool-installer').setup { ensure_installed = ensure_installed }
-
+      if not is_windows then
+        require('mason-tool-installer').setup { ensure_installed = ensure_installed }
+      else
+        vim.notify(
+          "Skipping mason-tool-installer on windows due to powershell restrictions. Please install any tools you need manually in git bash e.g. using scoop. These would be installed if we weren't on windows:\n"
+            .. table.concat(ensure_installed, ', '),
+          vim.log.levels.WARN,
+          { title = 'Windows' }
+        )
+      end
       require('mason-lspconfig').setup {
         handlers = {
           function(server_name)

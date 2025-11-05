@@ -1,4 +1,3 @@
-
 # python stuff
 alias pf='cd ~/python/portfolyo/ && poetry shell'
 
@@ -14,5 +13,8 @@ alias shortcuts='echo "opening excel file with windowmanager shortcuts" && start
 # ensure symlinks can be created.
 export MSYS=winsymlinks:nativestrict 
 
+export ESPANSO_DIR="$APPDATA/espanso"
+
 # PATH
 export PATH="$PATH:/c/msys64/usr/bin/"
+export PATH="$PATH:$HOME/.dotfiles/shell/my_scripts/"

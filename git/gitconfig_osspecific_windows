@@ -1,2 +1,5 @@
+[core]
+	autocrlf = true
+    
 [http]
 	sslBackend = schannel

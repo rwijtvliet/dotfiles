@@ -31,11 +31,18 @@
         default = simple
         autoSetupRemote = true
 [credential]
+	provider = generic
 	helper = store
 	# helper = keychain
 [init]
         defaultBranch = main
 [gui]
 	recentrepo = C:/Users/cgd55/python/PortfolioManagement
+[credential "helperselector"]
+	selected = manager
 [http]
-	sslBackend = gnutls
+	lowSpeedTime = 5
+	lowSpeedLimit = 1
+	connectTimeout = 5
+[lfs]
+	cache = false

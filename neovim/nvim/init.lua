@@ -11,6 +11,18 @@ vim.g.loaded_netrwPlugin = 1
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = true
 
+-- Clipboard interaction with windows if on WSL.
+local in_wsl = os.getenv 'WSL_DISTRO_NAME' ~= nil
+
+if in_wsl then
+  vim.g.clipboard = {
+    name = 'wsl clipboard',
+    copy = { ['+'] = { 'clip.exe' }, ['*'] = { 'clip.exe' } },
+    paste = { ['+'] = { 'nvim_paste' }, ['*'] = { 'nvim_paste' } },
+    cache_enabled = true,
+  }
+end
+
 -- [[ Setting options ]]
 require 'options'
 

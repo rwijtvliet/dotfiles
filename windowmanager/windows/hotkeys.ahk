@@ -147,7 +147,8 @@ Komorebic(cmd) {
 ;
 ; # terminal
 ; # hotkey + (shift +) enter
-#!Enter::Run("WezTerm",,"Hide")
+#!Enter::Run("wezterm start -- wsl",,  "Hide")
+#!+Enter::Run("wezterm start", , "Hide") ; -- 'C:\Program Files\Git\git-bash.exe'")
 ;
 ; # screenshot
 ; # . to clipboard
@@ -171,3 +172,12 @@ Komorebic(cmd) {
 ; # hotkey + f1 for dvorak, hotkey + f2 for us
 #!F1::Send '!+1'  
 #!F2::Send '!+2'
+
+#!F11::RunWait('"C:\Program Files\Git\usr\bin\bash.exe" -c "source /c/users/cgd55/.shell_secrets && vpn off"', , "Hide")
+#!F12::RunWait('"C:\Program Files\Git\usr\bin\bash.exe" -c "source /c/users/cgd55/.shell_secrets && vpn on"', , "Hide")
+
+
+; #############################
+; # Debugging: show modifiers #
+; #############################
+Run(A_ScriptDir "\modifiers_in_tray.ahk")
