@@ -60,4 +60,7 @@ scoop() {
 
 # Message so I know it worked
 # (disabled because p10k is complaining)
-# echo "successfully loaded Ruud Wijtvliet zsh user profile" 
+# echo "successfully loaded Ruud Wijtvliet zsh user profile"
+
+
+
