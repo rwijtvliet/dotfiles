@@ -24,6 +24,11 @@ alias w='variety -n'
 alias wp='variety -p'
 
 # for wsl 
-export wh='/mnt/c/users/cgd55'
-export LIBGL_ALWAYS_INDIRECT=1
-export DISPLAY=:0
+if grep -qEi "(Microsoft|WSL)" /proc/version &> /dev/null; then
+  export wh='/mnt/c/users/cgd55'
+  export LIBGL_ALWAYS_INDIRECT=1
+  export DISPLAY=:0
+else
+    export DISPLAY=$(ls /tmp/.X11-unix/ | grep -o 'X[0-9]' | sed 's/X/:/')
+    export XAUTHORITY=$(find /run/user/$UID -name 'Xauthority' 2>/dev/null | head -n 1)
+fi
