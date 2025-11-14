@@ -57,10 +57,6 @@ scoop() {
     "/c/Windows/SysWOW64/WindowsPowerShell/v1.0/powershell.exe" -NoProfile -ExecutionPolicy RemoteSigned -Command scoop "$@"
 }
 
-
 # Message so I know it worked
 # (disabled because p10k is complaining)
 # echo "successfully loaded Ruud Wijtvliet zsh user profile"
-
-
-
