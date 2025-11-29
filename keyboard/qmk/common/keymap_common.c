@@ -277,13 +277,13 @@ enum colors {
 #define LAYER_BASE \
   KC_QUOT   ,KC_COMM   ,l_DOT     ,l_P       ,l_Y       ,                      KC_F      ,l_G       ,l_C       ,KC_R      ,KC_L      ,\
   ctl_A     ,sft_O     ,maj_E     ,alt_U     ,KC_I      ,                      KC_D      ,alt_H     ,maj_T     ,sft_N     ,ctl_S     ,\
-  mnr_SCLN  ,KC_Q      ,KC_J      ,l_K       ,l_X       ,KC_VOLD   ,KC_VOLU   ,l_B       ,l_M      ,KC_W      ,KC_V      ,mnr_Z     ,\
-  KC_ESC    ,                      mWM       ,l_SPC     ,kcLINUX   ,kcMACOS   ,sft_BSPC  ,l_TAB     ,                      KC_ENT
+  mnr_SCLN  ,KC_Q      ,KC_J      ,l_K       ,l_X       ,KC_VOLD   ,KC_VOLU   ,l_B       ,l_M       ,KC_W      ,KC_V      ,mnr_Z     ,\
+  KC_ESC    ,                      mWM       ,l_SPC     ,XXXXXXX   ,XXXXXXX   ,sft_BSPC  ,l_TAB     ,                      KC_ENT
 #define LIGHTS_BASE \
   XXXXX     ,XXXXX     ,YELLOW    ,BLUE      ,BLUE      ,                      XXXXX     ,ORANGE    ,YELLOW    ,XXXXX     ,XXXXX     ,\
   WHITE     ,WHITE     ,WHITE     ,WHITE     ,XXXXX     ,                      XXXXX     ,WHITE     ,WHITE     ,WHITE     ,WHITE     ,\
   WHITE     ,XXXXX     ,XXXXX     ,LIME      ,ROSE      ,XXXXX     ,XXXXX     ,ROSE      ,LIME      ,XXXXX     ,XXXXX     ,WHITE     ,\
-  GRAY      ,                      MAGENTA   ,GRAY      ,XXXXX     ,XXXXX     ,GRAY      ,GRAY      ,                      GRAY 
+  GRAY      ,                      MAGENTA   ,GRAY      ,XXXXX     ,XXXXX     ,GRAY      ,GRAY      ,                      GRAY
 
 //Dvorak without modifiers. Never switched to, just as base for the combos
 #define LAYER_BASE2 \
@@ -295,7 +295,7 @@ enum colors {
   _____     ,_____     ,_____     ,_____     ,_____     ,                      _____     ,_____     ,_____     ,_____     ,_____     ,\
   _____     ,_____     ,_____     ,_____     ,_____     ,                      _____     ,_____     ,_____     ,_____     ,_____     ,\
   _____     ,_____     ,_____     ,_____     ,_____     ,_____     ,_____     ,_____     ,_____     ,_____     ,_____     ,_____     ,\
-  _____     ,                      _____     ,_____     ,_____     ,_____     ,_____     ,_____     ,                      _____     
+  _____     ,                      _____     ,_____     ,_____     ,_____     ,_____     ,_____     ,                      _____
 
 // Symbols:
 //  `          %          #          $          ^                                &          [          ]          \          /
@@ -310,7 +310,7 @@ enum colors {
   YELLOW    ,YELLOW    ,YELLOW    ,YELLOW    ,LIME      ,                      YELLOW    ,SPRING    ,SPRING    ,YELLOW    ,LIME      ,\
   WHITE     ,WHITE     ,WHITE     ,WHITE     ,XXXXX     ,                      LIME      ,SPRING    ,SPRING    ,LIME      ,YELLOW    ,\
   YELLOW    ,YELLOW    ,YELLOW    ,YELLOW    ,XXXXX     ,XXXXX     ,XXXXX     ,LIME      ,SPRING    ,SPRING    ,YELLOW    ,LIME      ,\
-  _____     ,                      GREEN     ,_____     ,XXXXX     ,XXXXX     ,_____     ,_____      ,                      _____ 
+  _____     ,                      GREEN     ,_____     ,XXXXX     ,XXXXX     ,_____     ,_____      ,                      _____
 
 // Numbers.
 #define LAYER_NUM \
@@ -322,7 +322,7 @@ enum colors {
   YELLOW    ,YELLOW    ,YELLOW    ,YELLOW    ,LIME      ,                      BLUE      ,BLUE      ,BLUE      ,BLUE      ,LIME      ,\
   WHITE     ,WHITE     ,WHITE     ,WHITE     ,XXXXX     ,                      LIME      ,BLUE      ,BLUE      ,BLUE      ,YELLOW    ,\
   YELLOW    ,YELLOW    ,YELLOW    ,YELLOW    ,XXXXX     ,XXXXX     ,XXXXX     ,LIME      ,BLUE      ,BLUE      ,BLUE      ,LIME      ,\
-  _____     ,                      GREEN     ,_____     ,XXXXX     ,XXXXX     ,_____     ,_____     ,                      _____ 
+  _____     ,                      GREEN     ,_____     ,XXXXX     ,XXXXX     ,_____     ,_____     ,                      _____
 
 // Navigation:
 //  Win of app Win of app Apps       Pick a     Copy                             DocStart   LineStart  PageUp     PageDown   LineEnd
@@ -342,7 +342,7 @@ enum colors {
   CYAN      ,CYAN      ,AZURE     ,AZURE     ,GREEN     ,                      SPRING    ,AZURE     ,AZURE     ,AZURE     ,AZURE     ,\
   WHITE     ,WHITE     ,WHITE     ,WHITE     ,GREEN     ,                      SPRING    ,CYAN      ,CYAN      ,CYAN      ,CYAN      ,\
   WHITE     ,CYAN      ,CYAN      ,SPRING    ,GREEN     ,XXXXX     ,XXXXX     ,RED       ,RED       ,SPRING    ,SPRING    ,GRAY      ,\
-  _____     ,                      GREEN     ,_____     ,XXXXX     ,XXXXX     ,WHITE     ,_____     ,                      _____ 
+  _____     ,                      GREEN     ,_____     ,XXXXX     ,XXXXX     ,WHITE     ,_____     ,                      _____
 
 // Navigation for web
 #define LAYER_WEBNAV \
@@ -354,7 +354,7 @@ enum colors {
   XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,                      XXXXX     ,XXXXX     ,AZURE     ,AZURE     ,XXXXX     ,\
   XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,                      XXXXX     ,CYAN      ,AZURE     ,AZURE     ,CYAN      ,\
   XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,\
-  _____     ,                      XXXXX     ,_____     ,XXXXX     ,XXXXX     ,GRAY      ,_____     ,                      _____     
+  _____     ,                      XXXXX     ,_____     ,XXXXX     ,XXXXX     ,GRAY      ,_____     ,                      _____
 
 // F-keys.
 #define LAYER_FUN \
@@ -366,25 +366,25 @@ enum colors {
   ORANGE    ,ORANGE    ,ORANGE    ,ORANGE    ,XXXXX     ,                      XXXXX     ,XXXXX     ,WHITE     ,XXXXX     ,XXXXX     ,\
   ORANGE    ,ORANGE    ,ORANGE    ,ORANGE    ,WHITE     ,                      XXXXX     ,XXXXX     ,WHITE     ,WHITE     ,WHITE     ,\
   ORANGE    ,ORANGE    ,ORANGE    ,ORANGE    ,XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,WHITE     ,\
-  _____     ,                      GREEN     ,_____     ,XXXXX     ,XXXXX     ,_____     ,_____     ,                      _____     
+  _____     ,                      GREEN     ,_____     ,XXXXX     ,XXXXX     ,_____     ,_____     ,                      _____
 
 // Mouse.
 #define LAYER_MOUSE \
-  KC_WH_U   ,KC_BTN1   ,KC_MS_U   ,KC_BTN2   ,XXXXXXX   ,                      XXXXXXX     ,KC_BTN1   ,KC_MS_U   ,KC_BTN2   ,KC_WH_U   ,\
-  KC_WH_D   ,KC_MS_L   ,KC_MS_D   ,KC_MS_R   ,XXXXXXX   ,                      XXXXXXX   ,KC_MS_L   ,KC_MS_D   ,KC_MS_R   ,KC_WH_D   ,\
-  KC_ACL0   ,KC_ACL1   ,KC_ACL2   ,XXXXXXX   ,___f___   ,_______   ,_______   ,___f___   ,XXXXXXX   ,KC_ACL2   ,KC_ACL1   ,KC_ACL0   ,\
+  MS_WHLU   ,MS_BTN1   ,MS_UP     ,MS_BTN2   ,XXXXXXX   ,                      XXXXXXX   ,MS_BTN1   ,MS_UP     ,MS_BTN2   ,MS_WHLU   ,\
+  MS_WHLD   ,MS_LEFT   ,MS_DOWN   ,MS_RGHT   ,XXXXXXX   ,                      XXXXXXX   ,MS_LEFT   ,MS_DOWN   ,MS_RGHT   ,MS_WHLD   ,\
+  MS_ACL0   ,MS_ACL1   ,MS_ACL2   ,XXXXXXX   ,___f___   ,_______   ,_______   ,___f___   ,XXXXXXX   ,MS_ACL2   ,MS_ACL1   ,MS_ACL0   ,\
   ___f___   ,                      pBASE     ,___f___   ,_______   ,_______   ,_______   ,_______   ,                      _______
 #define LIGHTS_MOUSE \
   VIOLET    ,LAVENDER  ,MAGENTA   ,LAVENDER  ,XXXXX     ,                      XXXXX     ,LAVENDER  ,MAGENTA   ,LAVENDER  ,VIOLET    ,\
   VIOLET    ,MAGENTA   ,MAGENTA   ,MAGENTA   ,XXXXX     ,                      XXXXX     ,MAGENTA   ,MAGENTA   ,MAGENTA   ,VIOLET    ,\
   LAVENDER  ,LAVENDER  ,LAVENDER  ,XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,LAVENDER  ,LAVENDER  ,LAVENDER  ,\
-  _____     ,                      GREEN     ,_____     ,XXXXX     ,XXXXX     ,_____     ,_____     ,                      _____     
+  _____     ,                      GREEN     ,_____     ,XXXXX     ,XXXXX     ,_____     ,_____     ,                      _____
 
 // Querty.
 #define LAYER_GAME \
   KC_Q      ,KC_W      ,KC_E      ,KC_R      ,KC_T      ,                      KC_Y      ,KC_U      ,KC_I      ,KC_O      ,KC_P      ,\
-  KC_A      ,KC_S      ,KC_D      ,KC_F      ,KC_G      ,                      KC_H      ,KC_J      ,KC_K      ,KC_UP      ,KC_SCLN   ,\
-  KC_Z      ,KC_X      ,KC_C      ,KC_V      ,KC_B      ,_______   ,_______   ,KC_N      ,KC_M      ,KC_LEFT     ,KC_DOWN    ,KC_RIGHT   ,\
+  KC_A      ,KC_S      ,KC_D      ,KC_F      ,KC_G      ,                      KC_H      ,KC_J      ,KC_K      ,KC_UP     ,KC_SCLN   ,\
+  KC_Z      ,KC_X      ,KC_C      ,KC_V      ,KC_B      ,_______   ,_______   ,KC_N      ,KC_M      ,KC_LEFT   ,KC_DOWN   ,KC_RIGHT  ,\
   _______   ,                      pBASE     ,_______   ,_______   ,_______   ,_______   ,_______   ,                      _______
 #define LIGHTS_GAME \
   XXXXX     ,CYAN      ,XXXXX     ,XXXXX     ,XXXXX     ,                      XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,\
@@ -402,7 +402,7 @@ enum colors {
   ORANGE    ,YELLOW    ,XXXXX     ,XXXXX     ,RED       ,                      LIME      ,YELLOW    ,YELLOW    ,XXXXX     ,BLUE      ,\
   ORANGE    ,YELLOW    ,XXXXX     ,XXXXX     ,RED       ,                      MAGENTA   ,LAVENDER  ,LAVENDER  ,XXXXX     ,BLUE      ,\
   BLUE      ,BLUE      ,BLUE      ,XXXXX     ,ORANGE    ,XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,GRAY      ,GRAY      ,\
-  XXXXX     ,                      XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,                      XXXXX     
+  XXXXX     ,                      XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,                      XXXXX
 
 // Templates.
 #define LAYER_TEMPLATE \

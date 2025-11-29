@@ -1,0 +1,24 @@
+{
+  "manifest_version": 3,
+  "name": "Alt-HS Tab Switcher",
+  "version": "1.0",
+  "description": "Switch tabs with Alt+H (left) and Alt+S (right).",
+  "permissions": ["tabs"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "commands": {
+    "tab-left": {
+      "suggested_key": {
+        "default": "Alt+H"
+      },
+      "description": "Switch to the tab on the left"
+    },
+    "tab-right": {
+      "suggested_key": {
+        "default": "Alt+S"
+      },
+      "description": "Switch to the tab on the right"
+    }
+  }
+}

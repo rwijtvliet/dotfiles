@@ -5,7 +5,9 @@ source ../shared.sh
 case "$OS" in
   "linux" )
     info "Installing app"
+    sudo apt update
     sudo apt install chromium-browser
+    sudo apt install firefox
     ;;
 
   "windows" )
@@ -16,6 +18,7 @@ case "$OS" in
   "macos" )
     info "Installing app"
     brew install --cask chromium
+    brew install firefox
     ;;
     
   * )

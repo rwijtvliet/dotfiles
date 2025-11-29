@@ -281,7 +281,6 @@ bindsym $mod+F7 exec $HOME/.dotfiles/windowmanager/linux/i3/dual_monitor.sh
 ############################################
 
 bindsym --whole-window --release Ctrl+Shift+c exec --no-startup-id notify-send "Ctrl+Shift+C is disabled in Firefox. Use Ctrl+C instead." for_window [class="firefox"]
-# bindsym --release Ctrl+Shift+c exec --no-startup-id env DISPLAY=$DISPLAY DBUS_SESSION_BUS_ADDRESS=$DBUS_SESSION_BUS_ADDRESS notify-send "Ctrl+Shift+C is disabled in Firefox. Use Ctrl+C instead." for_window [class="Firefox"]
 
 
 #########################

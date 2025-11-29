@@ -63,10 +63,11 @@ void custom_post_init(void) { rgb_matrix_enable(); }
 
 void set_layer_color(int);
 
-void rgb_matrix_indicators_user(void) {
+bool rgb_matrix_indicators_user(void) {
   if (keyboard_config.disable_layer_led) {
-    return;
+    return false;
   }
   int layer = biton32(layer_state);
   set_layer_color(layer);
+  return true;
 }
