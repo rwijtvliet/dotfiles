@@ -9,7 +9,7 @@
 
 #include "os_detection.h"
 #include "keymap_common.c"
-#include "atreus.c"
+#include "keymap_atreus.c"
 #include "g/keymap_combo.h"
 
 // clang-format on

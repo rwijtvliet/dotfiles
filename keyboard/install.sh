@@ -2,7 +2,7 @@
 
 source ../shared.sh
 
-SOFTWARE="$HOME/syncNone/Software"
+SOFTWARE="$HOME/syncNone/Software_Installed"
 
 VENV_OFFICIAL="$SOFTWARE/.venv_official_qmk_firmware"
 FIRMWARE_OFFICIAL="$SOFTWARE/official_qmk_firmware"
@@ -31,41 +31,44 @@ setup_and_config_official() {
   python3 -m pip install qmk
   deactivate
 
-  info "Creating wrapper script in ~/.local/bin/ to call THIS qmk install with qmk_official"
+  info "Creating wrapper script in ~/.local/bin/ to call THIS qmk install with qmk_official or qmko"
+  rm "$BINDIR/qmk_official" "$BINDIR/qmko"
   cat > "$BINDIR/qmk_official" <<-EOF
 #!/usr/bin/env bash
+export QMK_HOME="$firmware"
 source "$venv/bin/activate"
 qmk "\$@"
 EOF
   chmod +x "$BINDIR/qmk_official"
+  ln -s "$BINDIR/qmk_official" "$BINDIR/qmko"
 
   info "Running setup. See below if this is not working with existing files."
-  qmk_official setup --home "$firmware"
+  qmk_official setup
   
   info "Linking config for atreus"
   rm -rf   "$firmware"/"$ATREUS"
   mkdir -p "$firmware"/"$ATREUS"
-  link_public_resource "./qmk/common/keymap_common.c"      "$firmware"/"$ATREUS"/keymap_common.c
-  link_public_resource "./qmk/common/dicts.def"            "$firmware"/"$ATREUS"/dicts.def
-  link_public_resource "./qmk/common/config.h"             "$firmware"/"$ATREUS"/config.h
-  link_public_resource "./qmk/keyboardio_atreus/atreus.c"  "$firmware"/"$ATREUS"/atreus.c
-  link_public_resource "./qmk/keyboardio_atreus/keymap.c"  "$firmware"/"$ATREUS"/keymap.c
-  link_public_resource "./qmk/keyboardio_atreus/rules.mk"  "$firmware"/"$ATREUS"/rules.mk
-  link_secret_resource "qmk/common/combos.def"             "$firmware"/"$ATREUS"/combos.def
+  link_public_resource "./qmk/common/keymap_common.c"             "$firmware"/"$ATREUS"/keymap_common.c
+  link_public_resource "./qmk/common/dicts.def"                   "$firmware"/"$ATREUS"/dicts.def
+  link_public_resource "./qmk/common/config.h"                    "$firmware"/"$ATREUS"/config.h
+  link_public_resource "./qmk/keyboardio_atreus/keymap_atreus.c"  "$firmware"/"$ATREUS"/keymap_atreus.c
+  link_public_resource "./qmk/keyboardio_atreus/keymap.c"         "$firmware"/"$ATREUS"/keymap.c
+  link_public_resource "./qmk/keyboardio_atreus/rules.mk"         "$firmware"/"$ATREUS"/rules.mk
+  link_secret_resource "qmk/common/combos.def"                    "$firmware"/"$ATREUS"/combos.def
     
   info "Linking config for ergodox_ez"
   rm -rf   "$firmware"/"$ERGODOX"
   mkdir -p "$firmware"/"$ERGODOX"
-  link_public_resource "./qmk/common/keymap_common.c"      "$firmware"/"$ERGODOX"/keymap_common.c
-  link_public_resource "./qmk/common/keymap_lights.c"      "$firmware"/"$ERGODOX"/keymap_lights.c
-  link_public_resource "./qmk/common/dicts.def"            "$firmware"/"$ERGODOX"/dicts.def
-  link_public_resource "./qmk/common/config.h"             "$firmware"/"$ERGODOX"/config.h
-  link_public_resource "./qmk/ergodox_ez_glow/ergodox.c"   "$firmware"/"$ERGODOX"/ergodox.c
-  link_public_resource "./qmk/ergodox_ez_glow/keymap.c"    "$firmware"/"$ERGODOX"/keymap.c
-  link_public_resource "./qmk/ergodox_ez_glow/rules.mk"    "$firmware"/"$ERGODOX"/rules.mk
-  link_secret_resource "qmk/common/combos.def"             "$firmware"/"$ERGODOX"/combos.def
+  link_public_resource "./qmk/common/keymap_common.c"             "$firmware"/"$ERGODOX"/keymap_common.c
+  link_public_resource "./qmk/common/keymap_lights.c"             "$firmware"/"$ERGODOX"/keymap_lights.c
+  link_public_resource "./qmk/common/dicts.def"                   "$firmware"/"$ERGODOX"/dicts.def
+  link_public_resource "./qmk/common/config.h"                    "$firmware"/"$ERGODOX"/config.h
+  link_public_resource "./qmk/ergodox_ez_glow/keymap_ergodox.c"   "$firmware"/"$ERGODOX"/keymap_ergodox.c
+  link_public_resource "./qmk/ergodox_ez_glow/keymap.c"           "$firmware"/"$ERGODOX"/keymap.c
+  link_public_resource "./qmk/ergodox_ez_glow/rules.mk"           "$firmware"/"$ERGODOX"/rules.mk
+  link_secret_resource "qmk/common/combos.def"                    "$firmware"/"$ERGODOX"/combos.def
   
-  info "run 'qmk list-keyboards' to see all supported keyboards. Here are the first 20:"
+  info "run 'qmk_official list-keyboards' (or 'qmko' instead of 'qmk_official' for short) to see all supported keyboards. Here are the first 20:"
   qmk_official list-keyboards 2>&1 | head -n 20
   qmk_official config user.keymap=rwijtvliet
   todo "To compile the ergodox, use 'qmk compile -kb ergodox_ez/glow -km rwijtvliet"
@@ -96,30 +99,33 @@ setup_and_config_zsa() {
   python3 -m pip install qmk
   deactivate
   
-  info "Creating wrapper script in ~/.local/bin/ to call THIS qmk install with qmk_zsa"
+  info "Creating wrapper script in ~/.local/bin/ to call THIS qmk install with qmk_zsa or qmkz"
+  rm "$BINDIR/qmk_zsa" "$BINDIR/qmkz"  
   cat > "$BINDIR/qmk_zsa" <<-EOF
 #!/usr/bin/env bash
+export QMK_HOME="$firmware"
 source "$venv/bin/activate"
 qmk "\$@"
 EOF
   chmod +x "$BINDIR/qmk_zsa"
+  ln -s "$BINDIR/qmk_zsa" "$BINDIR/qmkz"
 
   info "Running setup. See below if this is not working with existing files."
-  qmk_zsa setup --home "$firmware"
+  qmk_zsa setup # uses the QMK_HOME env var set in the wrapper script
 
   info "Linking config for voyager"
   rm -rf   "$firmware"/"$VOYAGER"
   mkdir -p "$firmware"/"$VOYAGER"
-  link_public_resource "./qmk/common/keymap_common.c"      "$firmware"/"$VOYAGER"/keymap_common.c
-  link_public_resource "./qmk/common/keymap_lights.c"      "$firmware"/"$VOYAGER"/keymap_lights.c
-  link_public_resource "./qmk/common/dicts.def"            "$firmware"/"$VOYAGER"/dicts.def
-  link_public_resource "./qmk/common/config.h"             "$firmware"/"$VOYAGER"/config.h
-  link_public_resource "./qmk/zsa_voyager/voyager.c"       "$firmware"/"$VOYAGER"/voyager.c
-  link_public_resource "./qmk/zsa_voyager/keymap.c"        "$firmware"/"$VOYAGER"/keymap.c
-  link_public_resource "./qmk/zsa_voyager/rules.mk"        "$firmware"/"$VOYAGER"/rules.mk
-  link_secret_resource "qmk/common/combos.def"             "$firmware"/"$VOYAGER"/combos.def
+  link_public_resource "./qmk/common/keymap_common.c"        "$firmware"/"$VOYAGER"/keymap_common.c
+  link_public_resource "./qmk/common/keymap_lights.c"        "$firmware"/"$VOYAGER"/keymap_lights.c
+  link_public_resource "./qmk/common/dicts.def"              "$firmware"/"$VOYAGER"/dicts.def
+  link_public_resource "./qmk/common/config.h"               "$firmware"/"$VOYAGER"/config.h
+  link_public_resource "./qmk/zsa_voyager/keymap_voyager.c"  "$firmware"/"$VOYAGER"/keymap_voyager.c
+  link_public_resource "./qmk/zsa_voyager/keymap.c"          "$firmware"/"$VOYAGER"/keymap.c
+  link_public_resource "./qmk/zsa_voyager/rules.mk"          "$firmware"/"$VOYAGER"/rules.mk
+  link_secret_resource "qmk/common/combos.def"               "$firmware"/"$VOYAGER"/combos.def
   
-  todo "To compile the voyager, use 'qmk compile -kb voyager -km rwijtvliet"
+  todo "To compile the voyager, use 'qmk_zsa compile -kb voyager -km rwijtvliet"
   todo "To flash the compiled file to the keyboard, replace 'compile' with 'flash'"
   info "Let's try compiling our voyager keymap:"
   try "qmk_zsa compile -kb voyager -km rwijtvliet"
@@ -129,7 +135,7 @@ EOF
 case "$OS" in
   "linux" )
     info "Installing app"
-    # setup_and_config_official "$VENV_OFFICIAL" "$FIRMWARE_OFFICIAL"
+    setup_and_config_official "$VENV_OFFICIAL" "$FIRMWARE_OFFICIAL"
     setup_and_config_zsa "$VENV_ZSA" "$FIRMWARE_ZSA"
     ;;
 
@@ -141,6 +147,8 @@ case "$OS" in
 
   "macos" )
     info "Installing app (if not up-to-date, this will take several hours (!) on apple silicon)"
+    fail "to-do"
+    exit 1
     brew install qmk/qmk/qmk
     setup_and_config $HOME
     setup_and_config2 $HOME

@@ -7,7 +7,7 @@
 // clang-format off
 #include "os_detection.h"
 #include "keymap_common.c"
-#include "ergodox.c"
+#include "keymap_ergodox.c"
 #include "keymap_lights.c"
 #include "g/keymap_combo.h"
 // clang-format on

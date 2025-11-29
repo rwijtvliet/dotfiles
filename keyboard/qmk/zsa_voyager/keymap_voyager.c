@@ -1,7 +1,13 @@
 // 2022 2023 Ruud Wijtvliet (@rwijtvliet)
 
 // clang-format off
+#ifndef LED_LEVEL
+#define LED_LEVEL 0xE0  // or whatever value matches default firmware
+#endif
 
+#ifndef TOGGLE_LAYER_COLOR
+#define TOGGLE_LAYER_COLOR 0xE1
+#endif
 // Take the partial keymap, and assign standard functions to the keys on the keyboard that are extra (i.e., not used by the partial keymap).
 #define PREP_LAYER_FOR_VOYAGER(\
              _ALPHA01  ,_ALPHA02  ,_ALPHA03  ,_ALPHA04  ,_ALPHA05  ,                      _ALPHA06  ,_ALPHA07  ,_ALPHA08  ,_ALPHA09  ,_ALPHA10  ,\
@@ -15,7 +21,7 @@
   _CORNERL  ,_ALPHA21  ,_ALPHA22  ,_ALPHA23  ,_ALPHA24  ,_ALPHA25  ,                      _ALPHA26  ,_ALPHA27  ,_ALPHA28  ,_ALPHA29  ,_ALPHA30  ,_CORNERR  ,\
                                               _THUMBL1  ,_THUMBL2  ,                      _THUMBR2  ,_THUMBR1
 
-// voyager expects lights to be: left side, then right side. 
+// voyager expects lights to be: left side, then right side.
 #define PREP_LIGHTS_FOR_VOYAGER(\
              _ALPHA01  ,_ALPHA02  ,_ALPHA03  ,_ALPHA04  ,_ALPHA05  ,                      _ALPHA06  ,_ALPHA07  ,_ALPHA08  ,_ALPHA09  ,_ALPHA10  ,\
              _ALPHA11  ,_ALPHA12  ,_ALPHA13  ,_ALPHA14  ,_ALPHA15  ,                      _ALPHA16  ,_ALPHA17  ,_ALPHA18  ,_ALPHA19  ,_ALPHA20  ,\
