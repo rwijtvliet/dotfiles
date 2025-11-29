@@ -1,0 +1,8 @@
+# ZSA Voyager bootloader
+SUBSYSTEM=="usb", ATTR{idVendor}=="3297", ATTR{idProduct}=="0791", MODE="0666"
+
+# ZSA Voyager normal mode
+SUBSYSTEM=="usb", ATTR{idVendor}=="3297", ATTR{idProduct}=="4976", MODE="0666"
+
+# ZSA ErgoDox EZ
+SUBSYSTEM=="usb", ATTR{idVendor}=="3297", ATTR{idProduct}=="4976", MODE="0666"

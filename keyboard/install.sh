@@ -125,6 +125,11 @@ EOF
   link_public_resource "./qmk/zsa_voyager/rules.mk"          "$firmware"/"$VOYAGER"/rules.mk
   link_secret_resource "qmk/common/combos.def"               "$firmware"/"$VOYAGER"/combos.def
   
+  info "Writing rules to ensure we can flash the voyager"
+  sudo cp "./50-zsa.rules" /etc/udev/rules.d/.
+  sudo udevadm control --reload-rules
+  sudo udevadm trigger
+
   todo "To compile the voyager, use 'qmk_zsa compile -kb voyager -km rwijtvliet"
   todo "To flash the compiled file to the keyboard, replace 'compile' with 'flash'"
   info "Let's try compiling our voyager keymap:"

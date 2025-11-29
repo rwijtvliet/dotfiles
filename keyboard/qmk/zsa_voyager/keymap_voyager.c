@@ -1,13 +1,6 @@
 // 2022 2023 Ruud Wijtvliet (@rwijtvliet)
 
-// clang-format off
-#ifndef LED_LEVEL
-#define LED_LEVEL 0xE0  // or whatever value matches default firmware
-#endif
 
-#ifndef TOGGLE_LAYER_COLOR
-#define TOGGLE_LAYER_COLOR 0xE1
-#endif
 // Take the partial keymap, and assign standard functions to the keys on the keyboard that are extra (i.e., not used by the partial keymap).
 #define PREP_LAYER_FOR_VOYAGER(\
              _ALPHA01  ,_ALPHA02  ,_ALPHA03  ,_ALPHA04  ,_ALPHA05  ,                      _ALPHA06  ,_ALPHA07  ,_ALPHA08  ,_ALPHA09  ,_ALPHA10  ,\
@@ -65,7 +58,7 @@ void custom_post_init(void) { rgb_matrix_enable(); }
 // Required by keymap_lights.c
 
 #define PREP_LIGHTS(...) PREP_LIGHTS_FOR_VOYAGER(__VA_ARGS__)
-#define NUMBER_OF_LEDS DRIVER_LED_TOTAL
+#define NUMBER_OF_LEDS 52
 
 void set_layer_color(int);
 

@@ -33,16 +33,19 @@ alias prnm='poetry run nvim main.py'
 alias ps='poetry shell'
 
 # keyboard compilation and flashing
-alias qm='cd ~/.dotfiles/keyboard/ && nvim qmk/common/keymap_common.c qmk/ergodox_ez_glow/ergodox.c qmk/keyboardio_atreus/atreus.c qmk/zsa_voyager/voyager.c'
-alias qmce='qmk compile -kb ergodox_ez/glow -km rwijtvliet'
-alias qmfe='qmk flash -kb ergodox_ez/glow -km rwijtvliet'
-alias qme='qmce && qmfe'
-alias qmca='qmk compile -kb keyboardio/atreus -km rwijtvliet'
-alias qmfa='qmk flash -kb keyboardio/atreus -km rwijtvliet'
-alias qma='qmca && qmfa'
-alias qmcv='( cd ~/syncNone/Software/qmk_firmware_zsa && qmk compile -kb voyager -km rwijtvliet )'
-alias qmfv='( cd ~/syncNone/Software/qmk_firmware_zsa && qmk flash -kb voyager -km rwijtvliet )'
-alias qmv='qmcv && qmfv'
+alias qm='cd ~/.dotfiles/keyboard/ && nvim qmk/common/keymap_common.c qmk/ergodox_ez_glow/keymap_ergodox.c qmk/keyboardio_atreus/keymap_atreus.c qmk/zsa_voyager/keymap_voyager.c'
+
+alias qmk_ce='qmk_official compile -kb ergodox_ez/glow -km rwijtvliet'
+alias qmk_ca='qmk_official compile -kb keyboardio/atreus -km rwijtvliet'
+alias qmk_cv='qmk_zsa compile -kb voyager -km rwijtvliet'
+
+alias qmk_fe='qmk_official flash -kb ergodox_ez/glow -km rwijtvliet'
+alias qmk_fa='qmk_official flash -kb keyboardio/atreus -km rwijtvliet'
+alias qmk_fv='qmk_zsa flash -kb voyager -km rwijtvliet'
+
+alias qmk_e='qmk_ce && qmk_fe'
+alias qmk_a='qmk_ca && qmk_fa'
+alias qmk_v='qmk_cv && qmk_fv'
 
 # nvim stuff
 alias cdswap='cd ~/.local/state/nvim/swap'

@@ -12,7 +12,14 @@ TAP_DANCE_ENABLE = no
 SPACE_CADET_ENABLE = no
 CAPS_WORD_ENABLE = yes
 
+
+MCU_LDSCRIPT = voyager
+
+CUSTOM_MATRIX = lite
 PROGRAM_CMD = $(call EXEC_DFU)
 DFU_ARGS = -d 3297:0791 -a 0 -s 0x08002000:leave
-	
-SRC = matrix.c
+DFU_SUFFIX_ARGS = -v 3297 -p 0791
+
+VPATH += drivers/gpio
+SRC += matrix.c mcp23018.c
+I2C_DRIVER_REQUIRED = yes
