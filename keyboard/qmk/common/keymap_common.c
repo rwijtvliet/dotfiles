@@ -244,7 +244,6 @@ enum colors {
   GREEN = 85,
   SPRING = 106,
   CYAN = 127,
-  AZURE = 148,
   BLUE = 169,
   VIOLET = 180,
   MAGENTA = 201,
@@ -283,7 +282,7 @@ enum colors {
   XXXXX     ,XXXXX     ,YELLOW    ,BLUE      ,BLUE      ,                      XXXXX     ,ORANGE    ,YELLOW    ,XXXXX     ,XXXXX     ,\
   WHITE     ,WHITE     ,WHITE     ,WHITE     ,XXXXX     ,                      XXXXX     ,WHITE     ,WHITE     ,WHITE     ,WHITE     ,\
   WHITE     ,XXXXX     ,XXXXX     ,LIME      ,ROSE      ,XXXXX     ,XXXXX     ,ROSE      ,LIME      ,XXXXX     ,XXXXX     ,WHITE     ,\
-  GRAY      ,                      MAGENTA   ,GRAY      ,XXXXX     ,XXXXX     ,GRAY      ,GRAY      ,                      GRAY
+  GRAY      ,                      MAGENTA   ,GRAY      ,XXXXX     ,XXXXX     ,RED       ,GRAY      ,                      GRAY
 
 //Dvorak without modifiers. Never switched to, just as base for the combos
 #define LAYER_BASE2 \
@@ -319,9 +318,9 @@ enum colors {
   KC_COLN   ,KC_PERC   ,XXXXXXX   ,XXXXXXX   ,XXXXXXX   ,_______   ,_______   ,KC_PLUS   ,KC_7      ,KC_8      ,KC_9      ,KC_ASTR   ,\
   ___f___   ,                      pBASE     ,___f___   ,_______   ,_______   ,_______   ,___f___   ,                      ___f___
 #define LIGHTS_NUM \
-  YELLOW    ,YELLOW    ,YELLOW    ,YELLOW    ,LIME      ,                      BLUE      ,BLUE      ,BLUE      ,BLUE      ,LIME      ,\
+  XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,YELLOW    ,                      BLUE      ,BLUE      ,BLUE      ,BLUE      ,LIME      ,\
   WHITE     ,WHITE     ,WHITE     ,WHITE     ,XXXXX     ,                      LIME      ,BLUE      ,BLUE      ,BLUE      ,YELLOW    ,\
-  YELLOW    ,YELLOW    ,YELLOW    ,YELLOW    ,XXXXX     ,XXXXX     ,XXXXX     ,LIME      ,BLUE      ,BLUE      ,BLUE      ,LIME      ,\
+  XXXXX     ,YELLOW    ,XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,LIME      ,BLUE      ,BLUE      ,BLUE      ,LIME      ,\
   _____     ,                      GREEN     ,_____     ,XXXXX     ,XXXXX     ,_____     ,_____     ,                      _____
 
 // Navigation:
@@ -339,10 +338,10 @@ enum colors {
   kc_MINOR  ,J(KC_MINS),J(KC_EQL) ,kcLaunchr ,J(KC_X)   ,KC_MPRV   ,KC_MNXT   ,kcDelWord ,KC_DEL    ,kcPrevWord,kcNextWord,KC_INS    ,\
   ___f___   ,                      pBASE     ,___f___   ,KC_MPLY   ,KC_MUTE   ,kcBspWord ,_______   ,                      ___f___
 #define LIGHTS_NAV \
-  CYAN      ,CYAN      ,AZURE     ,AZURE     ,GREEN     ,                      SPRING    ,AZURE     ,AZURE     ,AZURE     ,AZURE     ,\
+  CYAN      ,CYAN      ,BLUE      ,BLUE      ,GREEN     ,                      SPRING    ,BLUE      ,BLUE      ,BLUE      ,BLUE      ,\
   WHITE     ,WHITE     ,WHITE     ,WHITE     ,GREEN     ,                      SPRING    ,CYAN      ,CYAN      ,CYAN      ,CYAN      ,\
   WHITE     ,CYAN      ,CYAN      ,SPRING    ,GREEN     ,XXXXX     ,XXXXX     ,RED       ,RED       ,SPRING    ,SPRING    ,GRAY      ,\
-  _____     ,                      GREEN     ,_____     ,XXXXX     ,XXXXX     ,WHITE     ,_____     ,                      _____
+  _____     ,                      GREEN     ,_____     ,XXXXX     ,XXXXX     ,RED       ,_____     ,                      _____
 
 // Navigation for web
 #define LAYER_WEBNAV \
@@ -351,8 +350,8 @@ enum colors {
   _______   ,_______   ,_______   ,XXXXXXX   ,XXXXXXX   ,_______   ,_______   ,_______   ,_______   ,_______   ,_______   ,_______   ,\
   ___f___   ,                      XXXXXXX   ,___f___   ,_______   ,_______   ,_______   ,_______   ,                      _______
 #define LIGHTS_WEBNAV \
-  XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,                      XXXXX     ,XXXXX     ,AZURE     ,AZURE     ,XXXXX     ,\
-  XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,                      XXXXX     ,CYAN      ,AZURE     ,AZURE     ,CYAN      ,\
+  XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,                      XXXXX     ,XXXXX     ,BLUE      ,BLUE      ,XXXXX     ,\
+  XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,                      YELLOW    ,CYAN      ,BLUE      ,BLUE      ,CYAN      ,\
   XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,\
   _____     ,                      XXXXX     ,_____     ,XXXXX     ,XXXXX     ,GRAY      ,_____     ,                      _____
 
@@ -377,7 +376,7 @@ enum colors {
 #define LIGHTS_MOUSE \
   VIOLET    ,LAVENDER  ,MAGENTA   ,LAVENDER  ,XXXXX     ,                      XXXXX     ,LAVENDER  ,MAGENTA   ,LAVENDER  ,VIOLET    ,\
   VIOLET    ,MAGENTA   ,MAGENTA   ,MAGENTA   ,XXXXX     ,                      XXXXX     ,MAGENTA   ,MAGENTA   ,MAGENTA   ,VIOLET    ,\
-  LAVENDER  ,LAVENDER  ,LAVENDER  ,XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,LAVENDER  ,LAVENDER  ,LAVENDER  ,\
+  CYAN      ,CYAN      ,CYAN      ,XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,CYAN      ,CYAN      ,CYAN      ,\
   _____     ,                      GREEN     ,_____     ,XXXXX     ,XXXXX     ,_____     ,_____     ,                      _____
 
 // Querty.
@@ -394,14 +393,14 @@ enum colors {
 
 // System.
 #define LAYER_SYSTEM \
-  kcValUp   ,kcSatUp   ,_______   ,_______   ,QK_BOOT   ,                      KC_MPLY   ,KC_MPRV   ,KC_MNXT   ,_______   ,KC_BRIU   ,\
-  kcValDn   ,kcSatDn   ,_______   ,_______   ,fEE_CLR   ,                      KC_MUTE   ,KC_VOLD   ,KC_VOLU   ,_______   ,KC_BRID   ,\
-  kcLINUX   ,kcWINDO   ,kcMACOS   ,___f___   ,pGAME     ,_______   ,_______   ,_______   ,___f___   ,_______   ,KC_LCAP   ,KC_INS    ,\
-  XXXXXXX   ,                      _______   ,_______   ,_______   ,_______   ,XXXXXXX   ,XXXXXXX   ,                      XXXXXXX
+  kcValUp   ,kcSatUp   ,XXXXXXX   ,XXXXXXX   ,QK_BOOT   ,                      KC_MPLY   ,KC_MPRV   ,KC_MNXT   ,XXXXXXX   ,KC_BRIU   ,\
+  kcValDn   ,kcSatDn   ,XXXXXXX   ,XXXXXXX   ,fEE_CLR   ,                      KC_MUTE   ,KC_VOLD   ,KC_VOLU   ,XXXXXXX   ,KC_BRID   ,\
+  kcLINUX   ,kcWINDO   ,kcMACOS   ,___f___   ,pGAME     ,XXXXXXX   ,XXXXXXX   ,XXXXXXX   ,___f___   ,XXXXXXX   ,KC_LCAP   ,XXXXXXX   ,\
+  XXXXXXX   ,                      XXXXXXX   ,XXXXXXX   ,XXXXXXX   ,XXXXXXX   ,XXXXXXX   ,XXXXXXX   ,                      XXXXXXX
 #define LIGHTS_SYSTEM \
   ORANGE    ,YELLOW    ,XXXXX     ,XXXXX     ,RED       ,                      LIME      ,YELLOW    ,YELLOW    ,XXXXX     ,BLUE      ,\
   ORANGE    ,YELLOW    ,XXXXX     ,XXXXX     ,RED       ,                      MAGENTA   ,LAVENDER  ,LAVENDER  ,XXXXX     ,BLUE      ,\
-  BLUE      ,BLUE      ,BLUE      ,XXXXX     ,ORANGE    ,XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,GRAY      ,GRAY      ,\
+  RED       ,GREEN     ,BLUE      ,XXXXX     ,ORANGE    ,XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,GRAY      ,XXXXX     ,\
   XXXXX     ,                      XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,                      XXXXX
 
 // Templates.
@@ -664,7 +663,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
 void keyboard_post_init_user(void) {
   set_current_os_from_keycode(kcWINDO); // set on keyboard boot
-  hsv_saturation = 220;
+  hsv_saturation = 255;
   hsv_value = 128;
   custom_post_init();
 }

@@ -1,6 +1,6 @@
 // 2022 2023 Ruud Wijtvliet (@rwijtvliet)
 
-
+#include "voyager.h"
 // Take the partial keymap, and assign standard functions to the keys on the keyboard that are extra (i.e., not used by the partial keymap).
 #define PREP_LAYER_FOR_VOYAGER(\
              _ALPHA01  ,_ALPHA02  ,_ALPHA03  ,_ALPHA04  ,_ALPHA05  ,                      _ALPHA06  ,_ALPHA07  ,_ALPHA08  ,_ALPHA09  ,_ALPHA10  ,\
@@ -52,7 +52,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [L_GAME] = EXPAND_LAYOUT(PREP_LAYER(LAYER_GAME)),
 };
 
-void custom_led_indicators(enum supported_os os) {}
+void custom_led_indicators(enum supported_os os) {
+  // LED in top corner indicates the operating system.
+  if (os == LINUX) {
+    rgb_matrix_set_color(0, 255, 0, 0);
+  } else if (os == WINDOWS) {
+    rgb_matrix_set_color(0, 0, 255, 0);
+  } else { // MACOS
+    rgb_matrix_set_color(0, 0, 0, 255);
+  }
+}
 void custom_post_init(void) { rgb_matrix_enable(); }
 
 // Required by keymap_lights.c
@@ -68,5 +77,6 @@ bool rgb_matrix_indicators_user(void) {
   }
   int layer = biton32(layer_state);
   set_layer_color(layer);
+  custom_led_indicators(current_os);
   return true;
 }
