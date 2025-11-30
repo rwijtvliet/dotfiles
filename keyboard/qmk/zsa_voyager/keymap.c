@@ -9,5 +9,5 @@
 #include "keymap_common.c"
 #include "keymap_voyager.c"
 #include "keymap_lights.c"
-// #include "g/keymap_combo.h"
+#include "keymap_combo.h"
 // clang-format on
