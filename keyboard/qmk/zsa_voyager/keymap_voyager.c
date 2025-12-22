@@ -55,11 +55,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 void custom_led_indicators(enum supported_os os) {
   // LED in top corner indicates the operating system.
   if (os == LINUX) {
-    rgb_matrix_set_color(0, 255, 0, 0);
+    rgb_matrix_set_color(0, 128, 0, 0);
   } else if (os == WINDOWS) {
-    rgb_matrix_set_color(0, 0, 255, 0);
+    rgb_matrix_set_color(0, 0, 128, 0);
   } else { // MACOS
-    rgb_matrix_set_color(0, 0, 0, 255);
+    rgb_matrix_set_color(0, 0, 0, 128);
   }
 }
 void custom_post_init(void) { rgb_matrix_enable(); }

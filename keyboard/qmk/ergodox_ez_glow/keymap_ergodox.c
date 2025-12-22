@@ -10,13 +10,13 @@
                _CORNERL  ,                      _THUMBL1  ,_THUMBL2  ,_CENTRL2  ,_CENTRR2  ,_THUMBR2  ,_THUMBR1  ,                      _CORNERR  ) \
                \
     KC_ESC    ,KC_1      ,KC_2      ,KC_3      ,KC_4      ,KC_5      ,KC_CAPS   ,KC_INS    ,KC_6      ,KC_7      ,KC_8      ,KC_9      ,KC_0      ,pGAME     ,\
-    J(KC_C)   ,_ALPHA01  ,_ALPHA02  ,_ALPHA03  ,_ALPHA04  ,_ALPHA05  ,KC_TAB    ,KC_MPLY   ,_ALPHA06  ,_ALPHA07  ,_ALPHA08  ,_ALPHA09  ,_ALPHA10  ,J(KC_C)   ,\
-    J(KC_V)   ,_ALPHA11  ,_ALPHA12  ,_ALPHA13  ,_ALPHA14  ,_ALPHA15  ,                      _ALPHA16  ,_ALPHA17  ,_ALPHA18  ,_ALPHA19  ,_ALPHA20  ,J(KC_V)   ,\
-    J(KC_X)   ,_ALPHA21  ,_ALPHA22  ,_ALPHA23  ,_ALPHA24  ,_ALPHA25  ,KC_MPRV   ,KC_MNXT   ,_ALPHA26  ,_ALPHA27  ,_ALPHA28  ,_ALPHA29  ,_ALPHA30  ,J(KC_X)   ,\
-    _CORNERL  ,_CORNERL  ,XXXXXXX   ,XXXXXXX   ,_THUMBL1  ,                                            _THUMBR1  ,XXXXXXX   ,XXXXXXX   ,_CORNERR  ,_CORNERR  ,\
+    XXXXXXX   ,_ALPHA01  ,_ALPHA02  ,_ALPHA03  ,_ALPHA04  ,_ALPHA05  ,KC_TAB    ,KC_MPLY   ,_ALPHA06  ,_ALPHA07  ,_ALPHA08  ,_ALPHA09  ,_ALPHA10  ,XXXXXXX   ,\
+    _CORNERL  ,_ALPHA11  ,_ALPHA12  ,_ALPHA13  ,_ALPHA14  ,_ALPHA15  ,                      _ALPHA16  ,_ALPHA17  ,_ALPHA18  ,_ALPHA19  ,_ALPHA20  ,_CORNERR  ,\
+    _CORNERL  ,_ALPHA21  ,_ALPHA22  ,_ALPHA23  ,_ALPHA24  ,_ALPHA25  ,KC_MPRV   ,KC_MNXT   ,_ALPHA26  ,_ALPHA27  ,_ALPHA28  ,_ALPHA29  ,_ALPHA30  ,_CORNERR  ,\
+    _CORNERL  ,XXXXXXX   ,XXXXXXX   ,XXXXXXX   ,XXXXXXX   ,                                            XXXXXXX   ,XXXXXXX   ,XXXXXXX   ,XXXXXXX   ,_CORNERR  ,\
                                                            _CENTRL1  ,_CENTRR1  ,_CENTRL1  ,_CENTRR1  ,                                                       \
-                                                                      _CENTRR2  ,_CENTRL2  ,                                                                  \
-                                                _THUMBL2  ,_CENTRL2  ,_CENTRR2  ,_CENTRL2  ,_CENTRR2  ,_THUMBR2
+                                                                      _CENTRL2  ,_CENTRR2  ,                                                                  \
+                                                _THUMBL1  ,_THUMBL2  ,_CENTRL2  ,_CENTRR2  ,_THUMBR2  ,_THUMBR1
 
 // ergodox expects lights to be: right side, as-is, then left side, but mirrored.
 #define PREP_LIGHTS_FOR_ERGODOX(\
@@ -29,12 +29,12 @@
                                                                                             _ALPHA06  ,_ALPHA07  ,_ALPHA08  ,_ALPHA09  ,_ALPHA10  ,\
                                                                                             _ALPHA16  ,_ALPHA17  ,_ALPHA18  ,_ALPHA19  ,_ALPHA20  ,\
                                                                                             _ALPHA26  ,_ALPHA27  ,_ALPHA28  ,_ALPHA29  ,_ALPHA30  ,\
-                                                                                                       _THUMBR1  ,XXXXX     ,XXXXX     ,_CORNERR  ,\
+                                                                                                       XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,\
                 XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,XXXXX     ,\
                 _ALPHA05  ,_ALPHA04  ,_ALPHA03  ,_ALPHA02  ,_ALPHA01  ,\
                 _ALPHA15  ,_ALPHA14  ,_ALPHA13  ,_ALPHA12  ,_ALPHA11  ,\
                 _ALPHA25  ,_ALPHA24  ,_ALPHA23  ,_ALPHA22  ,_ALPHA21  ,\
-                           _THUMBL1  ,XXXXX     ,XXXXX     ,_CORNERL
+                           XXXXX     ,XXXXX     ,XXXXX     ,XXXXX    
 
 // clang-format on
 

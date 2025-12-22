@@ -289,16 +289,16 @@ bindsym --whole-window --release Ctrl+Shift+c exec --no-startup-id notify-send "
 
 # Force windows to spaces (use `xprop` to find class)
 
-assign [class="spotify"] $ws9
-assign [class="firefox"] $ws2
-assign [class="dolphin"] $ws1
+# assign [class="spotify" window_type="normal"] $ws9
+# assign [class="firefox" window_type="normal"] $ws2
+# assign [class="dolphin" window_type="normal"] $ws1
 
 # Start apps automatically
 
 # apps; only run on machine start-up
 # exec spotify & 
-exec firefox & 
-exec dolphin & 
+# exec firefox & 
+# exec dolphin & 
 
 # Some apps must be floating
 for_window [class="pavucontrol"] floating enable, move position mouse, move down 30, move left 30, sticky enable
@@ -310,3 +310,5 @@ exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 # start with dvorak on startup.
 exec setxkbmap dvorak
 
+exec --no-startup-id ~/.dotfiles/windowmanager/linux/i3/launch_and_move.sh dolphin $ws1
+exec --no-startup-id ~/.dotfiles/windowmanager/linux/i3/launch_and_move.sh firefox $ws2
