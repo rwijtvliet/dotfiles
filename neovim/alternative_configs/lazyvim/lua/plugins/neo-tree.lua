@@ -1,54 +1,41 @@
 return {
-  "nvim-neo-tree/neo-tree.nvim",
-  opts = {
-    window = {
-      mappings = {
-        ["<A-h>"] = "prev_source",
-        ["<A-s>"] = "next_source",
-        ["l"] = "noop",
-        ["s"] = "noop", --"child_or_open",
-        ["n"] = "noop",
-        ["t"] = "noop",
-        ["<"] = "noop",
-        [">"] = "noop",
-        ["_"] = "open_tabnew",
-        ["|"] = "open_vsplit",
-        ["\\"] = "open_split",
-      },
+  {
+    "nvim-neo-tree/neo-tree.nvim",
+    keys = {
+      { "<leader>E", false },
     },
-    filesystem = { filtered_items = { visible = true } },
+    opts = {
+      window = {
+        mappings = {
+          ["<A-h>"] = "prev_source",
+          ["<A-s>"] = "next_source",
+          ["l"] = "noop",
+          ["s"] = {
+            function(state)
+              local node = state.tree:get_node()
+              if node and node.type == "directory" and not node:is_expanded() then
+                state.commands.toggle_node(state)
+              end
+            end,
+            desc = "Expand folder",
+          },
+          ["n"] = "noop",
+          ["C"] = "noop",
+          ["t"] = "noop",
+          ["<"] = "noop",
+          [">"] = "noop",
+          ["_"] = { "open_tabnew", desc = "Open in new tap" },
+          ["|"] = { "open_vsplit", desc = "Open in vertical split" },
+          ["\\"] = { "open_split", desc = "Open in horizontal split" },
+          ["O"] = {
+            function(state)
+              require("lazy.util").open(state.tree:get_node().path, { system = true })
+            end,
+            desc = "Open with system application",
+          },
+        },
+      },
+      filesystem = { filtered_items = { visible = true } },
+    },
   },
-  keys = function(_, keys)
-    -- function returns table, in order to replace (instead of append) previous config
-    return {
-      {
-        "<leader>e",
-        function()
-          require("neo-tree.command").execute({ toggle = true, dir = require("lazyvim.util").root() })
-        end,
-        desc = "File explorer",
-      },
-      {
-        "<leader>re",
-        function()
-          require("neo-tree.command").execute({ toggle = true, dir = vim.uv.cwd() })
-        end,
-        desc = "File explorer (cwd)",
-      },
-      {
-        "<leader>ge",
-        function()
-          require("neo-tree.command").execute({ source = "git_status", toggle = true })
-        end,
-        desc = "Git Explorer",
-      },
-      {
-        "<leader>be",
-        function()
-          require("neo-tree.command").execute({ source = "buffers", toggle = true })
-        end,
-        desc = "Buffer Explorer",
-      },
-    }
-  end,
 }
