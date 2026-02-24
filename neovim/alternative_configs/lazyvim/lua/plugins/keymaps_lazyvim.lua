@@ -5,14 +5,10 @@ local substitute = require("util.keymap_substituter")
 
 local plugin_substitutions = {
   ["mini.pairs"] = false,
-  -- ["nvim-neo-tree/neo-tree.nvim"] = {
-  --   ["<A-n>"] = "]r",
-  --   ["<A-p>"] = "[r",
-  -- },
+  ["saghen/blink.cmp"] = { ["<C-p>"] = "<C-t>" },
 }
 
 local specs = {}
-
 for plugin, subs in pairs(plugin_substitutions) do
   if subs == false then
     table.insert(specs, { plugin, enabled = false })

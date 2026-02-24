@@ -47,6 +47,7 @@ fi
 autoload -Uz up-line-or-search
 autoload -Uz down-line-or-search
 
+bindkey '^T' up-line-or-search     
 bindkey '^P' up-line-or-search     # Ctrl-P
 bindkey '^N' down-line-or-search   # Ctrl-N
 bindkey '^Y' accept-line           # Ctrl-Y
