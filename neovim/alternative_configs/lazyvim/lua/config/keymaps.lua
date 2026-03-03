@@ -21,7 +21,7 @@
 -- Default key for action;   Wanted mapping         Default action for key;
 -- key is now freed up                              new key needed for it
 -- (key reused?              ACTION         KEY              (new key assigned?
--- ! = key still free)                                     ! = action unmapped)
+--
 -- -----------------------   ------------------    ----------------------------
 -- n/a                 (h)   LEFT            h      (LEFT)                  n/a
 -- yes                  k    UP              t      TILL                    yes
@@ -243,12 +243,10 @@ wk.add({
 
 -- Alternatives for [ and ] (because difficult on custom keyboards).
 wk.add({ { "gp", proxy = "[", group = "Go prev" }, { "gn", proxy = "]", group = "Go next" } })
+
 -- IMPORTED
 
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
-
-------- Go to dashboard (home)
----vim.keymap.set("n", "<leader>h", "<cmd>Dashboard<cr>", { desc = "Home (dashboard)" })
 
 -- vim.keymap.set("n", "<leader>Cd", function()
 --   require("telescope.builtin").find_files({ cwd = "~/.dotfiles/" })
