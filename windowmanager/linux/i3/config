@@ -36,6 +36,9 @@ exec --no-startup-id nm-applet
 # exec sudo /usr/lib/systemd/systemd-networkd & 
 exec --no-startup-id sudo systemctl start systemd-networkd.service
 
+# Should 'stabilize the clipboard'. According to copilot.
+exec --no-startup-id parcellite
+
 # Use pactl to adjust volume in PulseAudio.
 # set $refresh_i3status killall -SIGUSR1 i3status
 # bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
@@ -270,7 +273,7 @@ bindsym --release $mod+Shift+y exec flameshot gui
 
 # change keyboard layout (must be keys that are same on all layouts)
 # F1=dvorak, F2=us
-bindsym $mod+F1 exec setxkbmap dvorak
+bindsym $mod+F1 exec setxkbmap us -variant dvorak
 bindsym $mod+F2 exec setxkbmap us
 
 # lock the machine

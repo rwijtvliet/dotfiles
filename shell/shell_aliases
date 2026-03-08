@@ -30,7 +30,7 @@ alias gl='echo "git pull" && git pull'
 # starting apps
 alias myip='curl ipinfo.io/ip'
 alias prnm='poetry run nvim main.py'
-alias ps='poetry shell'
+# alias ps='poetry shell'
 
 # keyboard compilation and flashing
 alias qm='cd ~/.dotfiles/keyboard/ && nvim qmk/common/keymap_common.c qmk/ergodox_ez_glow/keymap_ergodox.c qmk/keyboardio_atreus/keymap_atreus.c qmk/zsa_voyager/keymap_voyager.c'
