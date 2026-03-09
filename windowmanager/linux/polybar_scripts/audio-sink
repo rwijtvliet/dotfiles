@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+# Generate Polybar custom/menu entries for available sinks
+
+sinks=$(pactl list short sinks | awk '{print $2}')
+default=$(pactl get-default-sink)
+
+i=0
+for sink in $sinks; do
+    name=$(echo "$sink" | sed 's/.*HiFi__//; s/__sink//')  # clean up name
+    if [[ "$sink" == "$default" ]]; then
+        icon="󰖁"  # maybe mark the current default with a check
+    else
+        icon="󰕾"
+    fi
+    echo "menu-0-$i = $icon $name"
+    echo "menu-0-$i-exec = pactl set-default-sink $sink"
+    echo "menu-0-$i-foreground = ${colors.foreground}"
+    i=$((i+1))
+done

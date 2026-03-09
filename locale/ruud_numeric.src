@@ -1,0 +1,16 @@
+copy "en_US"
+
+LC_IDENTIFICATION
+title      "en_US with Ruud numeric conventions"
+source     "ruud_numeric.src"
+language   "English"
+territory  "United States"
+revision   "1.0"
+END LC_IDENTIFICATION
+
+LC_NUMERIC
+decimal_point             "."
+thousands_sep             "<U0020>"
+grouping                  3;3
+END LC_NUMERIC
+
