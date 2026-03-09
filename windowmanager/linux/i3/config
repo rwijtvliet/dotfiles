@@ -1,6 +1,14 @@
 # i3 config file (v4)
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
+#
+# ---------------------------------------------------
+# -- following lines are needed since popos 24.04  --
+# -- Ensure XAUTHORITY set for all child processes --
+exec --no-startup-id systemctl --user import-environment XAUTHORITY DISPLAY
+# -- Set the variable for any future shells        --
+set $ex_auth export XAUTHORITY=$HOME/.Xauthority
+# ---------------------------------------------------
 
 set $mod Mod1+Mod4
 
@@ -36,7 +44,6 @@ exec --no-startup-id nm-applet
 # exec sudo /usr/lib/systemd/systemd-networkd & 
 exec --no-startup-id sudo systemctl start systemd-networkd.service
 
-# Should 'stabilize the clipboard'. According to copilot.
 exec --no-startup-id parcellite
 
 # Use pactl to adjust volume in PulseAudio.
