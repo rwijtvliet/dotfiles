@@ -12,8 +12,7 @@ alias wm='cd ~/.dotfiles/windowmanager/linux && nvim i3/config polybar/config.in
 alias shortcuts='echo "opening excel file with windowmanager shortcuts" && open ~/.dotfiles/windowmanager/shortcuts.xlsx'
 
 # opening apps
-
-export SUDO_EDITOR='$HOME/.local/bin/nvim'
+export SUDO_EDITOR="nvim -u $HOME/.config/nvim/init.lua"
 
 # finding my scripts in path
 export PATH="$PATH:$HOME/.dotfiles/shell/my_scripts/"
@@ -30,5 +29,5 @@ if grep -qEi "(Microsoft|WSL)" /proc/version &> /dev/null; then
   export DISPLAY=:0
 else
     # export DISPLAY=$(ls /tmp/.X11-unix/ | grep -o 'X[0-9]' | sed 's/X/:/')
-    export XAUTHORITY=$(find /run/user/$UID -name 'Xauthority' 2>/dev/null | head -n 1)
+    # export XAUTHORITY=$(find /run/user/$UID -name 'Xauthority' 2>/dev/null | head -n 1)
 fi

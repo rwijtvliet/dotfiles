@@ -1,6 +1,14 @@
 # i3 config file (v4)
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
+#
+# ---------------------------------------------------
+# -- following lines are needed since popos 24.04  --
+# -- Ensure XAUTHORITY set for all child processes --
+exec --no-startup-id systemctl --user import-environment XAUTHORITY DISPLAY
+# -- Set the variable for any future shells        --
+set $ex_auth export XAUTHORITY=$HOME/.Xauthority
+# ---------------------------------------------------
 
 set $mod Mod1+Mod4
 
@@ -36,6 +44,8 @@ exec --no-startup-id nm-applet
 # exec sudo /usr/lib/systemd/systemd-networkd & 
 exec --no-startup-id sudo systemctl start systemd-networkd.service
 
+exec --no-startup-id parcellite
+
 # Use pactl to adjust volume in PulseAudio.
 # set $refresh_i3status killall -SIGUSR1 i3status
 # bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
@@ -51,9 +61,12 @@ focus_follows_mouse no
 
 
 # Pulse Audio controle
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && polybar-msg action "#pulseaudio.hook.0"
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && polybar-msg action "#pulseaudio.hook.0"
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && polybar-msg action "#pulseaudio.hook.0"
+# bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
+# bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
+# bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
 
 # Sreen brightness controls
 # bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
@@ -270,7 +283,7 @@ bindsym --release $mod+Shift+y exec flameshot gui
 
 # change keyboard layout (must be keys that are same on all layouts)
 # F1=dvorak, F2=us
-bindsym $mod+F1 exec setxkbmap dvorak
+bindsym $mod+F1 exec setxkbmap us -variant dvorak
 bindsym $mod+F2 exec setxkbmap us
 
 # lock the machine

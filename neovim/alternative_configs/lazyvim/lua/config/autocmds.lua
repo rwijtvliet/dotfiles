@@ -1,3 +1,17 @@
 -- Autocmds are automatically loaded on the VeryLazy event
 -- Default autocmds that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/autocmds.lua
 -- Add any additional autocmds here
+-- local function copy_to_clipboard(event)
+--   if not event or type(event.regcontents) ~= "table" or vim.tbl_isempty(event.regcontents) then
+--     return
+--   end
+--   local text = table.concat(event.regcontents, "\n")
+--   vim.fn.system("clip.exe", text)
+--   vim.notify("copied " .. #event.regcontents .. " line(s) to windows clipboard")
+-- end
+--
+-- vim.api.nvim_create_augroup("YankToWindowsClipboard", { clear = true })
+-- vim.api.nvim_create_autocmd("TextYankPost", {
+--   group = "YankToWindowsClipboard",
+--   callback = copy_to_clipboard,
+-- })

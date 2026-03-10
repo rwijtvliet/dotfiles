@@ -153,3 +153,5 @@ export -f scoop
 
 # message so I know it worked
 # echo "successfully loaded Ruud Wijtvliet bash user profile"
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
