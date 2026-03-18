@@ -3,107 +3,101 @@
 source ../shared.sh
 
 # fonts to install
-version="v3.0.2"
+# version="v3.4.0"
 declare -a fonts=(
-	Agave
-	AurulentSansMono
-	BitstreamVeraSansMono
-	CodeNewRoman
-	Cousine
-	DejaVuSansMono
-	DroidSansMono
-	FantasqueSansMono
-	FiraCode
-	Gohu
-	Hack
-	Hasklig
-	HeavyData
-	Hermit
-	iA-Writer
-	IBMPlexMono
-	Inconsolate
-	InconsolataGo
-	InconsolataLGC
-	Iosevka
-	JetBrainsMono
-	Lekton
-	LiberationMono
-	Lilex
-	Meslo
-	Monofur
-	Mononoki
-	Monoid
-	NerdFontsSymbolsOnly
-	OpenDyslexic
-	Overpass
-	ProFont
-	ProggyClean
-	RobotoMono
-	ShareTechMono
-	Terminus
-	Tinos
-	Ubuntu
-	UbuntuMono
-	VictorMono
+  # AurulentSansMono
+  # BitstreamVeraSansMono
+  # CodeNewRoman
+  # Cousine
+  # DejaVuSansMono
+  # DroidSansMono
+  # FantasqueSansMono
+  # FiraCode
+  # Gohu
+  # Hack
+  # Hasklig
+  # HeavyData
+  # Hermit
+  # iA-Writer
+  # IBMPlexMono
+  # Inconsolate
+  # InconsolataGo
+  # InconsolataLGC
+  # Iosevka
+  JetBrainsMono
+  # Lekton
+  # LiberationMono
+  # Lilex
+  # Meslo
+  # Monofur
+  # Mononoki
+  # Monoid
+  # NerdFontsSymbolsOnly
+  # OpenDyslexic
+  # Overpass
+  # ProFont
+  # ProggyClean
+  # RobotoMono
+  # ShareTechMono
+  # Terminus
+  # Tinos
+  # Ubuntu
+  # UbuntuMono
+  # VictorMono
 )
 
-
-
-download_fonts () {
+download_fonts() {
   fontdir="$HOME/fonts/"
-
-  # create and prepare folders 
-	rm -rf ./tmp # remove possible previous downloads
-	mkdir ./tmp
-  cd ./tmp
   mkdir -p "$fontdir"
 
-	# download and extract the fonts
+  # create and prepare folders
+  rm -rf /tmp/fonts # remove possible previous downloads
+  mkdir /tmp/fonts
+  cd /tmp/fonts
+
+  # download and extract the fonts
   for font in "${fonts[@]}"; do
-      zipfile="${font}.zip"
-      download_url="https://github.com/ryanoasis/nerd-fonts/releases/download/$version/$zipfile"
-      download_url="https://github.com/ryanoasis/nerd-fonts/releases/latest/download/$zipfile"
-      if ! curl -q "$download_url"; then
-        fail "Could not download font archive $download_url (file not found?)"
-      else
-      	filesize=$(numfmt --to=iec-i --suffix=B --format="%.0f" $(stat --printf="%s" "$zipfile"))
-        unzip -qqu "$zipfile" *.[to]tf -d "$fontdir"
-        rm "$zipfile"
-      	success "Extracted fonts in $filesize archive $download_url to $fontdir"
-      fi
+    tarfile="${font}.tar.xz"
+    download_url="https://github.com/ryanoasis/nerd-fonts/releases/latest/download/$tarfile"
+    target_path="/tmp/fonts/$tarfile"
+    if ! curl -fL "$download_url" -o "$target_path"; then
+      fail "Could not download font archive $download_url (file not found?)"
+    else
+      filesize=$(numfmt --to=iec-i --suffix=B --format="%.0f" $(stat --printf="%s" "$target_path"))
+      tar -xvf "$target_path" --wildcards --no-anchored '*.ttf' '*.otf' -C "$fontdir"
+      success "Extracted fonts in $filesize archive $download_url to $fontdir"
+    fi
   done
 
   # remove temp folder
-  cd ..
-  rm -rf ./tmp
+  rm -rf /tmp/fonts/
 }
 
 case "$OS" in
-  "linux" )
-    download_fonts
-    # find "$HOME/fonts" -name '*Windows Compatible*' -delete
+"linux")
+  download_fonts
+  # find "$HOME/fonts" -name '*Windows Compatible*' -delete
 
-		#'install'
-    mkdir -p "$HOME/.local/share/fonts/"
-    cp "$HOME/fonts/"* "$HOME/.local/share/fonts/"
-    rm -rf "$HOME/fonts/"
-    fc-cache -fv
-    ;;
+  #'install'
+  mkdir -p "$HOME/.local/share/fonts/"
+  cp "$HOME/fonts/"* "$HOME/.local/share/fonts/"
+  rm -rf "$HOME/fonts/"
+  fc-cache -fv
+  ;;
 
-  "windows" )
-    scoop bucket add nerd-fonts
-    scoop install Hack-NF    
-    ;;
+"windows")
+  scoop bucket add nerd-fonts
+  scoop install Hack-NF
+  ;;
 
-	"macos" )
-  	download_fonts
+"macos")
+  download_fonts
 
-  	#'install'
-    mkdir -p "$HOME/Library/Fonts/"
-  	cp "$HOME/fonts/"* "$HOME/Library/Fonts/"
-    rm -rf "$HOME/fonts/"
-		;;
-		
-  * )
-    ;;
+  #'install'
+  mkdir -p "$HOME/Library/Fonts/"
+  cp "$HOME/fonts/"* "$HOME/Library/Fonts/"
+  rm -rf "$HOME/fonts/"
+  ;;
+
+*) ;;
 esac
