@@ -326,7 +326,7 @@ for_window [class="blueman-manager"] floating enable, move position mouse, move 
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 # start with dvorak on startup.
-exec setxkbmap dvorak
+exec setxkbmap us -variant dvorak
 
 exec --no-startup-id ~/.dotfiles/windowmanager/linux/i3/launch_and_move.sh dolphin $ws1
 exec --no-startup-id ~/.dotfiles/windowmanager/linux/i3/launch_and_move.sh firefox $ws2
