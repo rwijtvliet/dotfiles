@@ -33,7 +33,7 @@ return {
 
 	-- vim motions
 	keys = {
-		{ key = "Escape", mods = "CTRL|SHIFT", action = wezterm.action.ActivateCopyMode },
+		{ key = "x", mods = "CTRL|SHIFT", action = wezterm.action.ActivateCopyMode },
 	},
 	key_tables = {
 		copy_mode = {
