@@ -118,6 +118,7 @@ bindsym $mod+h      focus left
 bindsym $mod+t      focus up
 bindsym $mod+n      focus down
 bindsym $mod+s      focus right
+focus_wrapping no
 # bindsym $mod+Left   focus left
 # bindsym $mod+Up     focus up
 # bindsym $mod+Down   focus down
