@@ -294,12 +294,15 @@ bindsym $mod+F5 exec i3lock
 bindsym $mod+F6 exec $HOME/.dotfiles/windowmanager/linux/i3/singe_monitor.sh
 bindsym $mod+F7 exec $HOME/.dotfiles/windowmanager/linux/i3/dual_monitor.sh
 
+# emoji picker
+bindsym Mod4+semicolon exec rofimoji --action type
 
 ############################################
 # Shortcuts that are not using the mod key #
 ############################################
 
 bindsym --whole-window --release Ctrl+Shift+c exec --no-startup-id notify-send "Ctrl+Shift+C is disabled in Firefox. Use Ctrl+C instead." for_window [class="firefox"]
+
 
 
 #########################

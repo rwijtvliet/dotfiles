@@ -212,6 +212,10 @@ wk.add({ { "|", icon = "" }, { "\\", icon = "" } })
 vim.keymap.set("n", "<A-h>", "<cmd>bprev<cr>", { desc = "Prev Buffer" })
 vim.keymap.set("n", "<A-s>", "<cmd>bnext<cr>", { desc = "Next Buffer" })
 
+-- Save buffer
+vim.keymap.set("n", "<leader>bw", "<cmd>w<cr>", { desc = "Write buffer" })
+vim.keymap.set("n", "<leader>bW", "<cmd>wall<cr>", { desc = "Write all buffers" })
+
 ---------------
 -- Utilities --
 ---------------

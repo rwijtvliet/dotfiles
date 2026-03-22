@@ -13,6 +13,8 @@ return {
         "<cmd>BufferLinePick<cr>",
         desc = "Select (from bufferline)",
       },
+      { "<leader>bj", false }, -- disable lazyvim standard
+      { "<leader>bD", false }, -- disable lazyvim standard
     },
   },
   -- General colorscheme tweaks to enhance readability.
@@ -73,5 +75,13 @@ return {
     "rose-pine/neovim",
     name = "rose-pine",
     opts = { dark_variant = "moon" },
+  },
+
+  --hexcolors
+  {
+    "norcalli/nvim-colorizer.lua",
+    config = function()
+      require("colorizer").setup({ "*" })
+    end,
   },
 }

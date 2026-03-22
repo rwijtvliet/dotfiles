@@ -6,6 +6,7 @@ return {
       { "<leader>E", "<Cmd>Oil --float<Cr>", desc = "Oil: current file's dir" },
     },
     opts = {
+      -- buf_options = { bufhidden = "wipe" }, -- don't keep state when closing window
       float = { border = "rounded" }, --
       use_default_keymaps = false,
       keymaps = {
