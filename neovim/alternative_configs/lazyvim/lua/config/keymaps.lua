@@ -241,9 +241,9 @@ wk.add({
   icon = "",
 })
 
-------------------------
--- prev ([) and next (])
-------------------------
+---------------------------
+-- prev ([) and next (]) --
+---------------------------
 
 -- Alternatives for [ and ] (because difficult on custom keyboards).
 wk.add({ { "gp", proxy = "[", group = "Go prev" }, { "gn", proxy = "]", group = "Go next" } })
@@ -266,3 +266,55 @@ wk.add({ { "gp", proxy = "[", group = "Go prev" }, { "gn", proxy = "]", group = 
 -- end, { desc = "Grep [n]eovim config files" })
 --
 -- Removing
+--
+--
+
+------------------------
+-- Python development --
+------------------------
+
+-- Iron
+---- REPL control
+vim.keymap.set("n", "<leader>rr", function()
+  require("iron.core").repl_for(vim.bo.filetype)
+end, { desc = "REPL: toggle/start" })
+vim.keymap.set("n", "<leader>ro", function()
+  require("iron.core").focus_on(vim.bo.filetype)
+end, { desc = "REPL: focus" })
+vim.keymap.set("n", "<leader>rd", function()
+  require("iron.core").close_repl(vim.bo.filetype)
+end, { desc = "REPL: close" })
+vim.keymap.set("n", "<leader>rR", function()
+  require("iron.core").repl_restart()
+end, { desc = "REPL: restart" })
+---- Run code
+vim.keymap.set("n", "<leader>rl", function()
+  require("iron.core").send_line()
+end, { desc = "Run line" })
+vim.keymap.set("n", "<leader>rp", function()
+  require("iron.core").send_paragraph()
+end, { desc = "Run paragraph" })
+vim.keymap.set("n", "<leader>rc", function()
+  require("iron.core").send_until_cursor()
+end, { desc = "Run until cursor" })
+vim.keymap.set("n", "<leader>rf", function()
+  require("iron.core").send_file()
+end, { desc = "Run file" })
+vim.keymap.set("v", "<leader>r", function()
+  require("iron.core").visual_send()
+end, { desc = "Run selection" })
+---- Icons
+wk.add({
+  { "<leader>r", desc = "iron", icon = { icon = "", color = "yellow" } },
+  { "<leader>rd", icon = { icon = "", color = "red" } },
+  { "<leader>rR", icon = { icon = "󱄌", color = "red" } },
+})
+-- =========================
+-- Nice UX: run + move down
+-- =========================
+
+vim.keymap.set("n", "<leader>rj", function()
+  local iron = require("iron.core")
+  iron.send_line()
+  vim.cmd("normal! j")
+end, { desc = "Run line + next" })
