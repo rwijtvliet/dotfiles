@@ -74,4 +74,8 @@ return {
     name = "rose-pine",
     opts = { dark_variant = "moon" },
   },
+  {
+    "webhooked/kanso.nvim",
+    name = "kanso",
+  },
 }
