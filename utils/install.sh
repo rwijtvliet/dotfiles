@@ -3,30 +3,32 @@
 source ../shared.sh
 
 case "$OS" in
-    "linux" )
-        sudo apt install npm snapd fzf ripgrep cifs-utils
+"linux")
+  sudo apt update
+  sudo apt install npm snapd ripgrep cifs-utils
+  sudo apt upgrade
 
-        sudo apt update
-        sudo apt upgrade
-        ;;
+  # fzf
+  git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+  ~/.fzf/install
+  ;;
 
-    "windows" )
-        scoop install wget nodejs fzf
+"windows")
+  scoop install wget nodejs fzf
 
-        scoop update *
-        ;;
+  scoop update *
+  ;;
 
-    "macos" )
-        info "Installing gnu versions"
-        brew install coreutils findutils gnu-tar gnu-sed gawk gnutls gnu-indent gnu-getopt grep
-        PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH" # also in .bashrc
-        info "Installing java"
-        brew install java
-        brew install openjdk
-        todo "installed java - but probably won't work anyway. "
-        brew install npm wget nodejs rg fd fzf
-        ;;
+"macos")
+  info "Installing gnu versions"
+  brew install coreutils findutils gnu-tar gnu-sed gawk gnutls gnu-indent gnu-getopt grep
+  PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH" # also in .bashrc
+  info "Installing java"
+  brew install java
+  brew install openjdk
+  todo "installed java - but probably won't work anyway. "
+  brew install npm wget nodejs rg fd fzf
+  ;;
 
-    * )
-        ;;
+*) ;;
 esac

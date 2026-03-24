@@ -31,4 +31,32 @@ return {
   --     },
   --   },
   -- },
+  --
+  --
+
+  {
+    "Vigemus/iron.nvim",
+    ft = { "python" },
+    opts = function()
+      local view = require("iron.view")
+
+      return {
+        config = {
+          scratch_repl = true,
+
+          repl_definition = {
+            python = {
+              format = require("iron.fts.common").bracketed_paste,
+              command = { "ipython", "--no-autoindent" },
+            },
+          },
+
+          repl_open_cmd = view.split.vertical.botright(0.30),
+        },
+
+        highlight = { italic = true },
+        ignore_blank_lines = true,
+      }
+    end,
+  },
 }
