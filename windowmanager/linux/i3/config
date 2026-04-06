@@ -45,7 +45,7 @@ exec --no-startup-id nm-applet
 exec --no-startup-id sudo systemctl start systemd-networkd.service
 
 # Clipboard: make sure copy/paste is shared between all programs
-exec --no-startup-id flatpak run com.github.hluk.copyq
+exec --no-startup-id copyq
 
 # Use pactl to adjust volume in PulseAudio.
 # set $refresh_i3status killall -SIGUSR1 i3status

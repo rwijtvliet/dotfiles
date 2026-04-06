@@ -29,8 +29,7 @@ case "$OS" in
   # add user config
   info "Adding user configs"
   link_public_resource "./nvim" "$HOME/.config/nvim"
-  link_public_resource "./alternative_configs/lazyvim" "$HOME/.config/nvim-lazyvim"
-  link_public_resource "./alternative_configs/astronvim" "$HOME/.config/nvim-astronvim"
+  link_public_resource "./alternative_configs/kickstart" "$HOME/.config/nvim-kickstart"
   ;;
 
 "windows")

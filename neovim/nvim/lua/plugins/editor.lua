@@ -79,7 +79,7 @@ return {
   {
     "webhooked/kanso.nvim",
     name = "kanso",
-
+  },
   --hexcolors
   {
     "norcalli/nvim-colorizer.lua",

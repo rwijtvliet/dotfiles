@@ -13,7 +13,9 @@ case "$OS" in
   ~/.fzf/install
 
   #copyq (clipboard)
-  flatpak install flathub com.github.hluk.copyq
+  sudo add-apt-repository ppa:hluk/copyq
+  sudo apt update
+  sudo apt install copyq
   ;;
 
 "windows")
