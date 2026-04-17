@@ -166,7 +166,7 @@ end
 local function nav_t(key, cmd)
   return function()
     vim.notify("nav_t: " .. key .. " -> " .. cmd)
-    return current_window_not_floating() and ("<C-\\>" .. key .. "<C-n><C-w>" .. cmd) or key
+    return current_window_not_floating() and ("<C-\\><C-n><C-w>" .. cmd) or key
   end
 end
 vim.keymap.set("", "<C-h>", nav_n("<C-h>", "h"), { expr = true })
