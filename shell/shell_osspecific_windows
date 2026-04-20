@@ -18,3 +18,4 @@ export ESPANSO_DIR="$APPDATA/espanso"
 # PATH
 export PATH="$PATH:/c/msys64/usr/bin/"
 export PATH="$PATH:$HOME/.dotfiles/shell/my_scripts/"
+export PATHEXT='.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.PY;.PYW'

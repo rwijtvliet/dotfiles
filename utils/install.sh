@@ -22,7 +22,7 @@ case "$OS" in
   ;;
 
 "windows")
-  scoop install wget nodejs fzf
+  scoop install wget nodejs fzf curl tar rustup
 
   scoop update *
   ;;

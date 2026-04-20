@@ -148,7 +148,7 @@ Komorebic(cmd) {
 ; # terminal
 ; # hotkey + (shift +) enter
 #!Enter::Run("wezterm start -- wsl",,  "Hide")
-#!+Enter::Run("wezterm start", , "Hide") ; -- 'C:\Program Files\Git\git-bash.exe'")
+#!+Enter::Run("wezterm start -- bash", , "Hide") ; -- 'C:\Program Files\Git\git-bash.exe'")
 ;
 ; # screenshot
 ; # . to clipboard

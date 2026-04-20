@@ -45,7 +45,7 @@ case "$OS" in
 
   # virtual environment specifically for neovim plugins, in this folder
   info "Creating python environment for neovim"
-  poetry install
+  uv sync --python 3.14 --all-extras --no-install-project
   # on windows, there is no bin folder, but rather a scripts folder
   (
     cd "$USERPROFILE/.dotfiles/neovim/.venv/"
