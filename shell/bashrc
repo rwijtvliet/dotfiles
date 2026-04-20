@@ -135,7 +135,7 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
 
 # put cargo on path
-# export PATH="$HOME/.cargo/bin:$PATH"
+export PATH="$HOME/.cargo/bin:$PATH"
 
 PROMPT_COMMAND='echo -ne "\033]0;${PWD}\007"'
 
@@ -158,4 +158,3 @@ export -f scoop
 # echo "successfully loaded Ruud Wijtvliet bash user profile"
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
-. "$HOME/.cargo/env"
