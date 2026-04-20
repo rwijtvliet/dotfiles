@@ -145,11 +145,53 @@ vim.keymap.set("", "<C-w>h", "<C-w>h", { desc = "Go to window on left" })
 vim.keymap.set("", "<C-w>t", "<C-w>k", { desc = "Go to window above" })
 vim.keymap.set("", "<C-w>n", "<C-w>j", { desc = "Go to window below" })
 vim.keymap.set("", "<C-w>s", "<C-w>l", { desc = "Go to window on right" })
----- direct shortcut
-vim.keymap.set("", "<C-h>", "<C-w>h", { desc = "Go to window on left" })
-vim.keymap.set("", "<C-t>", "<C-w>k", { desc = "Go to window above" })
-vim.keymap.set("", "<C-n>", "<C-w>j", { desc = "Go to window below" })
-vim.keymap.set("", "<C-s>", "<cmd>wincmd l<cr>", { desc = "Go to window on right" })
+---- direct shortcut. Try to avoid moving focus away from floating windows, because this can be disruptive. If the current window is floating, use the direct shortcut; if not, use the vim prefix.
+local function current_window_not_floating()
+  local win = vim.api.nvim_get_current_win()
+  local config = vim.api.nvim_win_get_config(win)
+  return config.relative == ""
+end
+local function nav_n(key, cmd)
+  return function()
+    vim.notify("nav_n: " .. key .. " -> " .. cmd)
+    return current_window_not_floating() and ("<C-w>" .. cmd) or key
+  end
+end
+local function nav_i(key, cmd)
+  return function()
+    vim.notify("nav_i: " .. key .. " -> " .. cmd)
+    return current_window_not_floating() and ("<Esc><C-w>" .. cmd) or key
+  end
+end
+local function nav_t(key, cmd)
+  return function()
+    vim.notify("nav_t: " .. key .. " -> " .. cmd)
+    return current_window_not_floating() and ("<C-\\><C-n><C-w>" .. cmd) or key
+  end
+end
+vim.keymap.set("", "<C-h>", nav_n("<C-h>", "h"), { expr = true })
+vim.keymap.set("", "<C-t>", nav_n("<C-t>", "k"), { expr = true })
+vim.keymap.set("", "<C-n>", nav_n("<C-n>", "j"), { expr = true })
+vim.keymap.set("", "<C-s>", nav_n("<C-s>", "l"), { expr = true })
+vim.keymap.set("i", "<C-h>", nav_i("<C-h>", "h"), { expr = true })
+vim.keymap.set("i", "<C-t>", nav_i("<C-t>", "k"), { expr = true })
+vim.keymap.set("i", "<C-n>", nav_i("<C-n>", "j"), { expr = true })
+vim.keymap.set("i", "<C-s>", nav_i("<C-s>", "l"), { expr = true })
+vim.keymap.set("t", "<C-h>", nav_t("<C-h>", "h"), { expr = true })
+vim.keymap.set("t", "<C-t>", nav_t("<C-t>", "k"), { expr = true })
+vim.keymap.set("t", "<C-n>", nav_t("<C-n>", "j"), { expr = true })
+vim.keymap.set("t", "<C-s>", nav_t("<C-s>", "l"), { expr = true })
+---- move to floating window
+vim.keymap.set("n", "<leader>wf", function()
+  for _, win in ipairs(vim.api.nvim_list_wins()) do
+    local config = vim.api.nvim_win_get_config(win)
+    if config.relative ~= "" then
+      vim.api.nvim_set_current_win(win)
+      return
+    end
+  end
+end, { desc = "Focus floating window" })
+
 ---- icons
 wk.add({
   { "<C-w>h", icon = { icon = "", color = movecursor } },
