@@ -6,5 +6,6 @@ return {
     opts.keymap["<C-t>"] = { "select_prev", "fallback" }
     opts.keymap["<C-s>"] = { "accept", "fallback" }
     opts.keymap["<C-p>"] = nil
+    opts.keymap["<CR>"] = { "fallback" }
   end,
 }
