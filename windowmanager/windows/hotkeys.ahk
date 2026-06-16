@@ -1,10 +1,24 @@
 #Requires AutoHotkey v2.0
 #SingleInstance Force
 
+LaunchGlazeWM()
+
+!#F3::LaunchGlazeWM()
+
+Exit() ; don't execute anything below
+
+LaunchGlazeWM() {
+	glazewmWorkingDir := "C:\Users\cgd55\.dotfiles\windowmanager\windows\glazewm"
+
+	Run("glazewm start --config=./config.yaml", glazewmWorkingDir, "Hide")
+}
+
+
+#HotIf false ; Crucial: This tells AHK to ignore all hotkeys below this line!
+
 Komorebic(cmd) {
     RunWait(format("komorebic.exe {}", cmd), , "Hide")
 }
-
 
 ; hotkey = win + alt = #!
 ; additional hotkey = win + alt + shift = #!+

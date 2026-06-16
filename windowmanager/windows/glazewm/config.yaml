@@ -108,13 +108,13 @@ window_rules:
       - window_process: { equals: "Lively" }
         window_class: { regex: "HwndWrapper*" }
 
-binding_modes:
-  # When enabled, the focused window can be resized via arrow keys or HJKL.
-  - name: "launchprogram"
-    keybindings:
-      - commands:
-          ["exec firefox", "wm-disable-binding-mode --name launchprogram"]
-        bindings: ["f"]
+# binding_modes:
+#   # When enabled, the focused window can be resized via arrow keys or HJKL.
+#   - name: "launchprogram"
+#     keybindings:
+#       - commands:
+#           ["exec firefox", "wm-disable-binding-mode --name launchprogram"]
+#         bindings: ["f"]
 
   # When enabled, all keybindings are disabled except for alt+shift+p which
   # returns to default keybindings.
@@ -162,9 +162,9 @@ keybindings:
 
   # monitor
   # hotkey + gcrl
-  - commands: ["focus left_monitor"]
+  - commands: ["focus --workspace-in-direction left"]
     bindings: ["alt+lwin+g"]
-  - commands: ["focus right_monitor"]
+  - commands: ["focus --workspace-in-direction right"]
     bindings: ["alt+lwin+l"]
 
   # focus child window/container
@@ -297,9 +297,9 @@ keybindings:
 
   # terminal
   # hotkey + (shift +) enter
-  - commands: ["exec notify-send 'bla'", "shell-exec cmd"]
+  - commands: [ "shell-exec cmd"]
     bindings: ["alt+lwin+shift+enter"]
-  - commands: ["exec notify-send 'bla'", "shell-exec wezterm"]
+  - commands: [ "shell-exec --hide-window wezterm"]
     bindings: ["alt+lwin+enter"]
 
   # screenshot
@@ -310,10 +310,10 @@ keybindings:
   # . to editor
   # TODO:
 
-  # various other apps under new namespace
-  # hotkey + p
-  - commands: ["wm-enable-binding-mode --name launchprogram"]
-    bindings: ["alt+lwin+p"]
+  # # various other apps under new namespace
+  # # hotkey + p
+  # - commands: ["wm-enable-binding-mode --name launchprogram"]
+  #   bindings: ["alt+lwin+p"]
 
   ###################################
   # Non-window-management shortcuts #
@@ -321,19 +321,19 @@ keybindings:
 
   # lock the machine
   # hotkey + f5
-  - commands: ["exec rundll32.exe user32.dll,LockWorkStation"]
+  - commands: ["shell-exec rundll32.exe user32.dll,LockWorkStation"]
     bindings: ["alt+lwin+f5"]
 
   # change keyboard layout (must be keys that are same on all layouts)
   # hotkey + f1 for dvorak, hotkey + f2 for us
   - commands:
       [
-        'exec powershell -Command "Set-WinUserLanguageList en-US -Force; Set-WinDefaultInputMethodOverride -InputTip ''0409:00010409''"',
+        'shell-exec powershell -Command "Set-WinUserLanguageList en-US -Force; Set-WinDefaultInputMethodOverride -InputTip ''0409:00010409''"',
       ]
     bindings: ["alt+lwin+f1"]
   - commands:
       [
-        'exec powershell -Command "Set-WinDefaultInputMethodOverride -InputTip ''0409:00000409''"',
+        'shell-exec powershell -Command "Set-WinDefaultInputMethodOverride -InputTip ''0409:00000409''"',
       ]
     bindings: ["alt+lwin+f2"]
 

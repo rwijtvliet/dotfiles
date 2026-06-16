@@ -61,14 +61,17 @@ case "$OS" in
   ;;
 
 "windows")
+  # there is komorebi and there is glazewm. I use glazewm for now.
   scoop bucket add extras
-  scoop install komorebi whkd autohotkey
+  scoop install glazewm
+  # scoop install komorebi whkd autohotkey
   todo "Manually install zebar from github"
   info "Setting environment variable"
-  powershell.exe -Command 'setx KOMOREBI_CONFIG_HOME "C:\Users\cgd55\.dotfiles\windowmanager\windows\"'
+  # powershell.exe -Command 'setx KOMOREBI_CONFIG_HOME "C:\Users\cgd55\.dotfiles\windowmanager\windows\"'
+  powershell.exe -Command 'setx GLAZEWM_CONFIG_PATH "C:\Users\cgd55\.dotfiles\windowmanager\windows\glazewm/config.yaml"'
   mkdir -p "$HOME/.glzr/zebar"
   link_public_resource "./windows/zebar/config.yaml" "$USERPROFILE/.glzr/zebar/config.yaml"
-  todo "ensure komorebi, autohotkey script, and zebar/start.bat are ran on startup (windows+r: 'shell:startup')"
+  todo "ensure autohotkey script, and zebar/start.bat are ran on startup (windows+r: 'shell:startup')"
   ;;
 
 "macos")
