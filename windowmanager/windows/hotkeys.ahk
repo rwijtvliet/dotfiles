@@ -1,9 +1,36 @@
 #Requires AutoHotkey v2.0
 #SingleInstance Force
 
-LaunchGlazeWM()
 
-!#F3::LaunchGlazeWM()
+; hotkey = win + alt = #!
+; additional hotkey = win + alt + shift = #!+
+
+
+
+; ###################################
+; # Non-window-management shortcuts #
+; ###################################
+;
+; # lock the machine
+; # hotkey + f5
+#!F5::DllCall("LockWorkStation")
+;
+; # change keyboard layout (must be keys that are same on all layouts)
+; # hotkey + f1 for dvorak, hotkey + f2 for us
+#!F1::Send '!+1'  
+#!F2::Send '!+2'
+
+#!F11::RunWait('"C:\Program Files\Git\usr\bin\bash.exe" -c "source /c/users/cgd55/.shell_secrets && vpn off"', , "Hide")
+#!F12::RunWait('"C:\Program Files\Git\usr\bin\bash.exe" -c "source /c/users/cgd55/.shell_secrets && vpn on"', , "Hide")
+
+
+; ###########################
+; # Window management start #
+; ###########################
+!#F3::LaunchGlazeWM() ; manual start
+LaunchGlazeWM() ; automatic start
+; (other window management shortcuts defined in glazewm/config.yaml)
+
 
 Exit() ; don't execute anything below
 
@@ -14,14 +41,13 @@ LaunchGlazeWM() {
 }
 
 
+
 #HotIf false ; Crucial: This tells AHK to ignore all hotkeys below this line!
 
 Komorebic(cmd) {
     RunWait(format("komorebic.exe {}", cmd), , "Hide")
 }
 
-; hotkey = win + alt = #!
-; additional hotkey = win + alt + shift = #!+
 
 
 ; #########
@@ -174,21 +200,6 @@ Komorebic(cmd) {
 ; # various other apps under new namespace
 ; # hotkey + p
 ;
-; ###################################
-; # Non-window-management shortcuts #
-; ###################################
-;
-; # lock the machine
-; # hotkey + f5
-#!F5::DllCall("LockWorkStation")
-;
-; # change keyboard layout (must be keys that are same on all layouts)
-; # hotkey + f1 for dvorak, hotkey + f2 for us
-#!F1::Send '!+1'  
-#!F2::Send '!+2'
-
-#!F11::RunWait('"C:\Program Files\Git\usr\bin\bash.exe" -c "source /c/users/cgd55/.shell_secrets && vpn off"', , "Hide")
-#!F12::RunWait('"C:\Program Files\Git\usr\bin\bash.exe" -c "source /c/users/cgd55/.shell_secrets && vpn on"', , "Hide")
 
 
 ; #############################
