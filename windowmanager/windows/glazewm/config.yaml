@@ -329,12 +329,12 @@ keybindings:
   # hotkey + f1 for dvorak, hotkey + f2 for us
   - commands:
       [
-        'shell-exec powershell -Command "Set-WinUserLanguageList en-US -Force; Set-WinDefaultInputMethodOverride -InputTip ''0409:00010409''"',
+        'shell-exec --hide-window %localappdata%\KeyboardLayoutTool-v2.exe activate 00010409',
       ]
     bindings: ["alt+lwin+f1"]
   - commands:
       [
-        'shell-exec powershell -Command "Set-WinDefaultInputMethodOverride -InputTip ''0409:00000409''"',
+        'shell-exec --hide-window %localappdata%\KeyboardLayoutTool-v2.exe activate 00000409',
       ]
     bindings: ["alt+lwin+f2"]
 

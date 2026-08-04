@@ -177,6 +177,16 @@ vim.keymap.set("i", "<C-h>", nav_i("<C-h>", "h"), { expr = true })
 vim.keymap.set("i", "<C-t>", nav_i("<C-t>", "k"), { expr = true })
 vim.keymap.set("i", "<C-n>", nav_i("<C-n>", "j"), { expr = true })
 vim.keymap.set("i", "<C-s>", nav_i("<C-s>", "l"), { expr = true })
+vim.keymap.set("i", "<C-l>", function()
+  if LazyVim.cmp.map({ "ai_nes", "ai_accept" })() then
+    return
+  end
+
+  local ok, blink = pcall(require, "blink.cmp")
+  if ok and blink.is_visible() then
+    return blink.select_and_accept()
+  end
+end, { desc = "Accept AI suggestion" })
 vim.keymap.set("t", "<C-h>", nav_t("<C-h>", "h"), { expr = true })
 vim.keymap.set("t", "<C-t>", nav_t("<C-t>", "k"), { expr = true })
 vim.keymap.set("t", "<C-n>", nav_t("<C-n>", "j"), { expr = true })
@@ -206,6 +216,12 @@ vim.keymap.set("", "<C-w>l", "<nop>")
 vim.keymap.set("", "<C-k>", "<nop>")
 vim.keymap.set("", "<C-j>", "<nop>")
 vim.keymap.set("", "<C-l>", "<nop>")
+vim.keymap.set("n", "<C-l>", function()
+  local ok, sidekick = pcall(require, "sidekick")
+  if ok then
+    sidekick.nes_jump_or_apply()
+  end
+end, { desc = "Accept AI next edit suggestion" })
 wk.add({
   { "<C-w>k", hidden = true },
   { "<C-w>j", hidden = true },
